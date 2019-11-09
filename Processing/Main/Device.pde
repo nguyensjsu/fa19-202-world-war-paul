@@ -3,9 +3,9 @@
 /**
  * Authentication Proxy for App Controller
  */
-public static class Device implements IApp, IPinAuthObserver {
+public class Device implements IApp, IPinAuthObserver {
     
-    private static Device theDevice = null;   
+    private Device theDevice = null;   
     private boolean fourPin = true ;
     private boolean sixPin = false ;
     private String pin = "" ; 
@@ -24,25 +24,22 @@ public static class Device implements IApp, IPinAuthObserver {
     public static final int landscape_screen_width = 32 ;
     public static final int landscape_screen_length = 6 ;
 
-    public enum ORIENTATION_MODE {
-        PORTRAIT, LANDSCAPE
-    }
+    private int device_orientation_state ;
 
-    private ORIENTATION_MODE device_orientation_state ;
-
-    public ORIENTATION_MODE getDeviceOrientation() {
+    public int getDeviceOrientation() {
         return this.device_orientation_state ;
     }
 
     public void setPortraitOrientation() {
-        this.device_orientation_state = ORIENTATION_MODE.PORTRAIT ;
+        this.device_orientation_state = 0;
     }
 
     public void setLandscapeOrientation() {
-        this.device_orientation_state = ORIENTATION_MODE.LANDSCAPE ;
+        this.device_orientation_state = 1;
     }
 
-    private Device() { }
+    private Device() {
+    }
 
 
 
@@ -116,7 +113,7 @@ public static class Device implements IApp, IPinAuthObserver {
      * Get Singleton Instance
      * @return Reference to Current Device Config (Create if none exists)
      */
-    public synchronized static Device getInstance() {
+    public Device getInstance() {
         if (theDevice == null) {
             return getNewInstance( "1234" ) ;
         }
@@ -128,11 +125,11 @@ public static class Device implements IApp, IPinAuthObserver {
      * Get New Instance 
      * @return Reference to Device (Create New Singleton)
      */
-    public synchronized static Device getNewInstance() {
+    public Device getNewInstance() {
         return getNewInstance( "1234" ) ;
     }
 
-    public synchronized static Device getNewInstance( String pin ) {
+    public Device getNewInstance( String pin ) {
         theDevice = new Device() ;
         theDevice.setPin( pin ) ;
         theDevice.startUp() ;
@@ -165,7 +162,7 @@ public static class Device implements IApp, IPinAuthObserver {
         app = new AppController() ;        
 
         // startup in portrait
-        this.device_orientation_state = ORIENTATION_MODE.PORTRAIT ;
+        this.device_orientation_state = 0;
     }
 
     /**

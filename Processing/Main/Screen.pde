@@ -98,7 +98,7 @@ public class Screen implements IScreen, IDisplayComponent
      * @return Class Name of Current Screen
      */
     public String name() {
-        return (this.getClass().getName()).split("\\.")[1] ; 
+        return (this.getClass().getName()); 
     }
 
 }
