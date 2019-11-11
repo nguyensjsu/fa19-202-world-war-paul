@@ -6,7 +6,7 @@ void setup() {
   
    // old starbuck starter code 
         Device d = new Device().getInstance();
-        
+        //AppController app = new AppController();
         d.display();
         d.touch(1, 5);  // 1
         d.touch(2, 5);  // 2
@@ -16,29 +16,29 @@ void setup() {
         // TODO: Update all display() function: Change all System.out.print() call to processing drawings
 }
 
-void draw() {
-  if (mousePressed) {
-    fill(0);
-  } else {
-    fill(255);
-  }
-  ellipse(mouseX, mouseY, 80, 80);
-  // TODO: Update screenContents() & all display() functions: Change all System.out.print() call to processing drawings
-  // app.screenContents()
-}
+//void draw() {
+//  if (mousePressed) {
+//    fill(0);
+//  } else {
+//    fill(255);
+//  }
+//  //ellipse(mouseX, mouseY, 80, 80);
+//  // TODO: Update screenContents() & all display() functions: Change all System.out.print() call to processing drawings
+//  // app.screenContents()
+//}
 
 
 
-void mouseClicked(){
-  // TODO: Update all touch() function
-  println("clicked: ", mouseX, "  ", mouseY);
-  // app.touch();
+//void mouseClicked(){
+//  // TODO: Update all touch() function
+//  println("clicked: ", mouseX, "  ", mouseY);
+//  // app.touch();
   
-}
+//}
 
 
-void mouseDragged(){
-  // TODO: Fill Device drag() function
-  println("dragged: ", mouseX, "  ", mouseY);
-  // app.drag();
-}
+//void mouseDragged(){
+//  // TODO: Fill Device drag() function
+//  println("dragged: ", mouseX, "  ", mouseY);
+//  // app.drag();
+//}
