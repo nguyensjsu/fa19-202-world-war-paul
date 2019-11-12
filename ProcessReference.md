@@ -1,9 +1,10 @@
+<pre>
 UseFULL code
-1. Load Picture Images<br/>
-  a. PNG/JPG file<br/>
-    PImage img;<br/>
-    img = loadImage("img/logo.png");  //file destination for file name logo.png<br/>
-    image(img,55,450,100,100);      //Draw at coordinate (55, 450) at size 100 x 100<br/>
+1. Load Picture Images
+  a. PNG/JPG file
+    PImage img;
+    img = loadImage("img/logo.png");  //file destination for file name logo.png
+    image(img,55,450,100,100);      //Draw at coordinate (55, 450) at size 100 x 100
 
   b. SVG File
     PShape img;
@@ -86,3 +87,4 @@ c. Fill
     v1	float: red or hue value (depending on current color mode)
     v2	float: green or saturation value (depending on current color mode)
     v3	float: blue or brightness value (depending on current color mode)
+ <pre>
