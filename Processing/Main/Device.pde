@@ -3,14 +3,13 @@
 /**
  * Authentication Proxy for App Controller
  */
-public class Device implements IApp, IPinAuthObserver {
+public class Device implements IProxy, IPinAuthObserver {
     
-    private Device theDevice = null;   
     private boolean fourPin = true ;
     private boolean sixPin = false ;
     private String pin = "" ; 
 
-    private IApp app ;
+    private IProxy app ;
     private KeyPad kp ;
     private Passcode pc ;
     private PinScreen ps ;
@@ -38,7 +37,29 @@ public class Device implements IApp, IPinAuthObserver {
         this.device_orientation_state = 1;
     }
 
-    private Device() {
+    private Device() 
+    {
+        kp = new KeyPad() ;
+        pc = new Passcode() ;
+        sp = new Spacer() ;
+        ps = new PinScreen() ;
+        pm = new PinEntryMachine() ;
+
+        // setup the composite pattern
+        ps.addSubComponent( pc ) ;
+        ps.addSubComponent( sp ) ;
+        ps.addSubComponent( kp ) ;
+
+        // setup the observer pattern
+        ((IKeyPadSubject)kp).attach( pc ) ;
+        ((IKeyPadSubject)kp).attach( pm ) ;
+        ((IPinAuthSubject)pm).registerObserver(this) ;
+
+        // get app controller reference
+        app = new AppController() ;        
+
+        // startup in portrait
+        this.device_orientation_state = 0;
     }
 
 
@@ -113,73 +134,73 @@ public class Device implements IApp, IPinAuthObserver {
      * Get Singleton Instance
      * @return Reference to Current Device Config (Create if none exists)
      */
-    public Device getInstance() {
-        if (theDevice == null) {
-            return getNewInstance( "1234" ) ;
-        }
-        else
-            return theDevice;
-    }
+    //public Device getInstance() {
+    //    if (theDevice == null) {
+    //        return getNewInstance( "1234" ) ;
+    //    }
+    //    else
+    //        return theDevice;
+    //}
 
-    /**
-     * Get New Instance 
-     * @return Reference to Device (Create New Singleton)
-     */
-    public Device getNewInstance() {
-        return getNewInstance( "1234" ) ;
-    }
+    ///**
+    // * Get New Instance 
+    // * @return Reference to Device (Create New Singleton)
+    // */
+    //public Device getNewInstance() {
+    //    return getNewInstance( "1234" ) ;
+    //}
 
-    public Device getNewInstance( String pin ) {
-        theDevice = new Device() ;
-        theDevice.setPin( pin ) ;
-        theDevice.startUp() ;
-        return theDevice ;
-    }
+    //public Device getNewInstance( String pin ) {
+    //    theDevice = new Device() ;
+    //    theDevice.setPin( pin ) ;
+    //    theDevice.startUp() ;
+    //    return theDevice ;
+    //}
 
     /**
      * Device Starup Process.  
      * Starts Up with Default 4-Pin Option
      */
-    public void startUp()
-    {
-        kp = new KeyPad() ;
-        pc = new Passcode() ;
-        sp = new Spacer() ;
-        ps = new PinScreen() ;
-        pm = new PinEntryMachine() ;
+    //public void startUp()
+    //{
+    //    kp = new KeyPad() ;
+    //    pc = new Passcode() ;
+    //    sp = new Spacer() ;
+    //    ps = new PinScreen() ;
+    //    pm = new PinEntryMachine() ;
 
-        // setup the composite pattern
-        ps.addSubComponent( pc ) ;
-        ps.addSubComponent( sp ) ;
-        ps.addSubComponent( kp ) ;
+    //    // setup the composite pattern
+    //    ps.addSubComponent( pc ) ;
+    //    ps.addSubComponent( sp ) ;
+    //    ps.addSubComponent( kp ) ;
 
-        // setup the observer pattern
-        ((IKeyPadSubject)kp).attach( pc ) ;
-        ((IKeyPadSubject)kp).attach( pm ) ;
-        ((IPinAuthSubject)pm).registerObserver(this) ;
+    //    // setup the observer pattern
+    //    ((IKeyPadSubject)kp).attach( pc ) ;
+    //    ((IKeyPadSubject)kp).attach( pm ) ;
+    //    ((IPinAuthSubject)pm).registerObserver(this) ;
 
-        // get app controller reference
-        app = new AppController() ;        
+    //    // get app controller reference
+    //    app = new AppController() ;        
 
-        // startup in portrait
-        this.device_orientation_state = 0;
-    }
+    //    // startup in portrait
+    //    this.device_orientation_state = 0;
+    //}
 
     /**
     * Switch to Landscape View
     */
-    public void landscape() {
-        if ( authenticated )
-            app.landscape() ;
-    }
+    //public void landscape() {
+    //    if ( authenticated )
+    //        app.landscape() ;
+    //}
 
-    /**
-     * Switch to Portait View
-     */
-    public void portrait() {
-        if ( authenticated )
-            app.portrait() ;
-    }
+    ///**
+    // * Switch to Portait View
+    // */
+    //public void portrait() {
+    //    if ( authenticated )
+    //        app.portrait() ;
+    //}
 
     /**
      * User Touch at X,Y Coordinates

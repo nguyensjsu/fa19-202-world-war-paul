@@ -4,18 +4,8 @@
 /**
  * App Interface -- Actions Users can Take.
  */
-public interface IApp
-{
-
-    /**
-     * Switch to landscape view
-     */
-    void landscape() ;
-
-    /**
-     * Switch to portrait view
-     */
-    void portrait() ;           
+public interface IProxy
+{        
 
     /**
      * Send touch event to current screen
@@ -43,7 +33,7 @@ public interface IApp
     /**
      * Navigate to next screen
      */
-    void next() ;         
+    void next() ;
 
     /**
      * Get Screen Name

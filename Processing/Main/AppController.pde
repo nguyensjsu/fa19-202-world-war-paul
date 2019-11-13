@@ -1,11 +1,13 @@
+
 /* (c) Copyright 2018 Paul Nguyen. All Rights Reserved */
 
 
 /**
  * Main App Controller Class
  */
-public class AppController implements IApp {
+public class AppController implements IProxy {
 
+    // TODO: Update Screens and Commands
     private IScreen mycards ;
     private IScreen store ;
     private IScreen rewards ;
