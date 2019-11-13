@@ -2,11 +2,18 @@
  //<>// //<>// //<>//
 Device d;
 void setup() {
-  size(500, 500);
+  //size(380, 680);
   
   // old starbuck starter code 
    d = new Device();
     d.display();
+     // d.touch(1, 5);  // 1
+     // d.touch(2, 5);  // 2
+     // d.touch(3, 5);  // 3
+     // d.touch(1, 6);  // 4
+    //d.execute("C");
+
+     //d.display();
   // TODO: Update all display() function: Change all System.out.print() call to processing drawings
 }
 

@@ -37,7 +37,7 @@ public class Device implements IProxy, IPinAuthObserver {
         this.device_orientation_state = 1;
     }
 
-    private Device() 
+    public Device() 
     {
         kp = new KeyPad() ;
         pc = new Passcode() ;
@@ -248,6 +248,7 @@ public class Device implements IProxy, IPinAuthObserver {
         if ( authenticated ) {
             return app.screenContents() ;
         } else {
+            // TODO: Pinscreen
             String out = "" ;
             out = "----------------\n" ;
             out += "   " + ps.name() + "  \n" ;

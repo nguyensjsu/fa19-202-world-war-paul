@@ -47,7 +47,7 @@ public class Frame implements IFrame
     private void dumpLines(String str) {
           String[] lines = str.split("\r\n|\r|\n");
           for ( int i = 0; i<lines.length; i++ ) {
-            System.err.println( i + ": " + lines[i] ) ;
+            System.out.println( i + ": " + lines[i] ) ;
           }
     }
 
@@ -86,10 +86,10 @@ public class Frame implements IFrame
     private String padLines(int num) {
         String lines = "" ;
         for ( int i = 0; i<num; i++ ) {
-            System.err.print(".") ;
+            System.out.print(".") ;
             lines += "\n" ;
         }
-        System.err.println("") ;
+        System.out.println("") ;
         return lines ;
     }
     
