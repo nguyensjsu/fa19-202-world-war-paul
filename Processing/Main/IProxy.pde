@@ -14,6 +14,12 @@ public interface IProxy
      */
     void touch(int x, int y) ;  
 
+
+    /**
+    * drag command
+    */ 
+    void drag();
+
     /**
      * Display contents of current screen
      */

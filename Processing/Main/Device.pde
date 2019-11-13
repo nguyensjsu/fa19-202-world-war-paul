@@ -215,6 +215,14 @@ public class Device implements IProxy, IPinAuthObserver {
     }
 
     /**
+    * drag method
+    */
+    public void drag(){
+     if(authenticated) app.drag();
+    }
+    
+
+    /**
      * Display Screen Contents to Terminal
      */
     public void display() {

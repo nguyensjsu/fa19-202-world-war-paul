@@ -26,6 +26,10 @@ public interface IFrame
      */
     void touch(int x, int y) ;
 
+
+    // Handle drag.
+    void drag();
+
     /**
      * Navigate to Previous Screen
      */

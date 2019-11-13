@@ -259,6 +259,11 @@ public class Frame implements IFrame
 
     }
 
+    // Drag Event.
+    public void drag() {
+        //current.drag();
+    }
+
     /**
      * Get Contents of the Frame + Screen 
      * @return Frame + Screen Contents

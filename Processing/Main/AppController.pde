@@ -69,19 +69,19 @@ public class AppController implements IProxy {
     }
 
 
-    /**
-      * Switch to Landscape Mode
-      */
-    public void landscape() {
-        frame.landscape() ;
-    }
+    // /**
+    //   * Switch to Landscape Mode
+    //   */
+    // public void landscape() {
+    //     frame.landscape() ;
+    // }
 
-    /**
-     * Switch to Portait Mode
-     */
-    public void portrait() {
-        frame.portrait() ;
-    }
+    // /**
+    //  * Switch to Portait Mode
+    //  */
+    // public void portrait() {
+    //     frame.portrait() ;
+    // }
 
     /**
      * Send In Touch Events
@@ -90,6 +90,13 @@ public class AppController implements IProxy {
      */
     public void touch(int x, int y) {
         frame.touch(x, y) ;
+    }
+
+    /**
+    * drag method
+    */
+    public void drag(){
+      frame.drag();
     }
 
     /**
