@@ -22,8 +22,8 @@ public class LoginKeyPad implements ITouchEventHandler, IDisplayComponent, IKeyP
 
         // display setup
         for(int i = 0; i < 10; i ++)
-          num[i] = loadImage("img/keyPad/key" + Integer.toString(i) + "_50.png");
-        backSpace = loadImage("img/keyPad/backspace_50.png");
+          num[i] = loadImage("../../img/keyPad/key" + Integer.toString(i) + "_50.png");
+        backSpace = loadImage("../../img/keyPad/backspace_50.png");
     }
 
     /**
