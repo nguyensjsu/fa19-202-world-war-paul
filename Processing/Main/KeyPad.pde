@@ -21,10 +21,10 @@ public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSub
      * @param x X Coord
      * @param y Y Coord
      */
-    public void touch(int x, int y) { 
+    public void touch(int x, int y) {
         if ( y > 4 )
         {
-            System.err.println( "KeyPad Touched at (" + x + ", " + y + ")" ) ; 
+            System.err.println( "KeyPad Touched at (" + x + ", " + y + ")" ) ;
             this.lastKey = getKey( x, y ) ;
             if ( x==3 && y==8   )
             {
@@ -34,7 +34,7 @@ public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSub
             {
                 countPinDigits++ ;
             }
-            notifyObservers() ;            
+            notifyObservers() ;
         }
         else
         {
@@ -44,12 +44,12 @@ public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSub
     }
 
     /**
-     *  Get Last Key Pressed 
+     *  Get Last Key Pressed
      * @return Lasy Key
      */
-    public String lastKey() { 
+    public String lastKey() {
         System.err.println( "Key Pressed: " + this.lastKey ) ;
-        return this.lastKey ; 
+        return this.lastKey ;
     }
 
     /**
@@ -70,7 +70,7 @@ public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSub
         else if ( kx==1 && ky ==4 )
             return " " ;
         else
-            return Integer.toString(kx+3*(ky-1)) ;   
+            return Integer.toString(kx+3*(ky-1)) ;
     }
 
     /*
@@ -94,7 +94,7 @@ public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSub
      * Set Next Touch Event Handler
      * @param next Event Handler
      */
-    public void setNext( ITouchEventHandler next) { 
+    public void setNext( ITouchEventHandler next) {
         nextHandler = next ;
     }
 
@@ -102,10 +102,10 @@ public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSub
      * Get Key Pad Display
      * @return Key Pad View Contents
      */
-    public String display() 
+    public String display()
     {
         //return " [1] [2] [3]\n [4] [5] [6]\n [7] [8] [9]\n [_] [0] [X]"  ;
-        
+
         String output =  "  [1] [2] [3]\n" ;
                output += "  [4] [5] [6]\n" ;
                output += "  [7] [8] [9]\n" ;
@@ -118,7 +118,7 @@ public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSub
      * Add Sub Component (Not used)
      * @param c Display Component
      */
-    public void addSubComponent( IDisplayComponent c ) 
+    public void addSubComponent( IDisplayComponent c )
     {
     }
 
@@ -126,7 +126,7 @@ public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSub
      * Attach a Key Pad Observer
      * @param obj Observer
      */
-    public void attach( IKeyPadObserver obj ) 
+    public void attach( IKeyPadObserver obj )
     {
         observers.add( obj ) ;
     }
@@ -152,6 +152,6 @@ public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSub
             IKeyPadObserver observer = observers.get(i) ;
             observer.keyEventUpdate( countPinDigits, lastKey ) ;
         }
-    }    
+    }
 
 }
