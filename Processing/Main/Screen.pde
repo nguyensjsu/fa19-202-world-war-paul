@@ -13,6 +13,17 @@ import java.util.* ;
  */
 public class Screen implements IScreen, IDisplayComponent
 {
+    private int width = 380;
+    private int height = 680;
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+    
     /** Display Components */
     private ArrayList<IDisplayComponent> components = new ArrayList<IDisplayComponent>() ;
 
@@ -83,14 +94,10 @@ public class Screen implements IScreen, IDisplayComponent
      * Get Display Contents
      * @return Display Contents
      */
-    public String display() { 
-        String value = "" ;
-        for (IDisplayComponent c : components )
-        {
-            System.out.println( "Screen: " + c.getClass().getName() ) ;
-            value = value + c.display() + "\n" ;
+    public void display() { 
+        for (IDisplayComponent c: components) {
+            c.display();
         }
-        return value ; 
     }
 
     /**
