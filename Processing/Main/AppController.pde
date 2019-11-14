@@ -92,6 +92,11 @@ public class AppController implements IProxy {
         frame.touch(x, y) ;
     }
 
+    public void touch() {
+        //TODO: add frame touch from GUI
+        //frame.touch() ;
+    }
+
     /**
     * drag method
     */
@@ -141,6 +146,9 @@ public class AppController implements IProxy {
      * @return Current Screen Contents
      */
     public String screenContents() {
+        // TODO: home(store) screen pop up
+        background(51);
+
         return frame.contents() ;
     }
 

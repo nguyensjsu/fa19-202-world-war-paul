@@ -5,11 +5,11 @@ import java.util.* ;
 
 /**
  * Base Class for Screens.
- * 
+ *
  * Provides Common Functionality
- * For Setting Up the Composite and 
+ * For Setting Up the Composite and
  * Chain of Responsibility Patterns.
- * 
+ *
  */
 public class Screen implements IScreen, IDisplayComponent
 {
@@ -30,28 +30,29 @@ public class Screen implements IScreen, IDisplayComponent
      * @param y Touch Y Coord.
      */
     public void touch(int x, int y) {
-        chain.touch(x, y) ;
+        if(chain != null)
+            chain.touch(x, y) ;
     }
-    
+
     /** Next Screen - Not Used */
     public void next() {
         // add code here
     }
-    
+
     /** Previous Screen - Not Used */
     public void prev()  {
         // add code here
     }
-        
+
     /**
-     * Set Next Screen - Not Used 
+     * Set Next Screen - Not Used
      * @param s Next Screen Object
      * @param n Next Screen Label
      */
     public void setNext(IScreen s, String n )  {
         // add code here
     }
-    
+
     /**
      * Send Previous Screen - Not Used
      * @param s Previous Screen Object
@@ -59,7 +60,7 @@ public class Screen implements IScreen, IDisplayComponent
      */
     public void setPrev(IScreen s, String n )  {
         // add code here
-    }    
+    }
 
     /**
      * Add Display Component to Screen
@@ -78,19 +79,19 @@ public class Screen implements IScreen, IDisplayComponent
             prev.setNext( (ITouchEventHandler) c ) ;
         }
     }
-    
+
     /**
      * Get Display Contents
      * @return Display Contents
      */
-    public String display() { 
+    public String display() {
         String value = "" ;
         for (IDisplayComponent c : components )
         {
             System.out.println( "Screen: " + c.getClass().getName() ) ;
             value = value + c.display() + "\n" ;
         }
-        return value ; 
+        return value ;
     }
 
     /**
@@ -98,7 +99,7 @@ public class Screen implements IScreen, IDisplayComponent
      * @return Class Name of Current Screen
      */
     public String name() {
-        return (this.getClass().getName()); 
+        return (this.getClass().getName());
     }
 
 }

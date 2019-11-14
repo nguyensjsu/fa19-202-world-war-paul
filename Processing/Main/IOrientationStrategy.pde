@@ -29,6 +29,6 @@ public interface IOrientationStrategy
     /** Select D Menu Option */
     void selectD() ;
 
-    /** Select E Menu Option */    
+    /** Select E Menu Option */
     void selectE() ;
 }
