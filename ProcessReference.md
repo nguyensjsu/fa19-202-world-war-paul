@@ -9,7 +9,7 @@ UseFULL code
   b. SVG File
     PShape img;
     img = loadShape("img/ad-solid.svg");  //file destination for file name ad-solid.svg
-    shape(bot, 110, 90, 100, 100);  // Draw at coordinate (110, 90) at size 100 x 100
+    shape(img, 110, 90, 100, 100);  // Draw at coordinate (110, 90) at size 100 x 100
 
 2. Write Change Text Size/Color
   textSize(32);    //text size = 32
