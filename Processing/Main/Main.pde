@@ -2,48 +2,36 @@
  //<>// //<>// //<>//
 Device d;
 void setup() {
-  //size(380, 680);
-  
-  // old starbuck starter code 
-   d = new Device();
+    size(380, 680);
+    //KeyPad kp = new KeyPad();
+ 
+    d = new Device();
     d.display();
-     // d.touch(1, 5);  // 1
-     // d.touch(2, 5);  // 2
-     // d.touch(3, 5);  // 3
-     // d.touch(1, 6);  // 4
-    //d.execute("C");
+    d.touch(1, 5);  // 1
+    d.touch(2, 5);  // 2
+    d.touch(3, 5);  // 3
+    d.touch(1, 6);  // 4
+    d.execute("E");
 
-     //d.display();
+    //d.display();
   // TODO: Update all display() function: Change all System.out.print() call to processing drawings
 }
 
 void draw() {
-
-  
-  // d.touch(1, 5);  // 1
-  // d.touch(2, 5);  // 2
-  // d.touch(3, 5);  // 3
-  // d.touch(1, 6);  // 4
-  // d.display();
-
-//  if (mousePressed) {
-//    fill(0);
-//  } else {
-//    fill(255);
-//  }
-//  //ellipse(mouseX, mouseY, 80, 80);
-//  // TODO: Update screenContents() & all display() functions: Change all System.out.print() call to processing drawings
-//  // app.screenContents()
+     
+     d.display();
 }
 
 
 
-//void mouseClicked(){
-//  // TODO: Update all touch() function
-//  println("clicked: ", mouseX, "  ", mouseY);
-//  // app.touch();
+void mouseClicked(){
+  // TODO: Update all touch() function
   
-//}
+    //println("clicked: ", mouseX, "  ", mouseY); 
+    d.touch(mouseX, mouseY);
+  
+  
+}
 
 
 //void mouseDragged(){

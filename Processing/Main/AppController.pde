@@ -12,10 +12,12 @@ public class AppController implements IProxy {
     private IScreen store ;
     private IScreen rewards ;
     private IScreen payments ;
+    private IScreen addcard ;
     private IMenuCommand displayMyCards ;
     private IMenuCommand displayPayments ;
     private IMenuCommand displayRewards ;
     private IMenuCommand doStore ;
+    private IMenuCommand doAddCard ;
     private IFrame frame ;
 
     public AppController() {
@@ -23,6 +25,7 @@ public class AppController implements IProxy {
         store = new Store() ;
         rewards = new Rewards() ;
         payments = new Payments() ;
+        addcard = new AddCard() ;
         frame = new Frame( mycards ) ;
 
         // setup command pattern
@@ -30,6 +33,7 @@ public class AppController implements IProxy {
         displayPayments = new MenuCommand() ;
         displayRewards  = new MenuCommand() ;
         doStore         = new MenuCommand() ;
+        doAddCard       = new MenuCommand() ;
         displayMyCards.setReceiver(
           new IMenuReceiver() {
               /** Command Action */
@@ -62,10 +66,19 @@ public class AppController implements IProxy {
               }
         }
         ) ;
+        doAddCard.setReceiver(
+          new IMenuReceiver() {
+              /** Command Action */
+              public void doAction() {
+                  frame.setCurrentScreen( addcard ) ;
+              }
+        }
+        ) ;
         frame.setMenuItem ( "A", displayMyCards ) ;
         frame.setMenuItem ( "B", displayPayments ) ;
         frame.setMenuItem ( "C", displayRewards ) ;
         frame.setMenuItem ( "D", doStore ) ;
+        frame.setMenuItem ( "E", doAddCard ) ;
     }
 
 

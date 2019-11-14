@@ -3,17 +3,24 @@
 
 import java.util.ArrayList;
 
+
+
 /** Key Pad */
 public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSubject
 {
     ITouchEventHandler nextHandler ;
+    PImage [] imgKeyPad = new PImage[12];
     private ArrayList<IKeyPadObserver> observers ;
     int countPinDigits = 0 ;
     String lastKey = "" ;
 
     public KeyPad()
     {
-        observers = new ArrayList<IKeyPadObserver>() ;
+      for(int i = 0; i < 12; i++)
+      {
+        imgKeyPad[i] = loadImage("./data/key" + Integer.toString(i) + ".png");
+      }
+      observers = new ArrayList<IKeyPadObserver>() ;
     }
 
     /**
@@ -110,6 +117,18 @@ public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSub
                output += "  [4] [5] [6]\n" ;
                output += "  [7] [8] [9]\n" ;
                output += "  [_] [0] [x]" ;
+        int intervalX = 45;
+        int intervalY = 60;
+        int keycount = 0;
+        for(int i = 0; i < 4; i++)
+        {
+          for(int j = 0; j < 3; j++)
+          {
+            //rect( 55 + j*(intervalX + 60), 230+i*(intervalY+40), 60, 60);
+            image(imgKeyPad[keycount], 55 + j*(intervalX + 60), 230+i*(intervalY+40), 60, 60);
+            keycount++;
+          }
+        }
 
         return output ;
     }
