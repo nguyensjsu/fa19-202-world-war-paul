@@ -1,4 +1,4 @@
-public class HomePage {
+public class HomePageScreen {
 
     /** Display Components */
     private ArrayList<IDisplayComponent> components = new ArrayList<IDisplayComponent>() ;
@@ -6,7 +6,7 @@ public class HomePage {
     private int height;
     private int width;
 
-    public HomePage() {
+    public HomePageScreen() {
         height = 380;
         width = 680;
     }
