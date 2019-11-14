@@ -6,7 +6,7 @@ void setup() {
 
   // old starbuck starter code
    d = new Device();
-    d.display();
+    //d.display();
      // d.touch(1, 5);  // 1
      // d.touch(2, 5);  // 2
      // d.touch(3, 5);  // 3

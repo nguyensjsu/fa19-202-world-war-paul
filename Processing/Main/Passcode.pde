@@ -41,6 +41,7 @@ public class Passcode implements ITouchEventHandler, IDisplayComponent, IKeyPadO
      */
     public String display()
     {
+      background(209);
       textSize(46);
       fill(50);
         String value = "" ;
