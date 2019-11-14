@@ -10,6 +10,7 @@ public class LoginKeyPad implements ITouchEventHandler, IDisplayComponent, IKeyP
     private ArrayList<IKeyPadObserver> observers ;
     int countPinDigits = 0 ;
     String lastKey = "" ;
+    boolean flag = false;
 
 
     PImage[] num = new PImage[10];
@@ -42,7 +43,9 @@ public class LoginKeyPad implements ITouchEventHandler, IDisplayComponent, IKeyP
             this.lastKey = getKey();
             System.out.println("Keypad: " + this.lastKey);
             if(!this.lastKey.equals("-1")){
+                this.flag = false;
                 countPinDigits++;
+                touchUnder4PinFlag();
                 notifyObservers();
             }
         }
@@ -191,6 +194,13 @@ public class LoginKeyPad implements ITouchEventHandler, IDisplayComponent, IKeyP
 
         return output ;
     }
+
+    public void touchUnder4PinFlag() {
+    if (countPinDigits == 4){
+        countPinDigits = 0;
+        this.flag = true;
+    }
+}
 
     /**
      * Add Sub Component (Not used)
