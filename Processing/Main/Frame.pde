@@ -137,24 +137,24 @@ public class Frame implements IFrame
                 }
                 out += s.name() + "\n" ;
                 out += "===============\n" ;
-                String screen = s.display() + "\n" ;
-                int cnt1 = countLines( screen ) ;
-                int pad1 = (10 - cnt1) / 2;
-                //System.err.println( "cnt1: " + cnt1 ) ;                
-                //System.err.println( "pad1: " + pad1 ) ;
-                out += padLines( pad1 ) ;
-                out += screen  ;
-                //dumpLines( out ) ;                
-                int cnt2 = countLines( out ) ;
-                int pad2 = 13 - cnt2 ;
-                //System.err.println( "cnt2: " + cnt2 ) ;                
-                //System.err.println( "pad2: " + pad2 ) ;
+                // String screen = s.display() + "\n" ;
+                //int cnt1 = countLines( screen ) ;
+                //int pad1 = (10 - cnt1) / 2;
+                ////System.err.println( "cnt1: " + cnt1 ) ;                
+                ////System.err.println( "pad1: " + pad1 ) ;
+                //out += padLines( pad1 ) ;
+                //out += screen  ;
+                ////dumpLines( out ) ;                
+                //int cnt2 = countLines( out ) ;
+                //int pad2 = 13 - cnt2 ;
+                ////System.err.println( "cnt2: " + cnt2 ) ;                
+                ////System.err.println( "pad2: " + pad2 ) ;
+                ////dumpLines( out ) ;
+                //String padlines = padLines( pad2 ) ;
+                //out += padlines ;
+                //out +=  "===============\n" ;
+                //out +=  "[A][B][C][D][E]\n" ;
                 //dumpLines( out ) ;
-                String padlines = padLines( pad2 ) ;
-                out += padlines ;
-                out +=  "===============\n" ;
-                out +=  "[A][B][C][D][E]\n" ;
-                dumpLines( out ) ;
                 return out ;             
             }
 
@@ -171,7 +171,7 @@ public class Frame implements IFrame
             public void selectD() { menuD.invoke() ; }
 
             /** Select Command E */
-            public void selectE() { menuE.invoke() ; }
+            public void selectE() { /** todo **/ }
 
         } ;
 
@@ -197,7 +197,7 @@ public class Frame implements IFrame
                 out += "================================\n" ;
                 out += "  " + s.name() + "  \n" ;
                 out += "================================\n" ;
-                out += s.display() + "\n"  ;
+                // out += s.display() + "\n"  ;
                 out += "================================\n" ;
                 dumpLines( out ) ;
                 return out ;
@@ -315,6 +315,6 @@ public class Frame implements IFrame
     public void selectD() { currentStrategy.selectD() ;  }
 
     /** Select Command E */
-    public void selectE() {  currentStrategy.selectE() ;  }    
+    public void selectE() { /* todo */  }    
 
 }
