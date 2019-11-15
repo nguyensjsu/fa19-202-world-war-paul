@@ -1,39 +1,35 @@
 /* (c) Copyright 2018 Paul Nguyen. All Rights Reserved */
  //<>// //<>// //<>//
 Device d;
-HomePageScreen mp;
+
+// HomePageScreen Testing Code
+// HomePageScreen mp;
+
 void setup() {
   size(380, 680);
   
   // old starbuck starter code 
-   d = new Device();
-    d.display();
-    mp = new HomePageScreen("San Jose State University");
-    Store s1 = new Store("../../img/store/starbucks_300x150.png", "StarBucks1", "Student Union", "Pickup: 7:00am - 10:00pm", 20);
-    Store s2 = new Store("../../img/store/starbucks_300x150.png","StarBucks2", "Student Union", "Pickup: 7:00am - 10:00pm", 250);
-    mp.addSubComponent(s1);
-    mp.addSubComponent(s2);
-    mp.display();
-     // d.touch(1, 5);  // 1
-     // d.touch(2, 5);  // 2
-     // d.touch(3, 5);  // 3
-     // d.touch(1, 6);  // 4
-    //d.execute("C");
+  d = new Device();
+  d.display();
 
-     //d.display();
+  // // HomePageScreen Testing Code
+  // mp = new HomePageScreen("San Jose State University");
+  // Store s1 = new Store("../../img/store/starbucks_300x150.png", "StarBucks1", "Student Union", "Pickup: 7:00am - 10:00pm", 20);
+  // Store s2 = new Store("../../img/store/starbucks_300x150.png","StarBucks2", "Student Union", "Pickup: 7:00am - 10:00pm", 250);
+  // mp.addSubComponent(s1);
+  // mp.addSubComponent(s2);
+  // mp.display();
+    
   // TODO: Update all display() function: Change all System.out.print() call to processing drawings
 }
 
 void draw() {
 
-  if (mousePressed) {
-    mp.display();
-  }
-  // d.touch(1, 5);  // 1
-  // d.touch(2, 5);  // 2
-  // d.touch(3, 5);  // 3
-  // d.touch(1, 6);  // 4
-  // d.display();
+  // // HomePageScreen Testing Code
+  // if (mousePressed) {
+  //   mp.display();
+  // }
+
 
 //  if (mousePressed) {
 //    mp.touch(mouseX, mouseY);
@@ -49,8 +45,10 @@ void draw() {
 
 void mouseClicked(){
  // TODO: Update all touch() function
-    System.out.println(mouseX + " " +  mouseY);
-    mp.touch(mouseX, mouseY);
+
+  // // HomePageScreen Testing Code
+  // mp.touch(mouseX, mouseY);
+
 //  if (mousePressed) {
 //    System.out.println(mouseX + " " +  mouseY);
 //    mp.touch(mouseX, mouseY);
