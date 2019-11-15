@@ -44,31 +44,25 @@ public class Passcode implements ITouchEventHandler, IDisplayComponent, IKeyPadO
       background(209);
       textSize(46);
       fill(50);
-        String value = "" ;
         switch ( count )
         {
             case 0:
               text("[_]  [_]  [_]  [_]", 40, 130);
-              value = "  [_][_][_][_]" ;
               break ;
             case 1:
               text("[*]  [_]  [_]  [_]", 40, 130);
-              value = "  [*][_][_][_]" ;
               break ;
             case 2:
               text("[*]  [*]  [_]  [_]", 40, 130);
-              value = "  [*][*][_][_]" ;
               break ;
             case 3:
               text("[*]  [*]  [*]  [_]", 40, 130);
-              value = "  [*][*][*][_]" ;
               break ;
             case 4:
               text("[*]  [*]  [*]  [*]", 40, 130);
-              value = "  [*][*][*][*]" ;
               break ;
         }
-         return value  ;
+         return ""  ;
     }
 
     /**

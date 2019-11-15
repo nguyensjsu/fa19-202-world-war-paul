@@ -32,7 +32,7 @@ public class LoginKeyPad implements ITouchEventHandler, IDisplayComponent, IKeyP
      * @param y Y Coord
      */
     public void touch(int x, int y) {
-        System.out.println("Mouse Touched: " + mouseX + " " + mouseY);
+        // System.out.println("Mouse Touched: " + mouseX + " " + mouseY);
         if(260 <= mouseX && mouseX <= 340 && 560 <= mouseY && mouseX <= 640){
             this.lastKey = getKey();
             if (countPinDigits > 0){
@@ -50,25 +50,6 @@ public class LoginKeyPad implements ITouchEventHandler, IDisplayComponent, IKeyP
                 notifyObservers();
             }
         }
-
-        // if ( y > 4 )
-        // {
-        //     System.err.println( "KeyPad Touched at (" + x + ", " + y + ")" ) ;
-        //     this.lastKey = getKey( x, y ) ;
-        //     if ( x==3 && y==8   )
-        //     {
-        //         countPinDigits-- ;
-        //     }
-        //     else if ( y < 8 || (x==2 && y==8))
-        //     {
-        //         countPinDigits++ ;
-        //     }
-        // }
-        // else
-        // {
-        //     if ( nextHandler != null )
-        //         nextHandler.touch(x,y) ;
-        // }
     }
 
     /**
@@ -129,37 +110,9 @@ public class LoginKeyPad implements ITouchEventHandler, IDisplayComponent, IKeyP
         }
         return "-1";
 
-
-
-        // int kx = 0, ky = 0 ;
-        // kx = x;
-        // ky = y-4 ;
-        // if ( kx==3 && ky ==4 )
-        //     return "X" ;
-        // else if ( kx==2 && ky == 4 )
-        //     return "0" ;
-        // else if ( kx==1 && ky ==4 )
-        //     return " " ;
-        // else
-        //     return Integer.toString(kx+3*(ky-1)) ;
     }
 
-    /*
-    kx = 1, ky = 1  ==> 1
-    kx = 1, ky = 2  ==> 4
-    kx = 1, ky = 3  ==> 7
 
-    kx = 2, ky = 1  ==> 2
-    kx = 2, ky = 2  ==> 5
-    kx = 2, ky = 3  ==> 8
-
-    kx = 3, ky = 1  ==> 3
-    kx = 3, ky = 2  ==> 6
-    kx = 3, ky = 3  ==> 9
-
-    n = kx + 3 * (ky-1)
-
-    */
 
     /**
      * Set Next Touch Event Handler
@@ -175,28 +128,32 @@ public class LoginKeyPad implements ITouchEventHandler, IDisplayComponent, IKeyP
      */
     public String display()
     {
+        int index = 1;
+        int x = 40;
+        int y = 245;
+        
+        // First three row of keypad. 
+        // 1 2 3
+        // 4 5 6
+        // 7 8 9
 
-        image(num[1], 40, 245, 80, 80);
-        image(num[2], 150, 245, 80, 80);
-        image(num[3], 260, 245, 80, 80);
+        for(int i = 1; i <= 3; i ++){
+            x = 40;
+            for(int j = 0; j < 3; j++){
+                image(num[index], x, y, 80, 80);
+                index ++;
+                x += 110;
 
-        image(num[4], 40, 350, 80, 80);
-        image(num[5], 150, 350, 80, 80);
-        image(num[6], 260, 350, 80, 80);
+            }
+            y += 105;
+        }
 
-        image(num[7], 40, 455, 80, 80);
-        image(num[8], 150, 455, 80, 80);
-        image(num[9], 260, 455, 80, 80);
-
+        // last row of the keypad.
+        // _ 0 X
         image(num[0], 150, 560, 80, 80);
         image(backSpace, 260, 560, 80, 80);
 
-        String output =  "  [1] [2] [3]\n" ;
-               output += "  [4] [5] [6]\n" ;
-               output += "  [7] [8] [9]\n" ;
-               output += "  [_] [0] [x]" ;
-
-        return output ;
+        return "" ;
     }
 
     public void touchUnder4PinFlag() {
