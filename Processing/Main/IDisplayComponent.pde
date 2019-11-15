@@ -5,10 +5,9 @@
 public interface IDisplayComponent
 {
     /**
-     * Return Display Component Contents
-     * @return Display Component Contents
+     * Display Component Contents
      */
-    String display() ;
+    void display() ;
 
     /**
      * Add A Child Component

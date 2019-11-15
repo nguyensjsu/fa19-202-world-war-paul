@@ -253,7 +253,7 @@ public class Device implements IProxy, IPinAuthObserver {
             out = "----------------\n" ;
             out += "   " + ps.name() + "  \n" ;
             out += "----------------\n\n\n" ;
-            out += ps.display() ;
+            // out += ps.display() ;
             out += "\n\n\n----------------\n" ;
             return out ;
         }

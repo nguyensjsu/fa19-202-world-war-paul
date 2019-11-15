@@ -39,18 +39,18 @@ public class Passcode implements ITouchEventHandler, IDisplayComponent, IKeyPadO
      * Display "Echo Feedback" on Pins enterred so far
      * @return Passcode String for Display
      */
-    public String display() 
+    public void display() 
     {
-        String value = "" ;
-        switch ( count )
-        {
-            case 0: value = "  [_][_][_][_]" ; break ;
-            case 1: value = "  [*][_][_][_]" ; break ;
-            case 2: value = "  [*][*][_][_]" ; break ;
-            case 3: value = "  [*][*][*][_]" ; break ;
-            case 4: value = "  [*][*][*][*]" ; break ;
-        }
-         return value  ;
+        // String value = "" ;
+        // switch ( count )
+        // {
+        //     case 0: value = "  [_][_][_][_]" ; break ;
+        //     case 1: value = "  [*][_][_][_]" ; break ;
+        //     case 2: value = "  [*][*][_][_]" ; break ;
+        //     case 3: value = "  [*][*][*][_]" ; break ;
+        //     case 4: value = "  [*][*][*][*]" ; break ;
+        // }
+        //  return value  ;
     }
     
     /**
