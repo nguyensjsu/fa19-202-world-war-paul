@@ -1,4 +1,4 @@
-public class HomePageScreen extends Screen {
+public class HomePageScreen extends Screen implements IDisplayComponent {
 
     /** Display Components */
     private ArrayList<IDisplayComponent> components = new ArrayList<IDisplayComponent>() ;
