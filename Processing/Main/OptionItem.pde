@@ -22,7 +22,12 @@ public class OptionItem extends Screen implements IDisplayComponent
         textSize(14);
         fill(0); 
         String tmp;
-        tmp = name +String.format("%" + (50-name.length())  + "s", "") + "$" +price;
+        if(price == 0){
+          tmp = name;
+        }
+        else{
+          tmp = name +String.format("%" + (50-name.length())  + "s", "") + "$" +price;
+        }
         text(tmp, 45, cHeight + 15);
     }
 
@@ -35,5 +40,3 @@ public class OptionItem extends Screen implements IDisplayComponent
     
 
 }
-
-
