@@ -24,7 +24,7 @@ void setup() {
 }
 
 void draw() {
-
+  
   // // HomePageScreen Testing Code
   // if (mousePressed) {
   //   mp.display();
@@ -54,6 +54,10 @@ void mouseClicked(){
 //    mp.touch(mouseX, mouseY);
 //  }
  // app.touch();
+ 
+ 
+  // login screen test code
+  // d.touch(mouseX, mouseY);
   
 }
 
