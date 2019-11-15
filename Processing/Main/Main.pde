@@ -7,6 +7,8 @@ AddCard ad;
 
 void setup() {
   size(380, 680);
+  ad = new AddCard();
+  ad.display();
   // old starbuck starter code 
   //d = new Device();
 

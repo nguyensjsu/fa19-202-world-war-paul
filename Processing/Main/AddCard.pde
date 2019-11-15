@@ -46,42 +46,22 @@ public class AddCard extends Screen
       
       textAlign(LEFT);
       textSize(25); 
-      fill(0, 0, 0, 100);
       text("Card Number", 10, 90); // Card Number text
-      
-      textAlign(LEFT);
-      textSize(25); 
-      fill(0, 0, 0, 100);
+       
       text(cardNumber.toString(), 30, 115); // Card Number
       
-      strokeWeight(3);
-      stroke(0, 0, 0);// black stroke line
       line(30, 120, 350, 120); // Line under Card Number
       
-      textAlign(LEFT);
-      textSize(25); 
-      fill(0, 0, 0, 100);
       text("Expirty", 10, 150); // Card Expirty title
       
-      textAlign(LEFT);
-      textSize(25); 
-      fill(0, 0, 0, 100);
       text(cardExpirty.toString(), 30, 175); // Card Expirty
       
-      strokeWeight(3);
-      stroke(0, 0, 0);// black stroke line
       line(30, 180, 150, 180); // Line under Card Expirty
       
-      textSize(25); 
-      fill(0, 0, 0, 100);
       text("CVV", 200, 150); // Card CVV title 
 
-      textSize(25); 
-      fill(0, 0, 0, 100);
       text(cvv.toString(), 200, 175); // Card Expirty
       
-      strokeWeight(3);
-      stroke(0, 0, 0);// black stroke line
       line(200, 180, 350, 180); // Line under Card Expirty
       
       keypad.display();
@@ -89,7 +69,6 @@ public class AddCard extends Screen
       rect(0, 620, 380, 60);
       textAlign(CENTER);
       textSize(32); 
-      fill(0, 0, 0, 100);
       text("Save Payment Method", width/2, 660); // Add Card Title
 
     }
