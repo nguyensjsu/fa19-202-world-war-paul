@@ -33,15 +33,15 @@ public class LoginKeyPad implements ITouchEventHandler, IDisplayComponent, IKeyP
      */
     public void touch(int x, int y) {
         // System.out.println("Mouse Touched: " + mouseX + " " + mouseY);
-        if(260 <= mouseX && mouseX <= 340 && 560 <= mouseY && mouseX <= 640){
-            this.lastKey = getKey();
+        if(260 <= x && x <= 340 && 560 <= y && y <= 640){
+            this.lastKey = getKey(x, y);
             if (countPinDigits > 0){
               countPinDigits --;
               notifyObservers();
             }
         }
         else{
-            this.lastKey = getKey();
+            this.lastKey = getKey(x, y);
             System.out.println("Keypad: " + this.lastKey);
             if(!this.lastKey.equals("-1")){
                 this.flag = false;
@@ -65,10 +65,8 @@ public class LoginKeyPad implements ITouchEventHandler, IDisplayComponent, IKeyP
      * Get Key Number from (mouseX, mouseY) Touch Coord's
      * @return   [description]
      */
-    private String getKey()
+    private String getKey(int x, int y)
     {
-        int x = int(mouseX);
-        int y = int(mouseY);
         if(40 <= x && x <= 120){
             if(245 <= y && y <= 325){
                 return "1";
@@ -131,8 +129,8 @@ public class LoginKeyPad implements ITouchEventHandler, IDisplayComponent, IKeyP
         int index = 1;
         int x = 40;
         int y = 245;
-        
-        // First three row of keypad. 
+
+        // First three row of keypad.
         // 1 2 3
         // 4 5 6
         // 7 8 9
