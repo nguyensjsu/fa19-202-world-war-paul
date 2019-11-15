@@ -1,16 +1,16 @@
 /* (c) Copyright 2018 Paul Nguyen. All Rights Reserved */
- //<>// //<>// //<>//
+ //<>// //<>// //<>// //<>//
 Device d;
-
+AddCard ad;
 // HomePageScreen Testing Code
 // HomePageScreen mp;
 
 void setup() {
   size(380, 680);
-  
   // old starbuck starter code 
-  d = new Device();
-  d.display();
+  //d = new Device();
+
+  //d.display();
 
   // // HomePageScreen Testing Code
   // mp = new HomePageScreen("San Jose State University");
@@ -24,7 +24,6 @@ void setup() {
 }
 
 void draw() {
-
   // // HomePageScreen Testing Code
   // if (mousePressed) {
   //   mp.display();
