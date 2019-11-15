@@ -2,11 +2,11 @@
  //<>// //<>// //<>//
 Device d;
 void setup() {
-  size(380, 680);
-
-  // old starbuck starter code
+  //size(380, 680);
+  
+  // old starbuck starter code 
    d = new Device();
-    //d.display();
+    d.display();
      // d.touch(1, 5);  // 1
      // d.touch(2, 5);  // 2
      // d.touch(3, 5);  // 3
@@ -18,8 +18,8 @@ void setup() {
 }
 
 void draw() {
-  d.display();
 
+  
   // d.touch(1, 5);  // 1
   // d.touch(2, 5);  // 2
   // d.touch(3, 5);  // 3
@@ -38,13 +38,12 @@ void draw() {
 
 
 
-void mouseClicked(){
- // TODO: Update all touch() function
- //println("clicked: ", mouseX, "  ", mouseY);
- // app.touch();
- d.touch(0, 0);
-
-}
+//void mouseClicked(){
+//  // TODO: Update all touch() function
+//  println("clicked: ", mouseX, "  ", mouseY);
+//  // app.touch();
+  
+//}
 
 
 //void mouseDragged(){
