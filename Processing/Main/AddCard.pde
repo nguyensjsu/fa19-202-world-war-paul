@@ -27,11 +27,6 @@ public class AddCard extends Screen
       cardCVVFlag = false;
     }
     
-    public String name()
-    {
-      return "AddCard";
-    }
-    
     public void display()
     {
       background(255,255,255);
