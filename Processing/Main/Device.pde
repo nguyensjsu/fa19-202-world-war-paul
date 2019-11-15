@@ -249,14 +249,8 @@ public class Device implements IProxy, IPinAuthObserver {
             return app.screenContents() ;
         } else {
             // TODO: Pinscreen
-
-
+            ps.display();
             String out = "" ;
-            out = "----------------\n" ;
-            out += "   " + ps.name() + "  \n" ;
-            out += "----------------\n\n\n" ;
-            // out += ps.display() ;
-            out += "\n\n\n----------------\n" ;
             return out ;
         }
     }

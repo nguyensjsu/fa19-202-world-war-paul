@@ -124,7 +124,7 @@ public class LoginKeyPad implements ITouchEventHandler, IDisplayComponent, IKeyP
      * Get Key Pad Display
      * @return Key Pad View Contents
      */
-    public String display()
+    public void display()
     {
         int index = 1;
         int x = 40;
@@ -151,7 +151,6 @@ public class LoginKeyPad implements ITouchEventHandler, IDisplayComponent, IKeyP
         image(num[0], 150, 560, 80, 80);
         image(backSpace, 260, 560, 80, 80);
 
-        return "" ;
     }
 
     public void touchUnder4PinFlag() {
