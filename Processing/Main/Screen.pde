@@ -1,6 +1,3 @@
-/* (c) Copyright 2018 Paul Nguyen. All Rights Reserved */
-
-
 import java.util.* ;
 
 /**
@@ -13,16 +10,8 @@ import java.util.* ;
  */
 public class Screen implements IScreen, IDisplayComponent
 {
-    private int width = 380;
-    private int height = 680;
-
-    public int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
+    private int width;
+    private int height;
     
     /** Display Components */
     private ArrayList<IDisplayComponent> components = new ArrayList<IDisplayComponent>() ;
@@ -33,6 +22,22 @@ public class Screen implements IScreen, IDisplayComponent
     /** Constructor */
     public Screen()
     {
+        width = 380;
+        height = 680;
+    }
+
+    /**
+    * Get the Screen Witdh
+    */
+    public int getWidth() {
+        return width;
+    }
+
+    /**
+    * Get the Screen Height
+    */
+    public int getHeight() {
+        return height;
     }
 
     /**
@@ -107,5 +112,4 @@ public class Screen implements IScreen, IDisplayComponent
     public String name() {
         return (this.getClass().getName()); 
     }
-
 }
