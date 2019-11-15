@@ -14,9 +14,8 @@ public interface IScreen
 
     /**
      * Displays screen components
-     * @return Return Screen Contents
      */
-    String display() ;       
+    void display() ;       
 
     /**
      * Returns name of screen

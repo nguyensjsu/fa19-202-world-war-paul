@@ -102,16 +102,17 @@ public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSub
      * Get Key Pad Display
      * @return Key Pad View Contents
      */
-    public String display()
+
+    public void display() 
     {
         //return " [1] [2] [3]\n [4] [5] [6]\n [7] [8] [9]\n [_] [0] [X]"  ;
+        
+        // String output =  "  [1] [2] [3]\n" ;
+        //        output += "  [4] [5] [6]\n" ;
+        //        output += "  [7] [8] [9]\n" ;
+        //        output += "  [_] [0] [x]" ;
 
-        String output =  "  [1] [2] [3]\n" ;
-               output += "  [4] [5] [6]\n" ;
-               output += "  [7] [8] [9]\n" ;
-               output += "  [_] [0] [x]" ;
-
-        return output ;
+        // return output ;
     }
 
     /**

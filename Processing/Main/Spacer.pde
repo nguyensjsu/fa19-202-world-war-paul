@@ -9,8 +9,8 @@ public class Spacer implements IDisplayComponent, ITouchEventHandler {
      * Return A Black "Spacer"
      * @return [description]
      */
-    public String display() {
-        return "" ;
+    public void display() {
+        // return "" ;
     }
 
     /**

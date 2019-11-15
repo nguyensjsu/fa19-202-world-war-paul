@@ -9,18 +9,18 @@ public class AppController implements IProxy {
 
     // TODO: Update Screens and Commands
     private IScreen mycards ;
-    private IScreen store ;
+    // private IScreen store ;
     private IScreen rewards ;
     private IScreen payments ;
     private IMenuCommand displayMyCards ;
     private IMenuCommand displayPayments ;
     private IMenuCommand displayRewards ;
-    private IMenuCommand doStore ;
+    // private IMenuCommand doStore ;
     private IFrame frame ;
 
     public AppController() {
         mycards = new MyCards() ;
-        store = new Store() ;
+        // store = new Store() ;
         rewards = new Rewards() ;
         payments = new Payments() ;
         frame = new Frame( mycards ) ;
@@ -29,7 +29,7 @@ public class AppController implements IProxy {
         displayMyCards  = new MenuCommand() ;
         displayPayments = new MenuCommand() ;
         displayRewards  = new MenuCommand() ;
-        doStore         = new MenuCommand() ;
+        // doStore         = new MenuCommand() ;
         displayMyCards.setReceiver(
           new IMenuReceiver() {
               /** Command Action */
@@ -54,18 +54,18 @@ public class AppController implements IProxy {
               }
         }
         ) ;
-        doStore.setReceiver(
-          new IMenuReceiver() {
-              /** Command Action */
-              public void doAction() {
-                  frame.setCurrentScreen( store ) ;
-              }
-        }
-        ) ;
+        // doStore.setReceiver(
+        //   new IMenuReceiver() {
+        //       /** Command Action */
+        //       public void doAction() {
+        //           frame.setCurrentScreen( store ) ;
+        //       }
+        // }
+        // ) ;
         frame.setMenuItem ( "A", displayMyCards ) ;
         frame.setMenuItem ( "B", displayPayments ) ;
         frame.setMenuItem ( "C", displayRewards ) ;
-        frame.setMenuItem ( "D", doStore ) ;
+        // frame.setMenuItem ( "D", doStore ) ;
     }
 
 
