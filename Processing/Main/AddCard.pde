@@ -95,7 +95,7 @@ public class AddCard extends Screen
           cardInfo.put("cardCVV", cvv.toString());
           
            //For testing purpose, you can uncomment the following lines of code
-          serialization(cardInfo, "cardInfo.json");
+          //serialization(cardInfo, "cardInfo.json");
           //Map<String, String> res = new HashMap<String, String>();
           //res = deserialization("cardInfo.json");
           //for (Map.Entry<String, String> entry : res.entrySet()) {
@@ -201,7 +201,6 @@ public class AddCard extends Screen
     {
       Gson gson = new Gson();
       String jsonString = gson.toJson(map);
-      print(jsonString);
       try
       {
         FileWriter file = new FileWriter("." + fileName); // might need to improve about the directory
