@@ -6,13 +6,13 @@ public class OptionTitle extends Screen implements IDisplayComponent, ITouchEven
 
     String name;
     String type;
-    int cHeight;
+    int curHeight;
 
     public OptionTitle(String n, String t, int height)
     {
         name = n;
         type = t;
-        cHeight = height;
+        curHeight = height;
     }
 
     /** 
@@ -23,7 +23,7 @@ public class OptionTitle extends Screen implements IDisplayComponent, ITouchEven
         //All Txt
         textSize(14);
         fill(0);  
-        text(name, 20, cHeight);
+        text(name, 20, curHeight);
     }
 
     /**
