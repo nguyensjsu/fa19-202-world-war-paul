@@ -1,4 +1,4 @@
-
+ //<>//
 import com.google.gson.annotations.*; //<>//
 import com.google.gson.*;
 import com.google.gson.internal.*;
@@ -13,9 +13,6 @@ import java.util.HashMap;
  //<>// //<>//
 import java.lang.reflect.Type;
 import java.io.*;
-
-Device d;
-
 
 
 Device d;
