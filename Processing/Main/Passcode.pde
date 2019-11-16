@@ -5,10 +5,6 @@
 public class Passcode implements ITouchEventHandler, IDisplayComponent, IKeyPadObserver
 {
     ITouchEventHandler nextHandler ;
-    /** Display Components */
-    private ArrayList<IDisplayComponent> components = new ArrayList<IDisplayComponent>() ;
-    /** Front of Event Chain */
-    private ITouchEventHandler chain ;
 
     private int count = 0;
 
@@ -66,7 +62,7 @@ public class Passcode implements ITouchEventHandler, IDisplayComponent, IKeyPadO
               break ;
             case 4:
               text("[*]  [*]  [*]  [*]", 40, 130);
-              
+
               break ;
         }
 
@@ -79,16 +75,6 @@ public class Passcode implements ITouchEventHandler, IDisplayComponent, IKeyPadO
      */
     public void addSubComponent( IDisplayComponent c )
     {
-        components.add( c ) ;
-        if (components.size() == 1 )
-        {
-            chain = (ITouchEventHandler) c ;
-        }
-        else
-        {
-            ITouchEventHandler prev = (ITouchEventHandler) components.get(components.size()-2) ;
-            prev.setNext( (ITouchEventHandler) c ) ;
-        }
     }
 
     /**

@@ -11,7 +11,7 @@ void setup() {
 	size(380, 680);
 
 	// old starbuck starter code
-	// d = new Device();
+	//d = new Device();
 	// d.display();
 
 	// // HomePageScreen Testing Code
@@ -38,7 +38,7 @@ void setup() {
 }
 
 void draw() {
-  mp.display();
+  //mp.display();
   // // HomePageScreen Testing Code
   // if (mousePressed) {
   //   mp.display();
