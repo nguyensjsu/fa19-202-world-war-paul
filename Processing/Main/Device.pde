@@ -154,7 +154,14 @@ public class Device implements IProxy, IPinAuthObserver {
      * Display Screen Contents to Terminal
      */
     public void display() {
-        System.out.println( screenContents() ) ;
+        //System.out.println( screenContents() ) ;
+        if ( authenticated ) {
+            app.display();
+        } else {
+            // TODO: Pinscreen
+            ps.display();
+            
+        }
     }
 
     /**
@@ -174,10 +181,11 @@ public class Device implements IProxy, IPinAuthObserver {
      */
     public String screenContents() {
         if ( authenticated ) {
+            //app.display();
             return app.screenContents() ;
         } else {
             // TODO: Pinscreen
-            ps.display();
+           // ps.display();
             String out = "" ;
             return out ;
         }
