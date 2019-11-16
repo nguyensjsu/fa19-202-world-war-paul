@@ -1,15 +1,17 @@
 /** Payments Screen */
-public class OptionTitle extends Screen implements IDisplayComponent, ITouchEventHandler
+public class OptionTitle extends OptionScreen implements IDisplayComponent, ITouchEventHandler
 {    
     ITouchEventHandler nextHandler ;
 
 
     String name;
+    String type;
     int cHeight;
 
-    public OptionTitle(String n, int height)
+    public OptionTitle(String n, String t, int height)
     {
         name = n;
+        type = t;
         cHeight = height;
     }
 
@@ -38,14 +40,26 @@ public class OptionTitle extends Screen implements IDisplayComponent, ITouchEven
      * @param x Touch X
      * @param y Touch Y
      */
-    public void touch(int x, int y) 
-    {
+    public void touch(int x, int y){
         //not a touch bottom thus do nothing
         if (nextHandler != null) {
             nextHandler.touch(x,y);
         }
     }
 
-    
+    /**
+     * add price back
+     */
+    public double add(){
+        //do nothing
+        return 0.0;
+    }
 
+    /**
+     * return the name to print
+     */
+    public String title(){
+        return type;
+    }
 }
+

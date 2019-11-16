@@ -109,7 +109,7 @@ public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSub
      * @return Key Pad View Contents
      */
 
-    public void display() 
+    public void display()
     {
         int intervalX = 45;
         int intervalY = 60;
@@ -122,7 +122,7 @@ public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSub
             keycount++;
           }
         }
-        
+
         image(imgKeyPad[0], 55 + intervalX + 60, 230+3*(intervalY+40), 60, 60);
         imgBackspace = loadImage("../../img/keyPad/backspace_50.png");
         image(imgBackspace, 55 + 2*(intervalX + 60), 230+3*(intervalY+40), 60, 60);
