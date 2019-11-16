@@ -1,5 +1,5 @@
 /** This class is for single option of multiple choice */
-public class OptionItemSingle extends OptionScreen implements IDisplayComponent,  ITouchEventHandler
+public class OptionItemSingle extends Screen implements IDisplayComponent,  ITouchEventHandler
 {
     ITouchEventHandler nextHandler ;
     PShape img;

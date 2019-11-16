@@ -153,20 +153,4 @@ public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSub
             observer.keyEventUpdate( countPinDigits, lastKey ) ;
         }
     }
-    
-    /**
-     * add price back
-     */
-    public double add(){
-        //do nothing
-        return 0.0;
-    }
-
-    /**
-     * return the name to print
-     */
-    public String title(){
-        return "";
-    }
-
 }
