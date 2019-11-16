@@ -55,6 +55,8 @@ public class OptionScreen extends Screen
         //hard code add to basket touch
         if(630 <= y && y<=680){
             totalPrice = addUp();
+
+            //Can be comment out
             System.out.println(printDescription());
             System.out.println("subtotal is:  "+totalPrice);
         }
@@ -96,8 +98,12 @@ public class OptionScreen extends Screen
     public String printDescription(){
         String total ="";
         for (IDisplayComponent c: components) {
-            if(!c.title().equals(""))
-              total += c.title() + ",";
+            if(!c.title().equals("")){
+                if(c.getClass().toString().split(" ", 2)[1].equals("Main$OptionTitle") ){
+                    total += "\n" + c.title() + ": ";
+                }else
+                    total += c.title() + ",";
+            }
         }
         return total;
     }
