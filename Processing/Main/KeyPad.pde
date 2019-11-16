@@ -7,13 +7,19 @@ import java.util.ArrayList;
 public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSubject
 {
     ITouchEventHandler nextHandler ;
+    PImage [] imgKeyPad = new PImage[12];
+    PImage imgBackspace;
     private ArrayList<IKeyPadObserver> observers ;
     int countPinDigits = 0 ;
     String lastKey = "" ;
 
     public KeyPad()
     {
-        observers = new ArrayList<IKeyPadObserver>() ;
+      for(int i = 0; i < 10; i++)
+      {
+        imgKeyPad[i] = loadImage("../../img/keyPad/key" + Integer.toString(i) + "_50.png");
+      }
+      observers = new ArrayList<IKeyPadObserver>() ;
     }
 
     /**
@@ -21,10 +27,10 @@ public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSub
      * @param x X Coord
      * @param y Y Coord
      */
-    public void touch(int x, int y) { 
+    public void touch(int x, int y) {
         if ( y > 4 )
         {
-            System.err.println( "KeyPad Touched at (" + x + ", " + y + ")" ) ; 
+            System.err.println( "KeyPad Touched at (" + x + ", " + y + ")" ) ;
             this.lastKey = getKey( x, y ) ;
             if ( x==3 && y==8   )
             {
@@ -34,7 +40,7 @@ public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSub
             {
                 countPinDigits++ ;
             }
-            notifyObservers() ;            
+            notifyObservers() ;
         }
         else
         {
@@ -44,12 +50,12 @@ public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSub
     }
 
     /**
-     *  Get Last Key Pressed 
+     *  Get Last Key Pressed
      * @return Lasy Key
      */
-    public String lastKey() { 
+    public String lastKey() {
         System.err.println( "Key Pressed: " + this.lastKey ) ;
-        return this.lastKey ; 
+        return this.lastKey ;
     }
 
     /**
@@ -70,7 +76,7 @@ public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSub
         else if ( kx==1 && ky ==4 )
             return " " ;
         else
-            return Integer.toString(kx+3*(ky-1)) ;   
+            return Integer.toString(kx+3*(ky-1)) ;
     }
 
     /*
@@ -94,7 +100,7 @@ public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSub
      * Set Next Touch Event Handler
      * @param next Event Handler
      */
-    public void setNext( ITouchEventHandler next) { 
+    public void setNext( ITouchEventHandler next) {
         nextHandler = next ;
     }
 
@@ -102,23 +108,31 @@ public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSub
      * Get Key Pad Display
      * @return Key Pad View Contents
      */
+
     public void display() 
     {
-        //return " [1] [2] [3]\n [4] [5] [6]\n [7] [8] [9]\n [_] [0] [X]"  ;
+        int intervalX = 45;
+        int intervalY = 60;
+        int keycount = 1;
+        for(int i = 0; i < 3; i++)
+        {
+          for(int j = 0; j < 3; j++)
+          {
+            image(imgKeyPad[keycount], 55 + j*(intervalX + 60), 230+i*(intervalY+40), 60, 60);
+            keycount++;
+          }
+        }
         
-        // String output =  "  [1] [2] [3]\n" ;
-        //        output += "  [4] [5] [6]\n" ;
-        //        output += "  [7] [8] [9]\n" ;
-        //        output += "  [_] [0] [x]" ;
-
-        // return output ;
+        image(imgKeyPad[0], 55 + intervalX + 60, 230+3*(intervalY+40), 60, 60);
+        imgBackspace = loadImage("../../img/keyPad/backspace_50.png");
+        image(imgBackspace, 55 + 2*(intervalX + 60), 230+3*(intervalY+40), 60, 60);
     }
 
     /**
      * Add Sub Component (Not used)
      * @param c Display Component
      */
-    public void addSubComponent( IDisplayComponent c ) 
+    public void addSubComponent( IDisplayComponent c )
     {
     }
 
@@ -126,7 +140,7 @@ public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSub
      * Attach a Key Pad Observer
      * @param obj Observer
      */
-    public void attach( IKeyPadObserver obj ) 
+    public void attach( IKeyPadObserver obj )
     {
         observers.add( obj ) ;
     }
@@ -152,6 +166,6 @@ public class KeyPad implements ITouchEventHandler, IDisplayComponent, IKeyPadSub
             IKeyPadObserver observer = observers.get(i) ;
             observer.keyEventUpdate( countPinDigits, lastKey ) ;
         }
-    }    
+    }
 
 }

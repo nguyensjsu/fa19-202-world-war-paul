@@ -33,11 +33,10 @@ void setup() {
 }
 
 void draw() {
-
-	// // HomePageScreen Testing Code
-	// if (mousePressed) {
-	//  	mp.display();
-	// }
+  // // HomePageScreen Testing Code
+  // if (mousePressed) {
+  //   mp.display();
+  // }
 
 	// // MyAccountScreen & FooterScreen Testing Code
 	// if (mousePressed) {
@@ -65,11 +64,15 @@ void mouseClicked(){
 	// // MyAccountScreen & FooterScreen Testing Code
 	// mas.touch(mouseX, mouseY);
 
-	//  if (mousePressed) {
-	//    System.out.println(mouseX + " " +  mouseY);
-	//    mp.touch(mouseX, mouseY);
-	//  }
-	// app.touch();
+  //  if (mousePressed) {
+  //    System.out.println(mouseX + " " +  mouseY);
+  //    mp.touch(mouseX, mouseY);
+  //  }
+  // app.touch();
+ 
+ 
+  // login screen test code
+  // d.touch(mouseX, mouseY);
   
 }
 

@@ -37,9 +37,9 @@ public interface IFrame
 
     /**
      * Navigate to Next Screen
-     */    
+     */
     void nextScreen() ;
-    
+
     /**
      * Get Screen Name
      * @return Screen Name

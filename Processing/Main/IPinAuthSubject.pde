@@ -20,5 +20,5 @@ public interface IPinAuthSubject
      * Broadcast Event to Observers
      */
     void notifyObserver( ) ;
-    
+
 }

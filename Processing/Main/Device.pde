@@ -4,13 +4,13 @@
  * Authentication Proxy for App Controller
  */
 public class Device implements IProxy, IPinAuthObserver {
-    
+
     private boolean fourPin = true ;
     private boolean sixPin = false ;
-    private String pin = "" ; 
+    private String pin = "" ;
 
     private IProxy app ;
-    private KeyPad kp ;
+    private LoginKeyPad kp ;
     private Passcode pc ;
     private PinScreen ps ;
     private Spacer sp ;
@@ -37,9 +37,9 @@ public class Device implements IProxy, IPinAuthObserver {
         this.device_orientation_state = 1;
     }
 
-    public Device() 
+    public Device()
     {
-        kp = new KeyPad() ;
+        kp = new LoginKeyPad() ;
         pc = new Passcode() ;
         sp = new Spacer() ;
         ps = new PinScreen() ;
@@ -56,7 +56,7 @@ public class Device implements IProxy, IPinAuthObserver {
         ((IPinAuthSubject)pm).registerObserver(this) ;
 
         // get app controller reference
-        app = new AppController() ;        
+        app = new AppController() ;
 
         // startup in portrait
         this.device_orientation_state = 0;
@@ -70,7 +70,7 @@ public class Device implements IProxy, IPinAuthObserver {
      */
     public String isAuthenticated() {
         return Boolean.toString( authenticated ) ;
-    }    
+    }
 
     /**
      * Return the current Pin Option:
@@ -107,7 +107,7 @@ public class Device implements IProxy, IPinAuthObserver {
         switch ( len ) {
             case 0:
                 fourPin = false ;
-                sixPin = false ;              
+                sixPin = false ;
             case 4:
                 fourPin = true ;
                 sixPin = false ;
@@ -123,7 +123,7 @@ public class Device implements IProxy, IPinAuthObserver {
     }
 
     /**
-     * Device Reset Pin  
+     * Device Reset Pin
      */
     private void clearPin()
     {
@@ -143,7 +143,7 @@ public class Device implements IProxy, IPinAuthObserver {
     //}
 
     ///**
-    // * Get New Instance 
+    // * Get New Instance
     // * @return Reference to Device (Create New Singleton)
     // */
     //public Device getNewInstance() {
@@ -158,7 +158,7 @@ public class Device implements IProxy, IPinAuthObserver {
     //}
 
     /**
-     * Device Starup Process.  
+     * Device Starup Process.
      * Starts Up with Default 4-Pin Option
      */
     //public void startUp()
@@ -180,7 +180,7 @@ public class Device implements IProxy, IPinAuthObserver {
     //    ((IPinAuthSubject)pm).registerObserver(this) ;
 
     //    // get app controller reference
-    //    app = new AppController() ;        
+    //    app = new AppController() ;
 
     //    // startup in portrait
     //    this.device_orientation_state = 0;
@@ -211,7 +211,7 @@ public class Device implements IProxy, IPinAuthObserver {
         if ( authenticated )
             app.touch(x, y) ;
         else
-            ps.touch(x, y) ;
+            ps.touch(x, y);
     }
 
     /**
@@ -220,7 +220,7 @@ public class Device implements IProxy, IPinAuthObserver {
     public void drag(){
      if(authenticated) app.drag();
     }
-    
+
 
     /**
      * Display Screen Contents to Terminal
@@ -249,12 +249,8 @@ public class Device implements IProxy, IPinAuthObserver {
             return app.screenContents() ;
         } else {
             // TODO: Pinscreen
+            ps.display();
             String out = "" ;
-            out = "----------------\n" ;
-            out += "   " + ps.name() + "  \n" ;
-            out += "----------------\n\n\n" ;
-            // out += ps.display() ;
-            out += "\n\n\n----------------\n" ;
             return out ;
         }
     }
