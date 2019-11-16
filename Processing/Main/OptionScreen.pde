@@ -32,13 +32,13 @@ public class OptionScreen extends Screen
             c.display();
         }
 
-        //Add a white rectangular to avoid repeat writing string
+        //Add Basket green Rectangular
         fill(0,204,0);   
         stroke(0,204,0); 
         rectMode(CORNER); 
         rect(0,630,380,50); 
 
-        //Add to basket
+        //Add to basket text
         textSize(20);
         fill(255);
         text("Add to Basket", 130, 660);
