@@ -66,9 +66,9 @@ public class StoreScreen extends Screen
         if(630 <= y && y<=680){
             totalPrice = addUp();
 
-            //Can be comment out
-            System.out.println(printDescription());
-            System.out.println("subtotal is:  "+totalPrice);
+            // //for testing purpose
+            // System.out.println(printDescription());
+            // System.out.println("subtotal is:  "+totalPrice);
         }
         chain.touch(x, y);
 

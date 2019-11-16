@@ -4,7 +4,7 @@ Device d;
 // HomePageScreen mp;
 
 //StoreScreen Testing code
-StoreScreen storeScreen;
+// StoreScreen storeScreen;
 
 // MyAccountScreen & MenuBarScreen Testing Code
 // MyAccountScreen mas;
@@ -22,21 +22,21 @@ void setup() {
   // mp.display();
   // TODO: Update all display() function: Change all System.out.print() call to processing drawings
 
-   //Store Screen Testing Code
-    int base = 90;
-    storeScreen = new StoreScreen();
-    OptionTitle b1 = new OptionTitle("Choose a Burger", "Burger", base-15);
-    Screen c1 = new OptionItem("1/3LB Burger", 9.5, base);
-    Screen c2 = new OptionItem("2/3LB Burger", 11.5, base + 25*1);
-    Screen c3 = new OptionItem(" 1 LB Burger", 13.5, base + 25*2);
-    storeScreen.addSubComponent( b1);
-    storeScreen.addSubComponent( c1);
-    storeScreen.addSubComponent( c2);
-    storeScreen.addSubComponent( c3);
-    storeScreen.addSubComp(c1);
-    storeScreen.addSubComp(c2);
-    storeScreen.addSubComp(c3);
-    storeScreen.display();
+  //  //Store Screen Testing Code
+  //   int base = 90;
+  //   storeScreen = new StoreScreen();
+  //   OptionTitle b1 = new OptionTitle("Choose a Burger", "Burger", base-15);
+  //   Screen c1 = new OptionItem("1/3LB Burger", 9.5, base);
+  //   Screen c2 = new OptionItem("2/3LB Burger", 11.5, base + 25*1);
+  //   Screen c3 = new OptionItem(" 1 LB Burger", 13.5, base + 25*2);
+  //   storeScreen.addSubComponent( b1);
+  //   storeScreen.addSubComponent( c1);
+  //   storeScreen.addSubComponent( c2);
+  //   storeScreen.addSubComponent( c3);
+  //   storeScreen.addSubComp(c1);
+  //   storeScreen.addSubComp(c2);
+  //   storeScreen.addSubComp(c3);
+  //   storeScreen.display();
 }
 
 void draw() {
@@ -48,6 +48,11 @@ void draw() {
 	// // MyAccountScreen & MenuBarScreen Testing Code
 	// if (mousePressed) {
 	// 	mas.display();
+	// }
+
+  // // Store Screen Testing Code
+	// if (mousePressed) {
+	// 	storeScreen.display();
 	// }
 
 	//  if (mousePressed) {
@@ -70,6 +75,10 @@ void mouseClicked(){
 
 	// // MyAccountScreen & MenuBarScreen Testing Code
 	// mas.touch(mouseX, mouseY);
+
+  // //Store Screen Testing Code
+  // storeScreen.touch(mouseX, mouseY);
+
 
   //  if (mousePressed) {
   //    System.out.println(mouseX + " " +  mouseY);
