@@ -2,18 +2,22 @@
 public class OptionItem extends Screen implements IDisplayComponent,  ITouchEventHandler
 {
     ITouchEventHandler nextHandler ;
-    PShape img;
+    PShape optionImg1;
+    PShape optionImg2;
 
     String name;
     float price;
-    int cHeight;
+    int curHeight;
     boolean isSelected; 
     public OptionItem(String n, float p, int h)
     {
         name = n;
         price  = p;
-        cHeight = h;
+        curHeight = h;
         isSelected = false;
+        optionImg1 = loadShape("../../img/customItem/option1.svg");  //file destination for file name ad-solid.svg
+        optionImg2 = loadShape("../../img/customItem/option2.svg");  //file destination for file name ad-solid.svg
+
     }
 
     /** 
@@ -25,22 +29,21 @@ public class OptionItem extends Screen implements IDisplayComponent,  ITouchEven
         fill(255);   
         stroke(255); 
         rectMode(CORNER); 
-        rect(20,cHeight,360,20); 
+        rect(20,curHeight,360,20); 
 
-        if(!isSelected)
-          img = loadShape("../../img/customItem/option1.svg");  //file destination for file name ad-solid.svg
-        else
-          img = loadShape("../../img/customItem/option2.svg");  //file destination for file name ad-solid.svg
-        shape(img, 20, cHeight, 20, 20);
+        if(!isSelected){
+          shape(optionImg1, 20, curHeight, 20, 20);
+        }
+        else{
+          shape(optionImg2, 20, curHeight, 20, 20);
+        }
         textSize(14);
         fill(0);
 
-        text(name, 45, cHeight + 15);
+        text(name, 45, curHeight + 15);
 
-        String tmp;
         if(price != 0){
-          tmp ="$" +price;
-          text(tmp, 320, cHeight + 15);
+          text("$"+price, 320, curHeight + 15);
         }
     }
 
@@ -60,12 +63,10 @@ public class OptionItem extends Screen implements IDisplayComponent,  ITouchEven
      */
     public void touch(int x, int y) 
     {
-        if (cHeight <= y && y <= cHeight+25) {
+        if (curHeight <= y && y <= curHeight+25) {
           isSelected = (isSelected == true) ? false : true;
           display();
 
-          // TODO: next() should jump to next screen           
-          next();
         } else if (nextHandler != null) {
             nextHandler.touch(x,y);
         }
