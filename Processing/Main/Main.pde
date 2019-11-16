@@ -10,7 +10,7 @@ Device d;
 void setup() {
 	size(380, 680);
 
-	// old starbuck starter code 
+	// old starbuck starter code
 	d = new Device();
 	d.display();
 
@@ -49,8 +49,6 @@ void draw() {
 	//    fill(255);
 	//  }
 	//  //ellipse(mouseX, mouseY, 80, 80);
-	//  // TODO: Update screenContents() & all display() functions: Change all System.out.print() call to processing drawings
-	//  // app.screenContents()
 }
 
 
@@ -69,11 +67,11 @@ void mouseClicked(){
   //    mp.touch(mouseX, mouseY);
   //  }
   // app.touch();
- 
- 
+
+
   // login screen test code
-  // d.touch(mouseX, mouseY);
-  
+   d.touch(mouseX, mouseY);
+
 }
 
 
