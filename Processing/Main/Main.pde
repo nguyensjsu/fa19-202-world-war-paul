@@ -5,7 +5,7 @@ Device d;
 
 // MyAccountScreen & MenuBarScreen Testing Code
 // MyAccountScreen mas;
-// MenuBarScreen fs;
+// MenuBarScreen ms;
 
 void setup() {
 	size(380, 680);
@@ -24,8 +24,8 @@ void setup() {
 
 	// MyAccountScreen Testing Code
 	// mas = new MyAccountScreen(20);
-	// fs = new MenuBarScreen();
-	// mas.addSubComponent(fs);
+	// ms = new MenuBarScreen();
+	// mas.addSubComponent(ms);
 	// mas.display();
 
 
