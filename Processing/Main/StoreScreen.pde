@@ -1,4 +1,4 @@
-/** Payments Screen */
+/** Store Screen which can choose item*/
 public class StoreScreen extends Screen
 {
     /** Display Components */
@@ -7,8 +7,11 @@ public class StoreScreen extends Screen
     /** Front of Event Chain */
     private ITouchEventHandler chain ;
 
+    private double totalPrice;
+
     public StoreScreen()
     {
+        totalPrice = 0;
     }
 
     /** 
@@ -22,7 +25,7 @@ public class StoreScreen extends Screen
         textSize(20);
         fill(0, 0, 0, 255);
 
-        String address = "Custom Option";
+        String address = "Choose an Item";
 
         text(address, (380 - address.length() * 7) / 2, currentHeight);
         currentHeight += 20;
@@ -30,6 +33,22 @@ public class StoreScreen extends Screen
         for (IDisplayComponent c: components) {
             c.display();
         }
+
+        //Add Basket green Rectangular
+        fill(0,204,0);   
+        stroke(0,204,0); 
+        rectMode(CORNER); 
+        rect(0,630,380,50); 
+
+        //Add to basket text
+        textSize(20);
+        fill(255);
+        text("View Basket", 130, 660);
+
+        //price text
+        textSize(16);
+        fill(255);
+        text("$"+totalPrice, 330, 660); 
     }
 
     /**
@@ -39,11 +58,22 @@ public class StoreScreen extends Screen
      */
     @Override
     public void touch(int x, int y) {
-         System.out.println("In store screen");
+        //hard code add to basket touch
+        if(630 <= y && y<=680){
+            totalPrice = addUp();
+
+            //Can be comment out
+            System.out.println(printDescription());
+            System.out.println("subtotal is:  "+totalPrice);
+        }
         chain.touch(x, y);
+
+        //update price and update display price
+        totalPrice = addUp();
+        display();
     }
 
-        /**
+    /**
      * Add A Child Component
      * @param c Child Component
      */
@@ -61,6 +91,35 @@ public class StoreScreen extends Screen
         }
     }
 
+
+    /**
+     * adding up total price
+     * @return subtotal price 
+     */
+    public double addUp(){
+        double subtotal = 0.0;
+        for (IDisplayComponent c: components) {
+            subtotal += c.add();
+        }
+        return subtotal;
+    }
+
+    /**
+     * A print description
+     * @return a string that comprise all component information
+     */
+    public String printDescription(){
+        String total ="";
+        for (IDisplayComponent c: components) {
+            if(!c.title().equals("")){
+                if(c.getClass().toString().split(" ", 2)[1].equals("Main$OptionTitle") ){
+                    total += "\n" + c.title() + ": ";
+                }else
+                    total += c.title() + ",";
+            }
+        }
+        return total;
+    }
     
 
 }
