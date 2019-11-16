@@ -1,5 +1,5 @@
 /** Footer Screen */
-public class FooterScreen extends Screen implements ITouchEventHandler, IDisplayComponent
+public class MenuBarScreen extends Screen implements ITouchEventHandler, IDisplayComponent
 {
     ITouchEventHandler nextHandler ;
 
@@ -20,7 +20,7 @@ public class FooterScreen extends Screen implements ITouchEventHandler, IDisplay
     private int sectionWidth;
     private int spacingWidth;
 
-    public FooterScreen() {
+    public MenuBarScreen() {
         endHieght = 680;
         startWidth = 0;
         endWidth = 380;

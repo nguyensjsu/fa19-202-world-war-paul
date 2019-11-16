@@ -3,9 +3,9 @@ Device d;
 // HomePageScreen Testing Code
 // HomePageScreen mp;
 
-// MyAccountScreen & FooterScreen Testing Code
+// MyAccountScreen & MenuBarScreen Testing Code
 // MyAccountScreen mas;
-// FooterScreen fs;
+// MenuBarScreen fs;
 
 void setup() {
 	size(380, 680);
@@ -24,7 +24,7 @@ void setup() {
 
 	// MyAccountScreen Testing Code
 	// mas = new MyAccountScreen(20);
-	// fs = new FooterScreen();
+	// fs = new MenuBarScreen();
 	// mas.addSubComponent(fs);
 	// mas.display();
 
@@ -38,7 +38,7 @@ void draw() {
   //   mp.display();
   // }
 
-	// // MyAccountScreen & FooterScreen Testing Code
+	// // MyAccountScreen & MenuBarScreen Testing Code
 	// if (mousePressed) {
 	// 	mas.display();
 	// }
@@ -61,7 +61,7 @@ void mouseClicked(){
 	// // HomePageScreen Testing Code
 	// mp.touch(mouseX, mouseY);
 
-	// // MyAccountScreen & FooterScreen Testing Code
+	// // MyAccountScreen & MenuBarScreen Testing Code
 	// mas.touch(mouseX, mouseY);
 
   //  if (mousePressed) {
