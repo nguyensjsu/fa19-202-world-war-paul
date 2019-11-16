@@ -38,17 +38,6 @@ public class StoreScreen extends Screen
             c.display();
         }
 
-        //Add Basket green Rectangular
-        fill(0,204,0);
-        stroke(0,204,0);
-        rectMode(CORNER);
-        rect(0,630,380,50);
-
-        //Add to basket text
-        textSize(20);
-        fill(255);
-        text("View Basket", 130, 660);
-
         //price text
         textSize(16);
         fill(255);

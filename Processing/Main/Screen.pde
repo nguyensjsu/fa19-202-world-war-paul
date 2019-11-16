@@ -129,19 +129,4 @@ public class Screen implements IScreen, IDisplayComponent
     public String title(){
         return "";
     }
-    
-    /**
-     * add price back
-     */
-    public double add(){
-        //do nothing
-        return 0.0;
-    }
-
-    /**
-     * return the name to print
-     */
-    public String title(){
-        return "";
-    }
 }

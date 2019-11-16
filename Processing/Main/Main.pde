@@ -1,5 +1,5 @@
 /* (c) Copyright 2018 Paul Nguyen. All Rights Reserved */
- //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+ //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 Device d;
 
 // HomePageScreen Testing Code
@@ -31,10 +31,12 @@ void setup() {
   //   Screen c1 = new OptionItem("1/3LB Burger", 9.5, base);
   //   Screen c2 = new OptionItem("2/3LB Burger", 11.5, base + 25*1);
   //   Screen c3 = new OptionItem(" 1 LB Burger", 13.5, base + 25*2);
+  //   Screen basket = new Basket("View Basket", 630);
   //   storeScreen.addSubComponent( b1);
   //   storeScreen.addSubComponent( c1);
   //   storeScreen.addSubComponent( c2);
   //   storeScreen.addSubComponent( c3);
+  //   storeScreen.addSubComponent(basket);
   //   storeScreen.addSubComp(c1);
   //   storeScreen.addSubComp(c2);
   //   storeScreen.addSubComp(c3);
