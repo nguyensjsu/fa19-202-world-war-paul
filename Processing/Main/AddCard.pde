@@ -2,6 +2,11 @@
 /**
  * Add New Card Screen
  */
+import java.util.Map;
+import java.util.HashMap;
+import org.json.JSONObject;
+import org.json.JSONArray;
+import java.io.*;
 private final static int width = 380;
 
 public class AddCard extends Screen
@@ -92,6 +97,21 @@ public class AddCard extends Screen
           cardInfo.put("cardNumber", cardNumber.toString());
           cardInfo.put("cardExpirty", cardExpirty.toString());
           cardInfo.put("cardCVV", cvv.toString());
+          JSONObject data = new JSONObject(cardInfo);
+          
+          try
+          {
+            FileWriter file = new FileWriter("test.txt")
+            file.write("Hello");
+          }
+          catch(IOException e)
+          {
+            e.printStackTrace();
+          }
+
+          
+          
+          
         }
       }
         
