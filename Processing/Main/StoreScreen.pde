@@ -18,10 +18,10 @@ public class StoreScreen extends Screen
         totalPrice = 0;
     }
 
-    /** 
+    /**
       * Display function
       * @return: currently useless
-      */ 
+      */
     public void display(){
         int startingWidth = 10;
         int currentHeight = 20;
@@ -39,10 +39,10 @@ public class StoreScreen extends Screen
         }
 
         //Add Basket green Rectangular
-        fill(0,204,0);   
-        stroke(0,204,0); 
-        rectMode(CORNER); 
-        rect(0,630,380,50); 
+        fill(0,204,0);
+        stroke(0,204,0);
+        rectMode(CORNER);
+        rect(0,630,380,50);
 
         //Add to basket text
         textSize(20);
@@ -52,11 +52,11 @@ public class StoreScreen extends Screen
         //price text
         textSize(16);
         fill(255);
-        text("$"+totalPrice, 330, 660); 
+        text("$"+totalPrice, 330, 660);
     }
 
     /**
-     * Touch Event 
+     * Touch Event
      * @param x Touch X
      * @param y Touch Y
      */
@@ -108,7 +108,7 @@ public class StoreScreen extends Screen
 
     /**
      * adding up total price
-     * @return subtotal price 
+     * @return subtotal price
      */
     public double addUp(){
         double subtotal = 0.0;
@@ -134,6 +134,6 @@ public class StoreScreen extends Screen
         }
         return total;
     }
-    
+
 
 }
