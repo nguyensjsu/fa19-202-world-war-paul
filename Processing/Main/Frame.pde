@@ -119,6 +119,7 @@ public class Frame implements IFrame
             public void display(IScreen s)
             {
                 System.out.println( contents(s) ) ;
+                current.display();
             }
 
                 /**

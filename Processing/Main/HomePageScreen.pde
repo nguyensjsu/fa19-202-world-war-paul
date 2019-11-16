@@ -10,6 +10,10 @@ public class HomePageScreen extends Screen implements IDisplayComponent {
 
     public HomePageScreen(String address) {
         this.address = address;
+        Store s1 = new Store("../../img/store/starbucks_300x150.png", "StarBucks1", "Student Union", "Pickup: 7:00am - 10:00pm", 20);
+        Store s2 = new Store("../../img/store/starbucks_300x150.png","StarBucks2", "Student Union", "Pickup: 7:00am - 10:00pm", 250);
+        addSubComponent(s1);
+        addSubComponent(s2);
     }
 
     /**

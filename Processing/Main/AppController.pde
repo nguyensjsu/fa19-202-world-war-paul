@@ -8,31 +8,32 @@
 public class AppController implements IProxy {
 
     // TODO: Update Screens and Commands
-    private IScreen order ;
-    // private IScreen store ;
+    private IScreen orderHistory ;
     private IScreen home ;
-    private IScreen account ;
-    private IMenuCommand displayOrder ;
+    //private IScreen account ;
+    private IMenuCommand displayOrderHistory ;
     private IMenuCommand displayHome ;
-    private IMenuCommand displayAccount ;
+    //private IMenuCommand displayAccount ;
     private IFrame frame ;
 
     public AppController() {
-        order = new OrderScreen() ;
-        account = new AccountScreen() ;
-        home = new HomePageScreen() ;
+        orderHistory = new OrderHistoryScreen() ;
+        //account = new MyAccountScreen(20) ;
+        home = new HomePageScreen("San Jose State University") ;
         frame = new Frame( home ) ;
+        //Test order screen
+        //frame = new Frame( orderHistory ) ;
 
         // setup command pattern
-        displayOrder  = new MenuCommand() ;
+        displayOrderHistory  = new MenuCommand() ;
         displayHome = new MenuCommand() ;
-        displayAccount  = new MenuCommand() ;
+        //displayAccount  = new MenuCommand() ;
         
-        displayOrder.setReceiver(
+        displayOrderHistory.setReceiver(
           new IMenuReceiver() {
               /** Command Action */
               public void doAction() {
-                  frame.setCurrentScreen( order ) ;
+                  frame.setCurrentScreen( orderHistory ) ;
               }
         }
         ) ;
@@ -44,18 +45,18 @@ public class AppController implements IProxy {
               }
         }
         ) ;
-        displayAccount.setReceiver(
-          new IMenuReceiver() {
-              /** Command Action */
-              public void doAction() {
-                  frame.setCurrentScreen( account ) ;
-              }
-        }
-        ) ;
+        //displayAccount.setReceiver(
+        //  new IMenuReceiver() {
+        //      /** Command Action */
+        //      public void doAction() {
+        //          frame.setCurrentScreen( account ) ;
+        //      }
+        //}
+        //) ;
       
-        frame.setMenuItem ( "order", displayOrder ) ; // left
+        frame.setMenuItem ( "order", displayOrderHistory ) ; // left
         frame.setMenuItem ( "home", displayHome ) ; // middle
-        frame.setMenuItem ( "account", displayAccount ) ; // right
+        //frame.setMenuItem ( "account", displayAccount ) ; // right
     }
 
     /**
@@ -65,11 +66,6 @@ public class AppController implements IProxy {
      */
     public void touch(int x, int y) {
         frame.touch(x, y) ;
-    }
-
-    public void touch() {
-        //TODO: add frame touch from GUI
-        //frame.touch() ;
     }
 
     /**
@@ -123,7 +119,6 @@ public class AppController implements IProxy {
     public String screenContents() {
         // TODO: home(store) screen pop up
         background(51);
-
         return frame.contents() ;
     }
 
