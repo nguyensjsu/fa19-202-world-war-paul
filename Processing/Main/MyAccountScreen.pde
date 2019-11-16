@@ -1,7 +1,11 @@
 /** My Account Screen */
-public class MyAccountScreen extends Screen implements ITouchEventHandler, IDisplayComponent
+public class MyAccountScreen extends Screen implements IDisplayComponent
 {
-    ITouchEventHandler nextHandler ;
+    /** Display Components */
+    private ArrayList<IDisplayComponent> components = new ArrayList<IDisplayComponent>() ;
+
+    /** Front of Event Chain */
+    private ITouchEventHandler chain ;
 
     private int startHeight;
     private int endHieght;
@@ -26,20 +30,27 @@ public class MyAccountScreen extends Screen implements ITouchEventHandler, IDisp
         text(header, (getWidth() - header.length() * 7) / 2, currentHeight);
         currentHeight += 20;
 
+        strokeWeight(1);
+        stroke(0, 0, 0);
+        line(0, 40, 380, 40); 
+        currentHeight += 40;
+
+        text("Hi Admin!", startingWidth, currentHeight);
+        currentHeight += 40;
+
         text("Add Card", startingWidth, currentHeight);
         currentHeight += 20;
 
-        endHieght = currentHeight;
+        for (IDisplayComponent c: components) {
+            c.display();
+        }
     }
 
     /**
      * Set Next Touch Handler
      * @param next Touch Event Handler
      */
-    public void setNext(ITouchEventHandler next) 
-    { 
-        nextHandler = next ;
-    }
+    public void setNext(ITouchEventHandler next) { }
 
     /**
      * Touch Event 
@@ -52,8 +63,26 @@ public class MyAccountScreen extends Screen implements ITouchEventHandler, IDisp
             // TODO: next() should jump to next screen
             next();
             System.out.println("Jump into " + "Add Card");
-        } else if (nextHandler != null) {
-            nextHandler.touch(x,y);
+        } else if (chain != null) {
+            chain.touch(x, y);
+        }
+    }
+
+    /**
+     * Add Display Component to Screen
+     * @param c Display Component
+     */
+    public void addSubComponent( IDisplayComponent c )
+    {
+        components.add( c ) ;
+        if (components.size() == 1 )
+        {
+            chain = (ITouchEventHandler) c ;
+        }
+        else
+        {
+            ITouchEventHandler prev = (ITouchEventHandler) components.get(components.size()-2) ;
+            prev.setNext( (ITouchEventHandler) c ) ;
         }
     }
 }

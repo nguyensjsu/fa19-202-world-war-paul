@@ -3,8 +3,10 @@ Device d;
 // HomePageScreen Testing Code
 // HomePageScreen mp;
 
-// MyAccountScreen Testing Code
+// MyAccountScreen & FooterScreen Testing Code
 // MyAccountScreen mas;
+// FooterScreen fs;
+
 void setup() {
 	size(380, 680);
 
@@ -21,9 +23,11 @@ void setup() {
 	// mp.display();
 
 	// MyAccountScreen Testing Code
-	// HeaderScreen hs = new HeaderScreen("My Account");
 	// mas = new MyAccountScreen(20);
+	// fs = new FooterScreen();
+	// mas.addSubComponent(fs);
 	// mas.display();
+
 
 	// TODO: Update all display() function: Change all System.out.print() call to processing drawings
 }
@@ -35,7 +39,7 @@ void draw() {
 	//  	mp.display();
 	// }
 
-	// // MyAccountScreen Testing Code
+	// // MyAccountScreen & FooterScreen Testing Code
 	// if (mousePressed) {
 	// 	mas.display();
 	// }
@@ -58,7 +62,7 @@ void mouseClicked(){
 	// // HomePageScreen Testing Code
 	// mp.touch(mouseX, mouseY);
 
-	// // MyAccountScreen Testing Code
+	// // MyAccountScreen & FooterScreen Testing Code
 	// mas.touch(mouseX, mouseY);
 
 	//  if (mousePressed) {
