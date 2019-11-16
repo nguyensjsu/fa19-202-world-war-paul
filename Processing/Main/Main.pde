@@ -9,7 +9,7 @@ Device d;
 //OptionScreen a;
 
 //StoreScreen Testing code
-StoreScreen a;
+//StoreScreen a;
 
 void setup() {
   size(380, 680);
@@ -27,7 +27,7 @@ void setup() {
   // mp.display();
   // TODO: Update all display() function: Change all System.out.print() call to processing drawings
 
-  //Custom Item Screen Testing Code
+  //Custom Option Screen Testing Code
   // int base = 90;
   // a = new OptionScreen();
   // OptionTitle b1 = new OptionTitle("Choose a Cheese", "Cheese", base-15);
@@ -63,17 +63,17 @@ void setup() {
   // a.display();
 
    //Store Screen Testing Code
-   int base = 90;
-   a = new StoreScreen();
-   OptionTitle b1 = new OptionTitle("Choose a Burger", "Burger", base-15);
-   OptionItemSingle c1 = new OptionItemSingle("1/3LB Burger", 9.5, base);
-   OptionItemSingle c2 = new OptionItemSingle("2/3LB Burger", 11.5, base + 25*1);
-   OptionItemSingle c3 = new OptionItemSingle(" 1 LB Burger", 13.5, base + 25*2);
-   a.addSubComponent( b1);
-   a.addSubComponent( c1);
-   a.addSubComponent( c2);
-   a.addSubComponent( c3);
-   a.display();
+  //  int base = 90;
+  //  a = new StoreScreen();
+  //  OptionTitle b1 = new OptionTitle("Choose a Burger", "Burger", base-15);
+  //  OptionItemSingle c1 = new OptionItemSingle("1/3LB Burger", 9.5, base);
+  //  OptionItemSingle c2 = new OptionItemSingle("2/3LB Burger", 11.5, base + 25*1);
+  //  OptionItemSingle c3 = new OptionItemSingle(" 1 LB Burger", 13.5, base + 25*2);
+  //  a.addSubComponent( b1);
+  //  a.addSubComponent( c1);
+  //  a.addSubComponent( c2);
+  //  a.addSubComponent( c3);
+  //  a.display();
 }
 
 void draw() {
@@ -84,9 +84,9 @@ void draw() {
   // }
 
   //OptionScreen Testing Code  //Store Screen Testing code
-  if (mousePressed) {
-    a.display();
-  } 
+  // if (mousePressed) {
+  //   a.display();
+  // } 
 
 //  if (mousePressed) {
 //    mp.touch(mouseX, mouseY);
@@ -107,7 +107,7 @@ void mouseClicked(){
   // mp.touch(mouseX, mouseY);
 
   //CustomItem Screen Testing code  //Store Screen Testing code
-  a.touch(mouseX, mouseY);
+  // a.touch(mouseX, mouseY);
 
 //  if (mousePressed) {
 //    System.out.println(mouseX + " " +  mouseY);
