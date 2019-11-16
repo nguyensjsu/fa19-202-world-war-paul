@@ -7,11 +7,20 @@ public class HomePageScreen extends Screen implements IDisplayComponent {
     private ITouchEventHandler chain ;
 
     private String address;
+    
+    //Test setNext
+    IScreen order;
 
     public HomePageScreen(String address) {
         this.address = address;
         Store s1 = new Store("../../img/store/starbucks_300x150.png", "StarBucks1", "Student Union", "Pickup: 7:00am - 10:00pm", 20);
         Store s2 = new Store("../../img/store/starbucks_300x150.png","StarBucks2", "Student Union", "Pickup: 7:00am - 10:00pm", 250);
+        //TODO
+        //s1.setNext(customItemScreen1);
+        //s2.setNext(customItemScreen1);
+        
+        order = new OrderHistoryScreen();
+        s1.setNext(order);
         addSubComponent(s1);
         addSubComponent(s2);
     }
