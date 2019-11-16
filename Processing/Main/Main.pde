@@ -1,5 +1,5 @@
 /* (c) Copyright 2018 Paul Nguyen. All Rights Reserved */
- //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+ //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 Device d;
 
 // HomePageScreen Testing Code
@@ -27,7 +27,7 @@ void setup() {
   //Custom Item Screen Testing Code
   int base = 90;
   a = new OptionScreen();
-  OptionTitle b1 = new OptionTitle("Choose a Cheese", "Cheese", base-15);
+  OptionTitle b1 = new OptionTitle("Choose Cheeses", "Cheese", base-15);
   OptionItem c1 = new OptionItem("Danish Blue Cheese", 1, base);
   OptionItem c2 = new OptionItem("Horseradish Cheddar", 1, base + 25*1);
   OptionItem c3 = new OptionItem("Yello American", 1, base + 25*2);
@@ -38,7 +38,7 @@ void setup() {
   OptionItem c7 = new OptionItem("Coleslaw", 0, base + 25*8);
   OptionItem c8 = new OptionItem("Jalepenos", 0, base + 25*9);
   OptionItem c9 = new OptionItem("Sprouts", 0, base + 25*10);
-  OptionTitle b3 = new OptionTitle("Choose a Sauce","Sauce", base + 25*12);
+  OptionTitle b3 = new OptionTitle("Choose Sauces","Sauce", base + 25*12);
   OptionItem c10 = new OptionItem("Ranch", 0.75, base + 25*13);
   OptionItem c11 = new OptionItem("Appricot Sauce", 0.75, base + 25*14);
   OptionItem c12 = new OptionItem("Besil Pestol", 0.75, base + 25*15);

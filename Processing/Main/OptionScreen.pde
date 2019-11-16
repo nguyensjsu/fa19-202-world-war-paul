@@ -32,7 +32,7 @@ public class OptionScreen extends Screen
             c.display();
         }
 
-        //Add Basket green Rectangular
+        //Add green basket rect
         fill(0,204,0);   
         stroke(0,204,0); 
         rectMode(CORNER); 
@@ -42,6 +42,11 @@ public class OptionScreen extends Screen
         textSize(20);
         fill(255);
         text("Add to Basket", 130, 660);
+
+        //subtotal text
+        textSize(15);
+        fill(255);
+        text("$"+totalPrice, 330, 660);
     }
 
 
@@ -56,11 +61,14 @@ public class OptionScreen extends Screen
         if(630 <= y && y<=680){
             totalPrice = addUp();
 
-            //Can be comment out
+            //Could be comment out
             System.out.println(printDescription());
             System.out.println("subtotal is:  "+totalPrice);
         }
         chain.touch(x, y);
+
+        totalPrice = addUp();
+        display();
     }
 
     /**
@@ -81,7 +89,9 @@ public class OptionScreen extends Screen
         }
     }
 
-    /**test */
+    /**
+     * add up total price
+     */
     public double addUp(){
         double subtotal = 0.0;
         for (IDisplayComponent c: components) {
