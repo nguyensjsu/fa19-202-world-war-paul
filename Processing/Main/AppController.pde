@@ -21,8 +21,7 @@ public class AppController implements IProxy {
         //account = new MyAccountScreen(20) ;
         home = new HomePageScreen("San Jose State University") ;
         frame = new Frame( home ) ;
-        //Test order screen
-        //frame = new Frame( orderHistory ) ;
+       
 
         // setup command pattern
         displayOrderHistory  = new MenuCommand() ;
