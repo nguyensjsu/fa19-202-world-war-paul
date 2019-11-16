@@ -2,6 +2,7 @@
 /**
  * Add New Card Screen
  */
+
 private final static int width = 380;
 
 public class AddCard extends Screen
@@ -15,14 +16,20 @@ public class AddCard extends Screen
     boolean cardCVVFlag;
     Map <String, String> cardInfo = new HashMap<String, String>();
 
-    
+     /**
+     * Constructor
+     * Setting three flags for different focus
+     */
     public AddCard()
     {
       cardNumberFlag = true;
       cardExpirtyFlag = false;
       cardCVVFlag = false;
     }
-    
+    /**
+     * Display
+     * display the UI of addcard and the button
+     */
     public void display()
     {
       background(255,255,255);
@@ -63,7 +70,12 @@ public class AddCard extends Screen
       text("Save Payment Method", width/2, 660); // Add Card Title
 
     }
-    
+    /**
+     * Touch
+     * @param x, y int for taking the mouseX and mouseY
+     * touch different button will get different result
+     * save cardInfo to local json file
+     */
     public void touch(int x, int y)
     {
       
@@ -92,6 +104,7 @@ public class AddCard extends Screen
           cardInfo.put("cardNumber", cardNumber.toString());
           cardInfo.put("cardExpirty", cardExpirty.toString());
           cardInfo.put("cardCVV", cvv.toString());
+          serialization(cardInfo, "cardInfo.json");
         }
       }
         
@@ -109,7 +122,10 @@ public class AddCard extends Screen
       }
       
     }
-    
+     /**
+     * Next
+     * go to next, Home screen
+     */
     public void next()
     {
       /**TODO: 
@@ -118,7 +134,12 @@ public class AddCard extends Screen
       if card is not valid, do nothing
       */
     }
-    
+     /**
+     * inputTouch
+     * @param input, x, y, section. Taking input as stringbuilder for cardNumber, cardExpirty, CVV and section name
+     * touch for add number to cardNumber, cardExpirty and CVV 
+     * go to next, Home screen
+     */
     public void inputTouch(StringBuilder input, int x, int y, String section)
     {
       if(x >= 55 && x <= 115)
