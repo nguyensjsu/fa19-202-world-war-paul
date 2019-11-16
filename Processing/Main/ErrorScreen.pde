@@ -31,6 +31,7 @@ public class ErrorScreen extends Screen implements ITouchEventHandler, IDisplayC
               fill(255,0,0);
               textAlign(CENTER);
               text(errorMessage, 190, 50);
+              textAlign(LEFT);
             }
         }
     }
