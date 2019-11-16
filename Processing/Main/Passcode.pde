@@ -85,19 +85,4 @@ public class Passcode implements ITouchEventHandler, IDisplayComponent, IKeyPadO
         System.err.println( "Key: " + key ) ;
         count = c ;
     }
-    
-    /**
-     * add price back
-     */
-    public double add(){
-        //do nothing
-        return 0.0;
-    }
-
-   /**
-     * return the name to print
-     */
-    public String title(){
-        return "";
-    }
 }

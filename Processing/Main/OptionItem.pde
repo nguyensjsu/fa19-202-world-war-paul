@@ -1,5 +1,5 @@
 /** Payments Screen */
-public class OptionItem extends OptionScreen implements IDisplayComponent,  ITouchEventHandler
+public class OptionItem extends Screen implements IDisplayComponent,  ITouchEventHandler
 {
     ITouchEventHandler nextHandler ;
     PShape img;

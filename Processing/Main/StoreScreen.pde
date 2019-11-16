@@ -4,6 +4,10 @@ public class StoreScreen extends Screen
     /** Display Components */
     private ArrayList<IDisplayComponent> components = new ArrayList<IDisplayComponent>() ;
 
+    //use lower add component
+    private ArrayList<Screen> comp = new ArrayList<Screen>() ;
+
+
     /** Front of Event Chain */
     private ITouchEventHandler chain ;
 
@@ -93,12 +97,22 @@ public class StoreScreen extends Screen
 
 
     /**
+     * Add A Child Component
+     * @param c Child Component
+     */
+    public void addSubComp( Screen c )
+    {
+        comp.add(c);
+    }
+
+
+    /**
      * adding up total price
      * @return subtotal price 
      */
     public double addUp(){
         double subtotal = 0.0;
-        for (IDisplayComponent c: components) {
+        for (Screen c: comp) {
             subtotal += c.add();
         }
         return subtotal;
@@ -110,7 +124,7 @@ public class StoreScreen extends Screen
      */
     public String printDescription(){
         String total ="";
-        for (IDisplayComponent c: components) {
+        for (Screen c: comp) {
             if(!c.title().equals("")){
                 if(c.getClass().toString().split(" ", 2)[1].equals("Main$OptionTitle") ){
                     total += "\n" + c.title() + ": ";

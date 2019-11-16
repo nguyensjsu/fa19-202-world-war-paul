@@ -38,20 +38,4 @@ public class Spacer implements IDisplayComponent, ITouchEventHandler {
     public void setNext( ITouchEventHandler next) {
         nextHandler = next ;
     }
-    
-    /**
-     * add price back
-     */
-    public double add(){
-        //do nothing
-        return 0.0;
-    }
-
-    /**
-     * return the name to print
-     */
-    public String title(){
-        return "";
-    }
-
 }

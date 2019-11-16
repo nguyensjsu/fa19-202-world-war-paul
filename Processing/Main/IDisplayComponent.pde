@@ -14,14 +14,4 @@ public interface IDisplayComponent
      * @param c Child Component
      */
     void addSubComponent( IDisplayComponent c ) ;
-
-    /**
-     * add price back
-     */
-    double add();
-
-    /**
-     * return the name to print
-     */
-    String title();
 }

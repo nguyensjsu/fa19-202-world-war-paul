@@ -1,5 +1,5 @@
 /** Payments Screen */
-public class OptionTitle extends OptionScreen implements IDisplayComponent, ITouchEventHandler
+public class OptionTitle extends Screen implements IDisplayComponent, ITouchEventHandler
 {    
     ITouchEventHandler nextHandler ;
 
@@ -45,14 +45,6 @@ public class OptionTitle extends OptionScreen implements IDisplayComponent, ITou
         if (nextHandler != null) {
             nextHandler.touch(x,y);
         }
-    }
-
-    /**
-     * add price back
-     */
-    public double add(){
-        //do nothing
-        return 0.0;
     }
 
     /**
