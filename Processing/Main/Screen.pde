@@ -129,4 +129,54 @@ public class Screen implements IScreen, IDisplayComponent
     public String title(){
         return "";
     }
+    
+    /**
+     * @param map, fileName, Taking a map and convert to JSON file with the fileName
+     */
+    public void serialization(Map<String, String> map, String fileName)
+    {
+      Gson gson = new Gson();
+      String jsonString = gson.toJson(map);
+      try
+      {
+        FileWriter file = new FileWriter("." + fileName); // might need to improve about the directory
+        file.write(jsonString);
+        file.close();
+      }
+      catch(IOException e)
+      {
+        e.printStackTrace();
+        //TODO: direct to error msg screen
+      }
+      
+    }
+    
+    /**
+     * @param taking a fileName as a String
+     * @return map converted from a JSON file
+     */
+    public Map<String, String> deserialization(String fileName)
+    {
+      Gson gson = new Gson();
+      HashMap<String, String> result = new HashMap<String, String>(); 
+      try
+      {
+        FileReader fr = new FileReader("." + fileName);
+        StringBuilder str = new StringBuilder();
+        int i;
+        while ((i=fr.read()) != -1) 
+        {
+          str.append((char)i); 
+        }
+        String jsonString = str.toString();
+        Type type = new TypeToken<HashMap<String, String>>(){}.getType();
+        result = gson.fromJson(jsonString, type);
+        fr.close();
+      }
+      catch(IOException e)
+      {
+        e.printStackTrace();
+      }
+      return result;
+    }
 }

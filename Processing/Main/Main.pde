@@ -1,7 +1,21 @@
-/* (c) Copyright 2018 Paul Nguyen. All Rights Reserved */
- //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
-Device d;
 
+import com.google.gson.annotations.*; //<>//
+import com.google.gson.*;
+import com.google.gson.internal.*;
+import com.google.gson.internal.bind.*;
+import com.google.gson.internal.bind.util.*;
+import com.google.gson.reflect.*;
+import com.google.gson.stream.*;
+
+import java.util.Map;
+import java.util.HashMap;
+
+import java.lang.reflect.Type;
+import java.io.*;
+
+
+Device d;
+AddCard ad;
 // HomePageScreen Testing Code
 // HomePageScreen mp;
 
@@ -13,6 +27,7 @@ Device d;
 // MenuBarScreen ms;
 
 void setup() {
+
 	size(380, 680);
 
   // // HomePageScreen Testing Code
@@ -49,6 +64,7 @@ void draw() {
   //   mp.display();
   // }
 
+
 	// // MyAccountScreen & MenuBarScreen Testing Code
 	// if (mousePressed) {
 	// 	mas.display();
@@ -72,6 +88,7 @@ void draw() {
 
 
 void mouseClicked(){
+
 	// TODO: Update all touch() function
 
 	// // HomePageScreen Testing Code
@@ -80,9 +97,12 @@ void mouseClicked(){
 	// // MyAccountScreen & MenuBarScreen Testing Code
 	// mas.touch(mouseX, mouseY);
 
+
   // //Store Screen Testing Code
    //storeScreen.touch(mouseX, mouseY);
 
+  // // MyAccountScreen & MenuBarScreen Testing Code
+  // mas.touch(mouseX, mouseY);
 
   //  if (mousePressed) {
   //    System.out.println(mouseX + " " +  mouseY);
