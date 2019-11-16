@@ -62,4 +62,3 @@ public class OptionTitle extends OptionScreen implements IDisplayComponent, ITou
         return type;
     }
 }
-

@@ -1,12 +1,12 @@
 /* (c) Copyright 2018 Paul Nguyen. All Rights Reserved */
- //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+ //<>// //<>// //<>// //<>// //<>// //<>// //<>//
 Device d;
 
 // HomePageScreen Testing Code
 // HomePageScreen mp;
 
 //OptionScreen Testing Code
-OptionScreen a;
+// OptionScreen a;
 
 void setup() {
   size(380, 680);
@@ -24,40 +24,40 @@ void setup() {
   // mp.display();
   // TODO: Update all display() function: Change all System.out.print() call to processing drawings
 
-  //Custom Item Screen Testing Code
-  int base = 90;
-  a = new OptionScreen();
-  OptionTitle b1 = new OptionTitle("Choose Cheeses", "Cheese", base-15);
-  OptionItem c1 = new OptionItem("Danish Blue Cheese", 1, base);
-  OptionItem c2 = new OptionItem("Horseradish Cheddar", 1, base + 25*1);
-  OptionItem c3 = new OptionItem("Yello American", 1, base + 25*2);
-  OptionTitle b2 = new OptionTitle("Topping for any combination","Toppings", base + 25*4);
-  OptionItem c4 = new OptionItem("Bermuda Red Onion", 0, base + 25*5);
-  OptionItem c5 = new OptionItem("Black Olives", 0, base + 25*6);
-  OptionItem c6 = new OptionItem("Carrot Strings", 0, base + 25*7);
-  OptionItem c7 = new OptionItem("Coleslaw", 0, base + 25*8);
-  OptionItem c8 = new OptionItem("Jalepenos", 0, base + 25*9);
-  OptionItem c9 = new OptionItem("Sprouts", 0, base + 25*10);
-  OptionTitle b3 = new OptionTitle("Choose Sauces","Sauce", base + 25*12);
-  OptionItem c10 = new OptionItem("Ranch", 0.75, base + 25*13);
-  OptionItem c11 = new OptionItem("Appricot Sauce", 0.75, base + 25*14);
-  OptionItem c12 = new OptionItem("Besil Pestol", 0.75, base + 25*15);
-  a.addSubComponent( b1);
-  a.addSubComponent( c1);
-  a.addSubComponent( c2);
-  a.addSubComponent( c3);
-  a.addSubComponent( b2);
-  a.addSubComponent( c4);
-  a.addSubComponent( c5);
-  a.addSubComponent( c6);
-  a.addSubComponent( c7);
-  a.addSubComponent( c8);
-  a.addSubComponent( c9);
-  a.addSubComponent( b3);
-  a.addSubComponent( c10);
-  a.addSubComponent( c11);
-  a.addSubComponent( c12);
-  a.display();
+  //Custom OptionScreen Testing Code
+  // int base = 90;
+  // a = new OptionScreen();
+  // OptionTitle b1 = new OptionTitle("Choose a Cheese", "Cheese", base-15);
+  // OptionItem c1 = new OptionItem("Danish Blue Cheese", 1, base);
+  // OptionItem c2 = new OptionItem("Horseradish Cheddar", 1, base + 25*1);
+  // OptionItem c3 = new OptionItem("Yello American", 1, base + 25*2);
+  // OptionTitle b2 = new OptionTitle("Topping for any combination","Toppings", base + 25*4);
+  // OptionItem c4 = new OptionItem("Bermuda Red Onion", 0, base + 25*5);
+  // OptionItem c5 = new OptionItem("Black Olives", 0, base + 25*6);
+  // OptionItem c6 = new OptionItem("Carrot Strings", 0, base + 25*7);
+  // OptionItem c7 = new OptionItem("Coleslaw", 0, base + 25*8);
+  // OptionItem c8 = new OptionItem("Jalepenos", 0, base + 25*9);
+  // OptionItem c9 = new OptionItem("Sprouts", 0, base + 25*10);
+  // OptionTitle b3 = new OptionTitle("Choose a Sauce","Sauce", base + 25*12);
+  // OptionItem c10 = new OptionItem("Ranch", 0.75, base + 25*13);
+  // OptionItem c11 = new OptionItem("Appricot Sauce", 0.75, base + 25*14);
+  // OptionItem c12 = new OptionItem("Besil Pestol", 0.75, base + 25*15);
+  // a.addSubComponent( b1);
+  // a.addSubComponent( c1);
+  // a.addSubComponent( c2);
+  // a.addSubComponent( c3);
+  // a.addSubComponent( b2);
+  // a.addSubComponent( c4);
+  // a.addSubComponent( c5);
+  // a.addSubComponent( c6);
+  // a.addSubComponent( c7);
+  // a.addSubComponent( c8);
+  // a.addSubComponent( c9);
+  // a.addSubComponent( b3);
+  // a.addSubComponent( c10);
+  // a.addSubComponent( c11);
+  // a.addSubComponent( c12);
+  // a.display();
 }
 
 void draw() {
@@ -67,10 +67,10 @@ void draw() {
   //   mp.display();
   // }
 
-  //OptionScreen Testing Code  //Store Screen Testing code
-  if (mousePressed) {
-    a.display();
-  } 
+  // OptionScreen Testing Code  //Store Screen Testing code
+  // if (mousePressed) {
+  //   a.display();
+  // } 
 
 //  if (mousePressed) {
 //    mp.touch(mouseX, mouseY);
@@ -90,8 +90,8 @@ void mouseClicked(){
   // // HomePageScreen Testing Code
   // mp.touch(mouseX, mouseY);
 
-  //CustomItem Screen Testing code  //Store Screen Testing code
-  a.touch(mouseX, mouseY);
+  //CustomOption Screen Testing code  //Store Screen Testing code
+  // a.touch(mouseX, mouseY);
 
 //  if (mousePressed) {
 //    System.out.println(mouseX + " " +  mouseY);
