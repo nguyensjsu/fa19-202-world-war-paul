@@ -94,9 +94,8 @@ public class AddCard extends Screen
           cardInfo.put("cardExpirty", cardExpirty.toString());
           cardInfo.put("cardCVV", cvv.toString());
           
-          serialization(cardInfo, "cardInfo.json");
-          
-          //For testing purpose, you can uncomment the following lines of code
+           //For testing purpose, you can uncomment the following lines of code
+          //serialization(cardInfo, "cardInfo.json");
           //Map<String, String> res = new HashMap<String, String>();
           //res = deserialization("cardInfo.json");
           //for (Map.Entry<String, String> entry : res.entrySet()) {
@@ -197,57 +196,48 @@ public class AddCard extends Screen
         }
       }
     }
-    
+
     public void serialization(Map<String, String> map, String fileName)
     {
-      JSONObject data = new JSONObject(map);
+      Gson gson = new Gson();
+      String jsonString = gson.toJson(map);
       
       try
       {
         FileWriter file = new FileWriter("C:/Users/moon1/Documents/GitHub/202TeamProject/Processing/Main/" + fileName); // might need to improve about the directory
-        file.write(data.toString());
+        file.write(jsonString);
         file.close();
       }
       catch(IOException e)
       {
         e.printStackTrace();
+        //TODO: direct to error msg screen
       }
       
     }
     
     public Map<String, String> deserialization(String fileName)
     {
-      Map<String, String> result = new HashMap<String, String>();
-      ArrayList<Integer> indexOfQuote = new ArrayList<Integer>();
-      StringBuilder str = new StringBuilder();
-      int i;
+      Gson gson = new Gson();
+      HashMap<String, String> result = new HashMap<String, String>(); 
       try
       {
-        FileReader fr = new FileReader("C:/Users/moon1/Documents/GitHub/202TeamProject/Processing/Main/" + fileName); 
+        FileReader fr = new FileReader("C:/Users/moon1/Documents/GitHub/202TeamProject/Processing/Main/" + fileName);
+        StringBuilder str = new StringBuilder();
+        int i;
         while ((i=fr.read()) != -1) 
         {
           str.append((char)i); 
         }
-        
-        for(int j = 0; j < str.length(); j++)
-        {
-          if(str.charAt(j) == '"')
-          {
-            indexOfQuote.add(j);
-          }
-        }
-        
-        for(int k = 0; k < indexOfQuote.size(); k = k+4)
-        {
-          result.put(str.substring(indexOfQuote.get(k)+1, indexOfQuote.get(k+1)), str.substring(indexOfQuote.get(k+2)+1, indexOfQuote.get(k+3)));
-        }
+        String jsonString = str.toString();
+        Type type = new TypeToken<HashMap<String, String>>(){}.getType();
+        result = gson.fromJson(jsonString, type);
         fr.close();
       }
       catch(IOException e)
       {
         e.printStackTrace();
       }
-     
       return result;
     }
     

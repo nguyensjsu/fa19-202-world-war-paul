@@ -1,11 +1,19 @@
-/* (c) Copyright 2018 Paul Nguyen. All Rights Reserved */
- //<>// //<>// //<>//
+import com.google.gson.annotations.*; //<>//
+import com.google.gson.*;
+import com.google.gson.internal.*;
+import com.google.gson.internal.bind.*;
+import com.google.gson.internal.bind.util.*;
+import com.google.gson.reflect.*;
+import com.google.gson.stream.*;
 
 import java.util.Map;
 import java.util.HashMap;
-import org.json.JSONObject;
-import org.json.JSONArray;
+/* (c) Copyright 2018 Paul Nguyen. All Rights Reserved */
+ //<>// //<>//
+import java.lang.reflect.Type;
 import java.io.*;
+
+
 Device d;
 AddCard ad;
 // HomePageScreen Testing Code
