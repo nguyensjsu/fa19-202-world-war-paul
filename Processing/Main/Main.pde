@@ -1,7 +1,13 @@
 /* (c) Copyright 2018 Paul Nguyen. All Rights Reserved */
  //<>// //<>// //<>//
-Device d;
 
+import java.util.Map;
+import java.util.HashMap;
+import org.json.JSONObject;
+import org.json.JSONArray;
+import java.io.*;
+Device d;
+AddCard ad;
 // HomePageScreen Testing Code
 // HomePageScreen mp;
 
@@ -9,6 +15,7 @@ void setup() {
   size(380, 680);
   
   // old starbuck starter code 
+  ad = new AddCard();
   d = new Device();
   d.display();
 
@@ -24,7 +31,7 @@ void setup() {
 }
 
 void draw() {
-  
+  ad.display();
   // // HomePageScreen Testing Code
   // if (mousePressed) {
   //   mp.display();
@@ -44,6 +51,7 @@ void draw() {
 
 
 void mouseClicked(){
+  ad.touch(mouseX, mouseY);
  // TODO: Update all touch() function
 
   // // HomePageScreen Testing Code
