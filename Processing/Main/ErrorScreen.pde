@@ -6,8 +6,8 @@ public class ErrorScreen extends Screen implements ITouchEventHandler, IDisplayC
     private int startWidth;
     private int endWidth;
     private String errorMessage;
-    private boolean flag = false;
-
+    private boolean flag;
+    private float timer;
     ITouchEventHandler nextHandler ;
 
     public ErrorScreen(String str){
@@ -16,12 +16,11 @@ public class ErrorScreen extends Screen implements ITouchEventHandler, IDisplayC
         startWidth = 0;
         endWidth = 380;
         errorMessage = str;
-        flag = true;
+        flag = false;
     }
 
     // display error message on top of the screen for a few second
     public void display(){
-        float timer = millis() + 1000;
         if(flag){
             if(millis() < timer){
               // error message background
@@ -53,7 +52,19 @@ public class ErrorScreen extends Screen implements ITouchEventHandler, IDisplayC
     public void touch(int x, int y){
     }
 
+    /**
+     * Set flag of showing error message
+     * @param f flag
+     */
     public void setFlag(boolean f){
-      this.flag = f;
+        this.flag = f;
+    }
+
+    /**
+     * Set the timer when error message shows end at
+     * @param t end time
+     */
+    public void setTimer(float t){
+        this.timer = t;
     }
 }

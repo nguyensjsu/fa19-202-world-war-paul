@@ -1,7 +1,7 @@
 Device d;
-
+ErrorScreen err;
 // HomePageScreen Testing Code
-// HomePageScreen mp;
+HomePageScreen mp;
 
 // MyAccountScreen & MenuBarScreen Testing Code
 // MyAccountScreen mas;
@@ -11,16 +11,21 @@ void setup() {
 	size(380, 680);
 
 	// old starbuck starter code
-	d = new Device();
-	d.display();
+	// d = new Device();
+	// d.display();
 
 	// // HomePageScreen Testing Code
-	// mp = new HomePageScreen("San Jose State University");
-	// Store s1 = new Store("../../img/store/starbucks_300x150.png", "StarBucks1", "Student Union", "Pickup: 7:00am - 10:00pm", 20);
-	// Store s2 = new Store("../../img/store/starbucks_300x150.png","StarBucks2", "Student Union", "Pickup: 7:00am - 10:00pm", 250);
-	// mp.addSubComponent(s1);
-	// mp.addSubComponent(s2);
-	// mp.display();
+	mp = new HomePageScreen("San Jose State University");
+	Store s1 = new Store("../../img/store/starbucks_300x150.png", "StarBucks1", "Student Union", "Pickup: 7:00am - 10:00pm", 20);
+	Store s2 = new Store("../../img/store/starbucks_300x150.png","StarBucks2", "Student Union", "Pickup: 7:00am - 10:00pm", 250);
+	mp.addSubComponent(s1);
+	mp.addSubComponent(s2);
+
+  err = new ErrorScreen("123");
+  err.setTimer(millis()+ 1000);
+  err.setFlag(true);
+
+  mp.addSubComponent(err);
 
 	// MyAccountScreen Testing Code
 	// mas = new MyAccountScreen(20);
@@ -29,10 +34,10 @@ void setup() {
 	// mas.display();
 
 
-	// TODO: Update all display() function: Change all System.out.print() call to processing drawings
 }
 
 void draw() {
+  mp.display();
   // // HomePageScreen Testing Code
   // if (mousePressed) {
   //   mp.display();
@@ -70,7 +75,7 @@ void mouseClicked(){
 
 
   // login screen test code
-   d.touch(mouseX, mouseY);
+  //d.touch(mouseX, mouseY);
 
 }
 
