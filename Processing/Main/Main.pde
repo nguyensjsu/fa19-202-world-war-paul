@@ -27,7 +27,10 @@ void setup() {
 
 	size(380, 680);
 
+<<<<<<< HEAD
 	// old starbuck starter code
+=======
+>>>>>>> 6b7c2129bf3bb79be0e823d82d3f508ebdd3e9f7
 	d = new Device();
 	d.display();
 
@@ -110,15 +113,11 @@ void mouseClicked(){
 	// // MyAccountScreen & MenuBarScreen Testing Code
 	// mas.touch(mouseX, mouseY);
 
-	// // MyAccountScreen & MenuBarScreen Testing Code
-	// mas.touch(mouseX, mouseY);
-
 	//  if (mousePressed) {
 	//    System.out.println(mouseX + " " +  mouseY);
 	//    mp.touch(mouseX, mouseY);
 	//  }
 	// app.touch();
-
 
 	// login screen test code
 	d.touch(mouseX, mouseY);
