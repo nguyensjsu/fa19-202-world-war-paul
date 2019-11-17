@@ -104,7 +104,7 @@ public class StoreScreen extends Screen
      * @return a string that comprise all component information
      */
     public String printDescription(){
-        StringBuilder description = new StrintBuilder() 
+        StringBuilder description = new StringBuilder();
         for (Screen c: comp) {
             if(!c.title().equals("")){
                 if(c.getClass().toString().split(" ", 2)[1].equals("Main$OptionTitle") ){
