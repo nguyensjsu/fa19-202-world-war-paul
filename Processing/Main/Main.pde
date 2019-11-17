@@ -1,5 +1,5 @@
 
-import com.google.gson.annotations.*;
+import com.google.gson.annotations.*; //<>//
 import com.google.gson.*;
 import com.google.gson.internal.*;
 import com.google.gson.internal.bind.*;
@@ -16,8 +16,8 @@ import java.io.*;
 Device d;
 
 // AddCard ad;
-// HomePageScreen Testing Code
-// HomePageScreen mp;
+ //HomePageScreen Testing Code
+//HomePageScreen mp;
 
 // StoreScreen Testing code
 // StoreScreen storeScreen;
@@ -25,6 +25,11 @@ Device d;
 // MyAccountScreen & MenuBarScreen Testing Code
 // MyAccountScreen mas;
 // MenuBarScreen ms;
+
+//Pay Button Testing Code
+//BasketScreen bs;
+//PayButton pb;
+//ErrorScreen es;
 
 void setup() {
 
@@ -34,15 +39,24 @@ void setup() {
 	// d.display();
 
 	// // HomePageScreen Testing Code
-	// mp = new HomePageScreen("San Jose State University");
+	 //mp = new HomePageScreen("San Jose State University");
 	// Store s1 = new Store("../../img/store/starbucks_300x150.png", "StarBucks1", "Student Union", "Pickup: 7:00am - 10:00pm", 20);
 	// Store s2 = new Store("../../img/store/starbucks_300x150.png","StarBucks2", "Student Union", "Pickup: 7:00am - 10:00pm", 250);
 
+  //Pay Button Testing Code
+    //bs = new BasketScreen();
+    //pb = new PayButton();
+    //es = new ErrorScreen("Card Not Found");
+    //es.setTimer(millis()+ 10000);
+    //es.setFlag(true);
+    //pb.addSubComponent(es);
+    //bs.addSubComponent(pb);
+
   // ErrorScreen test code
-  // ErrorScreen err = new ErrorScreen("123");
-  // err.setTimer(millis()+ 1000);
-  // err.setFlag(true);
-  // mp.addSubComponent(err); // err need be added as last component to show on top
+   //ErrorScreen err = new ErrorScreen("123");
+   //err.setTimer(millis()+ 1000);
+   //err.setFlag(true);
+   //mp.addSubComponent(err); // err need be added as last component to show on top
 
   // mp.addSubComponent(s1);
 	// mp.addSubComponent(s2);
@@ -77,9 +91,13 @@ void setup() {
 void draw() {
   //mp.display();
   // // HomePageScreen Testing Code
-  // if (mousePressed) {
-  //   mp.display();
-  // }
+   //if (mousePressed) {
+   //  mp.display();
+   //}
+  
+  //Pay Button Testing Code
+//if (mousePressed)
+//    bs.display();
 
 
 	// // MyAccountScreen & MenuBarScreen Testing Code
@@ -110,6 +128,9 @@ void mouseClicked(){
 
 	// // MyAccountScreen & MenuBarScreen Testing Code
 	// mas.touch(mouseX, mouseY);
+
+  //Pay Button Testing Code
+      //bs.touch(mouseX, mouseY);
 
 
   // //Store Screen Testing Code
