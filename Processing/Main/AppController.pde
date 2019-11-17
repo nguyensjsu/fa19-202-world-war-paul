@@ -1,7 +1,3 @@
-
-/* (c) Copyright 2018 Paul Nguyen. All Rights Reserved */
-
-
 /**
  * Main App Controller Class
  */
@@ -10,23 +6,29 @@ public class AppController implements IProxy {
     // TODO: Update Screens and Commands
     private IScreen orderHistory ;
     private IScreen home ;
-    //private IScreen account ;
+    private IScreen account ;
     private IMenuCommand displayOrderHistory ;
     private IMenuCommand displayHome ;
-    //private IMenuCommand displayAccount ;
+    private IMenuCommand displayAccount ;
     private IFrame frame ;
 
     public AppController() {
         orderHistory = new OrderHistoryScreen() ;
-        //account = new MyAccountScreen(20) ;
+        account = new MyAccountScreen(20) ;
         home = new HomePageScreen("San Jose State University") ;
         frame = new Frame( home ) ;
-       
+
+        // MenuBarScreen mbs = new MenuBarScreen();
+        home.setFrame(frame);
+        orderHistory.setFrame(frame);
+        //home.setFrame(frame);
+        //Test order screen
+        //frame = new Frame( orderHistory ) ;
 
         // setup command pattern
         displayOrderHistory  = new MenuCommand() ;
         displayHome = new MenuCommand() ;
-        //displayAccount  = new MenuCommand() ;
+        displayAccount  = new MenuCommand() ;
         
         displayOrderHistory.setReceiver(
           new IMenuReceiver() {
@@ -44,18 +46,18 @@ public class AppController implements IProxy {
               }
         }
         ) ;
-        //displayAccount.setReceiver(
-        //  new IMenuReceiver() {
-        //      /** Command Action */
-        //      public void doAction() {
-        //          frame.setCurrentScreen( account ) ;
-        //      }
-        //}
-        //) ;
+        displayAccount.setReceiver(
+          new IMenuReceiver() {
+              /** Command Action */
+              public void doAction() {
+                  frame.setCurrentScreen( account ) ;
+              }
+        }
+        ) ;
       
         frame.setMenuItem ( "order", displayOrderHistory ) ; // left
         frame.setMenuItem ( "home", displayHome ) ; // middle
-        //frame.setMenuItem ( "account", displayAccount ) ; // right
+        frame.setMenuItem ( "account", displayAccount ) ; // right
     }
 
     /**

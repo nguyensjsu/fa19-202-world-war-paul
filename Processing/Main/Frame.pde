@@ -30,12 +30,12 @@ public class Frame implements IFrame
 
     /** Nav to Previous Screen */
     public void previousScreen() {
-        current.prev();
+        // add code here
     }
 
     /** Nav to Next Screen */
     public void nextScreen() {
-        current.next();
+        // add code here
     }
 
 
@@ -242,9 +242,9 @@ public class Frame implements IFrame
      */
     public void setMenuItem( String slot, IMenuCommand c )
     {
-        if ( "A".equals(slot) ) { menuA.setCommand(c) ;  }
-        if ( "B".equals(slot) ) { menuB.setCommand(c) ; }
-        if ( "C".equals(slot) ) { menuC.setCommand(c) ; }
+        if ( "home".equals(slot) ) { menuA.setCommand(c) ;  }
+        if ( "order".equals(slot) ) { menuB.setCommand(c) ; }
+        if ( "account".equals(slot) ) { menuC.setCommand(c) ; }
         if ( "D".equals(slot) ) { menuD.setCommand(c) ; }
         if ( "E".equals(slot) ) { menuE.setCommand(c) ; }
     }
@@ -297,9 +297,9 @@ public class Frame implements IFrame
      */
     public void cmd( String c )
     {
-        if ( "A".equals(c) ) { selectA() ; }
-        if ( "B".equals(c) ) { selectB() ; }
-        if ( "C".equals(c) ) { selectC() ; }
+        if ( "home".equals(c) ) { selectA() ; }
+        if ( "order".equals(c) ) { selectB() ; }
+        if ( "account".equals(c) ) { selectC() ; }
         if ( "D".equals(c) ) { selectD() ; }
         if ( "E".equals(c) ) { selectE() ; }
     }

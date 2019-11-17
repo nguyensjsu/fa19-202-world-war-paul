@@ -12,9 +12,9 @@ public class Screen implements IScreen, IDisplayComponent
 {
     private int width;
     private int height;
+    IFrame frame;
     protected IScreen prevScreen;
     protected IScreen nextScreen;
-    protected IFrame frame;
     
     /** Display Components */
     private ArrayList<IDisplayComponent> components = new ArrayList<IDisplayComponent>() ;
@@ -42,14 +42,6 @@ public class Screen implements IScreen, IDisplayComponent
     public int getHeight() {
         return height;
     }
-    
-     public void setFrame(IFrame frame) {
-        this.frame = frame;
-    }
-
-    public IFrame getFrame() {
-        return frame;
-    }
 
     /**
      * Send Touch Events to the Chain
@@ -63,14 +55,12 @@ public class Screen implements IScreen, IDisplayComponent
 
     /** Next Screen - Not Used */
     public void next() {
-      if (nextScreen != null) {
-            frame.setCurrentScreen(nextScreen);
-        }    
-     }
+        // add code here
+    }
 
     /** Previous Screen - Not Used */
     public void prev()  {
-       if (prevScreen != null) {
+        if (prevScreen != null) {
             frame.setCurrentScreen(prevScreen);
         }
     }
@@ -80,7 +70,7 @@ public class Screen implements IScreen, IDisplayComponent
      * @param s Next Screen Object
      * @param n Next Screen Label
      */
-    public void setNext(IScreen s )  {
+    public void setNext(IScreen s) {
         nextScreen = s;
     }
 
@@ -91,6 +81,7 @@ public class Screen implements IScreen, IDisplayComponent
      */
     public void setPrev(IScreen s)  {
         prevScreen = s;
+    
     }
 
     /**
@@ -121,6 +112,14 @@ public class Screen implements IScreen, IDisplayComponent
         }
     }
 
+    public void setFrame(IFrame frame) {
+        this.frame = frame;
+    }
+
+    public IFrame getFrame() {
+        return frame;
+    }
+
     /**
      * Get Class Name of Current Screen
      * @return Class Name of Current Screen
@@ -128,6 +127,7 @@ public class Screen implements IScreen, IDisplayComponent
     public String name() {
         return (this.getClass().getName());
     }
+
     /**
      * @param map, fileName, Taking a map and convert to JSON file with the fileName
      */
