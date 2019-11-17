@@ -107,7 +107,7 @@ void setup() {
   // optionScreen.addSubComp(item10);
   // optionScreen.addSubComp(item11);
   // optionScreen.addSubComp(item12);
-  // optionScreen.addSubComponent(basket);
+  // optionScreen.addSubComp(basket);
   // optionScreen.display();
 }
 
