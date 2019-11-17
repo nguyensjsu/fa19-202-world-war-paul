@@ -5,18 +5,18 @@ public class HomePageScreen extends Screen implements IDisplayComponent {
 
     /** Front of Event Chain */
     private ITouchEventHandler chain ;
-    protected IFrame frame;
-    MenuBarScreen mbs;
+
     private String address;
+    private MenuBarScreen mbs;
 
     public HomePageScreen(String address) {
         this.address = address;
-        Store s1 = new Store("../../img/store/starbucks_300x150.png", "StarBucks1", "Student Union", "Pickup: 7:00am - 10:00pm", 20);
-        Store s2 = new Store("../../img/store/panda_300x150.png","Panda Express", "Student Union", "Pickup: 7:00am - 10:00pm", 250);
+        Store starbucks = new Store("../../img/store/starbucks_300x150.png", "StarBucks1", "Student Union", "Pickup: 7:00am - 10:00pm", 20);
+        Store panda = new Store("../../img/store/panda_300x150.png","Panda Express", "Student Union", "Pickup: 7:00am - 10:00pm", 250);
         
         mbs = new MenuBarScreen();
-        addSubComponent(s1);
-        addSubComponent(s2);
+        addSubComponent(starbucks);
+        addSubComponent(panda);
         addSubComponent(mbs);
     }
 
@@ -64,9 +64,15 @@ public class HomePageScreen extends Screen implements IDisplayComponent {
      */
     @Override
     public void touch(int x, int y) {
-        chain.touch(x, y);
+        if (chain != null) {
+            chain.touch(x, y);
+        }
     }
     
+    /**
+     * set the frame for MenuBar Screen
+     * @param frame The frame reference
+     */
     public void setFrame(IFrame frame) {
         mbs.setFrame(frame);
     };
