@@ -27,8 +27,6 @@ public class StoreScreen extends Screen
       * @return: currently useless
       */
     public void display(){
-
-        int startingWidth = 10;
         int currentHeight = 20;
         background(255);
         textSize(20);
@@ -59,7 +57,7 @@ public class StoreScreen extends Screen
         //update price and update display price
         totalPrice = getSubTotal();
         //System.out.println(printDescription());
-        display();
+        //display();
     }
 
     /**
@@ -87,8 +85,8 @@ public class StoreScreen extends Screen
      */
     public void addSubComp( Screen c )
     {
-        addSubComponent( (IDisplayComponent) c );
-        comp.add(c);
+        addSubComponent( (IDisplayComponent) c ); //IdisplayComponent add
+        comp.add(c);         //Screen add
     }
 
 

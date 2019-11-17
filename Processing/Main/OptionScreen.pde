@@ -28,7 +28,6 @@ public class OptionScreen extends Screen
       */
     public void display(){
 
-        int startingWidth = 10;
         int currentHeight = 20;
         background(255);
         textSize(20);
@@ -59,7 +58,6 @@ public class OptionScreen extends Screen
         //update price and update display price
         totalPrice = getSubTotal();
         //System.out.println(printDescription());  //testing code
-        display();
     }
 
     /**
