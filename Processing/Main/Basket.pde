@@ -1,13 +1,12 @@
 /** Payments Screen */
-public class Basket extends Screen implements IDisplayComponent,  ITouchEventHandler
+public class Basket extends Screen implements IDisplayComponent, ITouchEventHandler
 {
     ITouchEventHandler nextHandler ;
     private String name;
-    private int curHeight;
-    public Basket(String n, int h)
+
+    public Basket(String n)
     {
         name = n;
-        curHeight = h;
     }
 
     /** 
@@ -15,6 +14,8 @@ public class Basket extends Screen implements IDisplayComponent,  ITouchEventHan
       * @return: currently useless
       */ 
     public void display(){
+
+        // TODO: clear up magic numbers
         //Add Basket green Rectangular
         fill(0,204,0);
         stroke(0,204,0);
