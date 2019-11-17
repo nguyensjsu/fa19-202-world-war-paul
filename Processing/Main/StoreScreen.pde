@@ -7,7 +7,6 @@ public class StoreScreen extends Screen
     //use lower add component
     private ArrayList<Screen> comp = new ArrayList<Screen>() ;
 
-
     /** Front of Event Chain */
     private ITouchEventHandler chain ;
 
@@ -23,15 +22,16 @@ public class StoreScreen extends Screen
       * @return: currently useless
       */
     public void display(){
+
         int startingWidth = 10;
         int currentHeight = 20;
         background(255);
         textSize(20);
         fill(0, 0, 0, 255);
 
-        String address = "Choose an Item";
+        String title = "Choose an Item";
 
-        text(address, (380 - address.length() * 7) / 2, currentHeight);
+        text(title, (380 - title.length() * 7) / 2, currentHeight);
         currentHeight += 20;
 
         for (IDisplayComponent c: components) {
@@ -51,18 +51,10 @@ public class StoreScreen extends Screen
      */
     @Override
     public void touch(int x, int y) {
-        //hard code add to basket touch
-        if(630 <= y && y<=680){
-            totalPrice = addUp();
-
-            // //for testing purpose
-            // System.out.println(printDescription());
-            // System.out.println("subtotal is:  "+totalPrice);
-        }
         chain.touch(x, y);
 
         //update price and update display price
-        totalPrice = addUp();
+        totalPrice = getSubTotal();
         display();
     }
 
@@ -99,7 +91,7 @@ public class StoreScreen extends Screen
      * adding up total price
      * @return subtotal price
      */
-    public double addUp(){
+    public double getSubTotal(){
         double subtotal = 0.0;
         for (Screen c: comp) {
             subtotal += c.add();
@@ -112,17 +104,15 @@ public class StoreScreen extends Screen
      * @return a string that comprise all component information
      */
     public String printDescription(){
-        String total ="";
+        StringBuilder description = new StrintBuilder() 
         for (Screen c: comp) {
             if(!c.title().equals("")){
                 if(c.getClass().toString().split(" ", 2)[1].equals("Main$OptionTitle") ){
-                    total += "\n" + c.title() + ": ";
+                    description.append("\n" + c.title() + ": ");
                 }else
-                    total += c.title() + ",";
+                    description.append(c.title() + ",");
             }
         }
-        return total;
+        return description.toString();
     }
-
-
 }
