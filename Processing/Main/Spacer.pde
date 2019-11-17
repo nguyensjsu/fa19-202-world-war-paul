@@ -38,5 +38,4 @@ public class Spacer implements IDisplayComponent, ITouchEventHandler {
     public void setNext( ITouchEventHandler next) {
         nextHandler = next ;
     }
-
 }

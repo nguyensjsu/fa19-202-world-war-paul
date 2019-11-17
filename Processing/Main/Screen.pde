@@ -19,6 +19,7 @@ public class Screen implements IScreen, IDisplayComponent
     /** Front of Event Chain */
     private ITouchEventHandler chain ;
 
+
     /** Constructor */
     public Screen()
     {
@@ -113,6 +114,22 @@ public class Screen implements IScreen, IDisplayComponent
     public String name() {
         return (this.getClass().getName());
     }
+    
+    /**
+     * add price back
+     */
+    public double add(){
+        //do nothing
+        return 0.0;
+    }
+
+    /**
+     * return the name to print
+     */
+    public String title(){
+        return "";
+    }
+    
     /**
      * @param map, fileName, Taking a map and convert to JSON file with the fileName
      */
@@ -133,6 +150,7 @@ public class Screen implements IScreen, IDisplayComponent
       }
       
     }
+    
     /**
      * @param taking a fileName as a String
      * @return map converted from a JSON file
