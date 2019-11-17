@@ -9,6 +9,7 @@ public class OptionItem extends Screen implements IDisplayComponent,  ITouchEven
     float price;
     int curHeight;
     boolean isSelected; 
+
     public OptionItem(String n, float p, int h)
     {
         name = n;
@@ -31,15 +32,9 @@ public class OptionItem extends Screen implements IDisplayComponent,  ITouchEven
         rectMode(CORNER); 
         rect(20,curHeight,360,20); 
 
-        if(!isSelected){
-          shape(optionImg1, 20, curHeight, 20, 20);
-        }
-        else{
-          shape(optionImg2, 20, curHeight, 20, 20);
-        }
+        shape(isSelected ? optionImg2 : optionImg1, 20, curHeight, 20, 20);
         textSize(14);
         fill(0);
-
         text(name, 45, curHeight + 15);
 
         if(price != 0){
@@ -72,29 +67,26 @@ public class OptionItem extends Screen implements IDisplayComponent,  ITouchEven
         }
     }
 
-
     /**
      * add price back
      */
     public double add(){
-      if(isSelected){
-        return price;
-      }
-      else{
-        return 0.0;
-      }
+		if(isSelected){
+			return price;
+		}
+		else{
+			return 0.0;
+		}
     }
 
    /**
      * return the name to print
      */
     public String title(){
-      if(isSelected){
-        return name;
-      }
-      else
-        return "";
+		if(isSelected){
+			return name;
+		}
+		else
+			return "";
     }
-    
-
 }
