@@ -4,26 +4,26 @@
 public class AppController implements IProxy {
 
     // TODO: Update Screens and Commands
-    private IScreen orderHistory ;
+    
     private IScreen home ;
+    private IScreen orderHistory ;
     private IScreen account ;
-    private IMenuCommand displayOrderHistory ;
     private IMenuCommand displayHome ;
+    private IMenuCommand displayOrderHistory ;
     private IMenuCommand displayAccount ;
     private IFrame frame ;
 
     public AppController() {
+
+        home = new HomePageScreen("San Jose State University") ;
         orderHistory = new OrderHistoryScreen() ;
         account = new MyAccountScreen(20) ;
-        home = new HomePageScreen("San Jose State University") ;
         frame = new Frame( home ) ;
 
-        // MenuBarScreen mbs = new MenuBarScreen();
+        // Set frame for MenuBar
         home.setFrame(frame);
         orderHistory.setFrame(frame);
-        //home.setFrame(frame);
-        //Test order screen
-        //frame = new Frame( orderHistory ) ;
+        account.setFrame(frame);
 
         // setup command pattern
         displayOrderHistory  = new MenuCommand() ;
@@ -55,9 +55,9 @@ public class AppController implements IProxy {
         }
         ) ;
       
-        frame.setMenuItem ( "order", displayOrderHistory ) ; // left
-        frame.setMenuItem ( "home", displayHome ) ; // middle
-        frame.setMenuItem ( "account", displayAccount ) ; // right
+        frame.setMenuItem ("home", displayHome ) ; // left
+        frame.setMenuItem ("order", displayOrderHistory ) ; // middle
+        frame.setMenuItem ("account", displayAccount ) ; // right
     }
 
     /**
@@ -73,7 +73,7 @@ public class AppController implements IProxy {
     * drag method
     */
     public void drag(){
-      frame.drag();
+        frame.drag();
     }
 
     /**
@@ -122,5 +122,4 @@ public class AppController implements IProxy {
         background(51);
         return frame.contents() ;
     }
-
 }
