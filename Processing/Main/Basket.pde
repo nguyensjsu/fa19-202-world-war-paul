@@ -3,10 +3,15 @@ public class Basket extends Screen implements IDisplayComponent, ITouchEventHand
 {
     ITouchEventHandler nextHandler ;
     private String name;
+    private int currentHeight;
+    private static final int MAX_WIDTH = 380;
+    private static final int MAX_HEIGHT = 680;
 
-    public Basket(String n)
+
+    public Basket(String n, int h)
     {
         name = n;
+        currentHeight = h;
     }
 
     /** 
@@ -17,15 +22,15 @@ public class Basket extends Screen implements IDisplayComponent, ITouchEventHand
 
         // TODO: clear up magic numbers
         //Add Basket green Rectangular
-        fill(0,204,0);
-        stroke(0,204,0);
+        fill(0,204,0);  //specail green RGB
+        stroke(0,204,0);  //special green RGB
         rectMode(CORNER);
-        rect(0,630,380,50);
+        rect(0, currentHeight , MAX_WIDTH , MAX_HEIGHT - currentHeight);
 
         //Add to basket text
         textSize(20);
-        fill(255);
-        text(name, 130, 660);
+        fill(255);  //white
+        text(name, 130, currentHeight+30); //best result x=130, y=currentHeight+30
     }
 
     /**
