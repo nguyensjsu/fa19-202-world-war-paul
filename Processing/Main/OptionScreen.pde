@@ -14,7 +14,7 @@ public class OptionScreen extends Screen
     private double totalPrice;
     //for Screen Title
     private String title;
-    private int base; 
+    private int base;
     private String name;
     public OptionScreen(String t, String n)
     {
@@ -24,7 +24,7 @@ public class OptionScreen extends Screen
         name = n;
 
         if (name.indexOf("Burger") != -1) { //Found Burger inside the title
-            
+
             OptionTitle title1 = new OptionTitle("Choose Cheese", "Cheese", base-15);
             Screen item1 = new LeftItem("Danish Blue Cheese", 1, base);
             Screen item2 = new LeftItem("Horsadish Cheddar", 1, base + 25*1);
@@ -59,7 +59,7 @@ public class OptionScreen extends Screen
             addSubComp(item12);
             addSubComp(basket);
         } else {
-            
+
             OptionTitle title1 = new OptionTitle("Choose Size", "Size", base-15);
             Screen item1 = new LeftItem("Tall", 2.25, base);
             Screen item2 = new LeftItem("Grande", 2.46, base + 25*1);
@@ -131,6 +131,16 @@ public class OptionScreen extends Screen
 
         //update price and update display price
         totalPrice = getSubTotal();
+
+        //if touch the Button
+        if(630<=y && y<= 680){
+            storeUserInput("test.json"); //store the userInput into a json file
+            //System.out.println(printDescription());  //debugging code
+            resetButton();  //reset the buttom to original
+
+            Map< String,String> mp =  deserialization("test.json");
+            System.out.println(Arrays.asList(mp));   //debug code
+        }
     }
 
     /**
@@ -153,13 +163,13 @@ public class OptionScreen extends Screen
 
 
     /**
-     * Add A Child Component
+     * Add A Child Component for option Screen to update price and isSelected info
      * @param c Child Component
      */
     public void addSubComp( Screen c )
     {
         addSubComponent((IDisplayComponent)c);         //add Display Component
-        comp.add(c);        //add Screen Component for composite add/getSubtotal
+        comp.add(c);        //add Screen Component for composite getSubtotal
     }
 
 
@@ -190,5 +200,36 @@ public class OptionScreen extends Screen
             }
         }
         return description.toString();
+    }
+
+    /**
+     * Store user input as map and out put json file
+     * @param filename the store input into file name
+     */
+    public void storeUserInput(String filename){
+        Map< String,String> map =  new HashMap< String,String>();
+        String optionTitle = "";
+        StringBuilder optionDetail = new StringBuilder();
+        for (Screen c: comp) {
+            if(!c.title().equals("")){
+                if(c.getClass().toString().split(" ", 2)[1].equals("Main$OptionTitle") ){
+                    optionTitle = c.title();
+                    optionDetail = new StringBuilder();
+                }else
+                    optionDetail.append(c.title()+",");
+                map.put(optionTitle, optionDetail.toString());
+            }
+        }
+        //System.out.println(Arrays.asList(map));   //debug code to print hashmap
+        serialization(map, filename);
+    }
+
+    /**
+     * reset all button to original display
+     */
+    public void resetButton(){
+        for(Screen c:comp){
+            c.reset();
+        }
     }
 }
