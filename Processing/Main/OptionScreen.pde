@@ -1,5 +1,5 @@
-/** Store Screen which can choose item*/
-public class StoreScreen extends Screen
+/** Option Screen which can choose custom option for item*/
+public class OptionScreen extends Screen
 {
     /** Display Components */
     private ArrayList<IDisplayComponent> components = new ArrayList<IDisplayComponent>() ;
@@ -16,10 +16,10 @@ public class StoreScreen extends Screen
     //for Screen Title
     private String title;
 
-    public StoreScreen(String screenTitle)
+    public OptionScreen(String t)
     {
         totalPrice = 0;
-        title = screenTitle;
+        title = t;
     }
 
     /**
@@ -27,6 +27,7 @@ public class StoreScreen extends Screen
       * @return: currently useless
       */
     public void display(){
+
         int currentHeight = 20;
         background(255);
         textSize(20);
@@ -56,8 +57,7 @@ public class StoreScreen extends Screen
 
         //update price and update display price
         totalPrice = getSubTotal();
-        //System.out.println(printDescription());
-        //display();
+        //System.out.println(printDescription());  //testing code
     }
 
     /**
@@ -80,13 +80,13 @@ public class StoreScreen extends Screen
 
 
     /**
-     * Add A Child Component and reuse the preivous addSubComponent method
+     * Add A Child Component
      * @param c Child Component
      */
     public void addSubComp( Screen c )
     {
-        addSubComponent( (IDisplayComponent) c ); //IdisplayComponent add
-        comp.add(c);         //Screen add
+        addSubComponent((IDisplayComponent)c);         //add Display Component
+        comp.add(c);        //add Screen Component for composite add/getSubtotal
     }
 
 
@@ -103,7 +103,7 @@ public class StoreScreen extends Screen
     }
 
     /**
-     * A print description
+     * print description
      * @return a string that comprise all component information
      */
     public String printDescription(){

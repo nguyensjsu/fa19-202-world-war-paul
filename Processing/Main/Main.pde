@@ -19,6 +19,9 @@ Device d;
 // StoreScreen Testing code
 // StoreScreen storeScreen;
 
+// OptionScreen Testing code
+// OptionScreen optionScreen;
+
 // MyAccountScreen & MenuBarScreen Testing Code
 // MyAccountScreen mas;
 // MenuBarScreen ms;
@@ -53,21 +56,55 @@ void setup() {
 
   // // Store Screen Testing Code
   // int base = 90;
-  // storeScreen = new StoreScreen();
+  // storeScreen = new StoreScreen("Choose an Item");
   // OptionTitle title1 = new OptionTitle("Choose a Burger", "Burger", base-15);
   // Screen item1 = new OptionItem("1/3LB Burger", 9.5, base);
   // Screen item2 = new OptionItem("2/3LB Burger", 11.5, base + 25*1);
   // Screen item3 = new OptionItem(" 1 LB Burger", 13.5, base + 25*2);
   // Screen basket = new Basket("View Basket", 630);
-  // storeScreen.addSubComponent( title1);
-  // storeScreen.addSubComponent( item1);
-  // storeScreen.addSubComponent( item2);
-  // storeScreen.addSubComponent( item3);
-  // storeScreen.addSubComponent(basket);
-  // storeScreen.addSubComp(item1);
-  // storeScreen.addSubComp(item2);
-  // storeScreen.addSubComp(item3);
+  // storeScreen.addSubComp( title1);
+  // storeScreen.addSubComp( item1);
+  // storeScreen.addSubComp( item2);
+  // storeScreen.addSubComp( item3);
+  // storeScreen.addSubComp(basket);
   // storeScreen.display();
+
+    // // Option Screen Testing Code
+  // int base = 90;
+  // optionScreen = new OptionScreen("Choose Custom Options");
+  // OptionTitle title1 = new OptionTitle("Choose Cheese", "Cheese", base-15);
+  // Screen item1 = new OptionItem("Danish Blue Cheese", 1, base);
+  // Screen item2 = new OptionItem("Horsadish Cheddar", 1, base + 25*1);
+  // Screen item3 = new OptionItem("Yello American", 1, base + 25*2);
+  // OptionTitle title2 = new OptionTitle("Choose Topping", "Topping", base + 25*4);
+  // Screen item4 = new OptionItem("Bermuda RedOnion", 0, base+ 25*5);
+  // Screen item5 = new OptionItem("Black Onions", 0, base + 25*6);
+  // Screen item6 = new OptionItem("Carrot Strings", 0, base + 25*7);
+  // Screen item7 = new OptionItem("Coloslaw", 0, base + 25*8);
+  // Screen item8 = new OptionItem("Jolepenos", 0, base + 25*9);
+  // Screen item9 = new OptionItem("Sprouts", 0, base + 25*10);
+  // OptionTitle title3 = new OptionTitle("Choose Sauce", "Sauce", base + 25*12);
+  // Screen item10 = new OptionItem("Appricot Sauce", 0.75, base + 25*13);
+  // Screen item11 = new OptionItem("Ranch", 0.75, base + 25*14);
+  // Screen item12 = new OptionItem("Besil Pesto", 0.75, base + 25*15);
+  // Screen basket = new Basket("View Basket", 630);
+  // optionScreen.addSubComp(title1);
+  // optionScreen.addSubComp(item1);
+  // optionScreen.addSubComp(item2);
+  // optionScreen.addSubComp(item3);
+  // optionScreen.addSubComp(title2);
+  // optionScreen.addSubComp(item4);
+  // optionScreen.addSubComp(item5);
+  // optionScreen.addSubComp(item6);
+  // optionScreen.addSubComp(item7);
+  // optionScreen.addSubComp(item8);
+  // optionScreen.addSubComp(item9);
+  // optionScreen.addSubComp(title3);
+  // optionScreen.addSubComp(item10);
+  // optionScreen.addSubComp(item11);
+  // optionScreen.addSubComp(item12);
+  // optionScreen.addSubComp(basket);
+  // optionScreen.display();
 }
 
 void draw() {
@@ -87,6 +124,11 @@ void draw() {
   // // Store Screen Testing Code
   // if (mousePressed) {
   // 	 storeScreen.display();
+  // }
+
+  // //Option Screen Testing Code
+  // if(mousePressed){
+  //   optionScreen.display();
   // }
 
 	//  if (mousePressed) {
@@ -113,6 +155,21 @@ void mouseClicked(){
 	//    mp.touch(mouseX, mouseY);
 	//  }
 	// app.touch();
+
+  // //Store Screen Testing Code
+  //  storeScreen.touch(mouseX, mouseY);
+
+  //OptionScreen Testing Code
+  // optionScreen.touch(mouseX, mouseY);
+
+  // // MyAccountScreen & MenuBarScreen Testing Code
+  // mas.touch(mouseX, mouseY);
+
+  // if (mousePressed) {
+  //   System.out.println(mouseX + " " +  mouseY);
+  //   mp.touch(mouseX, mouseY);
+  // }
+  // app.touch();
 
 	// login screen test code
 	d.touch(mouseX, mouseY);
