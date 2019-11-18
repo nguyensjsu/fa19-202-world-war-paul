@@ -118,13 +118,4 @@ public class AppController implements IProxy {
         return frame.screen() ;
     }
 
-    /**
-     * Get Current Screen Contents
-     * @return Current Screen Contents
-     */
-    public String screenContents() {
-        // TODO: home(store) screen pop up
-        background(51);
-        return frame.contents() ;
-    }
 }

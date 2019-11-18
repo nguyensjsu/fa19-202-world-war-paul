@@ -8,17 +8,20 @@ public class HomePageScreen extends Screen implements IDisplayComponent {
 
     private String address;
     private MenuBarScreen mbs;
+    private Store burger;
     private Store starbucks;
-    private Store panda;
+    //private Store panda;
 
     public HomePageScreen(String address) {
         this.address = address;
-        starbucks = new Store("../../img/store/starbucks_300x150.png", "Star Bucks", "Student Union", "Pickup: 7:00am - 10:00pm", 20);
-        panda = new Store("../../img/store/panda_300x150.png","Panda Express", "Student Union", "Pickup: 7:00am - 10:00pm", 250);
+        burger = new Store("../../img/store/burger_300x150.png", "Attack Burger", "Student Union", "Pickup: 7:00am - 10:00pm", 20);
+        starbucks = new Store("../../img/store/starbucks_300x150.png", "Star Bucks", "Student Union", "Pickup: 7:00am - 10:00pm", 250);
+        //panda = new Store("../../img/store/panda_300x150.png","Panda Express", "Student Union", "Pickup: 7:00am - 10:00pm", 480);
         
         mbs = new MenuBarScreen();
+        addSubComponent(burger);
         addSubComponent(starbucks);
-        addSubComponent(panda);
+        //addSubComponent(panda);
         addSubComponent(mbs);
     }
 
@@ -77,7 +80,7 @@ public class HomePageScreen extends Screen implements IDisplayComponent {
      */
     public void setFrame(IFrame frame) {
         starbucks.setFrame(frame);
-        panda.setFrame(frame);
+        burger.setFrame(frame);
         mbs.setFrame(frame);
     };
 }
