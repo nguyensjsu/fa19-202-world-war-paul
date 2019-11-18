@@ -89,4 +89,11 @@ public class OptionItem extends Screen implements IDisplayComponent,  ITouchEven
 		else
 			return "";
     }
+
+    /**
+      * reset the selected button to unselected
+      */
+    public void reset(){
+      isSelected = false;
+    }
 }
