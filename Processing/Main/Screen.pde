@@ -153,7 +153,7 @@ public class Screen implements IScreen, IDisplayComponent
       String jsonString = gson.toJson(map);
       try
       {
-        FileWriter file = new FileWriter("." + fileName); // might need to improve about the directory
+        FileWriter file = new FileWriter("/Users/stevenyang/Desktop/fa19-202-world-war-paul/Processing/Main/" + fileName); // might need to improve about the directory
         file.write(jsonString);
         file.close();
       }
@@ -175,7 +175,7 @@ public class Screen implements IScreen, IDisplayComponent
       HashMap<String, String> result = new HashMap<String, String>(); 
       try
       {
-        FileReader fr = new FileReader("." + fileName);
+        FileReader fr = new FileReader("/Users/stevenyang/Desktop/fa19-202-world-war-paul/Processing/Main/" + fileName);
         StringBuilder str = new StringBuilder();
         int i;
         while ((i=fr.read()) != -1) 
@@ -192,5 +192,12 @@ public class Screen implements IScreen, IDisplayComponent
         e.printStackTrace();
       }
       return result;
+    }
+
+   /**
+    * reset the selected button to unselected
+    */
+    public void reset(){
+        //do nothing over here //this function is required for OptionTitle to use
     }
 }
