@@ -37,6 +37,7 @@ void setup() {
 
   //PreScreen Testing code
     ps = new PreScreen();
+    //ps.setTimer(5);
 
 	// // HomePageScreen Testing Code
 	// mp = new HomePageScreen("San Jose State University");

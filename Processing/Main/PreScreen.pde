@@ -23,7 +23,7 @@ public class PreScreen extends Screen implements ITouchEventHandler, IDisplayCom
 
     // display error message on top of the screen for a few second
     public void display(){
-      time = time - (int)millis()/1000;
+      time = 5 - (int)millis()/1000;
       if(0 <= time){
         image(image, startHeight, startWidth, endWidth, endHeight);  
         fill(255, 255, 255, 255);
@@ -60,9 +60,9 @@ public class PreScreen extends Screen implements ITouchEventHandler, IDisplayCom
      * Set the timer when error message shows end at
      * @param t end time
      */
-     public void setTimer(int second)
-     {
-       time = second;
-     }
+     //public void setTimer(int second)
+     //{
+     //  time = second;
+     //}
 
 }
