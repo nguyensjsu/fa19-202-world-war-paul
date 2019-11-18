@@ -22,6 +22,8 @@ public class OptionScreen extends Screen
     //for time line
     private String timeLineString;
 
+    private int base;
+
     public OptionScreen(String t)
     {
         title = t;
