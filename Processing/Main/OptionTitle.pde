@@ -54,4 +54,3 @@ public class OptionTitle extends Screen implements IDisplayComponent, ITouchEven
         return type;
     }
 }
-

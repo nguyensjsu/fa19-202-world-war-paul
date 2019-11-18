@@ -9,9 +9,13 @@ public class MyAccountScreen extends Screen implements IDisplayComponent
 
     private int startHeight;
     private int endHieght;
+    private MenuBarScreen mbs;
 
     public MyAccountScreen(int height) {
         startHeight = height;
+
+        mbs = new MenuBarScreen();
+        addSubComponent(mbs);
     }
 
     /**
@@ -47,11 +51,23 @@ public class MyAccountScreen extends Screen implements IDisplayComponent
     }
 
     /**
-     * Set Next Touch Handler
-     * @param next Touch Event Handler
+     * Add Display Component to Screen
+     * @param c Display Component
      */
-    public void setNext(ITouchEventHandler next) { }
-
+    public void addSubComponent( IDisplayComponent c )
+    {
+        components.add( c ) ;
+        if (components.size() == 1 )
+        {
+            chain = (ITouchEventHandler) c ;
+        }
+        else
+        {
+            ITouchEventHandler prev = (ITouchEventHandler) components.get(components.size()-2) ;
+            prev.setNext( (ITouchEventHandler) c ) ;
+        }
+    }
+    
     /**
      * Touch Event 
      * @param x Touch X
@@ -69,20 +85,10 @@ public class MyAccountScreen extends Screen implements IDisplayComponent
     }
 
     /**
-     * Add Display Component to Screen
-     * @param c Display Component
+     * set the frame for MenuBar Screen
+     * @param frame The frame reference
      */
-    public void addSubComponent( IDisplayComponent c )
-    {
-        components.add( c ) ;
-        if (components.size() == 1 )
-        {
-            chain = (ITouchEventHandler) c ;
-        }
-        else
-        {
-            ITouchEventHandler prev = (ITouchEventHandler) components.get(components.size()-2) ;
-            prev.setNext( (ITouchEventHandler) c ) ;
-        }
-    }
+    public void setFrame(IFrame frame) {
+        mbs.setFrame(frame);
+    };
 }
