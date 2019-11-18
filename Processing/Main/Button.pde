@@ -49,7 +49,6 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
           }
           catch(IOException e)
           {
-            print(components.size());
             for (IDisplayComponent c: components) {
               c.display();
             }
