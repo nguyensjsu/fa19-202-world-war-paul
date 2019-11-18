@@ -9,7 +9,7 @@ public class Store extends Screen implements ITouchEventHandler, IDisplayCompone
     private String hours;
     private int startHeight;
     private int endHieght;
-    private StoreScreen starbucksStore;
+    private StoreScreen burgerStore;
 
     public Store(String imagePath, String name, String address, String hours, int height) {
         image = loadImage(imagePath); 
@@ -17,8 +17,8 @@ public class Store extends Screen implements ITouchEventHandler, IDisplayCompone
         this.address = address;
         this.hours= hours;
         startHeight = height;
-        starbucksStore = new StoreScreen();
-        setNext(starbucksStore);
+        burgerStore = new StoreScreen();
+        setNext(burgerStore);
     }
 
     /**

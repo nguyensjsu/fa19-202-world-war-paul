@@ -12,6 +12,7 @@ public class StoreScreen extends Screen
 
     //for price display
     private double totalPrice;
+    private int base = 90;
 
     //for Screen Title
     private String title;
@@ -20,6 +21,19 @@ public class StoreScreen extends Screen
     {
         totalPrice = 0;
         title = screenTitle;
+        OptionTitle title1 = new OptionTitle("Choose a Burger", "Burger", base-15);
+        Screen item1 = new OptionItem("1/3LB Burger", 9.5, base);
+        Screen item2 = new OptionItem("2/3LB Burger", 11.5, base + 25*1);
+        Screen item3 = new OptionItem(" 1 LB Burger", 13.5, base + 25*2);
+        Screen basket = new Basket("View Basket");
+        addSubComponent( title1);
+        addSubComponent( item1);
+        addSubComponent( item2);
+        addSubComponent( item3);
+        addSubComponent(basket);
+        addSubComp(item1);
+        addSubComp(item2);
+        addSubComp(item3);
     }
 
     /**
