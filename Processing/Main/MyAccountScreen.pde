@@ -69,7 +69,7 @@ public class MyAccountScreen extends Screen implements IDisplayComponent
             prev.setNext( (ITouchEventHandler) c ) ;
         }
     }
-    
+
     /**
      * Touch Event
      * @param x Touch X
