@@ -14,6 +14,7 @@ import java.lang.reflect.Type;
 import java.io.*;
 
 Device d;
+static boolean reset_flag;
 
 // AddCard ad;
 // HomePageScreen Testing Code
@@ -27,7 +28,7 @@ Device d;
  MenuBarScreen ms;
 
 void setup() {
-
+  reset_flag = false;
 	size(380, 680);
 
   d = new Device();
@@ -48,10 +49,10 @@ void setup() {
 	// mp.addSubComponent(s2);
 
 	// MyAccountScreen Testing Code
-	 mas = new MyAccountScreen(20);
-	 ms = new MenuBarScreen();
-	 mas.addSubComponent(ms);
-	 mas.display();
+	 // mas = new MyAccountScreen(20);
+	 // ms = new MenuBarScreen();
+	 // mas.addSubComponent(ms);
+	 // mas.display();
 
   // TODO: Update all display() function: Change all System.out.print() call to processing drawings
 
@@ -75,19 +76,23 @@ void setup() {
 }
 
 void draw() {
+  if(reset_flag == true){
+    d = new Device();
+    reset_flag = false;
+  }
 
-  //d.display();
+  d.display();
+
   //mp.display();
   // // HomePageScreen Testing Code
   // if (mousePressed) {
   //   mp.display();
   // }
 
-
 	 // MyAccountScreen & MenuBarScreen Testing Code
-	 if (mousePressed) {
-	 	mas.display();
-	 }
+	 // if (mousePressed) {
+	 // 	mas.display();
+	 // }
 
   // // Store Screen Testing Code
   // if (mousePressed) {
@@ -132,6 +137,9 @@ void mouseClicked(){
 
 }
 
+static void setFlag(){
+  reset_flag = true;
+}
 
 //void mouseDragged(){
 //  // TODO: Fill Device drag() function

@@ -47,6 +47,8 @@ public class MyAccountScreen extends Screen implements IDisplayComponent
 
         text("Log Out", startingWidth, currentHeight);
 
+        Main.setFlag();
+
         for (IDisplayComponent c: components) {
             c.display();
         }
