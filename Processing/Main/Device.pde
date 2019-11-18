@@ -131,6 +131,78 @@ public class Device implements IProxy, IPinAuthObserver {
     }
 
     /**
+     * Get Singleton Instance
+     * @return Reference to Current Device Config (Create if none exists)
+     */
+    //public Device getInstance() {
+    //    if (theDevice == null) {
+    //        return getNewInstance( "1234" ) ;
+    //    }
+    //    else
+    //        return theDevice;
+    //}
+
+    ///**
+    // * Get New Instance
+    // * @return Reference to Device (Create New Singleton)
+    // */
+    //public Device getNewInstance() {
+    //    return getNewInstance( "1234" ) ;
+    //}
+
+    //public Device getNewInstance( String pin ) {
+    //    theDevice = new Device() ;
+    //    theDevice.setPin( pin ) ;
+    //    theDevice.startUp() ;
+    //    return theDevice ;
+    //}
+
+    /**
+     * Device Starup Process.
+     * Starts Up with Default 4-Pin Option
+     */
+    //public void startUp()
+    //{
+    //    kp = new KeyPad() ;
+    //    pc = new Passcode() ;
+    //    sp = new Spacer() ;
+    //    ps = new PinScreen() ;
+    //    pm = new PinEntryMachine() ;
+
+    //    // setup the composite pattern
+    //    ps.addSubComponent( pc ) ;
+    //    ps.addSubComponent( sp ) ;
+    //    ps.addSubComponent( kp ) ;
+
+    //    // setup the observer pattern
+    //    ((IKeyPadSubject)kp).attach( pc ) ;
+    //    ((IKeyPadSubject)kp).attach( pm ) ;
+    //    ((IPinAuthSubject)pm).registerObserver(this) ;
+
+    //    // get app controller reference
+    //    app = new AppController() ;
+
+    //    // startup in portrait
+    //    this.device_orientation_state = 0;
+    //}
+
+    /**
+    * Switch to Landscape View
+    */
+    //public void landscape() {
+    //    if ( authenticated )
+    //        app.landscape() ;
+    //}
+
+    ///**
+    // * Switch to Portait View
+    // */
+    //public void portrait() {
+    //    if ( authenticated )
+    //        app.portrait() ;
+    //}
+
+    /**
      * User Touch at X,Y Coordinates
      * @param x X Coordinate
      * @param y Y Coordinate
@@ -154,7 +226,14 @@ public class Device implements IProxy, IPinAuthObserver {
      * Display Screen Contents to Terminal
      */
     public void display() {
-        System.out.println( screenContents() ) ;
+        //System.out.println( screenContents() ) ;
+        if ( authenticated ) {
+            app.display();
+        } else {
+            // TODO: Pinscreen
+            ps.display();
+            
+        }
     }
 
     /**
@@ -174,10 +253,11 @@ public class Device implements IProxy, IPinAuthObserver {
      */
     public String screenContents() {
         if ( authenticated ) {
+            //app.display();
             return app.screenContents() ;
         } else {
             // TODO: Pinscreen
-            ps.display();
+           // ps.display();
             String out = "" ;
             return out ;
         }

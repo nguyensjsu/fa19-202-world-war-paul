@@ -19,8 +19,12 @@ public class MenuBarScreen extends Screen implements ITouchEventHandler, IDispla
     private int imageSize;
     private int sectionWidth;
     private int spacingWidth;
-
+    
+    protected IFrame frame;
+    
     public MenuBarScreen() {
+      
+        
         endHieght = 680;
         startWidth = 0;
         endWidth = 380;
@@ -69,16 +73,25 @@ public class MenuBarScreen extends Screen implements ITouchEventHandler, IDispla
      */
     public void touch(int x, int y) 
     {
+        // IFrame f = Frame.getFrame();
+      
         if (startHeight <= y && y <= endHieght) {
             if (startWidth <= x && x <= sectionWidth) {
                 System.out.println("Jump to " + "home page");
+               frame.cmd("home");
             } else if (sectionWidth < x && x <= sectionWidth * 2) {
                 System.out.println("Jump to " + "order page");
+               frame.cmd("order");
             } else if (sectionWidth * 2 < x && x <= endWidth) {
                 System.out.println("Jump to " + "user page");
+               frame.cmd("account");
             }
         } else if (nextHandler != null) {
             nextHandler.touch(x,y);
         }
     }
+    
+    public void setFrame(IFrame frame) {
+       this.frame = frame;
+    };
 }
