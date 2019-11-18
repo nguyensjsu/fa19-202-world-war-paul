@@ -56,7 +56,9 @@ public class Screen implements IScreen, IDisplayComponent
 
     /** Next Screen - Not Used */
     public void next() {
-        // add code here
+        if (nextScreen != null) {
+            frame.setCurrentScreen(nextScreen);
+        }
     }
 
     /** Previous Screen - Not Used */
@@ -67,18 +69,16 @@ public class Screen implements IScreen, IDisplayComponent
     }
 
     /**
-     * Set Next Screen - Not Used
+     * Set Next Screen
      * @param s Next Screen Object
-     * @param n Next Screen Label
      */
     public void setNext(IScreen s) {
         nextScreen = s;
     }
 
     /**
-     * Send Previous Screen - Not Used
+     * Send Previous Screen 
      * @param s Previous Screen Object
-     * @param n Previous Screen Label
      */
     public void setPrev(IScreen s)  {
         prevScreen = s;

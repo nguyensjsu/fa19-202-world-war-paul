@@ -35,7 +35,7 @@ void setup() {
 
 	size(380, 680);
 	d = new Device();
-	d.display();
+	//d.display();
 
 	// // HomePageScreen Testing Code
 	 //mp = new HomePageScreen("San Jose State University");

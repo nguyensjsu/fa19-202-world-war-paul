@@ -24,6 +24,11 @@ public class AppController implements IProxy {
         home.setFrame(frame);
         orderHistory.setFrame(frame);
         account.setFrame(frame);
+        
+        // Set the screen flow
+        
+        //addCard.setFrame();
+        
 
         // setup command pattern
         displayOrderHistory  = new MenuCommand() ;
@@ -95,14 +100,14 @@ public class AppController implements IProxy {
      * Navigate to Previous Screen
      */
     public void prev() {
-        frame.previousScreen() ;
+        //frame.previousScreen() ;
     }
 
     /**
      * Navigate to Next Screen
      */
     public void next() {
-        frame.nextScreen() ;
+       // frame.nextScreen() ;
     }
 
     /**

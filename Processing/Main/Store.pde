@@ -9,6 +9,7 @@ public class Store extends Screen implements ITouchEventHandler, IDisplayCompone
     private String hours;
     private int startHeight;
     private int endHieght;
+    private StoreScreen starbucksStore;
 
     public Store(String imagePath, String name, String address, String hours, int height) {
         image = loadImage(imagePath); 
@@ -16,6 +17,8 @@ public class Store extends Screen implements ITouchEventHandler, IDisplayCompone
         this.address = address;
         this.hours= hours;
         startHeight = height;
+        starbucksStore = new StoreScreen();
+        setNext(starbucksStore);
     }
 
     /**
@@ -56,7 +59,7 @@ public class Store extends Screen implements ITouchEventHandler, IDisplayCompone
     {
         if (startHeight <= y && y <= endHieght) {
             // TODO:  jumps to corresponding store page
-            //next();
+            next();
             System.out.println("Jump into" + name);
         } else if (nextHandler != null) {
             nextHandler.touch(x,y);

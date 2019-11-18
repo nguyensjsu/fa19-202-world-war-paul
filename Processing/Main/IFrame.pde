@@ -30,20 +30,7 @@ public interface IFrame
     // Handle drag.
     void drag();
 
-    /**
-     * Navigate to Previous Screen
-     */
-    void previousScreen() ;
-
-    /**
-     * Navigate to Next Screen
-     */
-    void nextScreen() ;
-
-    /**
-     * Get Screen Name
-     * @return Screen Name
-     */
+    
     String screen() ;
 
     /**
