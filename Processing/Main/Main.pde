@@ -26,11 +26,17 @@ Device d;
 // MyAccountScreen mas;
 // MenuBarScreen ms;
 
+//PreScreen Testing Code
+PreScreen ps;
 void setup() {
 
 	size(380, 680);
 	d = new Device();
-	d.display();
+	//d.display();
+
+
+  //PreScreen Testing code
+    ps = new PreScreen();
 
 	// // HomePageScreen Testing Code
 	// mp = new HomePageScreen("San Jose State University");
@@ -109,7 +115,10 @@ void setup() {
 
 void draw() {
 
-	d.display();
+	//d.display();
+
+  //PreScreen Testing Code
+    ps.display();
 	// // HomePageScreen Testing Code
 	// if (mousePressed) {
 	//   mp.display();
