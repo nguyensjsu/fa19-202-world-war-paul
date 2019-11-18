@@ -1,22 +1,19 @@
-public class HomePageScreen extends Screen implements IDisplayComponent {
+public class OrderHistoryScreen extends Screen implements IDisplayComponent {
 
     /** Display Components */
     private ArrayList<IDisplayComponent> components = new ArrayList<IDisplayComponent>() ;
 
     /** Front of Event Chain */
     private ITouchEventHandler chain ;
-
-    private String address;
     private MenuBarScreen mbs;
 
-    public HomePageScreen(String address) {
-        this.address = address;
-        Store starbucks = new Store("../../img/store/starbucks_300x150.png", "StarBucks1", "Student Union", "Pickup: 7:00am - 10:00pm", 20);
-        Store panda = new Store("../../img/store/panda_300x150.png","Panda Express", "Student Union", "Pickup: 7:00am - 10:00pm", 250);
-        
+    private int startHeight;
+    public OrderHistoryScreen() {
+
+        startHeight = 20;
+        // TODO: should actually get the items from the orderItem
         mbs = new MenuBarScreen();
-        addSubComponent(starbucks);
-        addSubComponent(panda);
+
         addSubComponent(mbs);
     }
 
@@ -25,14 +22,14 @@ public class HomePageScreen extends Screen implements IDisplayComponent {
      */
     @Override
     public void display() {
-        
-        int currentHeight = 10;
-        background(255);
-        textSize(14);
-        fill(0, 0, 0, 255);
-        text(address, (getWidth() - address.length() * 7) / 2, currentHeight);
-        currentHeight += 20;
 
+        int currentHeight = startHeight;
+
+        background(255);
+        String header = "Order History";
+        text(header, (getWidth() - header.length() * 7) / 2, currentHeight);
+        currentHeight += 20;
+      
         for (IDisplayComponent c: components) {
             c.display();
         }
@@ -68,7 +65,7 @@ public class HomePageScreen extends Screen implements IDisplayComponent {
             chain.touch(x, y);
         }
     }
-    
+
     /**
      * set the frame for MenuBar Screen
      * @param frame The frame reference

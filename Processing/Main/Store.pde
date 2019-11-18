@@ -55,12 +55,30 @@ public class Store extends Screen implements ITouchEventHandler, IDisplayCompone
     public void touch(int x, int y) 
     {
         if (startHeight <= y && y <= endHieght) {
-            // TODO: next() should jump to next screen
-            next();
+            // TODO:  jumps to corresponding store page
+            //next();
             System.out.println("Jump into" + name);
         } else if (nextHandler != null) {
             nextHandler.touch(x,y);
         }
 
     }
+    
+    //// jump to next screen.
+    //public void next() {
+    //    screen.next();
+    //}
+
+    //// jump to previous screen.
+    //public void prev() {
+    //    screen.prev();
+    //}
+
+    //public void setNext(IScreen s) {
+    //    screen.setNext(s);
+    //}
+
+    //public void setPrev(IScreen s) {
+    //    screen.setPrev(s);
+    //}
 }

@@ -1,87 +1,64 @@
-
-/* (c) Copyright 2018 Paul Nguyen. All Rights Reserved */
-
-
 /**
  * Main App Controller Class
  */
 public class AppController implements IProxy {
 
     // TODO: Update Screens and Commands
-    private IScreen mycards ;
-    // private IScreen store ;
-    private IScreen rewards ;
-    private IScreen payments ;
-    private IMenuCommand displayMyCards ;
-    private IMenuCommand displayPayments ;
-    private IMenuCommand displayRewards ;
-    // private IMenuCommand doStore ;
+    
+    private IScreen home ;
+    private IScreen orderHistory ;
+    private IScreen account ;
+    private IMenuCommand displayHome ;
+    private IMenuCommand displayOrderHistory ;
+    private IMenuCommand displayAccount ;
     private IFrame frame ;
 
     public AppController() {
-        mycards = new MyCards() ;
-        // store = new Store() ;
-        rewards = new Rewards() ;
-        payments = new Payments() ;
-        frame = new Frame( mycards ) ;
+
+        home = new HomePageScreen("San Jose State University") ;
+        orderHistory = new OrderHistoryScreen() ;
+        account = new MyAccountScreen(20) ;
+        frame = new Frame( home ) ;
+
+        // Set frame for MenuBar
+        home.setFrame(frame);
+        orderHistory.setFrame(frame);
+        account.setFrame(frame);
 
         // setup command pattern
-        displayMyCards  = new MenuCommand() ;
-        displayPayments = new MenuCommand() ;
-        displayRewards  = new MenuCommand() ;
-        // doStore         = new MenuCommand() ;
-        displayMyCards.setReceiver(
+        displayOrderHistory  = new MenuCommand() ;
+        displayHome = new MenuCommand() ;
+        displayAccount  = new MenuCommand() ;
+        
+        displayOrderHistory.setReceiver(
           new IMenuReceiver() {
               /** Command Action */
               public void doAction() {
-                  frame.setCurrentScreen( mycards ) ;
+                  frame.setCurrentScreen( orderHistory ) ;
               }
         }
         ) ;
-        displayPayments.setReceiver(
+        displayHome.setReceiver(
           new IMenuReceiver() {
               /** Command Action */
               public void doAction() {
-                  frame.setCurrentScreen( payments ) ;
+                  frame.setCurrentScreen( home ) ;
               }
         }
         ) ;
-        displayRewards.setReceiver(
+        displayAccount.setReceiver(
           new IMenuReceiver() {
               /** Command Action */
               public void doAction() {
-                  frame.setCurrentScreen( rewards ) ;
+                  frame.setCurrentScreen( account ) ;
               }
         }
         ) ;
-        // doStore.setReceiver(
-        //   new IMenuReceiver() {
-        //       /** Command Action */
-        //       public void doAction() {
-        //           frame.setCurrentScreen( store ) ;
-        //       }
-        // }
-        // ) ;
-        frame.setMenuItem ( "A", displayMyCards ) ;
-        frame.setMenuItem ( "B", displayPayments ) ;
-        frame.setMenuItem ( "C", displayRewards ) ;
-        // frame.setMenuItem ( "D", doStore ) ;
+      
+        frame.setMenuItem ("home", displayHome ) ; // left
+        frame.setMenuItem ("order", displayOrderHistory ) ; // middle
+        frame.setMenuItem ("account", displayAccount ) ; // right
     }
-
-
-    // /**
-    //   * Switch to Landscape Mode
-    //   */
-    // public void landscape() {
-    //     frame.landscape() ;
-    // }
-
-    // /**
-    //  * Switch to Portait Mode
-    //  */
-    // public void portrait() {
-    //     frame.portrait() ;
-    // }
 
     /**
      * Send In Touch Events
@@ -92,16 +69,11 @@ public class AppController implements IProxy {
         frame.touch(x, y) ;
     }
 
-    public void touch() {
-        //TODO: add frame touch from GUI
-        //frame.touch() ;
-    }
-
     /**
     * drag method
     */
     public void drag(){
-      frame.drag();
+        frame.drag();
     }
 
     /**
@@ -148,8 +120,6 @@ public class AppController implements IProxy {
     public String screenContents() {
         // TODO: home(store) screen pop up
         background(51);
-
         return frame.contents() ;
     }
-
 }

@@ -38,13 +38,16 @@ public interface IScreen
      * @param s Screen
      * @param n Action
      */
-    void setNext(IScreen s, String n ) ;    
+    void setNext(IScreen s) ;    
 
     /**
      * Set previous screen with action name
      * @param s Screen
      * @param n Action
      */
-    void setPrev(IScreen s, String n ) ;    
+    void setPrev(IScreen s ) ;   
+    
+    void setFrame(IFrame frame);
 
+    IFrame getFrame();
 }

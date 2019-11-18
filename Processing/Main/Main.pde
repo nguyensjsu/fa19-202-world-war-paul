@@ -1,4 +1,3 @@
-
 import com.google.gson.annotations.*;
 import com.google.gson.*;
 import com.google.gson.internal.*;
@@ -9,15 +8,13 @@ import com.google.gson.stream.*;
 
 import java.util.Map;
 import java.util.HashMap;
-
 import java.lang.reflect.Type;
 import java.io.*;
 
 Device d;
 
-// AddCard ad;
- //HomePageScreen Testing Code
-//HomePageScreen mp;
+// HomePageScreen Testing Code
+// HomePageScreen mp;
 
 // StoreScreen Testing code
 // StoreScreen storeScreen;
@@ -34,9 +31,8 @@ Device d;
 void setup() {
 
 	size(380, 680);
-
-//   d = new Device();
-// 	d.display();
+	d = new Device();
+	d.display();
 
 	// // HomePageScreen Testing Code
 	 //mp = new HomePageScreen("San Jose State University");
@@ -44,12 +40,12 @@ void setup() {
 	// Store s2 = new Store("../../img/store/starbucks_300x150.png","StarBucks2", "Student Union", "Pickup: 7:00am - 10:00pm", 250);
 
   //Pay Button Testing Code
-    // bs = new BasketScreen();
-    // pb = new Button("Pay");
-    // es = new ErrorScreen("Card Not Found");
-    // pb.setErrorMessage(es);
+  // bs = new BasketScreen();
+  // pb = new Button("Pay");
+  // es = new ErrorScreen("Card Not Found");
+  // pb.setErrorMessage(es);
 	// bs.addSubComponent(pb);
-    // bs.addSubComponent(es);
+  // bs.addSubComponent(es);
 	// bs.display();
 
   // ErrorScreen test code
@@ -58,7 +54,7 @@ void setup() {
    //err.setFlag(true);
    //mp.addSubComponent(err); // err need be added as last component to show on top
 
-  // mp.addSubComponent(s1);
+	// mp.addSubComponent(s1);
 	// mp.addSubComponent(s2);
 
 	// MyAccountScreen Testing Code
@@ -89,15 +85,15 @@ void setup() {
 }
 
 void draw() {
-  //mp.display();
-  // // HomePageScreen Testing Code
-   //if (mousePressed) {
-   //  mp.display();
-   //}
   
   //Pay Button Testing Code
 	// bs.display();
 
+	d.display();
+	// // HomePageScreen Testing Code
+	// if (mousePressed) {
+	//   mp.display();
+	// }
 
 	// // MyAccountScreen & MenuBarScreen Testing Code
 	// if (mousePressed) {
@@ -129,25 +125,16 @@ void mouseClicked(){
 	// mas.touch(mouseX, mouseY);
 
   //Pay Button Testing Code
-    //   bs.touch(mouseX, mouseY);
+  //   bs.touch(mouseX, mouseY);
 
+	//  if (mousePressed) {
+	//    System.out.println(mouseX + " " +  mouseY);
+	//    mp.touch(mouseX, mouseY);
+	//  }
+	// app.touch();
 
-  // //Store Screen Testing Code
-   //storeScreen.touch(mouseX, mouseY);
-
-  // // MyAccountScreen & MenuBarScreen Testing Code
-  // mas.touch(mouseX, mouseY);
-
-  // if (mousePressed) {
-  //   System.out.println(mouseX + " " +  mouseY);
-  //   mp.touch(mouseX, mouseY);
-  // }
-  // app.touch();
-
-
-  // login screen test code
-  // d.touch(mouseX, mouseY);
-
+	// login screen test code
+	d.touch(mouseX, mouseY);
 }
 
 
