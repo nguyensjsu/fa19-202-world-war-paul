@@ -27,9 +27,9 @@ Device d;
 // MenuBarScreen ms;
 
 //Pay Button Testing Code
-//BasketScreen bs;
-//PayButton pb;
-//ErrorScreen es;
+BasketScreen bs;
+Button pb;
+ErrorScreen es;
 
 void setup() {
 
@@ -44,13 +44,13 @@ void setup() {
 	// Store s2 = new Store("../../img/store/starbucks_300x150.png","StarBucks2", "Student Union", "Pickup: 7:00am - 10:00pm", 250);
 
   //Pay Button Testing Code
-    //bs = new BasketScreen();
-    //pb = new PayButton();
-    //es = new ErrorScreen("Card Not Found");
-    //es.setTimer(millis()+ 10000);
-    //es.setFlag(true);
-    //pb.addSubComponent(es);
-    //bs.addSubComponent(pb);
+    bs = new BasketScreen();
+    pb = new Button("Pay");
+    es = new ErrorScreen("Card Not Found");
+    es.setTimer(millis()+ 10000);
+    es.setFlag(true);
+    pb.addSubComponent(es);
+    bs.addSubComponent(pb);
 
   // ErrorScreen test code
    //ErrorScreen err = new ErrorScreen("123");
@@ -96,8 +96,8 @@ void draw() {
    //}
   
   //Pay Button Testing Code
-//if (mousePressed)
-//    bs.display();
+if (mousePressed)
+    bs.display();
 
 
 	// // MyAccountScreen & MenuBarScreen Testing Code
@@ -130,7 +130,7 @@ void mouseClicked(){
 	// mas.touch(mouseX, mouseY);
 
   //Pay Button Testing Code
-      //bs.touch(mouseX, mouseY);
+      bs.touch(mouseX, mouseY);
 
 
   // //Store Screen Testing Code

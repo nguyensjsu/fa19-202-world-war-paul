@@ -1,10 +1,11 @@
 /** Store Model */
-public class PayButton extends Screen implements ITouchEventHandler, IDisplayComponent
+public class Button extends Screen implements ITouchEventHandler, IDisplayComponent
 {
     ITouchEventHandler nextHandler ;
     private ArrayList<IDisplayComponent> components = new ArrayList<IDisplayComponent>() ;
-    
-    public PayButton() {
+    String buttonName;
+    public Button(String name) {
+      buttonName = name;
     }
 
     /**
@@ -32,24 +33,28 @@ public class PayButton extends Screen implements ITouchEventHandler, IDisplayCom
      * Touch Event 
      * @param x Touch X
      * @param y Touch Y
+     * reuseable, can be changed to other name and direct to other screen
      */
     public void touch(int x, int y) 
     {
        
-      if(x > 0 && x < 380 && y > 620 && y < 680)
+      if(buttonName.equals("Pay")) // case for Payment, more cases can be added later
       {
-        try
+        if(x > 0 && x < 380 && y > 620 && y < 680)
         {
-          FileReader fr = new FileReader("." + "file.json"); //TODO: figure out a way to make it general or the file made from AddCard to store cardInfo should be named specificlly
-          fr.close();
-        }
-        catch(IOException e)
-        {
-          print(components.size());
-          for (IDisplayComponent c: components) {
-            c.display();
+          try
+          {
+            FileReader fr = new FileReader("." + "file.json"); //TODO: figure out a way to make it general or the file made from AddCard to store cardInfo should be named specificlly
+            fr.close();
           }
-          //TODO: should go to addcard screen
+          catch(IOException e)
+          {
+            print(components.size());
+            for (IDisplayComponent c: components) {
+              c.display();
+            }
+            //TODO: should go to addcard screen
+          }
         }
       }
     }
