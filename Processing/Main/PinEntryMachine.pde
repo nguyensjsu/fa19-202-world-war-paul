@@ -18,7 +18,7 @@ public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver, IPinA
     private String pin = "1234" ;
     private boolean authenticated = false ;
     private int pinCount=0 ;
-    private IPinAuthObserver auth ; // single observer 
+    private IPinAuthObserver auth ; // single observer
 
     // pin machine states
     private NoPinDigits pin0 ;
@@ -51,7 +51,7 @@ public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver, IPinA
         this.d1 = "" ;
         this.d2 = "" ;
         this.d3 = "" ;
-        this.d4 = "" ;        
+        this.d4 = "" ;
         this.state = pin0 ;
     }
 
@@ -173,7 +173,7 @@ public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver, IPinA
      * @param c   Num Keys So Far
      * @param key Last Key Enterred
      */
-    public void keyEventUpdate( int c, String key ) 
+    public void keyEventUpdate( int c, String key )
     {
         System.err.println( "Key: " + key + " Count: " + c ) ;
         if ( key.equals(" ") )
@@ -181,14 +181,14 @@ public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver, IPinA
         else if ( key.equals("X") )
             backspace() ;
         else
-            number( key ) ;        
-    }    
+            number( key ) ;
+    }
 
     /**
      * Register Observers for Pin Authentication
      * @param obj Object Observing Pin Auth
      */
-    public void registerObserver( IPinAuthObserver obj ) 
+    public void registerObserver( IPinAuthObserver obj )
     {
         this.auth = obj ;
     }
@@ -197,7 +197,7 @@ public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver, IPinA
      * Remove Pin Auth Observer
      * @param obj Object No Longer Observing Pin Auth
      */
-    public void removeObserver( IPinAuthObserver obj ) 
+    public void removeObserver( IPinAuthObserver obj )
     {
         this.auth = null ;
     }
@@ -205,7 +205,7 @@ public class PinEntryMachine implements IPinStateMachine, IKeyPadObserver, IPinA
     /**
      * Notify Pin Auth Observers
      */
-    public void notifyObserver( ) 
+    public void notifyObserver( )
     {
         if ( this.auth != null )
             this.auth.authEvent() ;

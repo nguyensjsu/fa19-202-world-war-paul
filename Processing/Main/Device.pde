@@ -17,26 +17,6 @@ public class Device implements IProxy, IPinAuthObserver {
     private boolean authenticated = false ;
     private PinEntryMachine pm ;
 
-    public static final int screen_frame_header = 3 ;
-    public static final int portrait_screen_width = 15 ;
-    public static final int portrait_screen_length = 10 ;
-    public static final int landscape_screen_width = 32 ;
-    public static final int landscape_screen_length = 6 ;
-
-    private int device_orientation_state ;
-
-    public int getDeviceOrientation() {
-        return this.device_orientation_state ;
-    }
-
-    public void setPortraitOrientation() {
-        this.device_orientation_state = 0;
-    }
-
-    public void setLandscapeOrientation() {
-        this.device_orientation_state = 1;
-    }
-
     public Device()
     {
         kp = new LoginKeyPad() ;
@@ -53,13 +33,11 @@ public class Device implements IProxy, IPinAuthObserver {
         // setup the observer pattern
         ((IKeyPadSubject)kp).attach( pc ) ;
         ((IKeyPadSubject)kp).attach( pm ) ;
-        ((IPinAuthSubject)pm).registerObserver(this) ;
+        ((IPinAuthSubject)pm).registerObserver(this);
 
         // get app controller reference
         app = new AppController() ;
 
-        // startup in portrait
-        this.device_orientation_state = 0;
     }
 
 
@@ -72,63 +50,6 @@ public class Device implements IProxy, IPinAuthObserver {
         return Boolean.toString( authenticated ) ;
     }
 
-    /**
-     * Return the current Pin Option:
-     *  0 = User Chosed No Pin
-     *  4 = User Chosed 4-digit Pin
-     *  6 = User Chosed 6-digit Pin
-     * @return Pin Option
-     */
-    public int getPinOption() {
-        if ( fourPin )
-            return 4 ;
-        else if ( sixPin )
-            return 6 ;
-        else
-            return 0 ;
-    }
-
-    /**
-     * Get Current Pin
-     * @return Pin
-     */
-    public String getPin() {
-        return pin ;
-    }
-
-
-    /**
-     * Set Pin
-     * @param p New Pin
-     */
-    private void setPin( String p ) {
-        pin = p ;
-        int len = p.length() ;
-        switch ( len ) {
-            case 0:
-                fourPin = false ;
-                sixPin = false ;
-            case 4:
-                fourPin = true ;
-                sixPin = false ;
-                break ;
-            case 6:
-                fourPin = false ;
-                sixPin = true ;
-                break ;
-            default:
-                fourPin = false ;
-                sixPin = false ;
-        }
-    }
-
-    /**
-     * Device Reset Pin
-     */
-    private void clearPin()
-    {
-        this.pin = "" ;
-    }
 
     /**
      * Get Singleton Instance
