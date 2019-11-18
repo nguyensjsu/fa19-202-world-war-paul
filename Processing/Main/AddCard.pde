@@ -68,6 +68,8 @@ public class AddCard extends Screen
       textAlign(CENTER);
       textSize(32); 
       text("Save Payment Method", width/2, 660); // Add Card Title
+      
+      textAlign(LEFT);
 
     }
     /**
@@ -105,6 +107,7 @@ public class AddCard extends Screen
           cardInfo.put("cardExpirty", cardExpirty.toString());
           cardInfo.put("cardCVV", cvv.toString());
           serialization(cardInfo, "cardInfo.json");
+          frame.cmd("home");
         }
       }
         
@@ -126,13 +129,8 @@ public class AddCard extends Screen
      * Next
      * go to next, Home screen
      */
-    public void next()
-    {
-      /**TODO: 
-      press save payment to go back to home
-      add card info to database
-      if card is not valid, do nothing
-      */
+   public void next() {
+       super.next();
     }
      /**
      * inputTouch
@@ -208,5 +206,9 @@ public class AddCard extends Screen
         }
       }
     }
+    
+     public void setFrame(IFrame frame) {
+       super.setFrame(frame);
+    };
     
 }

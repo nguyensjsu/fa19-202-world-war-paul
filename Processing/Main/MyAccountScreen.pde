@@ -8,13 +8,15 @@ public class MyAccountScreen extends Screen implements IDisplayComponent
     private ITouchEventHandler chain ;
 
     private int startHeight;
-    private int endHieght;
+    private int endHieght = 580;
     private MenuBarScreen mbs;
+    private AddCard addCard;
 
     public MyAccountScreen(int height) {
         startHeight = height;
-
         mbs = new MenuBarScreen();
+        addCard = new AddCard();
+        setNext(addCard);
         addSubComponent(mbs);
     }
 
@@ -89,6 +91,12 @@ public class MyAccountScreen extends Screen implements IDisplayComponent
      * @param frame The frame reference
      */
     public void setFrame(IFrame frame) {
+      this.frame = frame;
         mbs.setFrame(frame);
-    };
+        addCard.setFrame(frame);
+    }
+    
+   // public void setNext(IScreen s){
+      
+   // }
 }

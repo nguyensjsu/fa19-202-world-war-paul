@@ -28,16 +28,6 @@ public class Frame implements IFrame
     /** Switch to Portrait Strategy */
     public void portrait()  { currentStrategy = portraitStrategy ; }
 
-    /** Nav to Previous Screen */
-    public void previousScreen() {
-        // add code here
-    }
-
-    /** Nav to Next Screen */
-    public void nextScreen() {
-        // add code here
-    }
-
 
 
    /**
@@ -232,6 +222,7 @@ public class Frame implements IFrame
      */
     public void setCurrentScreen( IScreen s )
     {
+        s.setFrame(this);
         current = s ;
     }
 
