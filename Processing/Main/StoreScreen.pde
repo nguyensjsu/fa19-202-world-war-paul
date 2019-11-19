@@ -21,14 +21,10 @@ public class StoreScreen extends Screen
     private Screen item2;
     private Screen item3;
 
-
-    //for Store Name
-    private String storeName;
-
     //for time Line count
     private int timeLine;
 
-    public StoreScreen(String screenTitle, String currentStoreName)
+    public StoreScreen(String screenTitle)
     {
         title = screenTitle;
 
@@ -56,7 +52,6 @@ public class StoreScreen extends Screen
             addSubComp(item3);
         }
 
-        storeName = currentStoreName;
         userInfoMap =  new HashMap< String,String>();
         timeLine = 0;
     }
@@ -174,7 +169,7 @@ public class StoreScreen extends Screen
         userInfoMap.put (timeLineString+"Money", Double.toString(getSubTotal()));
 
         //add Store tag
-        userInfoMap.put (timeLineString+"Store", storeName);
+        userInfoMap.put (timeLineString+"Store", title);
 
         //add currentItem tag for the value of selected item
         for (Screen c: comp) {

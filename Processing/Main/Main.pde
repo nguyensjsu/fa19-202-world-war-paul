@@ -32,7 +32,7 @@ void setup() {
 	// Finalize order, do not delete it.
 	size(380, 680);
 
-	d = new Device();
+	//d = new Device();
 
   welcomeScreen = new WelcomeScreen();
 	device = new Device();
