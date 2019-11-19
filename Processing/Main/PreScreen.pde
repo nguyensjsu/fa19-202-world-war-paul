@@ -6,6 +6,7 @@ public class PreScreen extends Screen implements ITouchEventHandler, IDisplayCom
     private int startWidth;
     private int endWidth;
     private int time;
+    private boolean flag;
     PImage image;
     ITouchEventHandler nextHandler ;
 
@@ -32,7 +33,7 @@ public class PreScreen extends Screen implements ITouchEventHandler, IDisplayCom
       }
       else
       {
-        //TODO: going to the login Screen;
+        flag = true;
       }
     }
     /**
@@ -52,9 +53,14 @@ public class PreScreen extends Screen implements ITouchEventHandler, IDisplayCom
     public void touch(int x, int y){
       if(x > 220 && x < 380 && y > 0 && y < 45)
       {
-        //TODO: go to the login screen
+        print("In the touch");
+        flag = true;
       }
-      
+    }
+    
+    public boolean getFlag()
+    {
+      return flag;
     }
     /**
      * Set the timer when error message shows end at

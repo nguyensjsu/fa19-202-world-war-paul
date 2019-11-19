@@ -13,6 +13,8 @@ import java.io.*;
 
 Device d;
 
+
+
 // HomePageScreen Testing Code
 // HomePageScreen mp;
 
@@ -27,6 +29,7 @@ Device d;
 // MenuBarScreen ms;
 
 //PreScreen Testing Code
+boolean flag;
 PreScreen ps;
 void setup() {
 
@@ -119,7 +122,10 @@ void draw() {
 	//d.display();
 
   //PreScreen Testing Code
-    ps.display();
+    if(ps.getFlag() == false)
+      ps.display();
+    else
+      d.display();
 	// // HomePageScreen Testing Code
 	// if (mousePressed) {
 	//   mp.display();
@@ -181,8 +187,9 @@ void mouseClicked(){
   // }
   // app.touch();
 
-	// login screen test code
-	d.touch(mouseX, mouseY);
+	//  PreScreen test code
+  if(ps.getFlag() == false)
+	  ps.touch(mouseX, mouseY);
 }
 
 
