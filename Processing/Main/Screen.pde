@@ -16,7 +16,7 @@ public class Screen implements IScreen, IDisplayComponent
     protected IScreen prevScreen;
     protected IScreen nextScreen;
     private String filePath;
-    
+
     /** Display Components */
     private ArrayList<IDisplayComponent> components = new ArrayList<IDisplayComponent>() ;
 
@@ -86,7 +86,7 @@ public class Screen implements IScreen, IDisplayComponent
      */
     public void setPrev(IScreen s)  {
         prevScreen = s;
-    
+
     }
 
     /**
@@ -111,7 +111,7 @@ public class Screen implements IScreen, IDisplayComponent
      * Get Display Contents
      * @return Display Contents
      */
-    public void display() { 
+    public void display() {
         for (IDisplayComponent c: components) {
             c.display();
         }
@@ -132,7 +132,7 @@ public class Screen implements IScreen, IDisplayComponent
     public String name() {
         return (this.getClass().getName());
     }
-    
+
     /**
      * add price back
      */
@@ -147,7 +147,7 @@ public class Screen implements IScreen, IDisplayComponent
     public String title(){
         return "";
     }
-    
+
     /**
      * @param map, fileName, Taking a map and convert to JSON file with the fileName
      */
@@ -168,9 +168,9 @@ public class Screen implements IScreen, IDisplayComponent
         e.printStackTrace();
         //TODO: direct to error msg screen
       }
-      
+
     }
-    
+
     /**
      * @param taking a fileName as a String
      * @return map converted from a JSON file
@@ -178,7 +178,7 @@ public class Screen implements IScreen, IDisplayComponent
     public Map<String, String> deserialization(String fileName)
     {
       Gson gson = new Gson();
-      HashMap<String, String> result = new HashMap<String, String>(); 
+      HashMap<String, String> result = new HashMap<String, String>();
       try
       {
         FileReader fr = new FileReader(filePath + fileName);
@@ -186,9 +186,9 @@ public class Screen implements IScreen, IDisplayComponent
 
         StringBuilder str = new StringBuilder();
         int i;
-        while ((i=fr.read()) != -1) 
+        while ((i=fr.read()) != -1)
         {
-          str.append((char)i); 
+          str.append((char)i);
         }
         String jsonString = str.toString();
         Type type = new TypeToken<HashMap<String, String>>(){}.getType();
@@ -204,15 +204,15 @@ public class Screen implements IScreen, IDisplayComponent
 
     /*
      * Delete file by file name used by clean basket
-     * @param fileName 
+     * @param fileName
      */
     public void deleteFile(String fileName){
-        File file = new File(filePath + fileName); 
+        File file = new File(filePath + fileName);
         //File file = new File("." + fileName);  //or this?
 
-        if(file.delete()) 
-        { 
-            //System.out.println("File deleted successfully"); 
+        if(file.delete())
+        {
+            //System.out.println("File deleted successfully");
         }
     }
 

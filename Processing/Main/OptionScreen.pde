@@ -11,7 +11,7 @@ public class OptionScreen extends Screen
     private ITouchEventHandler chain ;
 
     /** a map to store user input **/
-    private Map< String,String> userInfoMap; 
+    private Map< String,String> userInfoMap;
 
     //for Screen Title
     private String title;
@@ -19,13 +19,13 @@ public class OptionScreen extends Screen
     //store previous price
     private double previousPrice;
 
-    //for time line 
+    //for time line
     private String timeLineString;
 
     public OptionScreen(String t)
     {
         title = t;
-        userInfoMap = deserialization("storeScreenDetail.json"); //reread userinput from storeScreen 
+        userInfoMap = deserialization("storeScreenDetail.json"); //reread userinput from storeScreen
         timeLineString = userInfoMap.remove("currentTimeLine");
         previousPrice = Double.parseDouble(userInfoMap.get(timeLineString+"Money")); //add previous money
     }
