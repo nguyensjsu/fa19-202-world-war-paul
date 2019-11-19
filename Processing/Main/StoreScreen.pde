@@ -24,6 +24,12 @@ public class StoreScreen extends Screen
     //for time Line count
     private int timeLine;
 
+    //for Store Name
+    private String storeName;
+
+    //for time Line count
+    private int timeLine;
+
     public StoreScreen(String screenTitle)
     {
         title = screenTitle;

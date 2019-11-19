@@ -23,6 +23,12 @@ public class OptionScreen extends Screen
     //for time line
     private String timeLineString;
 
+    //store previous price
+    private double previousPrice;
+
+    //for time line
+    private String timeLineString;
+
     public OptionScreen(String t)
     {
         title = t;
