@@ -112,14 +112,14 @@ public class BasketScreen extends Screen implements IDisplayComponent {
     public void touch(int x, int y) {
         chain.touch(x, y);
     }
-    
+    @Override // for now, but all path of files shuold be standarized later during the group meeting
     public Map<String, String> deserialization(String fileName)
     {
       Gson gson = new Gson();
       HashMap<String, String> result = new HashMap<String, String>(); 
       try
       {
-        FileReader fr = new FileReader("E:/Processing/processing-3.5.3-windows64/processing-3.5.3/" + fileName);
+        FileReader fr = new FileReader("E:/Processing/processing-3.5.3-windows64/processing-3.5.3/" + fileName); // need to be repleaced to your own path of .json file
         StringBuilder str = new StringBuilder();
         int i;
         while ((i=fr.read()) != -1) 
