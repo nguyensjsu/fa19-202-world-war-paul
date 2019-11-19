@@ -157,7 +157,6 @@ public class Screen implements IScreen, IDisplayComponent
       String jsonString = gson.toJson(map);
       try
       {
-        //FileWriter file = new FileWriter(filePath + fileName);
         FileWriter file = new FileWriter("." + fileName);  //Original Code
 
         file.write(jsonString);
@@ -181,7 +180,6 @@ public class Screen implements IScreen, IDisplayComponent
       HashMap<String, String> result = new HashMap<String, String>();
       try
       {
-        //FileReader fr = new FileReader(filePath + fileName);
         FileReader fr = new FileReader("." + fileName);  //Original Code
 
         StringBuilder str = new StringBuilder();
@@ -207,7 +205,6 @@ public class Screen implements IScreen, IDisplayComponent
      * @param fileName
      */
     public void deleteFile(String fileName){
-        //File file = new File(filePath + fileName);
         File file = new File("." + fileName);  //or this?
 
         if(file.delete())
