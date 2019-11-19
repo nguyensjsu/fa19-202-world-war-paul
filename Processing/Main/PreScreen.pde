@@ -24,12 +24,9 @@ public class PreScreen extends Screen implements ITouchEventHandler, IDisplayCom
 
     // display error message on top of the screen for a few second
     public void display(){
-      time = 5 - (int)millis()/1000;
+      time = 2 - (int)millis()/1000;
       if(0 <= time){
         image(image, startHeight, startWidth, endWidth, endHeight);  
-        fill(255, 255, 255, 255);
-        textSize(30); 
-        text("skip("+time+"s)",260,38);
       }
       else
       {
@@ -51,9 +48,8 @@ public class PreScreen extends Screen implements ITouchEventHandler, IDisplayCom
      * @param y Touch Y
      */
     public void touch(int x, int y){
-      if(x > 220 && x < 380 && y > 0 && y < 45)
+      if(x > 0 && x < 380 && y > 0 && y < 680)
       {
-        print("In the touch");
         flag = true;
       }
     }

@@ -12,8 +12,7 @@ import java.lang.reflect.Type;
 import java.io.*;
 
 Device d;
-
-
+PreScreen ps;
 
 // HomePageScreen Testing Code
 // HomePageScreen mp;
@@ -28,9 +27,7 @@ Device d;
 // MyAccountScreen mas;
 // MenuBarScreen ms;
 
-//PreScreen Testing Code
-boolean flag;
-PreScreen ps;
+
 void setup() {
 
 	size(380, 680);
@@ -118,10 +115,6 @@ void setup() {
 }
 
 void draw() {
-
-	//d.display();
-
-  //PreScreen Testing Code
     if(ps.getFlag() == false)
       ps.display();
     else
@@ -159,7 +152,10 @@ void draw() {
 
 
 void mouseClicked(){
-
+    if(ps.getFlag() == false)
+      ps.touch(mouseX, mouseY);
+    else
+      d.touch(mouseX, mouseY);
 	// // HomePageScreen Testing Code
 	// mp.touch(mouseX, mouseY);
 
@@ -188,8 +184,7 @@ void mouseClicked(){
   // app.touch();
 
 	//  PreScreen test code
-  if(ps.getFlag() == false)
-	  ps.touch(mouseX, mouseY);
+
 }
 
 
