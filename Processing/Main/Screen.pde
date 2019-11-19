@@ -103,6 +103,7 @@ public class Screen implements IScreen, IDisplayComponent
 
     /**
      * Setup the current Frame reference
+     * @param f THe frame reference
      */
     public void setFrame(IFrame f) {
         frame = f;

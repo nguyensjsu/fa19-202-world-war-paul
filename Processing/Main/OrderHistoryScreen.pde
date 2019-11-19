@@ -5,16 +5,15 @@ public class OrderHistoryScreen extends Screen implements IDisplayComponent {
 
     /** Front of Event Chain */
     private ITouchEventHandler chain ;
-    private MenuBarScreen mbs;
+    private MenuBarScreen menuBar;
 
     private int startHeight;
     public OrderHistoryScreen() {
 
         startHeight = 20;
         // TODO: should actually get the items from the orderItem
-        mbs = new MenuBarScreen();
-
-        addSubComponent(mbs);
+        menuBar = new MenuBarScreen();
+        addSubComponent(menuBar);
     }
 
     /**
@@ -27,7 +26,7 @@ public class OrderHistoryScreen extends Screen implements IDisplayComponent {
 
         background(255);
         String header = "Order History";
-        text(header, (getWidth() - header.length() * 7) / 2, currentHeight);
+        text(header, (END_WIDTH - header.length() * 7) / 2, currentHeight);
         currentHeight += 20;
       
         for (IDisplayComponent c: components) {
@@ -71,6 +70,6 @@ public class OrderHistoryScreen extends Screen implements IDisplayComponent {
      * @param frame The frame reference
      */
     public void setFrame(IFrame frame) {
-        mbs.setFrame(frame);
+        menuBar.setFrame(frame);
     };
 }
