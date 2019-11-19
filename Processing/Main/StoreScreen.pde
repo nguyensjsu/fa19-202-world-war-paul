@@ -13,6 +13,8 @@ public class StoreScreen extends Screen
     //a map to store user input
     Map< String,String> userInfoMap;;
 
+    private int base = 90;
+
     //for Screen Title
     private String title;
     private Screen item1;
@@ -201,7 +203,7 @@ public class StoreScreen extends Screen
      */
     public void resetButton(){
         for(Screen c:comp){
-            c.unselected();
+            c.reset();
         }
     }
 
@@ -213,13 +215,14 @@ public class StoreScreen extends Screen
         userInfoMap =  new HashMap< String,String>();
     }
 
+
     /**
-     * Setup the current Frame reference
-     * @param frame THe frame reference
-     */
+    * Setup the current Frame reference
+    * @param frame THe frame reference
+    */
     public void setFrame(IFrame frame){
-        item1.setFrame(frame);
-        item2.setFrame(frame);
-        item3.setFrame(frame);
+      item1.setFrame(frame);
+      item2.setFrame(frame);
+      item3.setFrame(frame);
     }
 }
