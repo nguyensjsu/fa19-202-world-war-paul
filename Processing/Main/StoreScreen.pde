@@ -17,7 +17,8 @@ public class StoreScreen extends Screen
     //for Screen Title
     private String title;
     Screen item1; 
-    //OptionScreen burgerOptionScreen;
+    Screen item2;
+    Screen item3;
     
 
     public StoreScreen(String screenTitle)
@@ -26,14 +27,15 @@ public class StoreScreen extends Screen
         title = screenTitle;
         OptionTitle title1 = new OptionTitle("Choose a Burger", "Burger", base-15);
         item1 = new OptionItem("1/3LB Burger", 9.5, base);
-        Screen item2 = new OptionItem("2/3LB Burger", 11.5, base + 25*1);
-        Screen item3 = new OptionItem(" 1 LB Burger", 13.5, base + 25*2);
+        item2 = new OptionItem("2/3LB Burger", 11.5, base + 25*1);
+        item3 = new OptionItem(" 1 LB Burger", 13.5, base + 25*2);
         Screen basket = new Basket("View Basket",630);
         addSubComp( title1);
         addSubComp( item1);
         addSubComp( item2);
         addSubComp( item3);
         addSubComp(basket);
+        
     }
 
     /**

@@ -17,9 +17,11 @@ public class Store extends Screen implements ITouchEventHandler, IDisplayCompone
         this.address = address;
         this.hours= hours;
         startHeight = height;
+
         burgerStore = new StoreScreen("burgerStore");
         //setFrame();
-                burgerStore.setFrame(getFrame());
+        burgerStore.setFrame(getFrame());
+        burgerStore = new StoreScreen();
         setNext(burgerStore);
     }
 
