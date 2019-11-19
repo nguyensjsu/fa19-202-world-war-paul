@@ -1,5 +1,5 @@
 /* Error Screen */
-public class PreScreen extends Screen implements ITouchEventHandler, IDisplayComponent{
+public class PreScreen extends Screen{
 
     private int startHeight;
     private int endHeight;
@@ -11,18 +11,15 @@ public class PreScreen extends Screen implements ITouchEventHandler, IDisplayCom
     ITouchEventHandler nextHandler ;
 
     public PreScreen(){
-      
-      
         startHeight = 0;
         endHeight = 680;
         startWidth = 0;
         endWidth = 380;
-        
         image = loadImage("../../img/preScreen/preScreen.png"); 
-
     }
-
-    // display error message on top of the screen for a few second
+  /**
+   * display error message on top of the screen for a few second
+   */
     public void display(){
       time = 2 - (int)millis()/1000;
       if(0 <= time){
@@ -34,15 +31,6 @@ public class PreScreen extends Screen implements ITouchEventHandler, IDisplayCom
       }
     }
     /**
-   * Set Next Touch Handler
-   * @param next Touch Event Handler
-   */
-    public void setNext(ITouchEventHandler next)
-    {
-        nextHandler = next ;
-    }
-
-    /**
      * Touch Event
      * @param x Touch X
      * @param y Touch Y
@@ -53,18 +41,14 @@ public class PreScreen extends Screen implements ITouchEventHandler, IDisplayCom
         flag = true;
       }
     }
-    
+  /**
+   * @return flag
+   * set the flag for display options
+   */
     public boolean getFlag()
     {
       return flag;
     }
-    /**
-     * Set the timer when error message shows end at
-     * @param t end time
-     */
-     //public void setTimer(int second)
-     //{
-     //  time = second;
-     //}
+
 
 }
