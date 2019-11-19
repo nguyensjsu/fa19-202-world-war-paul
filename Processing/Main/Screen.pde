@@ -15,6 +15,7 @@ public class Screen implements IScreen, IDisplayComponent
     IFrame frame;
     protected IScreen prevScreen;
     protected IScreen nextScreen;
+    private String filePath;
     
     /** Display Components */
     private ArrayList<IDisplayComponent> components = new ArrayList<IDisplayComponent>() ;
@@ -28,6 +29,9 @@ public class Screen implements IScreen, IDisplayComponent
     {
         width = 380;
         height = 680;
+
+        //Required to update by self
+        filePath = "/Users/stevenyang/Desktop/fa19-202-world-war-paul/Processing/Main/"; //TODO
     }
 
     /**
@@ -153,7 +157,9 @@ public class Screen implements IScreen, IDisplayComponent
       String jsonString = gson.toJson(map);
       try
       {
-        FileWriter file = new FileWriter("/Users/stevenyang/Desktop/fa19-202-world-war-paul/Processing/Main/" + fileName); // might need to improve about the directory
+        FileWriter file = new FileWriter(filePath + fileName);
+        //FileReader fr = new FileReader("." + fileName);  //Original Code
+
         file.write(jsonString);
         file.close();
       }
@@ -175,7 +181,9 @@ public class Screen implements IScreen, IDisplayComponent
       HashMap<String, String> result = new HashMap<String, String>(); 
       try
       {
-        FileReader fr = new FileReader("/Users/stevenyang/Desktop/fa19-202-world-war-paul/Processing/Main/" + fileName);
+        FileReader fr = new FileReader(filePath + fileName);
+        //FileReader fr = new FileReader("." + fileName);  //Original Code
+
         StringBuilder str = new StringBuilder();
         int i;
         while ((i=fr.read()) != -1) 
@@ -192,6 +200,20 @@ public class Screen implements IScreen, IDisplayComponent
         e.printStackTrace();
       }
       return result;
+    }
+
+    /*
+     * Delete file by file name used by clean basket
+     * @param fileName 
+     */
+    public void deleteFile(String fileName){
+        File file = new File(filePath + fileName); 
+        //File file = new File("." + fileName);  //or this?
+
+        if(file.delete()) 
+        { 
+            //System.out.println("File deleted successfully"); 
+        }
     }
 
    /**
