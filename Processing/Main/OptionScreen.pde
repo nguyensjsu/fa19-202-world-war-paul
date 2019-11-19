@@ -17,17 +17,11 @@ public class OptionScreen extends Screen
     private String title;
     private int base;
 
-    //store previous price
-    private double previousPrice;
-
     //for time line
     private String timeLineString;
 
     //store previous price
     private double previousPrice;
-
-    //for time line
-    private String timeLineString;
 
     public OptionScreen(String t)
     {

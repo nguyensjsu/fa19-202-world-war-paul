@@ -192,33 +192,6 @@ public class Screen implements IScreen, IDisplayComponent
         return result;
     }
 
-   /**
-    * reset the selected button to unselected
-    */
-    public void reset(){
-        //do nothing over here //this function is required for OptionTitle to use
-    }
-
-    /*
-     * Delete file by file name used by clean basket
-     * @param fileName
-     */
-    public void deleteFile(String fileName){
-        File file = new File("." + fileName);  //or this?
-
-        if(file.delete())
-        {
-            //System.out.println("File deleted successfully");
-        }
-    }
-
-   /**
-    * reset the selected button to unselected
-    */
-    public void unselected(){
-        //do nothing over here //this function is required for OptionTitle to use
-    }
-
     /*
      * Delete file by file name used by clean basket
      * @param fileName
