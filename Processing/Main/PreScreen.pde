@@ -15,7 +15,7 @@ public class PreScreen extends Screen{
         endHeight = 680;
         startWidth = 0;
         endWidth = 380;
-        image = loadImage("../../img/preScreen/preScreen.png"); 
+        image = loadImage("../../img/preScreen/preScreen.png");
     }
   /**
    * display error message on top of the screen for a few second
