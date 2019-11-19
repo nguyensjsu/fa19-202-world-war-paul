@@ -23,8 +23,10 @@ public class OptionScreen extends Screen
 
     //store previous price
     private double previousPrice;
+    
+    private String name;
 
-    public OptionScreen(String t)
+    public OptionScreen(String t, String n)
     {
         title = t;
         base = 90;
