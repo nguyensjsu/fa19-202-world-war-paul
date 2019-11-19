@@ -11,8 +11,8 @@ import java.util.HashMap;
 import java.lang.reflect.Type;
 import java.io.*;
 
-Device d;
-PreScreen ps;
+WelcomeScreen welcomeScreen;
+Device device;
 
 // HomePageScreen Testing Code
 // HomePageScreen mp;
@@ -29,14 +29,17 @@ PreScreen ps;
 
 void setup() {
 
+	// Finalize order, do not delete it.
 	size(380, 680);
-	d = new Device();
-	//d.display();
+  	welcomeScreen = new WelcomeScreen();
+	device = new Device();
+
+	//device.display();
 
 
-  //PreScreen Testing code
-    ps = new PreScreen();
-    //ps.setTimer(5);
+  //WelcomeScreen Testing code
+    
+    //welcomeScreen.setTimer(5);
 
 	// // HomePageScreen Testing Code
 	 //mp = new HomePageScreen("San Jose State University");
@@ -123,10 +126,13 @@ void setup() {
 }
 
 void draw() {
-    if(ps.getFlag() == false)
-      ps.display();
-    else
-      d.display();
+
+    if (welcomeScreen.isDisplay() == false) {
+		welcomeScreen.display();
+	} else {
+		device.display();
+	}
+      
 
 	// // HomePageScreen Testing Code
 	// if (mousePressed) {
@@ -160,10 +166,15 @@ void draw() {
 
 
 void mouseClicked(){
-    if(ps.getFlag() == false)
-      ps.touch(mouseX, mouseY);
-    else
-      d.touch(mouseX, mouseY);
+	
+    if (welcomeScreen.isDisplay()) {
+		welcomeScreen.touch(mouseX, mouseY);
+	} else {
+		device.touch(mouseX, mouseY);
+	}
+      	
+
+      
 	// // HomePageScreen Testing Code
 	// mp.touch(mouseX, mouseY);
 
@@ -194,13 +205,6 @@ void mouseClicked(){
   // }
   // app.touch();
 
-	//  PreScreen test code
+	//  WelcomeScreen test code
 
 }
-
-
-//void mouseDragged(){
-//  // TODO: Fill Device drag() function
-//  println("dragged: ", mouseX, "  ", mouseY);
-//  // app.drag();
-//}
