@@ -27,7 +27,6 @@ PreScreen ps;
 // MyAccountScreen mas;
 // MenuBarScreen ms;
 
-
 void setup() {
 
 	size(380, 680);
@@ -40,15 +39,24 @@ void setup() {
     //ps.setTimer(5);
 
 	// // HomePageScreen Testing Code
-	// mp = new HomePageScreen("San Jose State University");
+	 //mp = new HomePageScreen("San Jose State University");
 	// Store s1 = new Store("../../img/store/starbucks_300x150.png", "StarBucks1", "Student Union", "Pickup: 7:00am - 10:00pm", 20);
 	// Store s2 = new Store("../../img/store/starbucks_300x150.png","StarBucks2", "Student Union", "Pickup: 7:00am - 10:00pm", 250);
 
-	// ErrorScreen test code
-	// ErrorScreen err = new ErrorScreen("123");
-	// err.setTimer(millis()+ 1000);
-	// err.setFlag(true);
-	// mp.addSubComponent(err); // err need be added as last component to show on top
+  //Pay Button Testing Code
+  // bs = new BasketScreen();
+  // pb = new Button("Pay");
+  // es = new ErrorScreen("Card Not Found");
+  // pb.setErrorMessage(es);
+	// bs.addSubComponent(pb);
+  // bs.addSubComponent(es);
+	// bs.display();
+
+  // ErrorScreen test code
+   //ErrorScreen err = new ErrorScreen("123");
+   //err.setTimer(millis()+ 1000);
+   //err.setFlag(true);
+   //mp.addSubComponent(err); // err need be added as last component to show on top
 
 	// mp.addSubComponent(s1);
 	// mp.addSubComponent(s2);
@@ -119,11 +127,11 @@ void draw() {
       ps.display();
     else
       d.display();
+
 	// // HomePageScreen Testing Code
 	// if (mousePressed) {
 	//   mp.display();
 	// }
-
 
 	// // MyAccountScreen & MenuBarScreen Testing Code
 	// if (mousePressed) {
@@ -161,6 +169,9 @@ void mouseClicked(){
 
 	// // MyAccountScreen & MenuBarScreen Testing Code
 	// mas.touch(mouseX, mouseY);
+
+  //Pay Button Testing Code
+  //   bs.touch(mouseX, mouseY);
 
 	//  if (mousePressed) {
 	//    System.out.println(mouseX + " " +  mouseY);
