@@ -158,7 +158,7 @@ public class Screen implements IScreen, IDisplayComponent
       try
       {
         FileWriter file = new FileWriter(filePath + fileName);
-        //FileReader fr = new FileReader("." + fileName);  //Original Code
+        //FileWriter file = new FileWriter("./" + fileName);  //Original Code
 
         file.write(jsonString);
         file.close();
@@ -219,7 +219,7 @@ public class Screen implements IScreen, IDisplayComponent
    /**
     * reset the selected button to unselected
     */
-    public void reset(){
+    public void unselected(){
         //do nothing over here //this function is required for OptionTitle to use
     }
 }
