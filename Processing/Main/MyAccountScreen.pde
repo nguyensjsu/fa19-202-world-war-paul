@@ -91,6 +91,7 @@ public class MyAccountScreen extends Screen implements IDisplayComponent
      * @param f The frame reference
      */
     public void setFrame(IFrame frame) {
+        this.frame = frame;
         menuBar.setFrame(frame);
         addCard.setFrame(frame);
     }

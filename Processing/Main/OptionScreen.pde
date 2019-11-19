@@ -21,8 +21,7 @@ public class OptionScreen extends Screen
         totalPrice = 0;
         title = t;
         base = 90;
-        System.out.println(title);
-        System.out.println(title.indexOf("Burger"));
+
         if (title.indexOf("Burger") != -1) { //Found Burger inside the title
             
             OptionTitle title1 = new OptionTitle("Choose Cheese", "Cheese", base-15);
