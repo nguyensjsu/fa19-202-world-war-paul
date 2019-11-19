@@ -10,9 +10,6 @@ public class StoreScreen extends Screen
     /** Front of Event Chain */
     private ITouchEventHandler chain ;
 
-    //a map to store user input
-    Map< String,String> userInfoMap;;
-
     private int base = 90;
 
     //a map to store user input
