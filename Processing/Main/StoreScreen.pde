@@ -15,6 +15,9 @@ public class StoreScreen extends Screen
 
     private int base = 90;
 
+    //a map to store user input
+    Map< String,String> userInfoMap;;
+
     //for Screen Title
     private String title;
     private Screen item1;

@@ -35,8 +35,8 @@ void setup() {
   welcomeScreen = new WelcomeScreen();
 	device = new Device();
 
-File directory = new File(".");
-System.out.println(directory.getAbsolutePath());
+//File directory = new File(".");
+//System.out.println(directory.getAbsolutePath());
 
 	//device.display();
 
@@ -171,8 +171,6 @@ void mouseClicked(){
 	// } else {
 		device.touch(mouseX, mouseY);
 	// }
-
-
 
 
 	// // HomePageScreen Testing Code
