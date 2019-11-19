@@ -239,7 +239,7 @@ public class OptionScreen extends Screen
      */
     public void resetButton(){
         for(Screen c:comp){
-            c.reset();
+            c.unselected();
         }
     }
 }

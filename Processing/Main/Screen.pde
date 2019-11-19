@@ -216,7 +216,7 @@ public class Screen implements IScreen, IDisplayComponent
    /**
     * reset the selected button to unselected
     */
-    public void reset(){
+    public void unselected(){
         //do nothing over here //this function is required for OptionTitle to use
     }
 }
