@@ -10,15 +10,21 @@ public class OptionScreen extends Screen
     /** Front of Event Chain */
     private ITouchEventHandler chain ;
 
-    //for price display
-    private double totalPrice;
+    /** a map to store user input **/
+    private Map< String,String> userInfoMap;
+
     //for Screen Title
     private String title;
     private int base;
 
+    //store previous price
+    private double previousPrice;
+
+    //for time line
+    private String timeLineString;
+
     public OptionScreen(String t)
     {
-        totalPrice = 0;
         title = t;
         base = 90;
 
@@ -93,6 +99,10 @@ public class OptionScreen extends Screen
             addSubComp(item12);
             addSubComp(basket);
         }
+
+        userInfoMap = deserialization("storeScreenDetail.json"); //reread userinput from storeScreen
+        timeLineString = userInfoMap.remove("currentTimeLine");
+        previousPrice = Double.parseDouble(userInfoMap.get(timeLineString+"Money")); //add previous money
     }
 
     /**
@@ -116,7 +126,7 @@ public class OptionScreen extends Screen
         //price text
         textSize(16);
         fill(255);
-        text("$"+totalPrice, 330, 660);
+        text("$"+(previousPrice + getSubTotal()), 320, 660);
     }
 
     /**
@@ -127,9 +137,14 @@ public class OptionScreen extends Screen
     @Override
     public void touch(int x, int y) {
         chain.touch(x, y);
+        display();  //require to redisplay otherwise price will not be accurate due to mouse press delay
 
-        //update price and update display price
-        totalPrice = getSubTotal();
+        //if touch the Button
+        if(630<=y && y<= 680){
+            storeUserInput("optionScreenDetail.json"); //store the userInput into a json file
+            //System.out.println(printDescription());  //debugging code
+            resetButton();  //reset the buttom to original
+        }
     }
 
     /**
@@ -196,21 +211,27 @@ public class OptionScreen extends Screen
      * @param filename the store input into file name
      */
     public void storeUserInput(String filename){
-        Map< String,String> map =  new HashMap< String,String>();
-        String optionTitle = "";
         StringBuilder optionDetail = new StringBuilder();
+
+        //update money tag in map
+        userInfoMap.put(timeLineString + "Money", Double.toString(previousPrice+getSubTotal()));
+
+        String itemName = userInfoMap.remove("currentItem");
+
+        //loop through all user input to update option detail for item
         for (Screen c: comp) {
             if(!c.title().equals("")){
-                if(c.getClass().toString().split(" ", 2)[1].equals("Main$OptionTitle") ){
-                    optionTitle = c.title();
-                    optionDetail = new StringBuilder();
-                }else
-                    optionDetail.append(c.title()+",");
-                map.put(optionTitle, optionDetail.toString());
+                if(!c.getClass().toString().split(" ", 2)[1].equals("Main$OptionTitle") ){
+                    optionDetail.append(c.title()+"+");
+                }
+                userInfoMap.put(itemName, optionDetail.toString());
             }
         }
-        //System.out.println(Arrays.asList(map));   //debug code to print hashmap
-        serialization(map, filename);
+        //System.out.println(Arrays.asList(userInfoMap));   //debug code to print user infor map
+        serialization(userInfoMap, filename);
+
+        //Sample Output
+        //{"0Beef Burger":"Danish Blue Cheese+Horsadish Cheddar+Yello American+Bermuda RedOnion+Black Onions+Appricot Sauce+Ranch+","0Store":"BurgerStore","0Money":"18.0"}
     }
 
     /**
