@@ -32,8 +32,6 @@ void setup() {
 	// Finalize order, do not delete it.
 	size(380, 680);
 
-	d = new Device();
-
   welcomeScreen = new WelcomeScreen();
 	device = new Device();
 
@@ -125,7 +123,7 @@ void setup() {
 
 void draw() {
 
-  if (welcomeScreen.isDisplay() == false) {
+  if (welcomeScreen.isDisplay()) {
 		welcomeScreen.display();
 	} else {
 		device.display();

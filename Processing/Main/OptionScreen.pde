@@ -15,14 +15,15 @@ public class OptionScreen extends Screen
     //for Screen Title
     private String title;
     private int base; 
-
-    public OptionScreen(String t)
+    private String name;
+    public OptionScreen(String t, String n)
     {
         totalPrice = 0;
         title = t;
         base = 90;
+        name = n;
 
-        if (title.indexOf("Burger") != -1) { //Found Burger inside the title
+        if (name.indexOf("Burger") != -1) { //Found Burger inside the title
             
             OptionTitle title1 = new OptionTitle("Choose Cheese", "Cheese", base-15);
             Screen item1 = new LeftItem("Danish Blue Cheese", 1, base);
