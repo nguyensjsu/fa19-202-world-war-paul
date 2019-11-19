@@ -1,7 +1,7 @@
 /** Store Model */
 public class Store extends Screen implements ITouchEventHandler, IDisplayComponent
 {
-    ITouchEventHandler nextHandler ;
+    private ITouchEventHandler nextHandler ;
 
     private PImage image;
     private String name;
@@ -9,7 +9,7 @@ public class Store extends Screen implements ITouchEventHandler, IDisplayCompone
     private String hours;
     private int startHeight;
     private int endHieght;
-    private StoreScreen burgerStore;
+    private StoreScreen storeScreen;
 
     public Store(String imagePath, String name, String address, String hours, int height) {
         image = loadImage(imagePath); 
@@ -17,12 +17,6 @@ public class Store extends Screen implements ITouchEventHandler, IDisplayCompone
         this.address = address;
         this.hours= hours;
         startHeight = height;
-
-        burgerStore = new StoreScreen("burgerStore");
-        //setFrame();
-        burgerStore.setFrame(getFrame());
-        burgerStore = new StoreScreen();
-        setNext(burgerStore);
     }
 
     /**
@@ -62,7 +56,8 @@ public class Store extends Screen implements ITouchEventHandler, IDisplayCompone
     public void touch(int x, int y) 
     {
         if (startHeight <= y && y <= endHieght) {
-            // TODO:  jumps to corresponding store page
+            storeScreen = new StoreScreen(name);
+            setNext(storeScreen);
             next();
             System.out.println("Jump into" + name);
         } else if (nextHandler != null) {
@@ -71,26 +66,12 @@ public class Store extends Screen implements ITouchEventHandler, IDisplayCompone
 
     }
 
+    /**
+     * Setup the current Frame reference
+     * @param frame THe frame reference
+     */
     public void setFrame(){
         frame = getFrame();
-        burgerStore.setFrame(frame);
+        storeScreen.setFrame(frame);
     }
-    
-    //// jump to next screen.
-    //public void next() {
-    //    screen.next();
-    //}
-
-    //// jump to previous screen.
-    //public void prev() {
-    //    screen.prev();
-    //}
-
-    //public void setNext(IScreen s) {
-    //    screen.setNext(s);
-    //}
-
-    //public void setPrev(IScreen s) {
-    //    screen.setPrev(s);
-    //}
 }

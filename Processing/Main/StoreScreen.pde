@@ -16,26 +16,39 @@ public class StoreScreen extends Screen
 
     //for Screen Title
     private String title;
-    Screen item1; 
-    Screen item2;
-    Screen item3;
+    private Screen item1; 
+    private Screen item2;
+    private Screen item3;
     
 
     public StoreScreen(String screenTitle)
     {
         totalPrice = 0;
         title = screenTitle;
-        OptionTitle title1 = new OptionTitle("Choose a Burger", "Burger", base-15);
-        item1 = new OptionItem("1/3LB Burger", 9.5, base);
-        item2 = new OptionItem("2/3LB Burger", 11.5, base + 25*1);
-        item3 = new OptionItem(" 1 LB Burger", 13.5, base + 25*2);
-        Screen basket = new Basket("View Basket",630);
-        addSubComp( title1);
-        addSubComp( item1);
-        addSubComp( item2);
-        addSubComp( item3);
-        addSubComp(basket);
-        
+
+        if (title.equals("Attack Burger")) {
+            OptionTitle title1 = new OptionTitle("Choose a Burger", "Burger", base-15);
+            Screen basket = new Basket("Add Basket",630);
+            item1 = new OptionItem("1/3LB Burger", 9.5, base);
+            item2 = new OptionItem("2/3LB Burger", 11.5, base + 25*1);
+            item3 = new OptionItem(" 1 LB Burger", 13.5, base + 25*2);
+            addSubComp(title1);
+            addSubComp(basket);
+            addSubComp(item1);
+            addSubComp(item2);
+            addSubComp(item3);
+        } else if (title.equals("Starbucks")) {
+            OptionTitle title1 = new OptionTitle("Choose a Coffee", "Starbucks", base-15);
+            Screen basket = new Basket("Add Basket",630);
+            item1 = new OptionItem("Cappuccion", 3.5, base);
+            item2 = new OptionItem("White Chocolate Mocha", 4.5, base + 25*1);
+            item3 = new OptionItem("Latte", 3.5, base + 25*2);
+            addSubComp(title1);
+            addSubComp(basket);
+            addSubComp(item1);
+            addSubComp(item2);
+            addSubComp(item3);
+        }
     }
 
     /**
@@ -48,7 +61,7 @@ public class StoreScreen extends Screen
         textSize(20);
         fill(0, 0, 0, 255);
 
-        text(title, (380 - title.length() * 7) / 2, currentHeight);
+        text(title, (END_WIDTH - title.length() * 7) / 2, currentHeight);
         currentHeight += 20;
 
         for (IDisplayComponent c: components) {
@@ -72,8 +85,6 @@ public class StoreScreen extends Screen
 
         //update price and update display price
         totalPrice = getSubTotal();
-        //System.out.println(printDescription());
-        //display();
     }
 
     /**
@@ -135,8 +146,13 @@ public class StoreScreen extends Screen
         return description.toString();
     }
 
+    /**
+     * Setup the current Frame reference
+     * @param frame THe frame reference
+     */
     public void setFrame(IFrame frame){
         item1.setFrame(frame);
-        //burgerOption.setFrame(frame);
+        item2.setFrame(frame);
+        item3.setFrame(frame);
     }
 }
