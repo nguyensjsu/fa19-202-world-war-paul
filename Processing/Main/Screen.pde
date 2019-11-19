@@ -1,5 +1,3 @@
-import java.util.* ;
-
 /**
  * Base Class for Screens.
  *
@@ -10,9 +8,12 @@ import java.util.* ;
  */
 public class Screen implements IScreen, IDisplayComponent
 {
-    private int width;
-    private int height;
+    public static final int START_HEIGHT = 0;
+    public static final int END_HEIGHT = 680;
+    public static final int START_WIDTH = 0;
+    public static final int END_WIDTH = 380;
     public IFrame frame;
+
     protected IScreen prevScreen;
     protected IScreen nextScreen;
     protected PShape optionImg1;
@@ -24,28 +25,11 @@ public class Screen implements IScreen, IDisplayComponent
     /** Front of Event Chain */
     private ITouchEventHandler chain ;
 
-
     /** Constructor */
     public Screen()
     {
-        width = 380;
-        height = 680;
         optionImg1 = loadShape("../../img/customItem/option1.svg");  //file destination for file name ad-solid.svg
         optionImg2 = loadShape("../../img/customItem/option2.svg");  //file destination for file name ad-solid.svg
-    }
-
-    /**
-    * Get the Screen Witdh
-    */
-    public int getWidth() {
-        return width;
-    }
-
-    /**
-    * Get the Screen Height
-    */
-    public int getHeight() {
-        return height;
     }
 
     /**
@@ -117,10 +101,16 @@ public class Screen implements IScreen, IDisplayComponent
         }
     }
 
-    public void setFrame(IFrame frame) {
-        this.frame = frame;
+    /**
+     * Setup the current Frame reference
+     */
+    public void setFrame(IFrame f) {
+        frame = f;
     }
 
+    /**
+     * Get the current Frame reference
+     */
     public IFrame getFrame() {
         return frame;
     }
@@ -149,52 +139,55 @@ public class Screen implements IScreen, IDisplayComponent
     }
     
     /**
-     * @param map, fileName, Taking a map and convert to JSON file with the fileName
+     * Serialize a Map into JSON and write it into a local file
+     * @param map a map and convert to JSON file with the fileName
+     * @param fileName the file name
      */
     public void serialization(Map<String, String> map, String fileName)
     {
-      Gson gson = new Gson();
-      String jsonString = gson.toJson(map);
-      try
-      {
-        FileWriter file = new FileWriter("." + fileName); // might need to improve about the directory
-        file.write(jsonString);
-        file.close();
-      }
-      catch(IOException e)
-      {
-        e.printStackTrace();
-        //TODO: direct to error msg screen
-      }
-      
+        Gson gson = new Gson();
+        String jsonString = gson.toJson(map);
+        try
+        {
+            FileWriter file = new FileWriter("." + fileName); // might need to improve about the directory
+            file.write(jsonString);
+            file.close();
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+            //TODO: direct to error msg screen
+        }
     }
     
     /**
-     * @param taking a fileName as a String
+     * Deserialize a local file from JSON into Map
+     * @param fileName a fileName as a String
      * @return map converted from a JSON file
      */
     public Map<String, String> deserialization(String fileName)
     {
-      Gson gson = new Gson();
-      HashMap<String, String> result = new HashMap<String, String>(); 
-      try
-      {
-        FileReader fr = new FileReader("." + fileName);
-        StringBuilder str = new StringBuilder();
-        int i;
-        while ((i=fr.read()) != -1) 
+        Gson gson = new Gson();
+        HashMap<String, String> result = new HashMap<String, String>(); 
+        try
         {
-          str.append((char)i); 
+            FileReader fr = new FileReader("." + fileName);
+            StringBuilder str = new StringBuilder();
+            int i;
+            while ((i=fr.read()) != -1) 
+            {
+            str.append((char)i); 
+            }
+            String jsonString = str.toString();
+            Type type = new TypeToken<HashMap<String, String>>(){}.getType();
+            result = gson.fromJson(jsonString, type);
+            fr.close();
         }
-        String jsonString = str.toString();
-        Type type = new TypeToken<HashMap<String, String>>(){}.getType();
-        result = gson.fromJson(jsonString, type);
-        fr.close();
-      }
-      catch(IOException e)
-      {
-        e.printStackTrace();
-      }
-      return result;
+        catch(IOException e)
+        {
+            e.printStackTrace();
+            // TODO: error message
+        }
+        return result;
     }
 }
