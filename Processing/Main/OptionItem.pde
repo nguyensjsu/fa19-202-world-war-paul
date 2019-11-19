@@ -2,8 +2,9 @@
 public class OptionItem extends Screen implements IDisplayComponent,  ITouchEventHandler
 {
     ITouchEventHandler nextHandler ;
-    PShape optionImg1;
-    PShape optionImg2;
+    // PShape optionImg1;
+    // PShape optionImg2;
+    private OptionScreen burgerOptionScreen;
 
     String name;
     float price;
@@ -16,9 +17,11 @@ public class OptionItem extends Screen implements IDisplayComponent,  ITouchEven
         price  = p;
         curHeight = h;
         isSelected = false;
-        optionImg1 = loadShape("../../img/customItem/option1.svg");  //file destination for file name ad-solid.svg
-        optionImg2 = loadShape("../../img/customItem/option2.svg");  //file destination for file name ad-solid.svg
-
+        //optionImg1 = loadShape("../../img/customItem/option1.svg");  //file destination for file name ad-solid.svg
+        // optionImg2 = loadShape("../../img/customItem/option2.svg");  //file destination for file name ad-solid.svg
+        burgerOptionScreen = new OptionScreen("Choose Custom Options");
+        burgerOptionScreen.setFrame(frame);
+        setNext(burgerOptionScreen);
     }
 
     /** 
@@ -59,6 +62,9 @@ public class OptionItem extends Screen implements IDisplayComponent,  ITouchEven
     public void touch(int x, int y) 
     {
         if (curHeight <= y && y <= curHeight+25) {
+
+          //if(name.equals("1/3LB Burger"))
+          next();
           isSelected = (isSelected == true) ? false : true;
           display();
 
@@ -89,4 +95,6 @@ public class OptionItem extends Screen implements IDisplayComponent,  ITouchEven
 		else
 			return "";
     }
+
+    
 }

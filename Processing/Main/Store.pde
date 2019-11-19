@@ -17,7 +17,9 @@ public class Store extends Screen implements ITouchEventHandler, IDisplayCompone
         this.address = address;
         this.hours= hours;
         startHeight = height;
-        burgerStore = new StoreScreen();
+        burgerStore = new StoreScreen("burgerStore");
+        //setFrame();
+                burgerStore.setFrame(getFrame());
         setNext(burgerStore);
     }
 
@@ -65,6 +67,11 @@ public class Store extends Screen implements ITouchEventHandler, IDisplayCompone
             nextHandler.touch(x,y);
         }
 
+    }
+
+    public void setFrame(){
+        frame = getFrame();
+        burgerStore.setFrame(frame);
     }
     
     //// jump to next screen.

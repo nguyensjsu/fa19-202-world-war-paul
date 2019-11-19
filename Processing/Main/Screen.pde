@@ -12,9 +12,11 @@ public class Screen implements IScreen, IDisplayComponent
 {
     private int width;
     private int height;
-    IFrame frame;
+    public IFrame frame;
     protected IScreen prevScreen;
     protected IScreen nextScreen;
+    protected PShape optionImg1;
+    protected PShape optionImg2;
     
     /** Display Components */
     private ArrayList<IDisplayComponent> components = new ArrayList<IDisplayComponent>() ;
@@ -28,6 +30,8 @@ public class Screen implements IScreen, IDisplayComponent
     {
         width = 380;
         height = 680;
+        optionImg1 = loadShape("../../img/customItem/option1.svg");  //file destination for file name ad-solid.svg
+        optionImg2 = loadShape("../../img/customItem/option2.svg");  //file destination for file name ad-solid.svg
     }
 
     /**
