@@ -232,7 +232,7 @@ public class Device implements IProxy, IPinAuthObserver {
         } else {
             // TODO: Pinscreen
             ps.display();
-            
+
         }
     }
 

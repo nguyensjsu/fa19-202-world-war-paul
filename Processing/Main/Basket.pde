@@ -14,10 +14,10 @@ public class Basket extends Screen implements IDisplayComponent, ITouchEventHand
         currentHeight = h;
     }
 
-    /** 
+    /**
       * Display function
       * @return: currently useless
-      */ 
+      */
     public void display(){
 
         // TODO: clear up magic numbers
@@ -37,17 +37,17 @@ public class Basket extends Screen implements IDisplayComponent, ITouchEventHand
      * Set Next Touch Handler
      * @param next Touch Event Handler
      */
-    public void setNext(ITouchEventHandler next) 
-    { 
+    public void setNext(ITouchEventHandler next)
+    {
         nextHandler = next ;
     }
 
     /**
-     * Touch Event 
+     * Touch Event
      * @param x Touch X
      * @param y Touch Y
      */
-    public void touch(int x, int y) 
+    public void touch(int x, int y)
     {
         if (nextHandler != null) {
             nextHandler.touch(x,y);

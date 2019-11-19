@@ -167,11 +167,11 @@ void draw() {
 
 void mouseClicked(){
 	
-    if (welcomeScreen.isDisplay()) {
-		welcomeScreen.touch(mouseX, mouseY);
-	} else {
+ //   if (welcomeScreen.isDisplay()) {
+	//	welcomeScreen.touch(mouseX, mouseY);
+	//} else {
 		device.touch(mouseX, mouseY);
-	}
+	//}
       	
 
       
