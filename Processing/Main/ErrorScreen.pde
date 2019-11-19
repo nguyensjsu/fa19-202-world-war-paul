@@ -8,7 +8,8 @@ public class ErrorScreen extends Screen implements ITouchEventHandler, IDisplayC
     private String errorMessage;
     private boolean flag;
     private float timer;
-    ITouchEventHandler nextHandler ;
+
+    private ITouchEventHandler nextHandler ;
 
     public ErrorScreen(String str){
         startHeight = 0;
@@ -51,6 +52,9 @@ public class ErrorScreen extends Screen implements ITouchEventHandler, IDisplayC
      * @param y Touch Y
      */
     public void touch(int x, int y){
+        if (nextHandler != null) {
+            nextHandler.touch(x,y);
+        }
     }
 
     /**
