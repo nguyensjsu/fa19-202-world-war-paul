@@ -1,10 +1,10 @@
 /** Payments Screen */
 public class OptionItem extends Screen implements IDisplayComponent,  ITouchEventHandler
 {
-    ITouchEventHandler nextHandler ;
-    // PShape optionImg1;
-    // PShape optionImg2;
-    private OptionScreen burgerOptionScreen;
+    private ITouchEventHandler nextHandler ;
+    PShape optionImg1;
+    PShape optionImg2;
+    private OptionScreen optionScreen;
 
     String name;
     float price;
@@ -17,11 +17,8 @@ public class OptionItem extends Screen implements IDisplayComponent,  ITouchEven
         price  = p;
         curHeight = h;
         isSelected = false;
-        //optionImg1 = loadShape("../../img/customItem/option1.svg");  //file destination for file name ad-solid.svg
-        // optionImg2 = loadShape("../../img/customItem/option2.svg");  //file destination for file name ad-solid.svg
-        burgerOptionScreen = new OptionScreen("Choose Custom Options");
-        burgerOptionScreen.setFrame(frame);
-        setNext(burgerOptionScreen);
+        optionImg1 = loadShape("../../img/customItem/option1.svg");  //file destination for file name ad-solid.svg
+        optionImg2 = loadShape("../../img/customItem/option2.svg");  //file destination for file name ad-solid.svg
     }
 
     /** 
@@ -40,8 +37,8 @@ public class OptionItem extends Screen implements IDisplayComponent,  ITouchEven
         fill(0);
         text(name, 45, curHeight + 15);
 
-        if(price != 0){
-          text("$"+price, 320, curHeight + 15);
+        if (price != 0){
+         	text("$"+price, 320, curHeight + 15);
         }
     }
 
@@ -62,12 +59,13 @@ public class OptionItem extends Screen implements IDisplayComponent,  ITouchEven
     public void touch(int x, int y) 
     {
         if (curHeight <= y && y <= curHeight+25) {
+            isSelected = (isSelected == true) ? false : true;
+			display();
 
-          //if(name.equals("1/3LB Burger"))
-          next();
-          isSelected = (isSelected == true) ? false : true;
-          display();
-
+			optionScreen = new OptionScreen("Choose Custom Options");
+            optionScreen.setFrame(frame);
+            setNext(optionScreen);
+			next();
         } else if (nextHandler != null) {
             nextHandler.touch(x,y);
         }
@@ -75,6 +73,7 @@ public class OptionItem extends Screen implements IDisplayComponent,  ITouchEven
 
     /**
      * add price back
+	 * @return the price
      */
     public double add(){
 		if(isSelected){
@@ -85,16 +84,15 @@ public class OptionItem extends Screen implements IDisplayComponent,  ITouchEven
 		}
     }
 
-   /**
+    /**
      * return the name to print
+	 * @return the name of the title
      */
     public String title(){
-		if(isSelected){
+		if (isSelected){
 			return name;
 		}
 		else
 			return "";
     }
-
-    
 }
