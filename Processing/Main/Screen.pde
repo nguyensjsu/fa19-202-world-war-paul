@@ -15,7 +15,7 @@ public class Screen implements IScreen, IDisplayComponent
     IFrame frame;
     protected IScreen prevScreen;
     protected IScreen nextScreen;
-    private String filePath;
+    //private String filePath;
 
     /** Display Components */
     private ArrayList<IDisplayComponent> components = new ArrayList<IDisplayComponent>() ;
@@ -31,7 +31,7 @@ public class Screen implements IScreen, IDisplayComponent
         height = 680;
 
         //Required to update by self
-        filePath = "/Users/stevenyang/Desktop/fa19-202-world-war-paul/Processing/Main/"; //TODO
+        //filePath = "/Users/stevenyang/Desktop/fa19-202-world-war-paul/Processing/Main/"; //TODO
     }
 
     /**
@@ -157,8 +157,8 @@ public class Screen implements IScreen, IDisplayComponent
       String jsonString = gson.toJson(map);
       try
       {
-        FileWriter file = new FileWriter(filePath + fileName);
-        //FileWriter file = new FileWriter("./" + fileName);  //Original Code
+        //FileWriter file = new FileWriter(filePath + fileName);
+        FileWriter file = new FileWriter("." + fileName);  //Original Code
 
         file.write(jsonString);
         file.close();
@@ -181,8 +181,8 @@ public class Screen implements IScreen, IDisplayComponent
       HashMap<String, String> result = new HashMap<String, String>();
       try
       {
-        FileReader fr = new FileReader(filePath + fileName);
-        //FileReader fr = new FileReader("." + fileName);  //Original Code
+        //FileReader fr = new FileReader(filePath + fileName);
+        FileReader fr = new FileReader("." + fileName);  //Original Code
 
         StringBuilder str = new StringBuilder();
         int i;
@@ -207,8 +207,8 @@ public class Screen implements IScreen, IDisplayComponent
      * @param fileName
      */
     public void deleteFile(String fileName){
-        File file = new File(filePath + fileName);
-        //File file = new File("." + fileName);  //or this?
+        //File file = new File(filePath + fileName);
+        File file = new File("." + fileName);  //or this?
 
         if(file.delete())
         {
