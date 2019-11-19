@@ -204,7 +204,6 @@ public class Screen implements IScreen, IDisplayComponent
      * @param fileName
      */
     public void deleteFile(String fileName){
-        //File file = new File(filePath + fileName);
         File file = new File("." + fileName);  //or this?
 
         if(file.delete())
