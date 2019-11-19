@@ -1,7 +1,7 @@
 /** Store Model */
 public class Store extends Screen implements ITouchEventHandler, IDisplayComponent
 {
-    ITouchEventHandler nextHandler ;
+    private ITouchEventHandler nextHandler ;
 
     private PImage image;
     private String name;
@@ -9,6 +9,7 @@ public class Store extends Screen implements ITouchEventHandler, IDisplayCompone
     private String hours;
     private int startHeight;
     private int endHieght;
+    private StoreScreen storeScreen;
 
     public Store(String imagePath, String name, String address, String hours, int height) {
         image = loadImage(imagePath); 
@@ -55,30 +56,22 @@ public class Store extends Screen implements ITouchEventHandler, IDisplayCompone
     public void touch(int x, int y) 
     {
         if (startHeight <= y && y <= endHieght) {
-            // TODO:  jumps to corresponding store page
-            //next();
+            storeScreen = new StoreScreen(name);
+            setNext(storeScreen);
+            next();
             System.out.println("Jump into" + name);
         } else if (nextHandler != null) {
             nextHandler.touch(x,y);
         }
 
     }
-    
-    //// jump to next screen.
-    //public void next() {
-    //    screen.next();
-    //}
 
-    //// jump to previous screen.
-    //public void prev() {
-    //    screen.prev();
-    //}
-
-    //public void setNext(IScreen s) {
-    //    screen.setNext(s);
-    //}
-
-    //public void setPrev(IScreen s) {
-    //    screen.setPrev(s);
-    //}
+    /**
+     * Setup the current Frame reference
+     * @param frame THe frame reference
+     */
+    public void setFrame(){
+        frame = getFrame();
+        storeScreen.setFrame(frame);
+    }
 }

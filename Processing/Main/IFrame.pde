@@ -30,69 +30,17 @@ public interface IFrame
     // Handle drag.
     void drag();
 
-    /**
-     * Navigate to Previous Screen
-     */
-    void previousScreen() ;
-
-    /**
-     * Navigate to Next Screen
-     */
-    void nextScreen() ;
-
-    /**
-     * Get Screen Name
-     * @return Screen Name
-     */
+    
     String screen() ;
-
-    /**
-     * Return Contents of Current Screen
-     * @return Contents for Display
-     */
-    String contents() ;
 
     /**
      * Display Screen to Terminal/Log
      */
     void display() ;
-
-    /** Switch to Landscape Mode */
-    void landscape() ;
-
-    /**
-     * Switch to Portrait Mode
-     */
-    void portrait() ;
-
     /**
      * Execute a Command: A, B, C, D or E
      * @param c Command to Execute
      */
     void cmd( String c ) ;
 
-    /**
-     * Select Menu/Command A
-     */
-    void selectA() ;
-
-    /**
-     * Select Menu/Command B
-     */
-    void selectB() ;
-
-    /**
-     * Select Menu/Command D
-     */
-    void selectC() ;
-
-    /**
-     * Select Menu/Command D
-     */
-    void selectD() ;
-
-    /**
-     * Select Menu/Command E
-     */
-    void selectE() ;
 }

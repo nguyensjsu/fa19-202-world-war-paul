@@ -31,15 +31,13 @@ void setup() {
 
 	// Finalize order, do not delete it.
 	size(380, 680);
-  	welcomeScreen = new WelcomeScreen();
+
+	d = new Device();
+
+  welcomeScreen = new WelcomeScreen();
 	device = new Device();
 
 	//device.display();
-
-
-  //WelcomeScreen Testing code
-    
-    //welcomeScreen.setTimer(5);
 
 	// // HomePageScreen Testing Code
 	 //mp = new HomePageScreen("San Jose State University");
@@ -127,7 +125,7 @@ void setup() {
 
 void draw() {
 
-    if (welcomeScreen.isDisplay() == false) {
+  if (welcomeScreen.isDisplay() == false) {
 		welcomeScreen.display();
 	} else {
 		device.display();

@@ -248,23 +248,6 @@ public class Device implements IProxy, IPinAuthObserver {
     }
 
     /**
-     * Get Screen Contents as a String
-     * @return Screen Contents of Current Screen
-     */
-    public String screenContents() {
-        if ( authenticated ) {
-            //app.display();
-            return app.screenContents() ;
-        } else {
-            // TODO: Pinscreen
-           // ps.display();
-            String out = "" ;
-            return out ;
-        }
-    }
-
-
-    /**
      * Select a Menu Command
      * @param c Menu Option (A, B, C, E, or E)
      */

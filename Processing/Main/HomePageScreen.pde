@@ -7,17 +7,19 @@ public class HomePageScreen extends Screen implements IDisplayComponent {
     private ITouchEventHandler chain ;
 
     private String address;
-    private MenuBarScreen mbs;
+    private MenuBarScreen menuBar;
+    private Store burger;
+    private Store starbucks;
 
     public HomePageScreen(String address) {
         this.address = address;
-        Store starbucks = new Store("../../img/store/starbucks_300x150.png", "StarBucks1", "Student Union", "Pickup: 7:00am - 10:00pm", 20);
-        Store panda = new Store("../../img/store/panda_300x150.png","Panda Express", "Student Union", "Pickup: 7:00am - 10:00pm", 250);
-        
-        mbs = new MenuBarScreen();
+        burger = new Store("../../img/store/burger_300x150.png", "Attack Burger", "Student Union", "Pickup: 7:00am - 10:00pm", 20);
+        starbucks = new Store("../../img/store/starbucks_300x150.png", "Starbucks", "Student Union", "Pickup: 7:00am - 10:00pm", 250);
+
+        menuBar = new MenuBarScreen();
+        addSubComponent(burger);
         addSubComponent(starbucks);
-        addSubComponent(panda);
-        addSubComponent(mbs);
+        addSubComponent(menuBar);
     }
 
     /**
@@ -30,7 +32,7 @@ public class HomePageScreen extends Screen implements IDisplayComponent {
         background(255);
         textSize(14);
         fill(0, 0, 0, 255);
-        text(address, (getWidth() - address.length() * 7) / 2, currentHeight);
+        text(address, (END_WIDTH - address.length() * 7) / 2, currentHeight);
         currentHeight += 20;
 
         for (IDisplayComponent c: components) {
@@ -74,6 +76,8 @@ public class HomePageScreen extends Screen implements IDisplayComponent {
      * @param frame The frame reference
      */
     public void setFrame(IFrame frame) {
-        mbs.setFrame(frame);
+        starbucks.setFrame(frame);
+        burger.setFrame(frame);
+        menuBar.setFrame(frame);
     };
 }

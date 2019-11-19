@@ -1,5 +1,5 @@
 /** Payments Screen */
-public class OptionItem extends Screen implements IDisplayComponent,  ITouchEventHandler
+public class LeftItem extends Screen implements IDisplayComponent,  ITouchEventHandler
 {
     private ITouchEventHandler nextHandler ;
     PShape optionImg1;
@@ -11,7 +11,7 @@ public class OptionItem extends Screen implements IDisplayComponent,  ITouchEven
     int curHeight;
     boolean isSelected; 
 
-    public OptionItem(String n, float p, int h)
+    public LeftItem(String n, float p, int h)
     {
         name = n;
         price  = p;
@@ -61,11 +61,6 @@ public class OptionItem extends Screen implements IDisplayComponent,  ITouchEven
         if (curHeight <= y && y <= curHeight+25) {
             isSelected = (isSelected == true) ? false : true;
 			display();
-
-			optionScreen = new OptionScreen("Choose Custom Options");
-            optionScreen.setFrame(frame);
-            setNext(optionScreen);
-			next();
         } else if (nextHandler != null) {
             nextHandler.touch(x,y);
         }

@@ -8,14 +8,16 @@ public class MyAccountScreen extends Screen implements IDisplayComponent
     private ITouchEventHandler chain ;
 
     private int startHeight;
-    private int endHieght;
-    private MenuBarScreen mbs;
+    private int endHieght = 580;
+    private MenuBarScreen menuBar;
+    private AddCard addCard;
 
     public MyAccountScreen(int height) {
         startHeight = height;
-
-        mbs = new MenuBarScreen();
-        addSubComponent(mbs);
+        menuBar = new MenuBarScreen();
+        addCard = new AddCard();
+        setNext(addCard);
+        addSubComponent(menuBar);
     }
 
     /**
@@ -31,7 +33,7 @@ public class MyAccountScreen extends Screen implements IDisplayComponent
         fill(0, 0, 0, 255);
 
         String header = "My Account";
-        text(header, (getWidth() - header.length() * 7) / 2, currentHeight);
+        text(header, (END_WIDTH - header.length() * 7) / 2, currentHeight);
         currentHeight += 20;
 
         strokeWeight(1);
@@ -86,9 +88,11 @@ public class MyAccountScreen extends Screen implements IDisplayComponent
 
     /**
      * set the frame for MenuBar Screen
-     * @param frame The frame reference
+     * @param f The frame reference
      */
     public void setFrame(IFrame frame) {
-        mbs.setFrame(frame);
-    };
+        this.frame = frame;
+        menuBar.setFrame(frame);
+        addCard.setFrame(frame);
+    }
 }
