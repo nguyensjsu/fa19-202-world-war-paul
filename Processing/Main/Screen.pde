@@ -192,13 +192,6 @@ public class Screen implements IScreen, IDisplayComponent
         return result;
     }
 
-   /**
-    * reset the selected button to unselected
-    */
-    public void reset(){
-        //do nothing over here //this function is required for OptionTitle to use
-    }
-
     /*
      * Delete file by file name used by clean basket
      * @param fileName

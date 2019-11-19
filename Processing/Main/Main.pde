@@ -35,6 +35,9 @@ void setup() {
   welcomeScreen = new WelcomeScreen();
 	device = new Device();
 
+File directory = new File(".");
+System.out.println(directory.getAbsolutePath());
+
 	//device.display();
 
 	// // HomePageScreen Testing Code
@@ -123,11 +126,11 @@ void setup() {
 
 void draw() {
 
-  if (welcomeScreen.isDisplay()) {
-		welcomeScreen.display();
-	} else {
+  // if (welcomeScreen.isDisplay() == false) {
+	// 	welcomeScreen.display();
+	// } else {
 		device.display();
-	}
+	// }
 
 
 	// // HomePageScreen Testing Code
@@ -163,11 +166,12 @@ void draw() {
 
 void mouseClicked(){
 
-    if (welcomeScreen.isDisplay()) {
-		welcomeScreen.touch(mouseX, mouseY);
-	} else {
+  //   if (welcomeScreen.isDisplay()) {
+	// 	welcomeScreen.touch(mouseX, mouseY);
+	// } else {
 		device.touch(mouseX, mouseY);
-	}
+	// }
+
 
 
 

@@ -90,12 +90,13 @@ public class StoreScreen extends Screen
 
         display();  //require to redisplay otherwise price will not be accurate due to mouse press delay
 
-        // //if touch the Button   // would not use in production
-        // if(630<=y && y<= 680){
-        //     storeUserInput("storeScreenDetail.json"); //store the userInput into a json file
-        //     //System.out.println(printDescription());  //debugging code
-        //     resetButton();  //reset the buttom to original
-        // }
+        //if touch the Button
+        if(base<=y && y<= base + 25*2){
+            System.out.println("succesfully store");
+            storeUserInput("storeScreenDetail.json"); //store the userInput into a json file
+            //System.out.println(printDescription());  //debugging code
+            resetButton();  //reset the buttom to original
+        }
     }
 
     /**
