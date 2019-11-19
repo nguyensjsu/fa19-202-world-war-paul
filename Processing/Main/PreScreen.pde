@@ -14,7 +14,7 @@ public class WelcomeScreen extends Screen {
         endHeight = 680;
         startWidth = 0;
         endWidth = 380;
-		image = loadImage("../../img/WelcomeScreen/WelcomeScreen.png");
+		image = loadImage("../../img/preScreen/preScreen.png");
 		display = true;
 	}
 	
