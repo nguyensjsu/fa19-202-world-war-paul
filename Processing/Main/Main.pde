@@ -12,7 +12,6 @@ import java.lang.reflect.Type;
 import java.io.*;
 
 Device d;
-
 // HomePageScreen Testing Code
 // HomePageScreen mp;
 
@@ -27,9 +26,9 @@ Device d;
 // MenuBarScreen ms;
 
 //Pay Button Testing Code
-// BasketScreen bs;
-// Button pb;
-// ErrorScreen es;
+ BasketScreen bs;
+ Button pb;
+ ErrorScreen es;
 
 void setup() {
 
@@ -43,13 +42,13 @@ void setup() {
 	// Store s2 = new Store("../../img/store/starbucks_300x150.png","StarBucks2", "Student Union", "Pickup: 7:00am - 10:00pm", 250);
 
   //Pay Button Testing Code
-  // bs = new BasketScreen();
-  // pb = new Button("Pay");
-  // es = new ErrorScreen("Card Not Found");
-  // pb.setErrorMessage(es);
-	// bs.addSubComponent(pb);
-  // bs.addSubComponent(es);
-	// bs.display();
+   bs = new BasketScreen();
+   pb = new Button("Pay");
+   es = new ErrorScreen("Card Not Found");
+   pb.setErrorMessage(es);
+	 bs.addSubComponent(pb);
+   bs.addSubComponent(es);
+	 bs.display();
 
   // ErrorScreen test code
    //ErrorScreen err = new ErrorScreen("123");
@@ -124,9 +123,10 @@ void setup() {
 void draw() {
   
   //Pay Button Testing Code
-	// bs.display();
+  if (mousePressed)
+	 bs.display();
 
-	d.display();
+	//d.display();
 	// // HomePageScreen Testing Code
 	// if (mousePressed) {
 	//   mp.display();
@@ -167,7 +167,7 @@ void mouseClicked(){
 	// mas.touch(mouseX, mouseY);
 
   //Pay Button Testing Code
-  //   bs.touch(mouseX, mouseY);
+     bs.touch(mouseX, mouseY);
 
 	//  if (mousePressed) {
 	//    System.out.println(mouseX + " " +  mouseY);
@@ -191,7 +191,7 @@ void mouseClicked(){
   // app.touch();
 
 	// login screen test code
-	d.touch(mouseX, mouseY);
+	//d.touch(mouseX, mouseY);
 }
 
 
