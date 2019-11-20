@@ -24,6 +24,9 @@ public class OptionScreen extends Screen
     //store previous price
     private double previousPrice;
 
+    //check first time or not to dicide read file or not
+    private boolean firstTimeRead;
+
     private String name;
 
     public OptionScreen(String t, String n)
@@ -31,6 +34,7 @@ public class OptionScreen extends Screen
         title = t;
         base = 90;
         name = n;
+        firstTimeRead = true;
 
         if (name.indexOf("Burger") != -1) { //Found Burger inside the title
 
@@ -103,9 +107,6 @@ public class OptionScreen extends Screen
             addSubComp(item12);
             addSubComp(basket);
         }
-        userInfoMap = deserialization("storeScreenDetail.json"); //reread userinput from storeScreen
-        timeLineString = userInfoMap.remove("currentTimeLine");
-        previousPrice = Double.parseDouble(userInfoMap.get(timeLineString+"Money")); //add previous money
     }
 
     /**
@@ -113,6 +114,12 @@ public class OptionScreen extends Screen
       * @return: currently useless
       */
     public void display(){
+        if(firstTimeRead){
+            userInfoMap = deserialization("storeScreenDetail.json"); //reread userinput from storeScreen
+            timeLineString = userInfoMap.remove("currentTimeLine");
+            previousPrice = Double.parseDouble(userInfoMap.get(timeLineString+"Money")); //add previous money
+            firstTimeRead = false;
+        }
 
         int currentHeight = 20;
         background(255);
@@ -244,5 +251,6 @@ public class OptionScreen extends Screen
         for(Screen c:comp){
             c.unselected();
         }
+        firstTimeRead = true;
     }
 }

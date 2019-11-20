@@ -92,7 +92,6 @@ public class StoreScreen extends Screen
 
         //if touch the Button
         if(base<=y && y<= base + 25*2){
-            System.out.println("succesfully store");
             storeUserInput("storeScreenDetail.json"); //store the userInput into a json file
             //System.out.println(printDescription());  //debugging code
             resetButton();  //reset the buttom to original
