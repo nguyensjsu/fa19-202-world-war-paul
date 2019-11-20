@@ -17,3 +17,7 @@
 ## Class Diagram Commmand Pattern
 
 <img src="Commmand Class Diagram.svg">
+
+## Class Diagram Observer Pattern
+
+<img src="Observer Class Diagram.svg">
