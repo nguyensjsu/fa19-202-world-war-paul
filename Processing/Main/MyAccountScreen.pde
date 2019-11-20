@@ -11,13 +11,17 @@ public class MyAccountScreen extends Screen implements IDisplayComponent
     private int endHieght = 580;
     private MenuBarScreen menuBar;
     private AddCard addCard;
+    private Header header;
 
     public MyAccountScreen(int height) {
         startHeight = height;
         menuBar = new MenuBarScreen();
+        header = new Header("My Account");
         addCard = new AddCard();
         setNext(addCard);
+
         addSubComponent(menuBar);
+        addSubComponent(header);
     }
 
     /**
@@ -29,17 +33,8 @@ public class MyAccountScreen extends Screen implements IDisplayComponent
         int currentHeight = startHeight;
 
         background(255);
-        textSize(14);
-        fill(0, 0, 0, 255);
 
-        String header = "My Account";
-        text(header, (END_WIDTH - header.length() * 7) / 2, currentHeight);
-        currentHeight += 20;
-
-        strokeWeight(1);
-        stroke(0, 0, 0);
-        line(0, 40, 380, 40);
-        currentHeight += 40;
+        currentHeight += 15;
 
         text("Hi Admin!", startingWidth, currentHeight);
         currentHeight += 40;
