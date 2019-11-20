@@ -10,21 +10,30 @@ public class OptionScreen extends Screen
     /** Front of Event Chain */
     private ITouchEventHandler chain ;
 
-    //for price display
-    private double totalPrice;
+    /** a map to store user input **/
+    private Map< String,String> userInfoMap;
+
     //for Screen Title
     private String title;
-    private int base; 
+
+    //for time line
+    private String timeLineString;
+
+    private int base;
+
+    //store previous price
+    private double previousPrice;
+
     private String name;
+
     public OptionScreen(String t, String n)
     {
-        totalPrice = 0;
         title = t;
         base = 90;
         name = n;
 
         if (name.indexOf("Burger") != -1) { //Found Burger inside the title
-            
+
             OptionTitle title1 = new OptionTitle("Choose Cheese", "Cheese", base-15);
             Screen item1 = new LeftItem("Danish Blue Cheese", 1, base);
             Screen item2 = new LeftItem("Horsadish Cheddar", 1, base + 25*1);
@@ -59,7 +68,7 @@ public class OptionScreen extends Screen
             addSubComp(item12);
             addSubComp(basket);
         } else {
-            
+
             OptionTitle title1 = new OptionTitle("Choose Size", "Size", base-15);
             Screen item1 = new LeftItem("Tall", 2.25, base);
             Screen item2 = new LeftItem("Grande", 2.46, base + 25*1);
@@ -94,6 +103,9 @@ public class OptionScreen extends Screen
             addSubComp(item12);
             addSubComp(basket);
         }
+        userInfoMap = deserialization("storeScreenDetail.json"); //reread userinput from storeScreen
+        timeLineString = userInfoMap.remove("currentTimeLine");
+        previousPrice = Double.parseDouble(userInfoMap.get(timeLineString+"Money")); //add previous money
     }
 
     /**
@@ -117,7 +129,7 @@ public class OptionScreen extends Screen
         //price text
         textSize(16);
         fill(255);
-        text("$"+totalPrice, 330, 660);
+        text("$"+(previousPrice + getSubTotal()), 320, 660);
     }
 
     /**
@@ -128,9 +140,14 @@ public class OptionScreen extends Screen
     @Override
     public void touch(int x, int y) {
         chain.touch(x, y);
+        display();  //require to redisplay otherwise price will not be accurate due to mouse press delay
 
-        //update price and update display price
-        totalPrice = getSubTotal();
+        //if touch the Button
+        if(630<=y && y<= 680){
+            storeUserInput("optionScreenDetail.json"); //store the userInput into a json file
+            //System.out.println(printDescription());  //debugging code
+            resetButton();  //reset the buttom to original
+        }
     }
 
     /**
@@ -153,13 +170,13 @@ public class OptionScreen extends Screen
 
 
     /**
-     * Add A Child Component
+     * Add A Child Component for option Screen to update price and isSelected info
      * @param c Child Component
      */
     public void addSubComp( Screen c )
     {
         addSubComponent((IDisplayComponent)c);         //add Display Component
-        comp.add(c);        //add Screen Component for composite add/getSubtotal
+        comp.add(c);        //add Screen Component for composite getSubtotal
     }
 
 
@@ -190,5 +207,42 @@ public class OptionScreen extends Screen
             }
         }
         return description.toString();
+    }
+
+    /**
+     * Store user input as map and out put json file
+     * @param filename the store input into file name
+     */
+    public void storeUserInput(String filename){
+        StringBuilder optionDetail = new StringBuilder();
+
+        //update money tag in map
+        userInfoMap.put(timeLineString + "Money", Double.toString(previousPrice+getSubTotal()));
+
+        String itemName = userInfoMap.remove("currentItem");
+
+        //loop through all user input to update option detail for item
+        for (Screen c: comp) {
+            if(!c.title().equals("")){
+                if(!c.getClass().toString().split(" ", 2)[1].equals("Main$OptionTitle") ){
+                    optionDetail.append(c.title()+"+");
+                }
+                userInfoMap.put(itemName, optionDetail.toString());
+            }
+        }
+        //System.out.println(Arrays.asList(userInfoMap));   //debug code to print user infor map
+        serialization(userInfoMap, filename);
+
+        //Sample Output
+        //{"0Beef Burger":"Danish Blue Cheese+Horsadish Cheddar+Yello American+Bermuda RedOnion+Black Onions+Appricot Sauce+Ranch+","0Store":"BurgerStore","0Money":"18.0"}
+    }
+
+    /**
+     * reset all button to original display
+     */
+    public void resetButton(){
+        for(Screen c:comp){
+            c.unselected();
+        }
     }
 }

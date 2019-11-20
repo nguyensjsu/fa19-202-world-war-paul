@@ -35,6 +35,9 @@ void setup() {
   welcomeScreen = new WelcomeScreen();
 	device = new Device();
 
+//File directory = new File(".");
+//System.out.println(directory.getAbsolutePath());
+
 	//device.display();
 
 	// // HomePageScreen Testing Code
@@ -65,7 +68,7 @@ void setup() {
 	// ms = new MenuBarScreen();
 	// mas.addSubComponent(ms);
 	// mas.display();
-  
+
   // TODO: Update all display() function: Change all System.out.print() call to processing drawings
 
   // // Store Screen Testing Code
@@ -123,12 +126,12 @@ void setup() {
 
 void draw() {
 
-  if (welcomeScreen.isDisplay()) {
-		welcomeScreen.display();
-	} else {
+  // if (welcomeScreen.isDisplay() == false) {
+	// 	welcomeScreen.display();
+	// } else {
 		device.display();
-	}
-      
+	// }
+
 
 	// // HomePageScreen Testing Code
 	// if (mousePressed) {
@@ -162,15 +165,14 @@ void draw() {
 
 
 void mouseClicked(){
-	
-    if (welcomeScreen.isDisplay()) {
-		welcomeScreen.touch(mouseX, mouseY);
-	} else {
-		device.touch(mouseX, mouseY);
-	}
-      	
 
-      
+  //   if (welcomeScreen.isDisplay()) {
+	// 	welcomeScreen.touch(mouseX, mouseY);
+	// } else {
+		device.touch(mouseX, mouseY);
+	// }
+
+
 	// // HomePageScreen Testing Code
 	// mp.touch(mouseX, mouseY);
 

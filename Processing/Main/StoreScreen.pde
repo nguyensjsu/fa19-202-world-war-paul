@@ -10,20 +10,22 @@ public class StoreScreen extends Screen
     /** Front of Event Chain */
     private ITouchEventHandler chain ;
 
-    //for price display
-    private double totalPrice;
     private int base = 90;
+
+    //a map to store user input
+    Map< String,String> userInfoMap;;
 
     //for Screen Title
     private String title;
-    private Screen item1; 
+    private Screen item1;
     private Screen item2;
     private Screen item3;
-    
+
+    //for time Line count
+    private int timeLine;
 
     public StoreScreen(String screenTitle)
     {
-        totalPrice = 0;
         title = screenTitle;
 
         if (title.equals("Attack Burger")) {
@@ -49,6 +51,9 @@ public class StoreScreen extends Screen
             addSubComp(item2);
             addSubComp(item3);
         }
+
+        userInfoMap =  new HashMap< String,String>();
+        timeLine = 0;
     }
 
     /**
@@ -71,7 +76,7 @@ public class StoreScreen extends Screen
         //price text
         textSize(16);
         fill(255);
-        text("$"+totalPrice, 330, 660);
+        text("$"+getSubTotal(), 320, 660);
     }
 
     /**
@@ -83,8 +88,15 @@ public class StoreScreen extends Screen
     public void touch(int x, int y) {
         chain.touch(x, y);
 
-        //update price and update display price
-        totalPrice = getSubTotal();
+        display();  //require to redisplay otherwise price will not be accurate due to mouse press delay
+
+        //if touch the Button
+        if(base<=y && y<= base + 25*2){
+            System.out.println("succesfully store");
+            storeUserInput("storeScreenDetail.json"); //store the userInput into a json file
+            //System.out.println(printDescription());  //debugging code
+            resetButton();  //reset the buttom to original
+        }
     }
 
     /**
@@ -146,13 +158,68 @@ public class StoreScreen extends Screen
         return description.toString();
     }
 
-    /**
-     * Setup the current Frame reference
-     * @param frame THe frame reference
+        /**
+     * Store user input as map and out put json file and timeline
+     * @param filename the store input into file name
      */
+    public void storeUserInput(String filename){
+
+        String timeLineString = Integer.toString(timeLine);
+
+        //add money tag
+        userInfoMap.put (timeLineString+"Money", Double.toString(getSubTotal()));
+
+        //add Store tag
+        userInfoMap.put (timeLineString+"Store", title);
+
+        //add currentItem tag for the value of selected item
+        for (Screen c: comp) {
+            if(!c.title().equals("")){
+                if( !c.getClass().toString().split(" ", 2)[1].equals("Main$OptionTitle") ){
+                    userInfoMap.put ("currentItem", timeLineString+c.title());
+                }
+            }
+        }
+
+        //add currentTimeLine tag for next class easier to read
+        userInfoMap.put("currentTimeLine", timeLineString);
+
+        //debug code to print userInfoMap
+        //System.out.println(Arrays.asList(userInfoMap));
+
+        serialization(userInfoMap, filename);         //store userinput
+
+        timeLine++; //update time line for next item
+
+        //Sample Output
+        //{"0Store":"BurgerStore","currentTimeLine":"0","0Money":"11.5","currentItem":"0Chicken Burger"}
+    }
+
+    /**
+     * reset all button to original display
+     */
+    public void resetButton(){
+        for(Screen c:comp){
+            c.unselected();
+        }
+    }
+
+    /**
+     * use when user leave the current store or user clear the basket
+     */
+    public void resetStore(){
+        timeLine = 0;
+        userInfoMap =  new HashMap< String,String>();
+    }
+
+
+    /**
+    * Setup the current Frame reference
+    * @param frame THe frame reference
+    */
     public void setFrame(IFrame frame){
-        item1.setFrame(frame);
-        item2.setFrame(frame);
-        item3.setFrame(frame);
+      item1.setFrame(frame);
+      item2.setFrame(frame);
+      item3.setFrame(frame);
     }
 }

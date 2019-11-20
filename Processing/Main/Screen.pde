@@ -18,7 +18,7 @@ public class Screen implements IScreen, IDisplayComponent
     protected IScreen nextScreen;
     protected PShape optionImg1;
     protected PShape optionImg2;
-    
+
     /** Display Components */
     private ArrayList<IDisplayComponent> components = new ArrayList<IDisplayComponent>() ;
 
@@ -65,12 +65,12 @@ public class Screen implements IScreen, IDisplayComponent
     }
 
     /**
-     * Send Previous Screen 
+     * Send Previous Screen
      * @param s Previous Screen Object
      */
     public void setPrev(IScreen s)  {
         prevScreen = s;
-    
+
     }
 
     /**
@@ -95,7 +95,7 @@ public class Screen implements IScreen, IDisplayComponent
      * Get Display Contents
      * @return Display Contents
      */
-    public void display() { 
+    public void display() {
         for (IDisplayComponent c: components) {
             c.display();
         }
@@ -123,7 +123,7 @@ public class Screen implements IScreen, IDisplayComponent
     public String name() {
         return (this.getClass().getName());
     }
-    
+
     /**
      * add price back
      */
@@ -138,7 +138,7 @@ public class Screen implements IScreen, IDisplayComponent
     public String title(){
         return "";
     }
-    
+
     /**
      * Serialize a Map into JSON and write it into a local file
      * @param map a map and convert to JSON file with the fileName
@@ -160,7 +160,7 @@ public class Screen implements IScreen, IDisplayComponent
             //TODO: direct to error msg screen
         }
     }
-    
+
     /**
      * Deserialize a local file from JSON into Map
      * @param fileName a fileName as a String
@@ -169,15 +169,15 @@ public class Screen implements IScreen, IDisplayComponent
     public Map<String, String> deserialization(String fileName)
     {
         Gson gson = new Gson();
-        HashMap<String, String> result = new HashMap<String, String>(); 
+        HashMap<String, String> result = new HashMap<String, String>();
         try
         {
             FileReader fr = new FileReader("." + fileName);
             StringBuilder str = new StringBuilder();
             int i;
-            while ((i=fr.read()) != -1) 
+            while ((i=fr.read()) != -1)
             {
-            str.append((char)i); 
+            str.append((char)i);
             }
             String jsonString = str.toString();
             Type type = new TypeToken<HashMap<String, String>>(){}.getType();
@@ -190,5 +190,25 @@ public class Screen implements IScreen, IDisplayComponent
             // TODO: error message
         }
         return result;
+    }
+
+    /*
+     * Delete file by file name used by clean basket
+     * @param fileName
+     */
+    public void deleteFile(String fileName){
+        File file = new File("." + fileName);  //or this?
+
+        if(file.delete())
+        {
+            //System.out.println("File deleted successfully");
+        }
+    }
+
+   /**
+    * reset the selected button to unselected
+    */
+    public void unselected(){
+        //do nothing over here //this function is required for OptionTitle to use
     }
 }
