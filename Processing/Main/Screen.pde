@@ -153,7 +153,7 @@ public class Screen implements IScreen, IDisplayComponent
       String jsonString = gson.toJson(map);
       try
       {
-        FileWriter file = new FileWriter("." + fileName); // might need to improve about the directory
+        FileWriter file = new FileWriter("." +File.separator+fileName); // might need to improve about the directory
         file.write(jsonString);
         file.close();
       }
@@ -175,7 +175,7 @@ public class Screen implements IScreen, IDisplayComponent
       HashMap<String, String> result = new HashMap<String, String>(); 
       try
       {
-        FileReader fr = new FileReader("." + fileName);
+        FileReader fr = new FileReader("."+File.separator+fileName);
         StringBuilder str = new StringBuilder();
         int i;
         while ((i=fr.read()) != -1) 
@@ -192,5 +192,19 @@ public class Screen implements IScreen, IDisplayComponent
         e.printStackTrace();
       }
       return result;
+    }
+    
+    public void resetBasket(String fileName)
+    {
+      File file = new File("."+File.separator+fileName); 
+          
+      if(file.delete()) 
+      { 
+          System.out.println("File deleted successfully"); 
+      } 
+      else
+      { 
+          System.out.println("Failed to delete the file"); 
+      } 
     }
 }

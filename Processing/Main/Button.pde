@@ -40,22 +40,22 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
      */
     public void touch(int x, int y) 
     {
-		if(buttonName.equals("Pay")) // case for Payment, more cases can be added later
-		{
-			if(x > 0 && x < 380 && y > 620 && y < 680)
-			{
-				File file = new File("." + "file.json"); //TODO: figure out a way to make it general or the file made from AddCard to store cardInfo should be named specificlly
-				boolean exists = file.exists();
-				if (exists) {
-					// TODO: jump to orderResultScreen
-				} else {
-					err.setTimer(millis()+ 1000); // 1000 = 1 second
-					err.setFlag(true); // display error message
-				}
-			}
-		} else if (nextHandler != null) {
-			nextHandler.touch(x,y);
-		}
+  		if(buttonName.equals("Pay")) // case for Payment, more cases can be added later
+  		{
+  			if(x > 0 && x < 380 && y > 620 && y < 680)
+  			{
+  				File file = new File("./" + "file.json"); //TODO: figure out a way to make it general or the file made from AddCard to store cardInfo should be named specificlly
+  				boolean exists = file.exists();
+  				if (exists) {
+  					// TODO: jump to orderResultScreen
+  				} else {
+  					err.setTimer(millis()+ 1000); // 1000 = 1 second
+  					err.setFlag(true); // display error message
+  				}
+  			}
+  		} else if (nextHandler != null) {
+  			nextHandler.touch(x,y);
+  		}
     }
     
     /**

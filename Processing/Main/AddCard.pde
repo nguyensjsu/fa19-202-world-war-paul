@@ -79,19 +79,19 @@ public class AddCard extends Screen
     public void touch(int x, int y)
     {
       
-      if(x > 10 && x < 130 && y > 80 && y < 100)
+      if(x > 10 && x < 130 && y > 70 && y < 110)
       {
         cardNumberFlag = true;
         cardExpirtyFlag = false;
         cardCVVFlag = false;
       }
-      else if( x > 10 && x < 80 && y > 120 && y < 140)
+      else if( x > 10 && x < 80 && y > 120 && y < 150)
       {
         cardNumberFlag = false;
         cardExpirtyFlag = true;
         cardCVVFlag = false;
       }
-      else if( x > 120 && x < 300 && y > 120 && y < 140)
+      else if( x > 120 && x < 300 && y > 120 && y < 150)
       {
         cardNumberFlag = false;
         cardExpirtyFlag = false;

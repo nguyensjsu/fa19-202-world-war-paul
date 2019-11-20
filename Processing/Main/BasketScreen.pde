@@ -156,7 +156,9 @@ public class BasketScreen extends Screen implements IDisplayComponent {
      */
     @Override
     public void touch(int x, int y) {
-        chain.touch(x, y);
+      if(x > 0 && y > 0)
+        resetBasket("optionScreenDetail.json");
+        //chain.touch(x, y);
     }
     @Override // for now, but all path of files shuold be standarized later during the group meeting
     public Map<String, String> deserialization(String fileName)
