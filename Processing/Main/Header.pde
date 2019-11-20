@@ -12,6 +12,8 @@ public class Header extends Screen implements ITouchEventHandler, IDisplayCompon
         textSize(22);
         textAlign(CENTER);
         text(header, 190, 30);
+
+        // reset text front
         textAlign(LEFT);
         textSize(14);
 

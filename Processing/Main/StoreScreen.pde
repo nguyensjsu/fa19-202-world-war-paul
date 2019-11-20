@@ -24,10 +24,12 @@ public class StoreScreen extends Screen
     //for time Line count
     private int timeLine;
 
+    private Header header;
+
     public StoreScreen(String screenTitle)
     {
         title = screenTitle;
-
+        header = new Header(title);
         if (title.equals("Attack Burger")) {
             OptionTitle title1 = new OptionTitle("Choose a Burger", "Burger", base-15);
             Screen basket = new Basket("Add Basket",630);
@@ -39,6 +41,7 @@ public class StoreScreen extends Screen
             addSubComp(item1);
             addSubComp(item2);
             addSubComp(item3);
+            addSubComp(header);
         } else if (title.equals("Starbucks")) {
             OptionTitle title1 = new OptionTitle("Choose a Coffee", "Starbucks", base-15);
             Screen basket = new Basket("Add Basket",630);
@@ -50,6 +53,7 @@ public class StoreScreen extends Screen
             addSubComp(item1);
             addSubComp(item2);
             addSubComp(item3);
+            addSubComp(header);
         }
 
         userInfoMap =  new HashMap< String,String>();
@@ -63,10 +67,10 @@ public class StoreScreen extends Screen
     public void display(){
         int currentHeight = 20;
         background(255);
-        textSize(20);
-        fill(0, 0, 0, 255);
-
-        text(title, (END_WIDTH - title.length() * 7) / 2, currentHeight);
+        // textSize(20);
+        // fill(0, 0, 0, 255);
+        //
+        // text(title, (END_WIDTH - title.length() * 7) / 2, currentHeight);
         currentHeight += 20;
 
         for (IDisplayComponent c: components) {

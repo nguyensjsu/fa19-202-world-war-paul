@@ -29,6 +29,8 @@ public class OptionScreen extends Screen
 
     private String name;
 
+    private Header header;
+
     public OptionScreen(String t, String n)
     {
         title = t;
@@ -36,6 +38,7 @@ public class OptionScreen extends Screen
         name = n;
         firstTimeRead = true;
 
+        header = new Header(title);
         if (name.indexOf("Burger") != -1) { //Found Burger inside the title
 
             OptionTitle title1 = new OptionTitle("Choose Cheese", "Cheese", base-15);
@@ -55,6 +58,7 @@ public class OptionScreen extends Screen
             Screen item12 = new LeftItem("Besil Pesto", 0.75, base + 25*15);
             Screen basket = new Basket("Add Basket", 630);
 
+            //addSubComp(header);
             addSubComp(title1);
             addSubComp(item1);
             addSubComp(item2);
@@ -71,6 +75,7 @@ public class OptionScreen extends Screen
             addSubComp(item11);
             addSubComp(item12);
             addSubComp(basket);
+
         } else {
 
             OptionTitle title1 = new OptionTitle("Choose Size", "Size", base-15);
@@ -90,6 +95,7 @@ public class OptionScreen extends Screen
             Screen item12 = new LeftItem("2% Milk", 0, base + 25*15);
             Screen basket = new Basket("Add Basket", 630);
 
+            //addSubComp(header);
             addSubComp(title1);
             addSubComp(item1);
             addSubComp(item2);
