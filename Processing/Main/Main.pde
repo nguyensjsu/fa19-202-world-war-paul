@@ -132,7 +132,8 @@ void draw() {
     welcomeScreen.display();
   }else{
 		device.display();
-  }
+	}
+
 
 	// // HomePageScreen Testing Code
 	// if (mousePressed) {
