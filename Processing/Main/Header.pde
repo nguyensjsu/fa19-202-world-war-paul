@@ -1,15 +1,23 @@
 /* Error Screen */
 public class Header extends Screen implements ITouchEventHandler, IDisplayComponent{
 
-
+    private String header;
     private ITouchEventHandler nextHandler ;
 
     public Header(String str){
-
+        this.header = str;
     }
 
-    // display error message on top of the screen for a few second
     public void display(){
+        textSize(22);
+        textAlign(CENTER);
+        text(header, 190, 30);
+        textAlign(LEFT);
+        textSize(14);
+
+        strokeWeight(1);
+        stroke(0, 0, 0);
+        line(0, 45, 380, 45);
 
     }
 

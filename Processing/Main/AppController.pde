@@ -4,7 +4,7 @@
 public class AppController implements IProxy {
 
     // TODO: Update Screens and Commands
-    
+
     private IScreen home ;
     private IScreen orderHistory ;
     private IScreen account ;
@@ -24,17 +24,17 @@ public class AppController implements IProxy {
         home.setFrame(frame);
         orderHistory.setFrame(frame);
         account.setFrame(frame);
-        
+
         // Set the screen flow
-        
+
         //addCard.setFrame();
-        
+
 
         // setup command pattern
         displayOrderHistory  = new MenuCommand() ;
         displayHome = new MenuCommand() ;
         displayAccount  = new MenuCommand() ;
-        
+
         displayOrderHistory.setReceiver(
           new IMenuReceiver() {
               /** Command Action */
@@ -59,7 +59,7 @@ public class AppController implements IProxy {
               }
         }
         ) ;
-      
+
         frame.setMenuItem ("home", displayHome ) ; // left
         frame.setMenuItem ("order", displayOrderHistory ) ; // middle
         frame.setMenuItem ("account", displayAccount ) ; // right

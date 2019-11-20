@@ -24,7 +24,7 @@ public class MyAccountScreen extends Screen implements IDisplayComponent
      * Display store screen
      */
     public void display() {
-        
+
         int startingWidth = 10;
         int currentHeight = startHeight;
 
@@ -38,7 +38,7 @@ public class MyAccountScreen extends Screen implements IDisplayComponent
 
         strokeWeight(1);
         stroke(0, 0, 0);
-        line(0, 40, 380, 40); 
+        line(0, 40, 380, 40);
         currentHeight += 40;
 
         text("Hi Admin!", startingWidth, currentHeight);
@@ -69,13 +69,13 @@ public class MyAccountScreen extends Screen implements IDisplayComponent
             prev.setNext( (ITouchEventHandler) c ) ;
         }
     }
-    
+
     /**
-     * Touch Event 
+     * Touch Event
      * @param x Touch X
      * @param y Touch Y
      */
-    public void touch(int x, int y) 
+    public void touch(int x, int y)
     {
         if (startHeight <= y && y <= endHieght) {
             // TODO: next() should jump to next screen
