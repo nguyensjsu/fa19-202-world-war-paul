@@ -76,12 +76,10 @@ public class Device implements IProxy, IPinAuthObserver {
      * Display Screen Contents to Terminal
      */
     public void display() {
-        //System.out.println( screenContents() ) ;
         if ( authenticated ) {
             app.display();
         } else {
             ps.display();
-
         }
     }
 
