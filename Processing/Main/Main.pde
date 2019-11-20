@@ -71,7 +71,6 @@ void setup() {
 	// mas.addSubComponent(ms);
 	// mas.display();
 
-  // TODO: Update all display() function: Change all System.out.print() call to processing drawings
 
   // // Store Screen Testing Code
   // int base = 90;
@@ -161,7 +160,6 @@ void draw() {
 	//    fill(255);
 	//  }
 
-	//  // TODO: Update screenContents() & all display() functions: Change all System.out.print() call to processing drawings
 }
 
 

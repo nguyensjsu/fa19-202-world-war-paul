@@ -80,7 +80,6 @@ public class Device implements IProxy, IPinAuthObserver {
         if ( authenticated ) {
             app.display();
         } else {
-            // TODO: Pinscreen
             ps.display();
 
         }
