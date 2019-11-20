@@ -10,6 +10,7 @@ public class Header extends Screen implements ITouchEventHandler, IDisplayCompon
 
     public void display(){
         textSize(22);
+        fill(0);
         textAlign(CENTER);
         text(header, 190, 30);
 

@@ -58,7 +58,6 @@ public class OptionScreen extends Screen
             Screen item12 = new LeftItem("Besil Pesto", 0.75, base + 25*15);
             Screen basket = new Basket("Add Basket", 630);
 
-            //addSubComp(header);
             addSubComp(title1);
             addSubComp(item1);
             addSubComp(item2);
@@ -75,6 +74,7 @@ public class OptionScreen extends Screen
             addSubComp(item11);
             addSubComp(item12);
             addSubComp(basket);
+            addSubComp(header);
 
         } else {
 
@@ -95,7 +95,6 @@ public class OptionScreen extends Screen
             Screen item12 = new LeftItem("2% Milk", 0, base + 25*15);
             Screen basket = new Basket("Add Basket", 630);
 
-            //addSubComp(header);
             addSubComp(title1);
             addSubComp(item1);
             addSubComp(item2);
@@ -112,6 +111,7 @@ public class OptionScreen extends Screen
             addSubComp(item11);
             addSubComp(item12);
             addSubComp(basket);
+            addSubComp(header);
         }
     }
 
@@ -129,11 +129,11 @@ public class OptionScreen extends Screen
 
         int currentHeight = 20;
         background(255);
-        textSize(20);
-        fill(0, 0, 0, 255);
-
-        text(title, (END_WIDTH - title.length() * 10) / 2, currentHeight);
-        currentHeight += 20;
+        // textSize(20);
+        // fill(0, 0, 0, 255);
+        //
+        // text(title, (END_WIDTH - title.length() * 10) / 2, currentHeight);
+        // currentHeight += 20;
 
         for (IDisplayComponent c: components) {
             c.display();
