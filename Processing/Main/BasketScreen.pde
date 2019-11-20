@@ -5,6 +5,19 @@ public class BasketScreen extends Screen implements IDisplayComponent {
     private ITouchEventHandler chain ;
     Map<String, String> order = new HashMap<String, String>();
     List<Map<String, String>> orderList = new ArrayList<Map<String, String>>();
+            
+    int lineCounter = 0;
+    double totalPrice = 0;
+    
+    String storeName = "";
+    String itemPrice = "";
+    String itemName = "";
+    String itemAddon = "";
+    
+    String serviceFee = "";
+    String tax = "";
+    
+    private DecimalFormat df2 = new DecimalFormat("#.##");
     
     public BasketScreen() {
        
@@ -25,9 +38,7 @@ public class BasketScreen extends Screen implements IDisplayComponent {
         strokeWeight(3);
         stroke(0, 0, 0);
         line(0, 60, 380, 60); // Line under title
-        int lineCounter = 0;
-        double totalPrice = 0;
-        String storeName = "";
+
         
         order = deserialization("optionScreenDetail.json"); // fileName can be hardcode since it will be decided during the design
         
@@ -49,23 +60,18 @@ public class BasketScreen extends Screen implements IDisplayComponent {
         
         for(int i = 0; i < orderList.size(); i++) // display items, add-ons and money for each item
         {
-          textSize(15);
-          text("Item " + i + 1, 190, 80 + 20*lineCounter);
           lineCounter ++;
           for (Map.Entry<String, String> entry : orderList.get(i).entrySet()) 
           {
              println(entry.getKey() + "  " + entry.getValue());
              if(!entry.getKey().equals("Store") && !entry.getKey().equals("Money")) // in case if the items are too long to display
              {
-               text(entry.getKey(), 190, 80 + 20*lineCounter);
-               lineCounter ++;
-               text("Add-Ons: " + entry.getValue(), 190, 80 + 20*lineCounter);
-               lineCounter ++;
+               itemName = entry.getKey();
+               itemAddon = entry.getValue();
              }
              else if(entry.getKey().equals("Money"))
              {
-               text(entry.getKey() + " : " + entry.getValue(), 190, 80 + 20*lineCounter);
-               lineCounter ++;
+               itemPrice = entry.getValue();
                totalPrice += Double.parseDouble(entry.getValue());
              }
              else
@@ -73,15 +79,55 @@ public class BasketScreen extends Screen implements IDisplayComponent {
                storeName = entry.getValue();
              }
           }
+          displayItem();      
         }
+        displayFee();
         
-        textAlign(RIGHT);
-        text("Store: " + storeName, 380, 590);
-        text("Total Price: " + totalPrice, 380, 610);
         
         for (IDisplayComponent c: components) {
             c.display();
         }
+    }
+    
+    public void displayItem()
+    {
+      fill(0, 0, 0, 255);
+      textSize(20);
+      textAlign(LEFT);
+      text(itemName, 10, 100 + 20*lineCounter);
+      text("$" + itemPrice, 300, 100 + 20*lineCounter);
+      lineCounter ++;
+      fill(0, 0, 0, 150);
+      text(itemAddon, 10, 100 + 20*lineCounter); // need to determine if the text length is above 380
+      lineCounter ++;
+      strokeWeight(3);
+      stroke(0, 0, 0);
+      line(10, 100 + 20*lineCounter, 370, 100+20*lineCounter);
+      lineCounter ++;
+    }
+    
+    public void displayFee()
+    {
+      
+      fill(0, 0, 0, 255);
+      textAlign(CENTER);
+      textSize(25); 
+      text(storeName, 190, 90);
+      textAlign(RIGHT);
+      text("$" + totalPrice, 370, 600);
+      textAlign(LEFT);
+      text("Total: ", 10, 600);
+      
+   
+      textSize(20);
+      textAlign(LEFT);
+      text("Tax: ", 10, 100 + 20*lineCounter);
+      text("$" +  df2.format(totalPrice*0.1), 300, 100 + 20*lineCounter);
+      lineCounter ++;
+      text("Service Fee: ", 10, 100 + 20*lineCounter);
+      text("$" + df2.format(totalPrice*0.15), 300, 100 + 20*lineCounter);
+      lineCounter ++;
+      
     }
 
     /**
@@ -133,7 +179,7 @@ public class BasketScreen extends Screen implements IDisplayComponent {
       }
       catch(IOException e)
       {
-        e.printStackTrace();
+        //TODO: direct the user to home screen
       }
       return result;
     }
