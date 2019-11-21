@@ -1,59 +1,110 @@
 public class Order
 {
-	int  orderNumber;
+	private int orderNumber;
 	double price;
 	String storeName;
-	ArrayList<BigItem> bigItem = new ArrayList<BigItem>();
+	ArrayList<BigItem> bigItemList;
+	double serviceFee;
+	double tax;
 
-	Order()
+	public Order(String n)
 	{
-		orderNumber = 0;
 		price = 0;
-		storeName = "";	
-	}
-
-	void setOrderNumber(int n)
-	{
-		 orderNumber = n;
-	}
-
-	void addBigItem(BigItem item)
-	{
-		bigItem.add(item);
-	}
-
-	void setStoreName(String n)
-	{
+		orderNumber = 0;
 		storeName = n;
+		bigItemList = new ArrayList<BigItem>();
+	}
+	
+	public void setPrice(double p)
+	{
+		price = p;
 	}
 
-	int getOrderNumber()
+	public ArrayList<BigItem> getBigItem()
 	{
-		return orderNumber;
+		return bigItemList;
 	}
 
-	void calculatePrice()
+	/**
+	 * return total price 
+	 * @return the total price
+	 */
+	public double getPrice()
 	{
-		for(int i = 0; i < bigItem.size(); i++)
-		{
-			price += bigItem.get(i).getSmallItemPrice();
-			price += bigItem.get(i).getPrice();
+		if(bigItemList.size()>0){
+			double subtotal = 0.0;  //recalculate require hard reset
+			for(BigItem entry: bigItemList){
+				subtotal += entry.getPrice();
+			}
+			price = subtotal;
 		}
-		println("Big Item price is " + price);
-	}
-
-	double getPrice()
-	{
 		return price;
 	}
 
-	String getStoreName()
+
+	/**
+	 * return the latest item total price
+	 * @return the total price
+	 */
+	public double getLatestPrice()
+	{
+		return bigItemList.get(bigItemList.size()-1).getPrice();
+	}
+
+	/**
+	 * Add Big item into the order
+	 * @param name = Item name
+	 * @param price = Item price
+	 */
+	public void addBigItem(String name, double price)
+	{
+		BigItem bigItem = new BigItem(name, price);
+		bigItemList.add(bigItem);
+		
+		price = getPrice(); //update price is required
+	}
+
+	/**
+	 * Add small item into the order
+	 * @param name = Item name
+	 * @param price = Item price
+	 */
+	public void addSmallItem(String name, double price)
+	{
+		SmallItem smallItem = new SmallItem(name, price);
+		
+		//add the small item to the latest BigItem
+		BigItem latestBigItem = bigItemList.get(bigItemList.size()-1);
+		latestBigItem.addSmallItem(name, price);
+
+		price = getPrice(); //update price is required
+	}
+	
+	//debug purpose
+	public void print(){
+		System.out.println("first big item is "+ bigItemList.get(orderNumber).getName());
+		System.out.println("first big item is "+bigItemList.get(orderNumber).getPrice());
+	}
+
+	public String getStoreName()
 	{
 		return storeName;
 	}
 
-	ArrayList<BigItem> getBigItem()
+	public double getServiceFee()
 	{
-		return bigItem;
+		serviceFee = price * 0.15;
+		return serviceFee;
+	}
+
+	public double getTax()
+	{
+		tax = price * 0.1;
+		return tax;
+	}
+
+	public double getTotalPrice()
+	{
+		return price *(1 + 0.1 + 0.15);
 	}
 }

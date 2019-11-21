@@ -1,60 +1,53 @@
 public class BigItem
 {
-	String name;
 	double price;
-	double smallItemPrice;
-	ArrayList<SmallItem> smallItem = new ArrayList<SmallItem>();    
+	ArrayList<SmallItem> smallItemList;  
+	String name;  
 
-	BigItem()
+	public BigItem(String itemName, double itemPrice)
 	{
-		price = 0;
-		name = "";
-		smallItemPrice = 0;
-	}
-	
-	void setPrice(double p)
-	{
-		price = p;
+		price = itemPrice;
+		smallItemList = new ArrayList<SmallItem>();
+		name = itemName;
 	}
 
-	void addSmallItem(SmallItem item)
+	/**
+	 * return total price 
+	 * @return the smallal price
+	 */
+	public double getPrice()
 	{
-		println("added something to big item");
-		smallItem.add(item);
+		if(smallItemList.size() > 0){
+			double subtotal = price;
+			for(SmallItem entry: smallItemList){
+				subtotal += entry.getPrice();
+			}
+			return subtotal;
+		}
+		else{
+			return price;
+		}
 	}
 
-	void setName(String n)
+	public void addSmallItem(String name, double price)
 	{
-		name = n;
+		SmallItem smallItem = new SmallItem(name, price);
+		smallItemList.add(smallItem);
+		
+		//debug purpose
+		//System.out.println("small item name is: "+smallItem.getName());
+		//System.out.println("small item price is: "+smallItem.getPrice());
 	}
 
-	double getPrice()
-	{
-		return price;
-	}
-
-	String getName()
-	{
+	/**
+	 ＊ return name
+	 * @return name of big item
+	 */
+	public String getName(){
 		return name;
 	}
 
-	void calculateSmallItemPrice()
-	{
-		println("Small item array size is " + smallItem.size());
-		for(int i = 0; i < smallItem.size(); i++)
-		{
-			smallItemPrice += smallItem.get(i).getPrice();
-		}
-		println("Small item price is " + smallItemPrice);
-	}
-
-	double getSmallItemPrice()
-	{
-		return smallItemPrice;
-	}
-
-	ArrayList<SmallItem> getSmallItem()
-	{
-		return smallItem;
+	public ArrayList<SmallItem> getSmallItem(){
+		return smallItemList;
 	}
 }

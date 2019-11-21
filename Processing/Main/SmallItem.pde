@@ -3,29 +3,22 @@ public class SmallItem
 	double price;
 	String name;    
 
-	SmallItem()
+	public SmallItem(String itemName, double itemPrice)
 	{
-		price = 0;
-		name = "";
-	}
-	
-	void setPrice(double p)
-	{
-		price = p;
+		price = itemPrice;
+		name = itemName;
 	}
 
-	void setName(String n)
-	{
-		name = n;
-	}    
-
-	double getPrice()
+	/**
+	 * return total price 
+	 * @return the smallal price
+	 */
+	public double getPrice()
 	{
 		return price;
 	}
 
-	String getName()
-	{
+	public String getName(){
 		return name;
-	}  
+	}     
 }

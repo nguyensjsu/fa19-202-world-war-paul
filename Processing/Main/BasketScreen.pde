@@ -1,9 +1,7 @@
 public class BasketScreen extends Screen implements IDisplayComponent {
 
-    /** Display Components */
     private ArrayList<IDisplayComponent> components = new ArrayList<IDisplayComponent>() ;
     private ITouchEventHandler chain ;
-    //Map<String, String> order = new HashMap<String, String>();
     List<Map<String, String>> orderList = new ArrayList<Map<String, String>>();
     
     int lineCounter = 0;
@@ -11,34 +9,22 @@ public class BasketScreen extends Screen implements IDisplayComponent {
     double totalPrice = 0;
     String storeName = "";
 
-    double BigItemPrice = 0;
-    String BigItemName = "";
+    double bigItemPrice = 0;
+    String bigItemName = "";
 
-    double SmallItemPrice = 0;
-    String SmallItemName = "";
+    double smallItemPrice = 0;
+    String smallItemName = "";
     
     double serviceFee = 0;
     double tax = 0;
     
     private DecimalFormat df2 = new DecimalFormat("#.##");
     
-    Order order = new Order();
-    BigItem bi = new BigItem();
-    SmallItem si = new SmallItem();
-
-
+    Order order = new Order("Burger King");
 
     public BasketScreen() {
-      si.setName("Cheese");
-      si.setPrice(3.45);
-      bi.setName("Buger");
-      bi.setPrice(10.15);
-      bi.addSmallItem(si);
-      bi.calculateSmallItemPrice();
-      //order.setPrice(13.6);
-      order.addBigItem(bi);
-      order.calculatePrice();
-      order.setStoreName("Burger King");
+      order.addBigItem("Burger", 10.15);
+      order.addSmallItem("Cheese", 1.15);
     }
 
     /**
@@ -58,28 +44,23 @@ public class BasketScreen extends Screen implements IDisplayComponent {
         line(0, 60, 380, 60); // Line under title
 
         serialization(order, "OrderTest.json");
-        order = deserialization("OrderTest.json"); // fileName can be hardcode since it will be decided during the design
+        order = deserialization("OrderTest.json"); 
 
         storeName = order.getStoreName();
         serviceFee = order.getPrice() * 0.15;
-        tax = order.getPrice() * 0.1;
-        totalPrice = order.getPrice() + serviceFee + tax;
+        tax = order.getTax();
+        totalPrice = order.getTotalPrice();
 
-        // println("The Order Number is " + order.getOrderNumber());
         println("The total Price is " + order.getPrice());
         for(int i = 0; i < order.getBigItem().size(); i++)
         {
-            BigItemName = order.getBigItem().get(i).getName();
-            BigItemPrice = order.getBigItem().get(i).getPrice();
-            // println("Big Item name is " + order.getBigItem().get(i).getName());
-            // println("Big Item Price is" + order.getBigItem().get(i).getPrice());
+            bigItemName = order.getBigItem().get(i).getName();
+            bigItemPrice = order.getBigItem().get(i).getPrice();
             
             for(int j = 0; j < order.getBigItem().get(i).getSmallItem().size(); j++)
             {
-                SmallItemName = order.getBigItem().get(i).getSmallItem().get(j).getName();
-                SmallItemPrice = order.getBigItem().get(i).getSmallItem().get(j).getPrice();
-                // println("Small Item name is " +order.getBigItem().get(i).getSmallItem().get(j).getName());
-                // println("Small Item price is " + order.getBigItem().get(i).getSmallItem().get(j).getPrice());
+                smallItemName = order.getBigItem().get(i).getSmallItem().get(j).getName();
+                smallItemPrice = order.getBigItem().get(i).getSmallItem().get(j).getPrice();
             }
             displayItem();
         }
@@ -94,12 +75,12 @@ public class BasketScreen extends Screen implements IDisplayComponent {
       fill(0, 0, 0, 255);
       textSize(20);
       textAlign(LEFT);
-      text(BigItemName, 10, 100 + 20*lineCounter);
-      text("$" + df2.format(BigItemPrice), 300, 100 + 20*lineCounter);
+      text(bigItemName, 10, 100 + 20*lineCounter);
+      text("$" + df2.format(bigItemPrice), 300, 100 + 20*lineCounter);
       lineCounter ++;
       fill(0, 0, 0, 150);
-      text(SmallItemName, 10, 100 + 20*lineCounter); // need to determine if the text length is above 380
-      text("$" + df2.format(SmallItemPrice), 300, 100 + 20*lineCounter);
+      text(smallItemName, 10, 100 + 20*lineCounter); // need to determine if the text length is above 380
+      text("$" + df2.format(smallItemPrice), 300, 100 + 20*lineCounter);
       lineCounter ++;
       strokeWeight(3);
       stroke(0, 0, 0);
@@ -118,8 +99,6 @@ public class BasketScreen extends Screen implements IDisplayComponent {
       text("$" + df2.format(totalPrice), 370, 600);
       textAlign(LEFT);
       text("Total: ", 10, 600);
-      
-   
       textSize(20);
       textAlign(LEFT);
       text("Tax: ", 10, 100 + 20*lineCounter);
@@ -157,8 +136,6 @@ public class BasketScreen extends Screen implements IDisplayComponent {
      */
     @Override
     public void touch(int x, int y) {
-      if(x > 0 && y > 0)
-        resetBasket("optionScreenDetail.json");
-        //chain.touch(x, y);
-        }
+        chain.touch(x, y);
+    }
 }

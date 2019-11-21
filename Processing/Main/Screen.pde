@@ -197,7 +197,7 @@ public class Screen implements IScreen, IDisplayComponent
     public Order deserialization(String fileName)
     {
       Gson gson = new Gson();
-      Order result = new Order(); 
+      Order result = new Order(""); 
       try
       {
         FileReader fr = new FileReader("."+File.separator+fileName);
