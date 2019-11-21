@@ -33,7 +33,22 @@ public class Header extends Screen implements ITouchEventHandler, IDisplayCompon
           line(13, 22.5, 32, 35);
           line(13, 22.5, 32, 10);
       }
-      if(header.equals("Starbucks")){
+      else if(header.equals("Starbucks")){
+        strokeWeight(1.5);
+        line(13, 22.5, 32, 35);
+        line(13, 22.5, 32, 10);
+      }
+      else if(header.equals("Starbucks")){
+        strokeWeight(1.5);
+        line(13, 22.5, 32, 35);
+        line(13, 22.5, 32, 10);
+      }
+      else if(header.equals("Custom Burger Options")){
+        strokeWeight(1.5);
+        line(13, 22.5, 32, 35);
+        line(13, 22.5, 32, 10);
+      }
+      else if(header.equals("Custom Starbuck Options")){
         strokeWeight(1.5);
         line(13, 22.5, 32, 35);
         line(13, 22.5, 32, 10);
@@ -56,6 +71,7 @@ public class Header extends Screen implements ITouchEventHandler, IDisplayCompon
      * @param y Touch Y
      */
     public void touch(int x, int y){
+        // handle prev button, navigate to screen base on current screen
         if(header.equals("Attack Burger") || header.equals("Starbucks")){
             if(y <= endHieght && x <= 40){
                 HomePageScreen home = new HomePageScreen("San Jose State University") ;
@@ -63,7 +79,20 @@ public class Header extends Screen implements ITouchEventHandler, IDisplayCompon
                 prev();
             }
         }
-
+        else if(header.equals("Custom Burger Options")){
+            if(y <= endHieght && x <= 40){
+                StoreScreen storeScreen = new StoreScreen("Attack Burger");
+                setPrev(storeScreen);
+                prev();
+            }
+        }
+        else if(header.equals("Custom Starbuck Options")){
+            if(y <= endHieght && x <= 40){
+                StoreScreen storeScreen = new StoreScreen("Starbucks");
+                setPrev(storeScreen);
+                prev();
+            }
+        }
         else if (nextHandler != null) {
             nextHandler.touch(x,y);
         }

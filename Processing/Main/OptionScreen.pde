@@ -259,4 +259,12 @@ public class OptionScreen extends Screen
         }
         firstTimeRead = true;
     }
+
+    /**
+    * Setup the current Frame reference
+    * @param frame THe frame reference
+    */
+    public void setFrame(IFrame frame){
+      header.setFrame(frame);
+    }
 }
