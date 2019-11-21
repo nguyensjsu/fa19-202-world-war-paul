@@ -21,11 +21,14 @@ public class BasketScreen extends Screen implements IDisplayComponent {
     private DecimalFormat df2 = new DecimalFormat("#.##");
     
     Order order = new Order();
+    Button payButton;
 
     public BasketScreen() {
       order.setStoreName("Burger King");
       order.addBigItem("Burger", 10.15);
       order.addSmallItem("Cheese", 1.15);
+      payButton = new Button("Pay");
+      addSubComponent(payButton);
     }
 
     /**
@@ -66,6 +69,7 @@ public class BasketScreen extends Screen implements IDisplayComponent {
             displayItem();
         }
         displayFee();
+        lineCounter = 0;
         for (IDisplayComponent c: components) {
             c.display();
         }
@@ -87,6 +91,7 @@ public class BasketScreen extends Screen implements IDisplayComponent {
       stroke(0, 0, 0);
       line(10, 100 + 20*lineCounter, 370, 100+20*lineCounter);
       lineCounter ++;
+
     }
     
     public void displayFee()
