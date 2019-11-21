@@ -1,3 +1,5 @@
+import java.text.DecimalFormat;
+
 /** Option Screen which can choose custom option for item*/
 public class OptionScreen extends Screen
 {
@@ -196,6 +198,8 @@ public class OptionScreen extends Screen
         for (Screen c: comp) {
             subtotal += c.add();
         }
+        DecimalFormat df = new DecimalFormat("##.00");
+        subtotal = Double.parseDouble(df.format(subtotal));
         return subtotal;
     }
 
