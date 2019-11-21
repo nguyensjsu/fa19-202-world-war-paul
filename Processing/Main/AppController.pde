@@ -15,7 +15,7 @@ public class AppController implements IProxy {
 
     public AppController() {
 
-        home = new HomePageScreen("San Jose State University") ;
+        home = new HomePageScreen("San Jose State University");
         orderHistory = new OrderHistoryScreen() ;
         account = new MyAccountScreen(60) ;
         frame = new Frame( home ) ;

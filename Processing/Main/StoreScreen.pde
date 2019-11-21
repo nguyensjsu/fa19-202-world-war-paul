@@ -221,8 +221,10 @@ public class StoreScreen extends Screen
     * @param frame THe frame reference
     */
     public void setFrame(IFrame frame){
+      //frame = getFrame();
       item1.setFrame(frame);
       item2.setFrame(frame);
       item3.setFrame(frame);
+      header.setFrame(frame);
     }
 }
