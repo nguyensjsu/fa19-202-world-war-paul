@@ -42,11 +42,6 @@ public class Order
 		println("Big Item price is " + price);
 	}
 
-	void setPrice(double p)
-	{
-		price = p;
-	}
-
 	double getPrice()
 	{
 		return price;
