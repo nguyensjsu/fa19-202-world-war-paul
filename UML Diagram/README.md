@@ -38,9 +38,17 @@
 
 ## Use Case - View Store Page
 
+<img src="View Store Sequence Diagram.svg">
+
 ## Use Case - Place An Order
+
+<img src="Place An Order Sequence Diagram.svg">
 
 ## Use Case - View Order History
 
+<img src="View Order History Sequence Diagram.svg">
+
 ## Use Case - View Acconut Information
+
+<img src="View Acconut Sequence Diagram.svg">
 
