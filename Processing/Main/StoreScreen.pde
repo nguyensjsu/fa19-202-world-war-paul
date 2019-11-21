@@ -12,17 +12,14 @@ public class StoreScreen extends Screen
 
     private int base = 90;
 
-    //a map to store user input
-    Map< String,String> userInfoMap;;
+    //To store order information
+    Order currentOrder;
 
     //for Screen Title
     private String title;
     private Screen item1;
     private Screen item2;
     private Screen item3;
-
-    //for time Line count
-    private int timeLine;
 
     public StoreScreen(String screenTitle)
     {
@@ -52,8 +49,6 @@ public class StoreScreen extends Screen
             addSubComp(item3);
         }
 
-        userInfoMap =  new HashMap< String,String>();
-        timeLine = 0;
     }
 
     /**
@@ -93,7 +88,6 @@ public class StoreScreen extends Screen
         //if touch the Button
         if(base<=y && y<= base + 25*2){
             storeUserInput("storeScreenDetail.json"); //store the userInput into a json file
-            //System.out.println(printDescription());  //debugging code
             resetButton();  //reset the buttom to original
         }
     }
@@ -163,35 +157,19 @@ public class StoreScreen extends Screen
      */
     public void storeUserInput(String filename){
 
-        String timeLineString = Integer.toString(timeLine);
-
-        //add money tag
-        userInfoMap.put (timeLineString+"Money", Double.toString(getSubTotal()));
-
-        //add Store tag
-        userInfoMap.put (timeLineString+"Store", title);
+        //String timeLineString = Integer.toString(timeLine);
+        currentOrder = new Order();
 
         //add currentItem tag for the value of selected item
         for (Screen c: comp) {
             if(!c.title().equals("")){
                 if( !c.getClass().toString().split(" ", 2)[1].equals("Main$OptionTitle") ){
-                    userInfoMap.put ("currentItem", timeLineString+c.title());
+                    //Store item and price into order class
+                    currentOrder.addBigItem(c.title(), getSubTotal());
                 }
             }
         }
-
-        //add currentTimeLine tag for next class easier to read
-        userInfoMap.put("currentTimeLine", timeLineString);
-
-        //debug code to print userInfoMap
-        //System.out.println(Arrays.asList(userInfoMap));
-
-        serialization(userInfoMap, filename);         //store userinput
-
-        timeLine++; //update time line for next item
-
-        //Sample Output
-        //{"0Store":"BurgerStore","currentTimeLine":"0","0Money":"11.5","currentItem":"0Chicken Burger"}
+        serialization(currentOrder, filename);
     }
 
     /**
@@ -207,8 +185,7 @@ public class StoreScreen extends Screen
      * use when user leave the current store or user clear the basket
      */
     public void resetStore(){
-        timeLine = 0;
-        userInfoMap =  new HashMap< String,String>();
+        currentOrder = new Order();
     }
 
 

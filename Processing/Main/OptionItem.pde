@@ -102,4 +102,8 @@ public class OptionItem extends Screen implements IDisplayComponent,  ITouchEven
     public void unselected(){
       isSelected = false;
     }
+
+    public double getPrice(){
+      return price;
+    }
 }

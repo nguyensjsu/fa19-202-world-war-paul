@@ -144,52 +144,61 @@ public class Screen implements IScreen, IDisplayComponent
      * @param map a map and convert to JSON file with the fileName
      * @param fileName the file name
      */
-    public void serialization(Map<String, String> map, String fileName)
+     /**
+     * @param map, fileName, Taking a map and convert to JSON file with the fileName
+     */
+    public void serialization(Object obj, String fileName)
     {
-        Gson gson = new Gson();
-        String jsonString = gson.toJson(map);
-        try
-        {
-            FileWriter file = new FileWriter("." + fileName); // might need to improve about the directory
-            file.write(jsonString);
-            file.close();
-        }
-        catch(IOException e)
-        {
-            e.printStackTrace();
-            //TODO: direct to error msg screen
-        }
+      Gson gson = new Gson();
+      String jsonString = gson.toJson(obj);
+      try
+      {
+        FileWriter file = new FileWriter("." +File.separator+fileName); // might need to improve about the directory
+        file.write(jsonString);
+        file.close();
+      }
+      catch(IOException e)
+      {
+        e.printStackTrace();
+        //TODO: direct to error msg screen
+      }
+      
     }
-
+    
     /**
-     * Deserialize a local file from JSON into Map
-     * @param fileName a fileName as a String
+     * @param taking a fileName as a String
      * @return map converted from a JSON file
      */
-    public Map<String, String> deserialization(String fileName)
+    public Order deserialization(String fileName)
     {
-        Gson gson = new Gson();
-        HashMap<String, String> result = new HashMap<String, String>();
-        try
-        {
-            FileReader fr = new FileReader("." + fileName);
-            StringBuilder str = new StringBuilder();
-            int i;
-            while ((i=fr.read()) != -1)
-            {
-            str.append((char)i);
-            }
-            String jsonString = str.toString();
-            Type type = new TypeToken<HashMap<String, String>>(){}.getType();
-            result = gson.fromJson(jsonString, type);
-            fr.close();
-        }
-        catch(IOException e)
-        {
-            e.printStackTrace();
-            // TODO: error message
-        }
-        return result;
+      Gson gson = new Gson();
+      Order result = new Order(); 
+      try
+      {
+        FileReader fr = new FileReader("."+File.separator+fileName);
+        result = gson.fromJson(fr, Order.class); // has to be a class type
+        
+        fr.close();
+      }
+      catch(IOException e)
+      {
+        e.printStackTrace();
+      }
+      return result;
+    }
+    
+    public void resetBasket(String fileName)
+    {
+      File file = new File("."+File.separator+fileName); 
+          
+      if(file.delete()) 
+      { 
+          System.out.println("File deleted successfully"); 
+      } 
+      else
+      { 
+          System.out.println("Failed to delete the file"); 
+      } 
     }
 
     /*
@@ -198,11 +207,7 @@ public class Screen implements IScreen, IDisplayComponent
      */
     public void deleteFile(String fileName){
         File file = new File("." + fileName);  //or this?
-
-        if(file.delete())
-        {
-            //System.out.println("File deleted successfully");
-        }
+        file.delete();
     }
 
    /**
@@ -210,5 +215,11 @@ public class Screen implements IScreen, IDisplayComponent
     */
     public void unselected(){
         //do nothing over here //this function is required for OptionTitle to use
+    }
+
+    //Can be later refactor by Steven after demo
+    public double getPrice(){
+      //Do nothing
+      return 0.0;
     }
 }

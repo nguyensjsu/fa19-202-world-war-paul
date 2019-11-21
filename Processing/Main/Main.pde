@@ -5,7 +5,8 @@ import com.google.gson.internal.bind.*;
 import com.google.gson.internal.bind.util.*;
 import com.google.gson.reflect.*;
 import com.google.gson.stream.*;
-
+import java.text.DecimalFormat;
+import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 import java.lang.reflect.Type;
@@ -13,6 +14,7 @@ import java.io.*;
 
 WelcomeScreen welcomeScreen;
 Device device;
+BasketScreen bs;
 
 // HomePageScreen Testing Code
 // HomePageScreen mp;
@@ -34,6 +36,7 @@ void setup() {
 
   welcomeScreen = new WelcomeScreen();
 	device = new Device();
+  bs = new BasketScreen();
 
 	//device.display();
 
@@ -124,7 +127,8 @@ void setup() {
 void draw() {
 
   if(welcomeScreen.isDisplay()){
-    welcomeScreen.display();
+    //welcomeScreen.display();
+    bs.display();
   }else{
 		device.display();
   }
