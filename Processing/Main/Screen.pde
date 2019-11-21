@@ -147,10 +147,10 @@ public class Screen implements IScreen, IDisplayComponent
     /**
      * @param map, fileName, Taking a map and convert to JSON file with the fileName
      */
-    public void serialization(Map<String, String> map, String fileName)
+    public void serialization(Object obj, String fileName)
     {
       Gson gson = new Gson();
-      String jsonString = gson.toJson(map);
+      String jsonString = gson.toJson(obj);
       try
       {
         FileWriter file = new FileWriter("." +File.separator+fileName); // might need to improve about the directory
@@ -169,22 +169,40 @@ public class Screen implements IScreen, IDisplayComponent
      * @param taking a fileName as a String
      * @return map converted from a JSON file
      */
-    public Map<String, String> deserialization(String fileName)
+    // public Object deserialization(String fileName)
+    // {
+    //   Gson gson = new Gson();
+    //   HashMap<String, String> result = new HashMap<String, String>(); 
+    //   try
+    //   {
+    //     FileReader fr = new FileReader("."+File.separator+fileName);
+    //     StringBuilder str = new StringBuilder();
+    //     int i;
+    //     while ((i=fr.read()) != -1) 
+    //     {
+    //       str.append((char)i); 
+    //     }
+    //     String jsonString = str.toString();
+    //     Type type = new TypeToken<HashMap<String, String>>(){}.getType();
+    //     result = gson.fromJson(jsonString, type);
+    //     fr.close();
+    //   }
+    //   catch(IOException e)
+    //   {
+    //     e.printStackTrace();
+    //   }
+    //   return result;
+    // }
+
+    public Order deserialization(String fileName)
     {
       Gson gson = new Gson();
-      HashMap<String, String> result = new HashMap<String, String>(); 
+      Order result = new Order(); 
       try
       {
         FileReader fr = new FileReader("."+File.separator+fileName);
-        StringBuilder str = new StringBuilder();
-        int i;
-        while ((i=fr.read()) != -1) 
-        {
-          str.append((char)i); 
-        }
-        String jsonString = str.toString();
-        Type type = new TypeToken<HashMap<String, String>>(){}.getType();
-        result = gson.fromJson(jsonString, type);
+        result = gson.fromJson(fr, Order.class); // has to be a class type
+        
         fr.close();
       }
       catch(IOException e)

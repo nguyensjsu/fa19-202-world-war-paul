@@ -3,24 +3,42 @@ public class BasketScreen extends Screen implements IDisplayComponent {
     /** Display Components */
     private ArrayList<IDisplayComponent> components = new ArrayList<IDisplayComponent>() ;
     private ITouchEventHandler chain ;
-    Map<String, String> order = new HashMap<String, String>();
+    //Map<String, String> order = new HashMap<String, String>();
     List<Map<String, String>> orderList = new ArrayList<Map<String, String>>();
-            
+    
     int lineCounter = 0;
+
     double totalPrice = 0;
-    
     String storeName = "";
-    String itemPrice = "";
-    String itemName = "";
-    String itemAddon = "";
+
+    double BigItemPrice = 0;
+    String BigItemName = "";
+
+    double SmallItemPrice = 0;
+    String SmallItemName = "";
     
-    String serviceFee = "";
-    String tax = "";
+    double serviceFee = 0;
+    double tax = 0;
     
     private DecimalFormat df2 = new DecimalFormat("#.##");
     
+    Order order = new Order();
+    BigItem bi = new BigItem();
+    SmallItem si = new SmallItem();
+
+
+
     public BasketScreen() {
-       
+      si.setName("Cheese");
+      si.setPrice(3.45);
+      bi.setName("Buger");
+      bi.setPrice(10.15);
+      bi.addSmallItem(si);
+      bi.calculateSmallItemPrice();
+      //order.setPrice(13.6);
+      order.addBigItem(bi);
+      order.calculatePrice();
+      order.setStoreName("Burger King");
     }
 
     /**
@@ -39,51 +57,33 @@ public class BasketScreen extends Screen implements IDisplayComponent {
         stroke(0, 0, 0);
         line(0, 60, 380, 60); // Line under title
 
-        
-        order = deserialization("optionScreenDetail.json"); // fileName can be hardcode since it will be decided during the design
-        
-        //going through the order hash map and split the order into different hashmaps, then put all hashmap into an array;
-        for (Map.Entry<String, String> entry : order.entrySet()) 
+        serialization(order, "OrderTest.json");
+        order = deserialization("OrderTest.json"); // fileName can be hardcode since it will be decided during the design
+
+        storeName = order.getStoreName();
+        serviceFee = order.getPrice() * 0.15;
+        tax = order.getPrice() * 0.1;
+        totalPrice = order.getPrice() + serviceFee + tax;
+
+        // println("The Order Number is " + order.getOrderNumber());
+        println("The total Price is " + order.getPrice());
+        for(int i = 0; i < order.getBigItem().size(); i++)
         {
-          if(Integer.parseInt(entry.getKey().substring(0,1)) >= orderList.size() ) // if there is nothing on the spot of the orderList
-          {
-            //println(entry.getKey() + "  " + entry.getValue());
-            Map<String, String> input = new HashMap<String, String>();
-            input.put(entry.getKey().substring(1, entry.getKey().length()), entry.getValue());
-            orderList.add(Integer.parseInt(entry.getKey().substring(0,1)), input);
-          }
-          else // if there is an order exist
-          {
-            orderList.get(Integer.parseInt(entry.getKey().substring(0,1))).put(entry.getKey().substring(1, entry.getKey().length()), entry.getValue());
-          }
-        }
-        
-        for(int i = 0; i < orderList.size(); i++) // display items, add-ons and money for each item
-        {
-          lineCounter ++;
-          for (Map.Entry<String, String> entry : orderList.get(i).entrySet()) 
-          {
-             println(entry.getKey() + "  " + entry.getValue());
-             if(!entry.getKey().equals("Store") && !entry.getKey().equals("Money")) // in case if the items are too long to display
-             {
-               itemName = entry.getKey();
-               itemAddon = entry.getValue();
-             }
-             else if(entry.getKey().equals("Money"))
-             {
-               itemPrice = entry.getValue();
-               totalPrice += Double.parseDouble(entry.getValue());
-             }
-             else
-             {
-               storeName = entry.getValue();
-             }
-          }
-          displayItem();      
+            BigItemName = order.getBigItem().get(i).getName();
+            BigItemPrice = order.getBigItem().get(i).getPrice();
+            // println("Big Item name is " + order.getBigItem().get(i).getName());
+            // println("Big Item Price is" + order.getBigItem().get(i).getPrice());
+            
+            for(int j = 0; j < order.getBigItem().get(i).getSmallItem().size(); j++)
+            {
+                SmallItemName = order.getBigItem().get(i).getSmallItem().get(j).getName();
+                SmallItemPrice = order.getBigItem().get(i).getSmallItem().get(j).getPrice();
+                // println("Small Item name is " +order.getBigItem().get(i).getSmallItem().get(j).getName());
+                // println("Small Item price is " + order.getBigItem().get(i).getSmallItem().get(j).getPrice());
+            }
+            displayItem();
         }
         displayFee();
-        
-        
         for (IDisplayComponent c: components) {
             c.display();
         }
@@ -94,11 +94,12 @@ public class BasketScreen extends Screen implements IDisplayComponent {
       fill(0, 0, 0, 255);
       textSize(20);
       textAlign(LEFT);
-      text(itemName, 10, 100 + 20*lineCounter);
-      text("$" + itemPrice, 300, 100 + 20*lineCounter);
+      text(BigItemName, 10, 100 + 20*lineCounter);
+      text("$" + df2.format(BigItemPrice), 300, 100 + 20*lineCounter);
       lineCounter ++;
       fill(0, 0, 0, 150);
-      text(itemAddon, 10, 100 + 20*lineCounter); // need to determine if the text length is above 380
+      text(SmallItemName, 10, 100 + 20*lineCounter); // need to determine if the text length is above 380
+      text("$" + df2.format(SmallItemPrice), 300, 100 + 20*lineCounter);
       lineCounter ++;
       strokeWeight(3);
       stroke(0, 0, 0);
@@ -114,7 +115,7 @@ public class BasketScreen extends Screen implements IDisplayComponent {
       textSize(25); 
       text(storeName, 190, 90);
       textAlign(RIGHT);
-      text("$" + totalPrice, 370, 600);
+      text("$" + df2.format(totalPrice), 370, 600);
       textAlign(LEFT);
       text("Total: ", 10, 600);
       
@@ -122,10 +123,10 @@ public class BasketScreen extends Screen implements IDisplayComponent {
       textSize(20);
       textAlign(LEFT);
       text("Tax: ", 10, 100 + 20*lineCounter);
-      text("$" +  df2.format(totalPrice*0.1), 300, 100 + 20*lineCounter);
+      text("$" +  df2.format(tax), 300, 100 + 20*lineCounter);
       lineCounter ++;
       text("Service Fee: ", 10, 100 + 20*lineCounter);
-      text("$" + df2.format(totalPrice*0.15), 300, 100 + 20*lineCounter);
+      text("$" + df2.format(serviceFee), 300, 100 + 20*lineCounter);
       lineCounter ++;
       
     }
@@ -159,30 +160,5 @@ public class BasketScreen extends Screen implements IDisplayComponent {
       if(x > 0 && y > 0)
         resetBasket("optionScreenDetail.json");
         //chain.touch(x, y);
-    }
-    @Override // for now, but all path of files shuold be standarized later during the group meeting
-    public Map<String, String> deserialization(String fileName)
-    {
-      Gson gson = new Gson();
-      HashMap<String, String> result = new HashMap<String, String>(); 
-      try
-      {
-        FileReader fr = new FileReader("E:/Processing/processing-3.5.3-windows64/processing-3.5.3/" + fileName); // need to be repleaced to your own path of .json file
-        StringBuilder str = new StringBuilder();
-        int i;
-        while ((i=fr.read()) != -1) 
-        {
-          str.append((char)i); 
         }
-        String jsonString = str.toString();
-        Type type = new TypeToken<HashMap<String, String>>(){}.getType();
-        result = gson.fromJson(jsonString, type);
-        fr.close();
-      }
-      catch(IOException e)
-      {
-        //TODO: direct the user to home screen
-      }
-      return result;
-    }
 }
