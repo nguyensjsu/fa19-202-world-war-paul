@@ -50,5 +50,5 @@
 
 ## Use Case - View Acconut Information
 
-<img src="View Acconut Sequence Diagram.svg">
+<img src="View Acconut Information Sequence Diagram.svg">
 
