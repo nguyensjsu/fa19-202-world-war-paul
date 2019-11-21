@@ -53,4 +53,10 @@ public class OptionTitle extends Screen implements IDisplayComponent, ITouchEven
     public String title(){
         return type;
     }
+
+    //could be easily refactor after basic demo 
+    public double getPrice(){
+        System.out.println("in optionItem");
+      return 0.0;
+    }
 }

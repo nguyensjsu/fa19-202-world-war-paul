@@ -139,57 +139,78 @@ public class Screen implements IScreen, IDisplayComponent
         return "";
     }
 
-    /**
-     * Serialize a Map into JSON and write it into a local file
-     * @param map a map and convert to JSON file with the fileName
-     * @param fileName the file name
-     */
-    public void serialization(Map<String, String> map, String fileName)
-    {
-        Gson gson = new Gson();
-        String jsonString = gson.toJson(map);
-        try
-        {
-            FileWriter file = new FileWriter("." + fileName); // might need to improve about the directory
-            file.write(jsonString);
-            file.close();
-        }
-        catch(IOException e)
-        {
-            e.printStackTrace();
-            //TODO: direct to error msg screen
-        }
+    //Can be later refactor by Steven after demo
+    public double getPrice(){
+      //Do nothing
+      return 0.0;
     }
 
     /**
-     * Deserialize a local file from JSON into Map
-     * @param fileName a fileName as a String
+     * @param map, fileName, Taking a map and convert to JSON file with the fileName
+     */
+    public void serialization(Object obj, String fileName)
+    {
+      Gson gson = new Gson();
+      String jsonString = gson.toJson(obj);
+      try
+      {
+        FileWriter file = new FileWriter("." +File.separator+fileName); // might need to improve about the directory
+        file.write(jsonString);
+        file.close();
+      }
+      catch(IOException e)
+      {
+        e.printStackTrace();
+        //TODO: direct to error msg screen
+      }
+      
+    }
+    
+    /**
+     * @param taking a fileName as a String
      * @return map converted from a JSON file
      */
-    public Map<String, String> deserialization(String fileName)
+    // public Object deserialization(String fileName)
+    // {
+    //   Gson gson = new Gson();
+    //   HashMap<String, String> result = new HashMap<String, String>(); 
+    //   try
+    //   {
+    //     FileReader fr = new FileReader("."+File.separator+fileName);
+    //     StringBuilder str = new StringBuilder();
+    //     int i;
+    //     while ((i=fr.read()) != -1) 
+    //     {
+    //       str.append((char)i); 
+    //     }
+    //     String jsonString = str.toString();
+    //     Type type = new TypeToken<HashMap<String, String>>(){}.getType();
+    //     result = gson.fromJson(jsonString, type);
+    //     fr.close();
+    //   }
+    //   catch(IOException e)
+    //   {
+    //     e.printStackTrace();
+    //   }
+    //   return result;
+    // }
+
+    public Order deserialization(String fileName)
     {
-        Gson gson = new Gson();
-        HashMap<String, String> result = new HashMap<String, String>();
-        try
-        {
-            FileReader fr = new FileReader("." + fileName);
-            StringBuilder str = new StringBuilder();
-            int i;
-            while ((i=fr.read()) != -1)
-            {
-            str.append((char)i);
-            }
-            String jsonString = str.toString();
-            Type type = new TypeToken<HashMap<String, String>>(){}.getType();
-            result = gson.fromJson(jsonString, type);
-            fr.close();
-        }
-        catch(IOException e)
-        {
-            e.printStackTrace();
-            // TODO: error message
-        }
-        return result;
+      Gson gson = new Gson();
+      Order result = new Order(); 
+      try
+      {
+        FileReader fr = new FileReader("."+File.separator+fileName);
+        result = gson.fromJson(fr, Order.class); // has to be a class type
+        
+        fr.close();
+      }
+      catch(IOException e)
+      {
+        e.printStackTrace();
+      }
+      return result;
     }
 
     /*

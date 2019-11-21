@@ -90,4 +90,8 @@ public class LeftItem extends Screen implements IDisplayComponent,  ITouchEventH
 		else
 			return "";
     }
+
+    public double getPrice(){
+      return price;
+    }
 }

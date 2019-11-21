@@ -12,9 +12,6 @@ public class OptionScreen extends Screen
     /** Front of Event Chain */
     private ITouchEventHandler chain ;
 
-    /** a map to store user input **/
-    private Map< String,String> userInfoMap;
-
     //for Screen Title
     private String title;
 
@@ -28,6 +25,9 @@ public class OptionScreen extends Screen
 
     //check first time or not to dicide read file or not
     private boolean firstTimeRead;
+
+    //current order
+    private Order currentOrder;
 
     private String name;
 
@@ -117,10 +117,9 @@ public class OptionScreen extends Screen
       */
     public void display(){
         if(firstTimeRead){
-            userInfoMap = deserialization("storeScreenDetail.json"); //reread userinput from storeScreen
-            timeLineString = userInfoMap.remove("currentTimeLine");
-            previousPrice = Double.parseDouble(userInfoMap.get(timeLineString+"Money")); //add previous money
             firstTimeRead = false;
+            currentOrder = deserialization("storeScreenDetail.json"); //reread userinput from storeScreen
+            previousPrice = currentOrder.getLatestPrice();
         }
 
         int currentHeight = 20;
@@ -154,8 +153,7 @@ public class OptionScreen extends Screen
         //if touch the Button
         if(630<=y && y<= 680){
             storeUserInput("optionScreenDetail.json"); //store the userInput into a json file
-            //System.out.println(printDescription());  //debugging code
-            resetButton();  //reset the buttom to original
+            //resetButton();  //reset the buttom to original
         }
     }
 
@@ -225,27 +223,19 @@ public class OptionScreen extends Screen
      * @param filename the store input into file name
      */
     public void storeUserInput(String filename){
-        StringBuilder optionDetail = new StringBuilder();
-
-        //update money tag in map
-        userInfoMap.put(timeLineString + "Money", Double.toString(previousPrice+getSubTotal()));
-
-        String itemName = userInfoMap.remove("currentItem");
-
         //loop through all user input to update option detail for item
         for (Screen c: comp) {
             if(!c.title().equals("")){
                 if(!c.getClass().toString().split(" ", 2)[1].equals("Main$OptionTitle") ){
-                    optionDetail.append(c.title()+"+");
+                    double smallItemPrice = c.getPrice();
+                    currentOrder.addSmallItem( c.title(), smallItemPrice );
                 }
-                userInfoMap.put(itemName, optionDetail.toString());
             }
         }
-        //System.out.println(Arrays.asList(userInfoMap));   //debug code to print user infor map
-        serialization(userInfoMap, filename);
-
-        //Sample Output
-        //{"0Beef Burger":"Danish Blue Cheese+Horsadish Cheddar+Yello American+Bermuda RedOnion+Black Onions+Appricot Sauce+Ranch+","0Store":"BurgerStore","0Money":"18.0"}
+        serialization(currentOrder, filename);
+        
+        //Debug purpose
+        System.out.println("latest output price is+ "+currentOrder.getLatestPrice());
     }
 
     /**

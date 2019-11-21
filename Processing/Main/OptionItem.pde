@@ -7,11 +7,11 @@ public class OptionItem extends Screen implements IDisplayComponent,  ITouchEven
     private OptionScreen optionScreen;
 
     String name;
-    float price;
+    double price;
     int curHeight;
     boolean isSelected;
 
-    public OptionItem(String n, float p, int h)
+    public OptionItem(String n, double p, int h)
     {
         name = n;
         price  = p;
@@ -101,5 +101,9 @@ public class OptionItem extends Screen implements IDisplayComponent,  ITouchEven
       */
     public void unselected(){
       isSelected = false;
+    }
+
+    public double getPrice(){
+      return price;
     }
 }
