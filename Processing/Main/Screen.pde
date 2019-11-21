@@ -195,6 +195,10 @@ public class Screen implements IScreen, IDisplayComponent
     //   return result;
     // }
 
+    /**
+     * @param taking a fileName as a String
+     * @return Order converted from a JSON file
+     */
     public Order deserialization(String fileName)
     {
       Gson gson = new Gson();

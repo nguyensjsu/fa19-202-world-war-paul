@@ -227,8 +227,8 @@ public class OptionScreen extends Screen
         for (Screen c: comp) {
             if(!c.title().equals("")){
                 if(!c.getClass().toString().split(" ", 2)[1].equals("Main$OptionTitle") ){
-                    double smallItemPrice = c.getPrice();
-                    currentOrder.addSmallItem( c.title(), smallItemPrice );
+                    SmallItem smallItem = new SmallItem(c.title(), c.getPrice());
+                    currentOrder.addSmallItem(smallItem);
                 }
             }
         }

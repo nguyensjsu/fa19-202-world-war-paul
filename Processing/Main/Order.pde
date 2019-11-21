@@ -14,29 +14,40 @@ public class Order
 		bigItemList = new ArrayList<BigItem>();
 	}
 
+	/**
+	* set StoreName
+	*/
 	public void setStoreName(String name){
 		storeName = name;
 	}
 
-	public ArrayList<BigItem> getBigItem()
+	/**
+	* return totalPrice
+	* @return totalPrice include tax and service fee
+	*/
+	public double getTotalPrice()
 	{
-		return bigItemList;
+		return price *(1 + 0.1 + 0.15);
 	}
 
 	/**
-	 * return total price 
-	 * @return the total price
+	 * return price that do not include tax service
+	 * @return the price that do not include tax service
 	 */
 	public double getPrice()
 	{
-		if(bigItemList.size()>0){
-			double subtotal = 0.0;  //recalculate require hard reset
-			for(BigItem entry: bigItemList){
-				subtotal += entry.getPrice();
-			}
-			price = subtotal;
-		}
 		return price;
+	}
+
+	/**
+	 * udpate price everytime adding a new big or small item
+	 */
+	public void updatePrice(){
+		double subtotal = 0.0;  //recalculate require hard reset
+		for(BigItem entry: bigItemList){
+			subtotal += entry.getPrice();
+		}
+		price = subtotal;
 	}
 
 
@@ -59,7 +70,7 @@ public class Order
 		BigItem bigItem = new BigItem(name, price);
 		bigItemList.add(bigItem);
 		
-		price = getPrice(); //update price is required
+		updatePrice(); //update price is required
 	}
 
 	/**
@@ -67,42 +78,50 @@ public class Order
 	 * @param name = Item name
 	 * @param price = Item price
 	 */
-	public void addSmallItem(String name, double price)
-	{
-		SmallItem smallItem = new SmallItem(name, price);
-		
+	public void addSmallItem(SmallItem smallItem)
+	{		
 		//add the small item to the latest BigItem
 		BigItem latestBigItem = bigItemList.get(bigItemList.size()-1);
-		latestBigItem.addSmallItem(name, price);
+		latestBigItem.addSmallItem(smallItem);
 
-		price = getPrice(); //update price is required
-	}
-	
-	//debug purpose
-	public void print(){
-		System.out.println("first big item is "+ bigItemList.get(orderNumber).getName());
-		System.out.println("first big item is "+bigItemList.get(orderNumber).getPrice());
+		updatePrice();
 	}
 
+	/**
+	* return Storename
+	* @return Storename
+	*/
 	public String getStoreName()
 	{
 		return storeName;
 	}
 
+	/**
+	* return serviceFee
+	* @return serviceFee
+	*/
 	public double getServiceFee()
 	{
 		serviceFee = price * 0.15;
 		return serviceFee;
 	}
 
+	/**
+	* return tax
+	* @return tax
+	*/
 	public double getTax()
 	{
 		tax = price * 0.1;
 		return tax;
 	}
 
-	public double getTotalPrice()
+	/**
+	 * return a list of big Item
+	 * @return a list of big Item
+	 */
+	public ArrayList<BigItem> getBigItemList()
 	{
-		return price *(1 + 0.1 + 0.15);
+		return bigItemList;
 	}
 }

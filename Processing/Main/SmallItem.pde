@@ -1,7 +1,7 @@
 public class SmallItem
 {
-	double price;
-	String name;    
+	private double price;
+	private String name;    
 
 	public SmallItem(String itemName, double itemPrice)
 	{
@@ -18,6 +18,10 @@ public class SmallItem
 		return price;
 	}
 
+	/**
+	* return name
+	* @return name of Small Item
+	*/
 	public String getName(){
 		return name;
 	}     
