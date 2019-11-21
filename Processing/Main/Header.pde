@@ -19,7 +19,7 @@ public class Header extends Screen implements ITouchEventHandler, IDisplayCompon
         textAlign(LEFT);
         textSize(14);
 
-        strokeWeight(1);
+        strokeWeight(2);
         stroke(0, 0, 0);
         line(0, 45, 380, 45);
 
@@ -49,6 +49,11 @@ public class Header extends Screen implements ITouchEventHandler, IDisplayCompon
         line(13, 22.5, 32, 10);
       }
       else if(header.equals("Custom Starbuck Options")){
+        strokeWeight(1.5);
+        line(13, 22.5, 32, 35);
+        line(13, 22.5, 32, 10);
+      }
+      else if(header.equals("Add Card")){
         strokeWeight(1.5);
         line(13, 22.5, 32, 35);
         line(13, 22.5, 32, 10);
@@ -90,6 +95,13 @@ public class Header extends Screen implements ITouchEventHandler, IDisplayCompon
             if(y <= endHieght && x <= 40){
                 StoreScreen storeScreen = new StoreScreen("Starbucks");
                 setPrev(storeScreen);
+                prev();
+            }
+        }
+        else if(header.equals("Add Card")){
+            if(y <= endHieght && x <= 40){
+                MyAccountScreen account = new MyAccountScreen(60) ;
+                setPrev(account);
                 prev();
             }
         }

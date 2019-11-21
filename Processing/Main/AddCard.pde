@@ -46,7 +46,7 @@ public class AddCard extends Screen implements IDisplayComponent
     fill(0, 0, 0, 100);
     //text("Add Card", END_WIDTH/2, 50); // Add Card Title
 
-    strokeWeight(3);
+    strokeWeight(1);
     stroke(0, 0, 0);
     //line(0, 60, 380, 60); // Line under title
 
@@ -242,10 +242,11 @@ public class AddCard extends Screen implements IDisplayComponent
   }
 
   /**
-  * Setup the current Frame reference
-  * @param f THe frame reference
-  */
-  public void setFrame(IFrame f) {
-    super.setFrame(f);
+   * set the frame for MenuBar Screen
+   * @param f The frame reference
+   */
+  public void setFrame(IFrame frame) {
+      this.frame = frame;
+      header.setFrame(frame);
   }
 }
