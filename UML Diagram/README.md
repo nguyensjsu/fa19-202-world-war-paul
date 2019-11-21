@@ -30,9 +30,11 @@
 
 ## Use Case - Login
 
-<img src="Observer Class Diagram.svg">
+<img src="Login Squence Diagram.svg">
 
 ## Use Case - Add Credit Card
+
+<img src="Add Card Sequence Diagram.svg">
 
 ## Use Case - View Store Page
 
