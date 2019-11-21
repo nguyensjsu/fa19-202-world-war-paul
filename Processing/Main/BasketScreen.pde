@@ -55,7 +55,6 @@ public class BasketScreen extends Screen implements IDisplayComponent {
         tax = order.getTax();
         totalPrice = order.getTotalPrice();
 
-        println("The total Price is " + order.getPrice());
         for(int i = 0; i < order.getBigItem().size(); i++)
         {
             bigItemName = order.getBigItem().get(i).getName();
