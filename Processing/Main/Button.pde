@@ -46,11 +46,10 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
 		{
 			if(buttonName.equals("Pay"))
 			{
-				System.out.println("button");
-
-				File file = new File("." + "file.json"); //TODO: figure out a way to make it general or the file made from AddCard to store cardInfo should be named specificlly
+				println("Hahha");
+				err = new ErrorScreen("Payment Method Is Not Set");
+				File file = new File("." + "cardInfo.json"); //TODO: figure out a way to make it general or the file made from AddCard to store cardInfo should be named specificlly
 				boolean exists = file.exists();
-				System.out.println(exists);
 				if (exists) {
 					// TODO: jump to orderResultScreen
 				}

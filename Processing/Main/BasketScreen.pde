@@ -69,13 +69,14 @@ public class BasketScreen extends Screen implements IDisplayComponent {
         {
             bigItemName = order.getBigItemList().get(i).getName();
             bigItemPrice = order.getBigItemList().get(i).getPrice();
-            
+            displayBigItem();
             for(int j = 0; j < order.getBigItemList().get(i).getSmallItemList().size(); j++)
             {
                 smallItemName = order.getBigItemList().get(i).getSmallItemList().get(j).getName();
                 smallItemPrice = order.getBigItemList().get(i).getSmallItemList().get(j).getPrice();
+                displaySmallItem();
             }
-            displayItem();
+            displayLine();
         }
         displayFee();
         lineCounter = 0;
@@ -86,34 +87,40 @@ public class BasketScreen extends Screen implements IDisplayComponent {
    /**
     * Display the bigitem and 
     */
-    public void displayItem()
+    public void displayBigItem()
     {
-      fill(0, 0, 0, 255);
-      textSize(20);
-      textAlign(LEFT);
-      text(bigItemName, 10, 100 + 20*lineCounter);
-      text("$" + df2.format(bigItemPrice), 300, 100 + 20*lineCounter);
-      lineCounter ++;
-      fill(0, 0, 0, 150);
-      text(smallItemName, 10, 100 + 20*lineCounter); // need to determine if the text length is above 380
-      text("$" + df2.format(smallItemPrice), 300, 100 + 20*lineCounter);
-      lineCounter ++;
-      strokeWeight(3);
-      stroke(0, 0, 0);
-      line(10, 100 + 20*lineCounter, 370, 100+20*lineCounter);
-      lineCounter ++;
+        fill(0, 0, 0, 255);
+        textSize(20);
+        textAlign(LEFT);
+        text(bigItemName, 10, 100 + 20*lineCounter);
+        text("$" + df2.format(bigItemPrice), 300, 100 + 20*lineCounter);
+        lineCounter ++;
+    }
 
+    public void displaySmallItem()
+    {
+        fill(0, 0, 0, 150);
+        text(smallItemName, 10, 100 + 20*lineCounter); // need to determine if the text length is above 380
+        text("$" + df2.format(smallItemPrice), 300, 100 + 20*lineCounter);
+        lineCounter ++;
+    }
+
+    public void displayLine()
+    {       
+        strokeWeight(3);
+        stroke(0, 0, 0);
+        line(10, 100 + 20*lineCounter, 370, 100+20*lineCounter);
+        lineCounter ++;
     }
     /**
      * Display the service fee and tax
      */
     public void displayFee()
     {
-      
       fill(0, 0, 0, 255);
       textAlign(CENTER);
       textSize(25); 
-      text(storeName, 190, 90);
+      text(storeName, 190, 80);
       textAlign(RIGHT);
       text("$" + df2.format(totalPrice), 370, 600);
       textAlign(LEFT);
@@ -137,6 +144,7 @@ public class BasketScreen extends Screen implements IDisplayComponent {
     public void addSubComponent( IDisplayComponent c )
     {
         components.add( c ) ; 
+        println(components.size());
         if (components.size() == 1 )
         {
             chain = (ITouchEventHandler) c ;
