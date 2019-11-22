@@ -20,7 +20,7 @@ public class BasketScreen extends Screen implements IDisplayComponent {
     private DecimalFormat df2 = new DecimalFormat("#.##");
     
     ArrayList<Order>currentOrder;
-    ArrayList<Order>orderList;
+    ArayList<Order>orderList;
 
     Button payButton;
 
@@ -47,14 +47,14 @@ public class BasketScreen extends Screen implements IDisplayComponent {
         currentOrder = deserialization("currentOrder.json"); 
         orderList = deserialization("orderList.json");
         
-        //orderList.add(order[0]);
+        orderList.add(order[0]);
 
-        serialization(orderList, "orderList.json");
+        serialization("orderList.json");
 
-        //storeName = order.getStoreName();
-        //serviceFee = order.getPrice() * 0.15;
-        //tax = order.getTax();
-        //totalPrice = order.getTotalPrice();
+        storeName = order.getStoreName();
+        serviceFee = order.getPrice() * 0.15;
+        tax = order.getTax();
+        totalPrice = order.getTotalPrice();
 
         // for(int i = 0; i < order.getBigItem().size(); i++)
         // {

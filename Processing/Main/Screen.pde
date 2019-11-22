@@ -169,14 +169,14 @@ public class Screen implements IScreen, IDisplayComponent
      * @param taking a fileName as a String
      * @return map converted from a JSON file
      */
-    public Order deserialization(String fileName)
+    public ArrayList<Order> deserialization(String fileName)
     {
       Gson gson = new Gson();
       Order result = new Order(); 
       try
       {
         FileReader fr = new FileReader("."+File.separator+fileName);
-        result = gson.fromJson(fr, Order.class); // has to be a class type
+        result = gson.fromJson(fr, ArrayList.class); // has to be a class type
         
         fr.close();
       }
