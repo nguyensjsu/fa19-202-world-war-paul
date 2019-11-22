@@ -4,57 +4,44 @@ public class StoreScreen extends Screen
     /** Display Components */
     private ArrayList<IDisplayComponent> components = new ArrayList<IDisplayComponent>() ;
 
-    //use lower add component
-    private ArrayList<Screen> comp = new ArrayList<Screen>() ;
-
     /** Front of Event Chain */
     private ITouchEventHandler chain ;
 
     private int base = 90;
 
-    //To store order information
-    Order currentOrder;
-    ArrayList<Order> currentOrderList;
-
     //for Screen Title
-    private String title;
+    private String storeName;
     private Screen item1;
     private Screen item2;
     private Screen item3;
 
-    //for checking file Exist
-    private boolean fileExists;
-    private boolean firstTime;
-
-    public StoreScreen(String screenTitle)
+    public StoreScreen(String name)
     {
-        title = screenTitle;
+        storeName = name;
 
-        if (title.equals("Attack Burger")) {
+        if (storeName.equals("Attack Burger")) {
             OptionTitle title1 = new OptionTitle("Choose a Burger", "Burger", base-15);
             Screen basket = new Basket("View Basket",630);
-            item1 = new OptionItem("1/3LB Burger", 9.5, base);
-            item2 = new OptionItem("2/3LB Burger", 11.5, base + 25*1);
-            item3 = new OptionItem(" 1 LB Burger", 13.5, base + 25*2);
-            addSubComp(title1);
-            addSubComp(basket);
-            addSubComp(item1);
-            addSubComp(item2);
-            addSubComp(item3);
-        } else if (title.equals("Starbucks")) {
+            item1 = new OptionItem("Attack Burger", "1/3LB Burger", 9.5, base);
+            item2 = new OptionItem("Attack Burger", "2/3LB Burger", 11.5, base + 25*1);
+            item3 = new OptionItem("Attack Burger", " 1 LB Burger", 13.5, base + 25*2);
+            addSubComponent(title1);
+            addSubComponent(basket);
+            addSubComponent(item1);
+            addSubComponent(item2);
+            addSubComponent(item3);
+        } else if (storeName.equals("Starbucks")) {
             OptionTitle title1 = new OptionTitle("Choose a Coffee", "Starbucks", base-15);
             Screen basket = new Basket("View Basket",630);
-            item1 = new OptionItem("Cappuccion", 3.5, base);
-            item2 = new OptionItem("White Chocolate Mocha", 4.5, base + 25*1);
-            item3 = new OptionItem("Latte", 3.5, base + 25*2);
-            addSubComp(title1);
-            addSubComp(basket);
-            addSubComp(item1);
-            addSubComp(item2);
-            addSubComp(item3);
+            item1 = new OptionItem("Starbucks", "Cappuccion", 3.5, base);
+            item2 = new OptionItem("Starbucks", "White Chocolate Mocha", 4.5, base + 25*1);
+            item3 = new OptionItem("Starbucks", "Latte", 3.5, base + 25*2);
+            addSubComponent(title1);
+            addSubComponent(basket);
+            addSubComponent(item1);
+            addSubComponent(item2);
+            addSubComponent(item3);
         }
-        fileExists = false;
-        firstTime = true;
     }
 
     /**
@@ -63,24 +50,12 @@ public class StoreScreen extends Screen
       */
     public void display(){
 
-        //set up current OrderList and order in first run
-        if(firstTime){
-            File orderFile = new File("." + File.separator + "optionScreenDetail.json");
-            currentOrderList = deserialization("optionScreenDetail.json"); //reread userinput from storeScreen
-
-            //reget previous buttom
-            if( orderFile.exists() ){
-                fileExists = true;
-            }
-            firstTime = false;
-        }
-
         int currentHeight = 20;
         background(255);
         textSize(20);
         fill(0, 0, 0, 255);
 
-        text(title, (END_WIDTH - title.length() * 7) / 2, currentHeight);
+        text(storeName, (END_WIDTH - storeName.length() * 7) / 2, currentHeight);
         currentHeight += 20;
 
         for (IDisplayComponent c: components) {
@@ -90,7 +65,7 @@ public class StoreScreen extends Screen
         //price text
         textSize(16);
         fill(255);
-        text("$"+getSubTotal(), 320, 660);
+        text("$"+getCurrentTotal(), 320, 660);
     }
 
     /**
@@ -100,15 +75,9 @@ public class StoreScreen extends Screen
      */
     @Override
     public void touch(int x, int y) {
+        
         chain.touch(x, y);
-
         display();  //require to redisplay otherwise price will not be accurate due to mouse press delay
-
-        //if touch the Button
-        if(base<=y && y<= base + 25*2){
-            storeUserInput("optionScreenDetail.json"); //store the userInput into a json file
-            resetButton();  //reset the buttom to original
-        }
     }
 
     /**
@@ -129,106 +98,27 @@ public class StoreScreen extends Screen
         }
     }
 
-
-    /**
-     * Add A Child Component and reuse the preivous addSubComponent method
-     * @param c Child Component
-     */
-    public void addSubComp( Screen c )
-    {
-        addSubComponent( (IDisplayComponent) c ); //IdisplayComponent add
-        comp.add(c);         //Screen add
-    }
-
-
     /**
      * adding up total price
      * @return subtotal price
      */
-    public double getSubTotal(){
+    public double getCurrentTotal(){
 
-        //reget previous buttom
-        if( fileExists ){
-            System.out.println("json file exist");
+        double total = 0.0;
 
-            return currentOrderList.get(0).getPrice();
-        }
-        else{
-            System.out.println("json file do not exist");
-
-            double subtotal = 0.0;
-            for (Screen c: comp) {
-                subtotal += c.add();
+        File orderFile = new File("." + File.separator + "optionScreenDetail.json");
+		ArrayList<Order> orderList = deserialization("optionScreenDetail.json"); //reread userinput from storeScreen
+		
+		// currentOrder.setStoreName(storeName);
+		if (orderList.size() > 0) {
+            Order currentOrder = orderList.get(orderList.size() - 1);
+            for (BigItem item : currentOrder.getBigItemList()) {
+                total += item.getTotalPrice();
             }
-            return subtotal;
-        }
+        } 
+        
+        return total;
     }
-
-    /**
-     * A print description
-     * @return a string that comprise all component information
-     */
-    public String printDescription(){
-        StringBuilder description = new StringBuilder();
-        for (Screen c: comp) {
-            if(!c.title().equals("")){
-                if(c.getClass().toString().split(" ", 2)[1].equals("Main$OptionTitle") ){
-                    description.append("\n" + c.title() + ": ");
-                }else
-                    description.append(c.title() + ",");
-            }
-        }
-        return description.toString();
-    }
-
-        /**
-     * Store user input as map and out put json file and timeline
-     * @param filename the store input into file name
-     */
-    public void storeUserInput(String filename){
-
-        //String timeLineString = Integer.toString(timeLine);
-        currentOrder = new Order();
-        currentOrder.setStoreName(title);
-
-        //add currentItem tag for the value of selected item
-        for (Screen c: comp) {
-            if(!c.title().equals("")){
-                if( !c.getClass().toString().split(" ", 2)[1].equals("Main$OptionTitle") ){
-                    //Store item and price into order class
-                    BigItem bigItem = new BigItem(c.title(), getSubTotal());
-                    currentOrder.addBigItem(bigItem);
-                }
-            }
-        }
-
-        //create new OrderList if no previous item in orderList
-        if(!fileExists){
-            currentOrderList = new ArrayList<Order>();
-        }
-        currentOrderList.add(currentOrder);
-
-        serialization(currentOrderList, filename);
-    }
-
-    /**
-     * reset all button to original display
-     */
-    public void resetButton(){
-        for(Screen c:comp){
-            c.unselected();
-        }
-    }
-
-    /**
-     * use when user leave the current store or user clear the basket
-     */
-    public void resetStore(){
-        currentOrder = new Order();
-        firstTime = true;
-        fileExists = false;
-    }
-
 
     /**
     * Setup the current Frame reference
