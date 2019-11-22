@@ -20,6 +20,8 @@ public class StoreScreen extends Screen
     private Screen item1;
     private Screen item2;
     private Screen item3;
+    private Button viewBasketButton;
+    private BasketScreen basketScreen;
 
     public StoreScreen(String screenTitle)
     {
@@ -27,27 +29,28 @@ public class StoreScreen extends Screen
 
         if (title.equals("Attack Burger")) {
             OptionTitle title1 = new OptionTitle("Choose a Burger", "Burger", base-15);
-            Screen basket = new Basket("Add Basket",630);
+            viewBasketButton = new Button("View Basket");
             item1 = new OptionItem("1/3LB Burger", 9.5, base);
             item2 = new OptionItem("2/3LB Burger", 11.5, base + 25*1);
             item3 = new OptionItem(" 1 LB Burger", 13.5, base + 25*2);
             addSubComp(title1);
-            addSubComp(basket);
+            addSubComp(viewBasketButton);
             addSubComp(item1);
             addSubComp(item2);
             addSubComp(item3);
         } else if (title.equals("Starbucks")) {
             OptionTitle title1 = new OptionTitle("Choose a Coffee", "Starbucks", base-15);
-            Screen basket = new Basket("Add Basket",630);
+            viewBasketButton = new Button("View Basket");
             item1 = new OptionItem("Cappuccion", 3.5, base);
             item2 = new OptionItem("White Chocolate Mocha", 4.5, base + 25*1);
             item3 = new OptionItem("Latte", 3.5, base + 25*2);
             addSubComp(title1);
-            addSubComp(basket);
+            addSubComp(viewBasketButton);
             addSubComp(item1);
             addSubComp(item2);
             addSubComp(item3);
         }
+        basketScreen = new BasketScreen();
 
     }
 
@@ -159,7 +162,7 @@ public class StoreScreen extends Screen
 
         //String timeLineString = Integer.toString(timeLine);
         currentOrder = new Order();
-
+        currentOrder.setStoreName(title);
         //add currentItem tag for the value of selected item
         for (Screen c: comp) {
             if(!c.title().equals("")){
@@ -201,5 +204,6 @@ public class StoreScreen extends Screen
         item1.setFrame(frame);
         item2.setFrame(frame);
         item3.setFrame(frame);
+        viewBasketButton.setFrame(frame);
     }
 }

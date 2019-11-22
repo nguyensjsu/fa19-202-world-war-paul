@@ -6,6 +6,7 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
 
 	// Error Screen reference
 	private ErrorScreen err;
+	private BasketScreen basketScreen;
 
     public Button(String name) {
       	buttonName = name;
@@ -20,7 +21,8 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
 		textAlign(CENTER);
 		textSize(32); 
 		fill(255, 255, 255, 255);
-		text("Pay", width/2, 660); // Pay Title
+		text(buttonName, width/2, 660); 
+		textAlign(LEFT);
     }
 
     /**
@@ -40,9 +42,9 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
      */
     public void touch(int x, int y) 
     {
-		if(buttonName.equals("Pay")) // case for Payment, more cases can be added later
+		if(x > 0 && x < 380 && y > 620 && y < 680) // case for Payment, more cases can be added later
 		{
-			if(x > 0 && x < 380 && y > 620 && y < 680)
+			if(buttonName.equals("Pay"))
 			{
 				System.out.println("button");
 
@@ -51,12 +53,20 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
 				System.out.println(exists);
 				if (exists) {
 					// TODO: jump to orderResultScreen
-				} else {
+				}
+				else {
 					err.setTimer(millis()+ 1000); // 1000 = 1 second
 					err.setFlag(true); // display error message
 				}
 			}
-		} else if (nextHandler != null) {
+			else if(buttonName.equals("View Basket")) // case for Payment, more cases can be added later
+			{
+				basketScreen = new BasketScreen();
+				setNext(basketScreen);
+				next();
+			}
+		}
+		else if (nextHandler != null) {
 			nextHandler.touch(x,y);
 		}
     }
