@@ -31,6 +31,9 @@ public class OptionScreen extends Screen
 
     private String name;
 
+    private StoreScreen storeScreen;
+
+
     public OptionScreen(String t, String n)
     {
         title = t;
@@ -154,6 +157,15 @@ public class OptionScreen extends Screen
         //if touch the Button
         if(630<=y && y<= 680){
             storeUserInput("optionScreenDetail.json"); //store the userInput into a json file
+            //storeScreen = new StoreScreen(name);
+            //storeScreen.setFrame(frame);
+            //setNext(storeScreen);
+            //next();
+            if (name.indexOf("Burger") != -1){
+                frame.cmd("burgerStore");
+            }else{
+                frame.cmd("starbuksStore");
+            }
             //resetButton();  //reset the buttom to original
         }
     }

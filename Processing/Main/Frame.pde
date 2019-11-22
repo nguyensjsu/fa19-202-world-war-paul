@@ -10,6 +10,8 @@ public class Frame implements IFrame
     private IMenuInvoker menuA = new MenuOption() ;
     private IMenuInvoker menuB = new MenuOption() ;
     private IMenuInvoker menuC = new MenuOption() ;
+    private IMenuInvoker menuD = new MenuOption() ;
+    private IMenuInvoker menuE = new MenuOption() ;
 
     /**
      * Return Screen Name
@@ -43,6 +45,10 @@ public class Frame implements IFrame
         if ( "home".equals(slot) ) { menuA.setCommand(c) ;  }
         if ( "order".equals(slot) ) { menuB.setCommand(c) ; }
         if ( "account".equals(slot) ) { menuC.setCommand(c) ; }
+        if ( "starbucksStore".equals(slot) ) { menuD.setCommand(c) ; }
+        if ( "burgerStore".equals(slot) ) { menuE.setCommand(c) ; }
+
+
     }
 
     /**
@@ -80,6 +86,9 @@ public class Frame implements IFrame
         if ( "home".equals(c) ) { menuA.invoke(); }
         if ( "order".equals(c) ) { menuB.invoke(); }
         if ( "account".equals(c) ) { menuC.invoke(); }
+        if ( "starbuksStore".equals(c) ) { menuD.invoke(); }
+        if ( "burgerStore".equals(c) ) { menuE.invoke(); }
+
 
     }
 
