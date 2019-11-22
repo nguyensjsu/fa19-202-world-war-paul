@@ -19,8 +19,8 @@ public class BasketScreen extends Screen implements IDisplayComponent {
 
     private DecimalFormat df2 = new DecimalFormat("#.##");
 
-    ArrayList<Order>currentOrder;
     ArrayList<Order>orderList;
+    Order order;
 
     Button payButton;
 
@@ -34,8 +34,8 @@ public class BasketScreen extends Screen implements IDisplayComponent {
     public BasketScreen(String prev) {
       header = new Header("Basket", prev);
       payButton = new Button("Pay");
-      addSubComponent(payButton);
       addSubComponent(header);
+      addSubComponent(payButton);
     }
 
 
@@ -46,17 +46,15 @@ public class BasketScreen extends Screen implements IDisplayComponent {
     public void display() {
 
         background(255,255,255);
-        // textAlign(CENTER);
-        // textSize(32);
-        // fill(0, 0, 0, 255);
-        // text("Basket", width/2, 50);
 
-        // strokeWeight(3);
-        // stroke(0, 0, 0);
-        // line(0, 60, 380, 60);
-
-        currentOrder = deserialization("optionScreenDetail.json");
-        Order order = currentOrder.get(0);
+        orderList = deserialization("optionScreenDetail.json");
+        if(orderList.size() > 0)
+        	order = orderList.get(orderList.size() - 1);
+        else
+        {
+        	order = new Order();
+        	order.setStoreName("");
+        }
         storeName = order.getStoreName();
         serviceFee = order.getPrice() * 0.15;
         tax = order.getTax();
@@ -159,6 +157,7 @@ public class BasketScreen extends Screen implements IDisplayComponent {
      */
     @Override
     public void touch(int x, int y) {
+    	payButton.display();
         chain.touch(x, y);
     }
 
