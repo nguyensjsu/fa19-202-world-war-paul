@@ -17,9 +17,6 @@ public class Store extends Screen implements ITouchEventHandler, IDisplayCompone
         this.address = address;
         this.hours= hours;
         startHeight = height;
-
-        //setPrev();
-
     }
 
     /**
@@ -60,6 +57,10 @@ public class Store extends Screen implements ITouchEventHandler, IDisplayCompone
     {
         if (startHeight <= y && y <= endHieght) {
             storeScreen = new StoreScreen(name);
+
+            // Reset Order if user is trying to order food from different stores.
+            resetOrder(name, "optionScreenDetail.json");
+
             setNext(storeScreen);
             next();
             System.out.println("Jump into" + name);
@@ -76,5 +77,26 @@ public class Store extends Screen implements ITouchEventHandler, IDisplayCompone
     public void setFrame(){
         frame = getFrame();
         storeScreen.setFrame(frame);
+    }
+
+    /**
+     * Reset Order from the current order
+     * @param storeName the store name
+     * @param filename the file name
+     */
+    public void resetOrder(String storeName, String filename) {
+        File orderFile = new File("." + File.separator + filename);
+		ArrayList<Order> orderList = deserialization(filename); //reread userinput from storeScreen
+		
+		if (orderList.size() > 0) {
+            Order currentOrder = orderList.get(orderList.size() - 1);
+            if (!currentOrder.getStoreName().equals(storeName)) {
+                currentOrder.resetBigItem();
+            }
+            currentOrder.updatePrice();
+            orderList.set(orderList.size() - 1, currentOrder);
+        } 
+		// Put orderList back into local file.
+        serialization(orderList, filename);
     }
 }

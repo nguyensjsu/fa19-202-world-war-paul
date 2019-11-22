@@ -117,20 +117,13 @@ public class Header extends Screen implements ITouchEventHandler, IDisplayCompon
             nextHandler.touch(x,y);
         }
     }
-    
+
     /**
      * Setup the current Frame reference
      * @param frame THe frame reference
      */
     public void setFrame(IFrame frame){
         this.frame = frame;
-    }
-
-    /**
-     * Reset Big Item from the current order
-     */
-    public void resetBigItem() {
-
     }
 
     /**
@@ -166,7 +159,7 @@ public class Header extends Screen implements ITouchEventHandler, IDisplayCompon
 		
 		if (orderList.size() > 0) {
             Order currentOrder = orderList.get(orderList.size() - 1);
-            currentOrder.resetBigItem();
+            currentOrder.resetCurrentBigItem();
             currentOrder.updatePrice();
             orderList.set(orderList.size() - 1, currentOrder);
         } 
