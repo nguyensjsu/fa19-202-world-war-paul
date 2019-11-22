@@ -16,19 +16,19 @@ public class StoreScreen extends Screen
     private Screen item3;
 
     private Header header;
-    
+
     public StoreScreen(String name)
     {
         storeName = name;
         header = new Header(storeName);
-        
+
         if (storeName.equals("Attack Burger")) {
             OptionTitle title1 = new OptionTitle("Choose a Burger", "Burger", base-15);
             Screen basket = new Basket("View Basket",630);
             item1 = new OptionItem("Attack Burger", "1/3LB Burger", 9.5, base);
             item2 = new OptionItem("Attack Burger", "2/3LB Burger", 11.5, base + 25*1);
             item3 = new OptionItem("Attack Burger", " 1 LB Burger", 13.5, base + 25*2);
-            
+
             addSubComponent(title1);
             addSubComponent(basket);
             addSubComponent(item1);
@@ -77,7 +77,7 @@ public class StoreScreen extends Screen
      */
     @Override
     public void touch(int x, int y) {
-        
+
         chain.touch(x, y);
         display();  //require to redisplay otherwise price will not be accurate due to mouse press delay
     }
@@ -110,7 +110,7 @@ public class StoreScreen extends Screen
 
         File orderFile = new File("." + File.separator + "optionScreenDetail.json");
 		ArrayList<Order> orderList = deserialization("optionScreenDetail.json"); //reread userinput from storeScreen
-		
+
 		// currentOrder.setStoreName(storeName);
 		if (orderList.size() > 0) {
             Order currentOrder = orderList.get(orderList.size() - 1);
@@ -121,7 +121,7 @@ public class StoreScreen extends Screen
 
         DecimalFormat df = new DecimalFormat("##.00");
         total = Double.parseDouble(df.format(total));
- 
+
         return total;
     }
 

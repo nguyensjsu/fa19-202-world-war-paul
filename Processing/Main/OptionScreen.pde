@@ -41,7 +41,7 @@ public class OptionScreen extends Screen
         firstTimeRead = true;
 
         header = new Header(title);
-        
+
         if (name.indexOf("Burger") != -1) { //Found Burger inside the title
 
             OptionTitle title1 = new OptionTitle("Choose Cheese", "Cheese", base-15);
@@ -189,7 +189,7 @@ public class OptionScreen extends Screen
 
         File orderFile = new File("." + File.separator + "optionScreenDetail.json");
 		ArrayList<Order> orderList = deserialization("optionScreenDetail.json"); //reread userinput from storeScreen
-		
+
 		if (orderList.size() > 0) {
             Order currentOrder = orderList.get(orderList.size() - 1);
             ArrayList<BigItem> itemList = currentOrder.getBigItemList();
@@ -197,7 +197,7 @@ public class OptionScreen extends Screen
                 BigItem currentItem = itemList.get(itemList.size() - 1);
                 total += currentItem.getTotalPrice();
             }
-        } 
+        }
 
         DecimalFormat df = new DecimalFormat("##.00");
         return Double.parseDouble(df.format(total));
@@ -208,6 +208,7 @@ public class OptionScreen extends Screen
     * @param frame THe frame reference
     */
     public void setFrame(IFrame frame){
+      this.frame = frame;
       header.setFrame(frame);
     }
 }
