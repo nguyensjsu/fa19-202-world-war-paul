@@ -20,17 +20,13 @@ public class BasketScreen extends Screen implements IDisplayComponent {
     
     private DecimalFormat df2 = new DecimalFormat("#.##");
     
-    Order order = new Order();
+    Order order;
     Button payButton;
 
     public BasketScreen() {
-      order.setStoreName("Burger King");
-      order.addBigItem("Burger", 10.15);
-      order.addSmallItem("Cheese", 1.15);
       payButton = new Button("Pay");
       addSubComponent(payButton);
     }
-
     /**
      * Display content
      */
@@ -41,14 +37,13 @@ public class BasketScreen extends Screen implements IDisplayComponent {
         textAlign(CENTER);
         textSize(32); 
         fill(0, 0, 0, 255);
-        text("Basket", width/2, 50); // Basket Title
+        text("Basket", width/2, 50);
         
         strokeWeight(3);
         stroke(0, 0, 0);
-        line(0, 60, 380, 60); // Line under title
+        line(0, 60, 380, 60); 
 
-        serialization(order, "OrderTest.json");
-        order = deserialization("OrderTest.json"); 
+        order = deserialization("OrderTest1.json"); 
 
         storeName = order.getStoreName();
         serviceFee = order.getPrice() * 0.15;
@@ -133,7 +128,6 @@ public class BasketScreen extends Screen implements IDisplayComponent {
             prev.setNext( (ITouchEventHandler) c ) ;
         }
     }
-
     /**
      * Touch Event 
      * @param x Touch X

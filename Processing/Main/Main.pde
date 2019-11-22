@@ -14,7 +14,7 @@ import java.io.*;
 
  WelcomeScreen welcomeScreen;
  Device device;
-// BasketScreen bs;
+ BasketScreen bs;
 
 // HomePageScreen Testing Code
 // HomePageScreen mp;
@@ -36,7 +36,7 @@ void setup() {
 
   welcomeScreen = new WelcomeScreen();
 	device = new Device();
-  // bs = new BasketScreen();
+  bs = new BasketScreen();
 
 	//device.display();
 
@@ -127,7 +127,8 @@ void setup() {
 void draw() {
 
   if(welcomeScreen.isDisplay()){
-    welcomeScreen.display();
+    //welcomeScreen.display();
+    bs.display();
   }else{
 		device.display();
   }
