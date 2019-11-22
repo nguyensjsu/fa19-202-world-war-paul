@@ -94,26 +94,38 @@ public class OrderHistoryScreen extends Screen implements IDisplayComponent {
         // Line chart
 
         int startX = 40;
-        int endX = 360;
+        int endX = 340;
         int startY = 100;
         int endY = 230;
 
-        int step = (endX - startX)/data.length;
-        int currentX = startX;
-
         strokeWeight(1.5);
         stroke(0, 0, 0);
+        // axis
+        line(startX, startY, startX, endY);
+        line(startX, endY, endX, endY);
 
-        line(startX-10, startY, startX-10, endY);
-        line(startX-10, endY, endX, endY);
+        int step = (endX - startX - 30) / (data.length-1);
+        int currentX = startX + 15;
 
+        strokeWeight(1);
+
+        // put three y-axis point
+        line(startX,
+          map(min(data), min(data)-10, max(data)+10, startY, endY),
+          startX+5,
+          map(min(data), min(data)-10, max(data)+10,startY, endY)
+        );
 
         for (int i = 0; i < data.length-1; i ++){
-            float a = map(data[i], 0, 100, startY, endY);
-            float b = map(data[i+1], 0, 100, startY, endY);
+            float a = map(data[i], min(data) - 10, max(data) + 10, startY, endY);
+            float b = map(data[i+1], min(data) - 10, max(data) + 10, startY, endY);
             line(currentX, a ,currentX + step, b);
+
+            line(currentX, endY, currentX, endY - 5);
             currentX += step;
         }
+        line(currentX, endY, currentX, endY - 5);
+
 
 
 
