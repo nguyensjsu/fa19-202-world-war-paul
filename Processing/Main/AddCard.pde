@@ -14,7 +14,7 @@ public class AddCard extends Screen implements IDisplayComponent
 	private boolean cardNumberFlag;
 	private boolean cardExpirtyFlag;
 	private boolean cardCVVFlag;
-	private Map <String, String> cardInfo = new HashMap<String, String>();
+	private Map<String, String> cardInfo = new HashMap<String, String>();
 	private ErrorScreen err;
   	private Header header;
 

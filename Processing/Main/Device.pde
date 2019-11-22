@@ -14,7 +14,7 @@ public class Device implements IProxy, IPinAuthObserver {
     private Passcode pc ;
     private PinScreen ps ;
     private Spacer sp ;
-    private boolean authenticated = false ;
+    private boolean authenticated = true ;
     private PinEntryMachine pm ;
 
 
@@ -38,7 +38,9 @@ public class Device implements IProxy, IPinAuthObserver {
 
         // get app controller reference
         app = new AppController() ;
-
+        
+        resetJSONFile(new ArrayList<Order>(), "optionScreenDetail.json");
+        resetJSONFile(new HashMap<String, String>(), "cardInfo.json");
     }
 
 
@@ -126,6 +128,24 @@ public class Device implements IProxy, IPinAuthObserver {
         this.authenticated = true ;
     }
 
+    /**
+     * reset local JSON file
+     * @param obj input object
+     * @param fileName the file name
+     */
+    public void resetJSONFile(Object obj, String fileName){
 
-
+		Gson gson = new Gson();
+        String jsonString = gson.toJson(obj);
+        try
+        {
+            FileWriter file = new FileWriter("." +File.separator+fileName); // might need to improve about the directory
+            file.write(jsonString);
+            file.close();
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+    }
 }
