@@ -147,6 +147,7 @@ public class OptionScreen extends Screen
      */
     @Override
     public void touch(int x, int y) {
+        System.out.println("Running");
         chain.touch(x, y);
         display();  //require to redisplay otherwise price will not be accurate due to mouse press delay
 

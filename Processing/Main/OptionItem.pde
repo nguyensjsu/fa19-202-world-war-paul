@@ -60,12 +60,12 @@ public class OptionItem extends Screen implements IDisplayComponent,  ITouchEven
     {
         if (curHeight <= y && y <= curHeight+25) {
             isSelected = (isSelected == true) ? false : true;
-			      display();
+			display();
 
-			      optionScreen = new OptionScreen("Choose Custom Options", name);
+			optionScreen = new OptionScreen("Choose Custom Options", name);
             optionScreen.setFrame(frame);
             setNext(optionScreen);
-			      next();
+			next();
         } else if (nextHandler != null) {
             nextHandler.touch(x,y);
         }
@@ -100,9 +100,10 @@ public class OptionItem extends Screen implements IDisplayComponent,  ITouchEven
       * reset the selected button to unselected
       */
     public void unselected(){
-      isSelected = false;
+      	isSelected = false;
     }
 
+    // TODO: delele later
     public double getPrice(){
       return price;
     }

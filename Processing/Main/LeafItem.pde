@@ -2,14 +2,14 @@
 public class LeftItem extends Screen implements IDisplayComponent,  ITouchEventHandler
 {
     private ITouchEventHandler nextHandler ;
-    PShape optionImg1;
-    PShape optionImg2;
     private OptionScreen optionScreen;
-
-    String name;
-    float price;
-    int curHeight;
-    boolean isSelected; 
+    private PShape optionImg1;
+    private PShape optionImg2;
+    
+    private String name;
+    private float price;
+    private int curHeight;
+    private boolean isSelected; 
 
     public LeftItem(String n, float p, int h)
     {
@@ -60,7 +60,7 @@ public class LeftItem extends Screen implements IDisplayComponent,  ITouchEventH
     {
         if (curHeight <= y && y <= curHeight+25) {
             isSelected = (isSelected == true) ? false : true;
-			display();
+			      display();
         } else if (nextHandler != null) {
             nextHandler.touch(x,y);
         }
@@ -91,7 +91,8 @@ public class LeftItem extends Screen implements IDisplayComponent,  ITouchEventH
 			return "";
     }
 
+	// TODO: delele later
     public double getPrice(){
-      return price;
+      	return price;
     }
 }

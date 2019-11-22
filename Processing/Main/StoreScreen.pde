@@ -165,7 +165,8 @@ public class StoreScreen extends Screen
             if(!c.title().equals("")){
                 if( !c.getClass().toString().split(" ", 2)[1].equals("Main$OptionTitle") ){
                     //Store item and price into order class
-                    currentOrder.addBigItem(c.title(), getSubTotal());
+                    BigItem bigItem = new BigItem(c.title(), getSubTotal());
+                    currentOrder.addBigItem(bigItem);
                 }
             }
         }
@@ -194,8 +195,8 @@ public class StoreScreen extends Screen
     * @param frame THe frame reference
     */
     public void setFrame(IFrame frame){
-      item1.setFrame(frame);
-      item2.setFrame(frame);
-      item3.setFrame(frame);
+        item1.setFrame(frame);
+        item2.setFrame(frame);
+        item3.setFrame(frame);
     }
 }

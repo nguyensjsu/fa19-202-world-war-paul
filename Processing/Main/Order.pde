@@ -1,11 +1,11 @@
 public class Order
 {
 	private int orderNumber;
-	double price;
-	String storeName;
-	ArrayList<BigItem> bigItemList;
-	double serviceFee;
-	double tax;
+	private double tax;
+	private double price;
+	private double serviceFee;
+	private String storeName;
+	private ArrayList<BigItem> bigItemList;
 
 	public Order()
 	{
@@ -57,7 +57,11 @@ public class Order
 	 */
 	public double getLatestPrice()
 	{
-		return bigItemList.get(bigItemList.size()-1).getPrice();
+		double totalPrice = 0.0;
+		if (bigItemList.size() > 0) {
+			totalPrice = bigItemList.get(bigItemList.size()-1).getPrice();
+		}
+		return totalPrice;
 	}
 
 	/**
@@ -65,11 +69,9 @@ public class Order
 	 * @param name = Item name
 	 * @param price = Item price
 	 */
-	public void addBigItem(String name, double price)
+	public void addBigItem(BigItem bigItem)
 	{
-		BigItem bigItem = new BigItem(name, price);
 		bigItemList.add(bigItem);
-		
 		updatePrice(); //update price is required
 	}
 
@@ -81,10 +83,11 @@ public class Order
 	public void addSmallItem(SmallItem smallItem)
 	{		
 		//add the small item to the latest BigItem
-		BigItem latestBigItem = bigItemList.get(bigItemList.size()-1);
-		latestBigItem.addSmallItem(smallItem);
-
-		updatePrice();
+		if (bigItemList.size() > 0) {
+			BigItem latestBigItem = bigItemList.get(bigItemList.size()-1);
+			latestBigItem.addSmallItem(smallItem);
+			updatePrice();
+		}
 	}
 
 	/**

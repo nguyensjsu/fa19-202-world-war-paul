@@ -12,6 +12,7 @@ public class Screen implements IScreen, IDisplayComponent
     public static final int END_HEIGHT = 680;
     public static final int START_WIDTH = 0;
     public static final int END_WIDTH = 380;
+    public int order_id = 0;
     public IFrame frame;
 
     protected IScreen prevScreen;
@@ -139,10 +140,10 @@ public class Screen implements IScreen, IDisplayComponent
         return "";
     }
 
-    //Can be later refactor by Steven after demo
+    // TODO: delele later 
     public double getPrice(){
-      //Do nothing
-      return 0.0;
+        //Do nothing
+        return 0.0;
     }
 
     /**
@@ -150,50 +151,20 @@ public class Screen implements IScreen, IDisplayComponent
      */
     public void serialization(Object obj, String fileName)
     {
-      Gson gson = new Gson();
-      String jsonString = gson.toJson(obj);
-      try
-      {
-        FileWriter file = new FileWriter("." +File.separator+fileName); // might need to improve about the directory
-        file.write(jsonString);
-        file.close();
-      }
-      catch(IOException e)
-      {
-        e.printStackTrace();
-        //TODO: direct to error msg screen
-      }
-      
+        Gson gson = new Gson();
+        String jsonString = gson.toJson(obj);
+        try
+        {
+            FileWriter file = new FileWriter("." +File.separator+fileName); // might need to improve about the directory
+            file.write(jsonString);
+            file.close();
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+            //TODO: direct to error msg screen
+        }
     }
-    
-    /**
-     * @param taking a fileName as a String
-     * @return map converted from a JSON file
-     */
-    // public Object deserialization(String fileName)
-    // {
-    //   Gson gson = new Gson();
-    //   HashMap<String, String> result = new HashMap<String, String>(); 
-    //   try
-    //   {
-    //     FileReader fr = new FileReader("."+File.separator+fileName);
-    //     StringBuilder str = new StringBuilder();
-    //     int i;
-    //     while ((i=fr.read()) != -1) 
-    //     {
-    //       str.append((char)i); 
-    //     }
-    //     String jsonString = str.toString();
-    //     Type type = new TypeToken<HashMap<String, String>>(){}.getType();
-    //     result = gson.fromJson(jsonString, type);
-    //     fr.close();
-    //   }
-    //   catch(IOException e)
-    //   {
-    //     e.printStackTrace();
-    //   }
-    //   return result;
-    // }
 
     /**
      * @param taking a fileName as a String
@@ -201,20 +172,20 @@ public class Screen implements IScreen, IDisplayComponent
      */
     public Order deserialization(String fileName)
     {
-      Gson gson = new Gson();
-      Order result = new Order(); 
-      try
-      {
-        FileReader fr = new FileReader("."+File.separator+fileName);
-        result = gson.fromJson(fr, Order.class); // has to be a class type
-        
-        fr.close();
-      }
-      catch(IOException e)
-      {
-        e.printStackTrace();
-      }
-      return result;
+        Gson gson = new Gson();
+        Order result = new Order(); 
+        try
+        {
+            FileReader fr = new FileReader("."+File.separator+fileName);
+            result = gson.fromJson(fr, Order.class); // has to be a class type
+            
+            fr.close();
+        }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     /*
