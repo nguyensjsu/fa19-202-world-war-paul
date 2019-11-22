@@ -208,6 +208,7 @@ public class OptionScreen extends Screen
     * @param frame THe frame reference
     */
     public void setFrame(IFrame frame){
-      header.setFrame(frame);
+        this.frame = frame;
+        header.setFrame(frame);
     }
 }

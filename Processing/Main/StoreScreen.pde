@@ -14,6 +14,7 @@ public class StoreScreen extends Screen
     private Screen item1;
     private Screen item2;
     private Screen item3;
+    private OptionTitle title1;
     private Button viewBasketButton;
     private BasketScreen basketScreen;
 
@@ -23,32 +24,26 @@ public class StoreScreen extends Screen
     {
         storeName = name;
         header = new Header(storeName);
-        
+        viewBasketButton = new Button("View Basket");
+
         if (storeName.equals("Attack Burger")) {
-            OptionTitle title1 = new OptionTitle("Choose a Burger", "Burger", base-15);
-            Screen basket = new Basket("View Basket",630);
+            title1 = new OptionTitle("Choose a Burger", "Burger", base-15);
             item1 = new OptionItem("Attack Burger", "1/3LB Burger", 9.5, base);
             item2 = new OptionItem("Attack Burger", "2/3LB Burger", 11.5, base + 25*1);
             item3 = new OptionItem("Attack Burger", " 1 LB Burger", 13.5, base + 25*2);
             
-            addSubComponent(title1);
-            addSubComp(viewBasketButton);
-            addSubComponent(item1);
-            addSubComponent(item2);
-            addSubComponent(item3);
         } else if (storeName.equals("Starbucks")) {
-            OptionTitle title1 = new OptionTitle("Choose a Coffee", "Starbucks", base-15);
-            Screen basket = new Basket("View Basket",630);
+            title1 = new OptionTitle("Choose a Coffee", "Starbucks", base-15);
             item1 = new OptionItem("Starbucks", "Cappuccion", 3.5, base);
             item2 = new OptionItem("Starbucks", "White Chocolate Mocha", 4.5, base + 25*1);
             item3 = new OptionItem("Starbucks", "Latte", 3.5, base + 25*2);
-
-            addSubComponent(title1);
-            addSubComp(viewBasketButton);
-            addSubComponent(item1);
-            addSubComponent(item2);
-            addSubComponent(item3);
         }
+
+        addSubComponent(title1);
+        addSubComponent(item1);
+        addSubComponent(item2);
+        addSubComponent(item3);
+        addSubComponent(viewBasketButton);
         addSubComponent(header);
     }
 
@@ -120,44 +115,6 @@ public class StoreScreen extends Screen
                 total += item.getTotalPrice();
             }
         }
-        return description.toString();
-    }
-
-        /**
-     * Store user input as map and out put json file and timeline
-     * @param filename the store input into file name
-     */
-    public void storeUserInput(String filename){
-
-        //String timeLineString = Integer.toString(timeLine);
-        currentOrder = new Order();
-        currentOrder.setStoreName(title);
-        //add currentItem tag for the value of selected item
-        for (Screen c: comp) {
-            if(!c.title().equals("")){
-                if( !c.getClass().toString().split(" ", 2)[1].equals("Main$OptionTitle") ){
-                    //Store item and price into order class
-                    BigItem bigItem = new BigItem(c.title(), getSubTotal());
-                    currentOrder.addBigItem(bigItem);
-                }
-            }
-        }
-        ArrayList<Order> currentOrderList = new ArrayList<Order>();
-        currentOrderList.add(currentOrder);
-
-        serialization(currentOrderList, filename);
-    }
-
-    /**
-     * reset all button to original display
-     */
-    public void resetButton(){
-        for(Screen c:comp){
-            c.unselected();
-        }
-        DecimalFormat df = new DecimalFormat("##.00");
-        total = Double.parseDouble(df.format(total));
- 
         return total;
     }
 
@@ -169,7 +126,7 @@ public class StoreScreen extends Screen
         item1.setFrame(frame);
         item2.setFrame(frame);
         item3.setFrame(frame);
-        viewBasketButton.setFrame(frame);
         header.setFrame(frame);
+        viewBasketButton.setFrame(frame);
     }
 }
