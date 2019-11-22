@@ -46,17 +46,17 @@ public class BasketScreen extends Screen implements IDisplayComponent {
 
         currentOrder = deserialization("optionScreenDetail.json");
         
-        File file = new File("."+File.separator+"orderList.json");
-        if(file.exists())
-            orderList = deserialization("orderList.json");
-        else
-        {
-            serialization(currentOrder, "orderList.json");
-            orderList = deserialization("orderList.json");
-        }
+        // File file = new File("."+File.separator+"orderList.json");
+        // if(file.exists())
+        //     orderList = deserialization("orderList.json");
+        // else
+        // {
+        //     serialization(currentOrder, "orderList.json");
+        //     orderList = deserialization("orderList.json");
+        // }
         
-        orderList.add(currentOrder.get(0));
-        serialization(orderList, "orderList.json");
+        // orderList.add(currentOrder.get(0));
+        // serialization(orderList, "orderList.json");
 
 
         Order order = currentOrder.get(0);
