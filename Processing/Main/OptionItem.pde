@@ -134,6 +134,7 @@ public class OptionItem extends Screen implements IDisplayComponent, ITouchEvent
 			Order currentOrder = new Order();
 			BigItem newItem = new BigItem(name, price);
 			currentOrder.addBigItem(newItem);
+			currentOrder.setStoreName(storeName);
 			orderList.add(currentOrder);
 		}
 
