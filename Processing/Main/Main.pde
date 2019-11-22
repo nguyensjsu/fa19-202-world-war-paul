@@ -38,6 +38,11 @@ void setup() {
 
 	//device.display();
 
+
+  //WelcomeScreen Testing code
+
+    //welcomeScreen.setTimer(5);
+
 	// // HomePageScreen Testing Code
 	 //mp = new HomePageScreen("San Jose State University");
 	// Store s1 = new Store("../../img/store/starbucks_300x150.png", "StarBucks1", "Student Union", "Pickup: 7:00am - 10:00pm", 20);
@@ -67,7 +72,6 @@ void setup() {
 	// mas.addSubComponent(ms);
 	// mas.display();
 
-  // TODO: Update all display() function: Change all System.out.print() call to processing drawings
 
   // // Store Screen Testing Code
   // int base = 90;
@@ -129,7 +133,8 @@ void draw() {
     //bs.display();
   }else{
 		device.display();
-  }
+	}
+
 
 	// // HomePageScreen Testing Code
 	// if (mousePressed) {
@@ -157,18 +162,18 @@ void draw() {
 	//    fill(255);
 	//  }
 
-	//  // TODO: Update screenContents() & all display() functions: Change all System.out.print() call to processing drawings
 }
 
 
 
 void mouseClicked(){
 
-  if (welcomeScreen.isDisplay()) {
+    if (welcomeScreen.isDisplay()) {
 		welcomeScreen.touch(mouseX, mouseY);
 	} else {
 		device.touch(mouseX, mouseY);
 	}
+
 
 
 	// // HomePageScreen Testing Code

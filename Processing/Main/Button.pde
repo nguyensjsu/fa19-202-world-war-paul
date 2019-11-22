@@ -4,11 +4,10 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
     private ITouchEventHandler nextHandler ;
 	private String buttonName;
 	//private ArrayList<IDisplayComponent> components = new ArrayList<IDisplayComponent>() ;
-
-
 	// Error Screen reference
 	private ErrorScreen err;
 	private BasketScreen basketScreen;
+
 
     public Button(String name) {
       	buttonName = name;
@@ -22,7 +21,7 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
 		fill(0, 255, 0, 100);
 		rect(0, 620, 380, 60);
 		textAlign(CENTER);
-		textSize(32); 
+		textSize(32);
 		fill(255, 255, 255, 255);
 		text(buttonName, width/2, 660); 
 		textAlign(LEFT);
@@ -33,18 +32,18 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
      * Set Next Touch Handler
      * @param next Touch Event Handler
      */
-    public void setNext(ITouchEventHandler next) 
-    { 
+    public void setNext(ITouchEventHandler next)
+    {
         nextHandler = next ;
     }
 
     /**
-     * Touch Event 
+     * Touch Event
      * @param x Touch X
      * @param y Touch Y
      * reuseable, can be changed to other name and direct to other screen
      */
-    public void touch(int x, int y) 
+    public void touch(int x, int y)
     {
 		if(x > 0 && x < 380 && y > 620 && y < 680) // case for Payment, more cases can be added later
 		{
@@ -71,14 +70,14 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
 			nextHandler.touch(x,y);
 		}
     }
-    
+
     /**
      * Add Display Component to Screen
      * @param c Display Component
      */
     @Override
     public void addSubComponent( IDisplayComponent c ) {}
-	
+
 	/**
 	 * Set up the error message screen
 	 */

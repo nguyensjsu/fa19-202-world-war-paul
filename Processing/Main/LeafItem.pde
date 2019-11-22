@@ -21,16 +21,16 @@ public class LeftItem extends Screen implements IDisplayComponent,  ITouchEventH
         optionImg2 = loadShape("../../img/customItem/option2.svg");  //file destination for file name ad-solid.svg
     }
 
-    /** 
+    /**
       * Display function
       * @return: currently useless
-      */ 
+      */
     public void display(){
         //Add a white rectangular to avoid repeat writing string
-        fill(255);   
-        stroke(255); 
-        rectMode(CORNER); 
-        rect(20,curHeight,360,20); 
+        fill(255);
+        stroke(255);
+        rectMode(CORNER);
+        rect(20,curHeight,360,20);
 
         shape(isSelected ? optionImg2 : optionImg1, 20, curHeight, 20, 20);
         textSize(14);
@@ -46,21 +46,22 @@ public class LeftItem extends Screen implements IDisplayComponent,  ITouchEventH
      * Set Next Touch Handler
      * @param next Touch Event Handler
      */
-    public void setNext(ITouchEventHandler next) 
-    { 
+    public void setNext(ITouchEventHandler next)
+    {
         nextHandler = next ;
     }
 
     /**
-     * Touch Event 
+     * Touch Event
      * @param x Touch X
      * @param y Touch Y
      */
-    public void touch(int x, int y) 
+    public void touch(int x, int y)
     {
         if (curHeight <= y && y <= curHeight+25) {
+            addNewOrder("optionScreenDetail.json");
             isSelected = (isSelected == true) ? false : true;
-			      display();
+			display();
         } else if (nextHandler != null) {
             nextHandler.touch(x,y);
         }
@@ -94,5 +95,30 @@ public class LeftItem extends Screen implements IDisplayComponent,  ITouchEventH
 	// TODO: delele later
     public double getPrice(){
       	return price;
+    }
+
+    /**
+     * Store user input as map and out put json file and timeline
+     * @param filename the store input into file name
+     */
+    public void addNewOrder(String filename){
+
+		File orderFile = new File("." + File.separator + filename);
+		ArrayList<Order> orderList = deserialization(filename); //reread userinput from storeScreen
+		
+		if (orderList.size() > 0) {
+            Order currentOrder = orderList.get(orderList.size() - 1);
+            ArrayList<BigItem> itemList = currentOrder.getBigItemList();
+            if (itemList.size() > 0) {
+                BigItem currentItem = itemList.get(itemList.size() - 1);
+                SmallItem newItem = new SmallItem(name, price);
+		        currentItem.addSmallItem(newItem);
+                itemList.set(orderList.size() - 1, currentItem);
+            }
+            currentOrder.updatePrice();
+            orderList.set(orderList.size() - 1, currentOrder);
+        } 
+		// Put orderList back into local file.
+        serialization(orderList, filename);
     }
 }

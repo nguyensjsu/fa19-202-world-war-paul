@@ -4,54 +4,52 @@ public class StoreScreen extends Screen
     /** Display Components */
     private ArrayList<IDisplayComponent> components = new ArrayList<IDisplayComponent>() ;
 
-    //use lower add component
-    private ArrayList<Screen> comp = new ArrayList<Screen>() ;
-
     /** Front of Event Chain */
     private ITouchEventHandler chain ;
 
     private int base = 90;
 
-    //To store order information
-    Order currentOrder;
-
     //for Screen Title
-    private String title;
+    private String storeName;
     private Screen item1;
     private Screen item2;
     private Screen item3;
     private Button viewBasketButton;
     private BasketScreen basketScreen;
 
-    public StoreScreen(String screenTitle)
+    private Header header;
+    
+    public StoreScreen(String name)
     {
-        title = screenTitle;
-
-        if (title.equals("Attack Burger")) {
+        storeName = name;
+        header = new Header(storeName);
+        
+        if (storeName.equals("Attack Burger")) {
             OptionTitle title1 = new OptionTitle("Choose a Burger", "Burger", base-15);
-            viewBasketButton = new Button("View Basket");
-            item1 = new OptionItem("1/3LB Burger", 9.5, base);
-            item2 = new OptionItem("2/3LB Burger", 11.5, base + 25*1);
-            item3 = new OptionItem(" 1 LB Burger", 13.5, base + 25*2);
-            addSubComp(title1);
+            Screen basket = new Basket("View Basket",630);
+            item1 = new OptionItem("Attack Burger", "1/3LB Burger", 9.5, base);
+            item2 = new OptionItem("Attack Burger", "2/3LB Burger", 11.5, base + 25*1);
+            item3 = new OptionItem("Attack Burger", " 1 LB Burger", 13.5, base + 25*2);
+            
+            addSubComponent(title1);
             addSubComp(viewBasketButton);
-            addSubComp(item1);
-            addSubComp(item2);
-            addSubComp(item3);
-        } else if (title.equals("Starbucks")) {
+            addSubComponent(item1);
+            addSubComponent(item2);
+            addSubComponent(item3);
+        } else if (storeName.equals("Starbucks")) {
             OptionTitle title1 = new OptionTitle("Choose a Coffee", "Starbucks", base-15);
-            viewBasketButton = new Button("View Basket");
-            item1 = new OptionItem("Cappuccion", 3.5, base);
-            item2 = new OptionItem("White Chocolate Mocha", 4.5, base + 25*1);
-            item3 = new OptionItem("Latte", 3.5, base + 25*2);
-            addSubComp(title1);
-            addSubComp(viewBasketButton);
-            addSubComp(item1);
-            addSubComp(item2);
-            addSubComp(item3);
-        }
-        basketScreen = new BasketScreen();
+            Screen basket = new Basket("View Basket",630);
+            item1 = new OptionItem("Starbucks", "Cappuccion", 3.5, base);
+            item2 = new OptionItem("Starbucks", "White Chocolate Mocha", 4.5, base + 25*1);
+            item3 = new OptionItem("Starbucks", "Latte", 3.5, base + 25*2);
 
+            addSubComponent(title1);
+            addSubComp(viewBasketButton);
+            addSubComponent(item1);
+            addSubComponent(item2);
+            addSubComponent(item3);
+        }
+        addSubComponent(header);
     }
 
     /**
@@ -59,12 +57,9 @@ public class StoreScreen extends Screen
       * @return: currently useless
       */
     public void display(){
+
         int currentHeight = 20;
         background(255);
-        textSize(20);
-        fill(0, 0, 0, 255);
-
-        text(title, (END_WIDTH - title.length() * 7) / 2, currentHeight);
         currentHeight += 20;
 
         for (IDisplayComponent c: components) {
@@ -74,7 +69,7 @@ public class StoreScreen extends Screen
         //price text
         textSize(16);
         fill(255);
-        text("$"+getSubTotal(), 320, 660);
+        text("$"+getCurrentTotal(), 320, 660);
     }
 
     /**
@@ -84,15 +79,9 @@ public class StoreScreen extends Screen
      */
     @Override
     public void touch(int x, int y) {
+        
         chain.touch(x, y);
-
         display();  //require to redisplay otherwise price will not be accurate due to mouse press delay
-
-        //if touch the Button
-        if(base<=y && y<= base + 25*2){
-            storeUserInput("storeScreenDetail.json"); //store the userInput into a json file
-            resetButton();  //reset the buttom to original
-        }
     }
 
     /**
@@ -113,42 +102,22 @@ public class StoreScreen extends Screen
         }
     }
 
-
-    /**
-     * Add A Child Component and reuse the preivous addSubComponent method
-     * @param c Child Component
-     */
-    public void addSubComp( Screen c )
-    {
-        addSubComponent( (IDisplayComponent) c ); //IdisplayComponent add
-        comp.add(c);         //Screen add
-    }
-
-
     /**
      * adding up total price
      * @return subtotal price
      */
-    public double getSubTotal(){
-        double subtotal = 0.0;
-        for (Screen c: comp) {
-            subtotal += c.add();
-        }
-        return subtotal;
-    }
+    public double getCurrentTotal(){
 
-    /**
-     * A print description
-     * @return a string that comprise all component information
-     */
-    public String printDescription(){
-        StringBuilder description = new StringBuilder();
-        for (Screen c: comp) {
-            if(!c.title().equals("")){
-                if(c.getClass().toString().split(" ", 2)[1].equals("Main$OptionTitle") ){
-                    description.append("\n" + c.title() + ": ");
-                }else
-                    description.append(c.title() + ",");
+        double total = 0.0;
+
+        File orderFile = new File("." + File.separator + "optionScreenDetail.json");
+		ArrayList<Order> orderList = deserialization("optionScreenDetail.json"); //reread userinput from storeScreen
+		
+		// currentOrder.setStoreName(storeName);
+		if (orderList.size() > 0) {
+            Order currentOrder = orderList.get(orderList.size() - 1);
+            for (BigItem item : currentOrder.getBigItemList()) {
+                total += item.getTotalPrice();
             }
         }
         return description.toString();
@@ -186,15 +155,11 @@ public class StoreScreen extends Screen
         for(Screen c:comp){
             c.unselected();
         }
+        DecimalFormat df = new DecimalFormat("##.00");
+        total = Double.parseDouble(df.format(total));
+ 
+        return total;
     }
-
-    /**
-     * use when user leave the current store or user clear the basket
-     */
-    public void resetStore(){
-        currentOrder = new Order();
-    }
-
 
     /**
     * Setup the current Frame reference
@@ -205,5 +170,6 @@ public class StoreScreen extends Screen
         item2.setFrame(frame);
         item3.setFrame(frame);
         viewBasketButton.setFrame(frame);
+        header.setFrame(frame);
     }
 }

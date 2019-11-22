@@ -31,6 +31,8 @@ public class OptionScreen extends Screen
 
     private String name;
 
+    private Header header;
+
     public OptionScreen(String t, String n)
     {
         title = t;
@@ -38,6 +40,8 @@ public class OptionScreen extends Screen
         name = n;
         firstTimeRead = true;
 
+        header = new Header(title);
+        
         if (name.indexOf("Burger") != -1) { //Found Burger inside the title
 
             OptionTitle title1 = new OptionTitle("Choose Cheese", "Cheese", base-15);
@@ -57,22 +61,22 @@ public class OptionScreen extends Screen
             Screen item12 = new LeftItem("Besil Pesto", 0.75, base + 25*15);
             Screen basket = new Basket("Add Basket", 630);
 
-            addSubComp(title1);
-            addSubComp(item1);
-            addSubComp(item2);
-            addSubComp(item3);
-            addSubComp(title2);
-            addSubComp(item4);
-            addSubComp(item5);
-            addSubComp(item6);
-            addSubComp(item7);
-            addSubComp(item8);
-            addSubComp(item9);
-            addSubComp(title3);
-            addSubComp(item10);
-            addSubComp(item11);
-            addSubComp(item12);
-            addSubComp(basket);
+            addSubComponent(title1);
+            addSubComponent(item1);
+            addSubComponent(item2);
+            addSubComponent(item3);
+            addSubComponent(title2);
+            addSubComponent(item4);
+            addSubComponent(item5);
+            addSubComponent(item6);
+            addSubComponent(item7);
+            addSubComponent(item8);
+            addSubComponent(item9);
+            addSubComponent(title3);
+            addSubComponent(item10);
+            addSubComponent(item11);
+            addSubComponent(item12);
+            addSubComponent(basket);
         } else {
 
             OptionTitle title1 = new OptionTitle("Choose Size", "Size", base-15);
@@ -92,45 +96,39 @@ public class OptionScreen extends Screen
             Screen item12 = new LeftItem("2% Milk", 0, base + 25*15);
             Screen basket = new Basket("Add Basket", 630);
 
-            addSubComp(title1);
-            addSubComp(item1);
-            addSubComp(item2);
-            addSubComp(item3);
-            addSubComp(title2);
-            addSubComp(item4);
-            addSubComp(item5);
-            addSubComp(item6);
-            addSubComp(item7);
-            addSubComp(item8);
-            addSubComp(item9);
-            addSubComp(title3);
-            addSubComp(item10);
-            addSubComp(item11);
-            addSubComp(item12);
-            addSubComp(basket);
+            addSubComponent(title1);
+            addSubComponent(item1);
+            addSubComponent(item2);
+            addSubComponent(item3);
+            addSubComponent(title2);
+            addSubComponent(item4);
+            addSubComponent(item5);
+            addSubComponent(item6);
+            addSubComponent(item7);
+            addSubComponent(item8);
+            addSubComponent(item9);
+            addSubComponent(title3);
+            addSubComponent(item10);
+            addSubComponent(item11);
+            addSubComponent(item12);
+            addSubComponent(basket);
         }
+        addSubComponent(header);
     }
 
     /**
       * Display function
       * @return: currently useless
       */
-    public void display(){
-        if(firstTimeRead){
-            firstTimeRead = false;
-            ArrayList<Order> currentOrderList = new ArrayList<Order>();
-            currentOrderList = deserialization("storeScreenDetail.json"); //reread userinput from storeScreen
-            currentOrder = currentOrderList.get(0);
-            previousPrice = currentOrder.getLatestPrice();
-        }
+    public void display() {
 
         int currentHeight = 20;
         background(255);
-        textSize(20);
-        fill(0, 0, 0, 255);
-
-        text(title, (END_WIDTH - title.length() * 10) / 2, currentHeight);
-        currentHeight += 20;
+        // textSize(20);
+        // fill(0, 0, 0, 255);
+        //
+        // text(title, (END_WIDTH - title.length() * 10) / 2, currentHeight);
+        // currentHeight += 20;
 
         for (IDisplayComponent c: components) {
             c.display();
@@ -139,7 +137,7 @@ public class OptionScreen extends Screen
         //price text
         textSize(16);
         fill(255);
-        text("$"+(previousPrice + getSubTotal()), 320, 660);
+        text("$"+getCurrentTotal(), 320, 660);
     }
 
     /**
@@ -154,18 +152,12 @@ public class OptionScreen extends Screen
         display();  //require to redisplay otherwise price will not be accurate due to mouse press delay
 
         //if touch the Button
-        if(630<=y && y<= 680){
-            storeUserInput("optionScreenDetail.json"); //store the userInput into a json file
-            //storeScreen = new StoreScreen(name);
-            //storeScreen.setFrame(frame);
-            //setNext(storeScreen);
-            //next();
+        if (630<=y && y<= 680){
             if (name.indexOf("Burger") != -1){
                 frame.cmd("burgerStore");
             }else{
                 frame.cmd("starbuksStore");
             }
-            //resetButton();  //reset the buttom to original
         }
     }
 
@@ -187,78 +179,35 @@ public class OptionScreen extends Screen
         }
     }
 
-
-    /**
-     * Add A Child Component for option Screen to update price and isSelected info
-     * @param c Child Component
-     */
-    public void addSubComp( Screen c )
-    {
-        addSubComponent((IDisplayComponent)c);         //add Display Component
-        comp.add(c);        //add Screen Component for composite getSubtotal
-    }
-
-
     /**
      * adding up total price
      * @return subtotal price
      */
-    public double getSubTotal(){
-        double subtotal = 0.0;
-        for (Screen c: comp) {
-            subtotal += c.add();
-        }
+    public double getCurrentTotal(){
+
+        double total = 0.0;
+
+        File orderFile = new File("." + File.separator + "optionScreenDetail.json");
+		ArrayList<Order> orderList = deserialization("optionScreenDetail.json"); //reread userinput from storeScreen
+		
+		if (orderList.size() > 0) {
+            Order currentOrder = orderList.get(orderList.size() - 1);
+            ArrayList<BigItem> itemList = currentOrder.getBigItemList();
+            if (itemList.size() > 0) {
+                BigItem currentItem = itemList.get(itemList.size() - 1);
+                total += currentItem.getTotalPrice();
+            }
+        } 
+
         DecimalFormat df = new DecimalFormat("##.00");
-        subtotal = Double.parseDouble(df.format(subtotal));
-        return subtotal;
+        return Double.parseDouble(df.format(total));
     }
 
     /**
-     * print description
-     * @return a string that comprise all component information
-     */
-    public String printDescription(){
-        StringBuilder description = new StringBuilder();
-        for (Screen c: comp) {
-            if(!c.title().equals("")){
-                if(c.getClass().toString().split(" ", 2)[1].equals("Main$OptionTitle") ){
-                    description.append("\n" + c.title() + ": ");
-                }else
-                    description.append(c.title() + ",");
-            }
-        }
-        return description.toString();
-    }
-
-    /**
-     * Store user input as map and out put json file
-     * @param filename the store input into file name
-     */
-    public void storeUserInput(String filename){
-        //loop through all user input to update option detail for item
-        for (Screen c: comp) {
-            if(!c.title().equals("")){
-                if(!c.getClass().toString().split(" ", 2)[1].equals("Main$OptionTitle") ){
-                    SmallItem smallItem = new SmallItem(c.title(), c.getPrice());
-                    currentOrder.addSmallItem(smallItem);
-                }
-            }
-        }
-        ArrayList<Order> currentOrderList = new ArrayList<Order>();
-        currentOrderList.add(currentOrder);
-
-        serialization(currentOrderList, filename);
-        //Debug purpose
-        System.out.println("latest output price is+ "+currentOrder.getLatestPrice());
-    }
-
-    /**
-     * reset all button to original display
-     */
-    public void resetButton(){
-        for(Screen c:comp){
-            c.unselected();
-        }
-        firstTimeRead = true;
+    * Setup the current Frame reference
+    * @param frame THe frame reference
+    */
+    public void setFrame(IFrame frame){
+      header.setFrame(frame);
     }
 }

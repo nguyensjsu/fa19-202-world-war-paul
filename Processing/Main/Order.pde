@@ -45,11 +45,11 @@ public class Order
 	public void updatePrice(){
 		double subtotal = 0.0;  //recalculate require hard reset
 		for(BigItem entry: bigItemList){
-			subtotal += entry.getPrice();
+			subtotal += entry.getTotalPrice();
 		}
 		price = subtotal;
-		
-		tax = getPrice();
+
+		tax = getTax();
 		serviceFee = getServiceFee();
 	}
 

@@ -10,16 +10,20 @@ public class HomePageScreen extends Screen implements IDisplayComponent {
     private MenuBarScreen menuBar;
     private Store burger;
     private Store starbucks;
+    private Header header;
 
     public HomePageScreen(String address) {
         this.address = address;
-        burger = new Store("../../img/store/burger_300x150.png", "Attack Burger", "Student Union", "Pickup: 7:00am - 10:00pm", 20);
-        starbucks = new Store("../../img/store/starbucks_300x150.png", "Starbucks", "Student Union", "Pickup: 7:00am - 10:00pm", 250);
+        burger = new Store("../../img/store/burger_300x150.png", "Attack Burger", "Student Union", "Pickup: 7:00am - 10:00pm", 60);
+        starbucks = new Store("../../img/store/starbucks_300x150.png", "Starbucks", "Student Union", "Pickup: 7:00am - 10:00pm", 290);
 
+        header = new Header(address);
         menuBar = new MenuBarScreen();
+
         addSubComponent(burger);
         addSubComponent(starbucks);
         addSubComponent(menuBar);
+        addSubComponent(header);
     }
 
     /**
@@ -27,13 +31,8 @@ public class HomePageScreen extends Screen implements IDisplayComponent {
      */
     @Override
     public void display() {
-        
-        int currentHeight = 10;
+
         background(255);
-        textSize(14);
-        fill(0, 0, 0, 255);
-        text(address, (END_WIDTH - address.length() * 7) / 2, currentHeight);
-        currentHeight += 20;
 
         for (IDisplayComponent c: components) {
             c.display();
@@ -60,7 +59,7 @@ public class HomePageScreen extends Screen implements IDisplayComponent {
     }
 
     /**
-     * Touch Event 
+     * Touch Event
      * @param x Touch X
      * @param y Touch Y
      */
@@ -70,7 +69,7 @@ public class HomePageScreen extends Screen implements IDisplayComponent {
             chain.touch(x, y);
         }
     }
-    
+
     /**
      * set the frame for MenuBar Screen
      * @param frame The frame reference
