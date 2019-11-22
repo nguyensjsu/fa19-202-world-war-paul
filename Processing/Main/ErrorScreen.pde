@@ -13,7 +13,7 @@ public class ErrorScreen extends Screen implements ITouchEventHandler, IDisplayC
 
     public ErrorScreen(String str){
         startHeight = 0;
-        endHieght = 85;
+        endHieght = 45;
         startWidth = 0;
         endWidth = 380;
         errorMessage = str;
@@ -28,10 +28,10 @@ public class ErrorScreen extends Screen implements ITouchEventHandler, IDisplayC
               fill(209);
               rect(startWidth, startHeight, endWidth, endHieght, 7);
               // error message
-              textSize(28);
+              textSize(22);
               fill(255,0,0);
               textAlign(CENTER);
-              text(errorMessage, 190, 50);
+              text(errorMessage, 190, 30);
               textAlign(LEFT);
             }
         }
