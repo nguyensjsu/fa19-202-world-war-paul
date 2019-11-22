@@ -59,7 +59,7 @@ public class OptionScreen extends Screen
             Screen item10 = new LeftItem("Appricot Sauce", 0.75, base + 25*13);
             Screen item11 = new LeftItem("Ranch", 0.75, base + 25*14);
             Screen item12 = new LeftItem("Besil Pesto", 0.75, base + 25*15);
-            Screen basket = new Basket("Add Basket", 630);
+            Button addBasketButton = new Button("Add Basket");
 
             addSubComponent(title1);
             addSubComponent(item1);
@@ -76,7 +76,7 @@ public class OptionScreen extends Screen
             addSubComponent(item10);
             addSubComponent(item11);
             addSubComponent(item12);
-            addSubComponent(basket);
+            addSubComponent(addBasketButton);
         } else {
 
             OptionTitle title1 = new OptionTitle("Choose Size", "Size", base-15);
@@ -94,7 +94,7 @@ public class OptionScreen extends Screen
             Screen item10 = new LeftItem("Coconut Milk", 0.70, base + 25*13);
             Screen item11 = new LeftItem("Soy Milk", 0.70, base + 25*14);
             Screen item12 = new LeftItem("2% Milk", 0, base + 25*15);
-            Screen basket = new Basket("Add Basket", 630);
+            Button addBasketButton = new Button("Add Basket");
 
             addSubComponent(title1);
             addSubComponent(item1);
@@ -111,7 +111,7 @@ public class OptionScreen extends Screen
             addSubComponent(item10);
             addSubComponent(item11);
             addSubComponent(item12);
-            addSubComponent(basket);
+            addSubComponent(addBasketButton);
         }
         addSubComponent(header);
     }
@@ -124,11 +124,6 @@ public class OptionScreen extends Screen
 
         int currentHeight = 20;
         background(255);
-        // textSize(20);
-        // fill(0, 0, 0, 255);
-        //
-        // text(title, (END_WIDTH - title.length() * 10) / 2, currentHeight);
-        // currentHeight += 20;
 
         for (IDisplayComponent c: components) {
             c.display();
