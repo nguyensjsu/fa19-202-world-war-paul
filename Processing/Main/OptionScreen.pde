@@ -41,6 +41,7 @@ public class OptionScreen extends Screen
         firstTimeRead = true;
 
         header = new Header(title);
+        
         if (name.indexOf("Burger") != -1) { //Found Burger inside the title
 
             OptionTitle title1 = new OptionTitle("Choose Cheese", "Cheese", base-15);
@@ -112,6 +113,7 @@ public class OptionScreen extends Screen
             addSubComponent(item12);
             addSubComponent(basket);
         }
+        addSubComponent(header);
     }
 
     /**
