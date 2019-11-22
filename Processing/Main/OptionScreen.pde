@@ -190,14 +190,9 @@ public class OptionScreen extends Screen
 		if (orderList.size() > 0) {
             Order currentOrder = orderList.get(orderList.size() - 1);
             ArrayList<BigItem> itemList = currentOrder.getBigItemList();
-            for (BigItem bigItem : itemList) {
-                total += bigItem.getPrice();
-            }
-            if (itemList.size() > 0) {
-                BigItem currentItem = itemList.get(itemList.size() - 1);
-                for (SmallItem item : currentItem.getSmallItemList()) {
-                    total += item.getPrice();
-                }
+            for (int i = 0; i < itemList.size(); i++) {
+                BigItem currentItem = itemList.get(i);
+                total += currentItem.getTotalPrice();
             }
         } 
 
