@@ -61,8 +61,12 @@ public class OptionItem extends Screen implements IDisplayComponent,  ITouchEven
         if (curHeight <= y && y <= curHeight+25) {
             isSelected = (isSelected == true) ? false : true;
 			      display();
-
-			      optionScreen = new OptionScreen("Choose Custom Options", name);
+            if (name.indexOf("Burger") != -1){
+              optionScreen = new OptionScreen("Custom Burger Options", name);
+            }
+            else{
+              optionScreen = new OptionScreen("Custom Starbuck Options", name);
+            }
             optionScreen.setFrame(frame);
             setNext(optionScreen);
 			      next();

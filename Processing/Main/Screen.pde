@@ -70,7 +70,6 @@ public class Screen implements IScreen, IDisplayComponent
      */
     public void setPrev(IScreen s)  {
         prevScreen = s;
-
     }
 
     /**

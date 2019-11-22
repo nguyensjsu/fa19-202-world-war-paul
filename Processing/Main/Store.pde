@@ -12,18 +12,21 @@ public class Store extends Screen implements ITouchEventHandler, IDisplayCompone
     private StoreScreen storeScreen;
 
     public Store(String imagePath, String name, String address, String hours, int height) {
-        image = loadImage(imagePath); 
+        image = loadImage(imagePath);
         this.name = name;
         this.address = address;
         this.hours= hours;
         startHeight = height;
+
+        //setPrev();
+
     }
 
     /**
      * Display store screen
      */
     public void display() {
-        
+
         int startingWidth = 10;
         int currentHeight = startHeight;
 
@@ -43,17 +46,17 @@ public class Store extends Screen implements ITouchEventHandler, IDisplayCompone
      * Set Next Touch Handler
      * @param next Touch Event Handler
      */
-    public void setNext(ITouchEventHandler next) 
-    { 
+    public void setNext(ITouchEventHandler next)
+    {
         nextHandler = next ;
     }
 
     /**
-     * Touch Event 
+     * Touch Event
      * @param x Touch X
      * @param y Touch Y
      */
-    public void touch(int x, int y) 
+    public void touch(int x, int y)
     {
         if (startHeight <= y && y <= endHieght) {
             storeScreen = new StoreScreen(name);
