@@ -3,6 +3,8 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
 {
     private ITouchEventHandler nextHandler ;
 	private String buttonName;
+	//private ArrayList<IDisplayComponent> components = new ArrayList<IDisplayComponent>() ;
+
 
 	// Error Screen reference
 	private ErrorScreen err;
@@ -10,6 +12,7 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
 
     public Button(String name) {
       	buttonName = name;
+		err = new ErrorScreen("Payment Method Is Not Set!");
     }
 
     /**
@@ -23,6 +26,7 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
 		fill(255, 255, 255, 255);
 		text(buttonName, width/2, 660); 
 		textAlign(LEFT);
+		err.display();
     }
 
     /**
@@ -46,11 +50,9 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
 		{
 			if(buttonName.equals("Pay"))
 			{
-				println("Hahha");
-				err = new ErrorScreen("Payment Method Is Not Set");
-				File file = new File("." + "cardInfo.json"); //TODO: figure out a way to make it general or the file made from AddCard to store cardInfo should be named specificlly
+				File file = new File("." + File.separator + "cardInfo.json"); //TODO: figure out a way to make it general or the file made from AddCard to store cardInfo should be named specificlly
 				boolean exists = file.exists();
-				if (exists) {
+				if (exists == true) {
 					// TODO: jump to orderResultScreen
 				}
 				else {
