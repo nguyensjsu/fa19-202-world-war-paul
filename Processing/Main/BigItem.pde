@@ -3,12 +3,14 @@ public class BigItem
 	private double price;
 	private ArrayList<SmallItem> smallItemList;  
 	private String name;  
+	private double total;
 
 	public BigItem(String itemName, double itemPrice)
 	{
 		price = itemPrice;
 		smallItemList = new ArrayList<SmallItem>();
 		name = itemName;
+		total = 0.0;
 	}
 
 	/**
@@ -23,9 +25,12 @@ public class BigItem
 	/**
 	 * update Price after adding new item
 	 */ 
-	public void updatePrice(){
-		//just add the latest small item
-		price += smallItemList.get(smallItemList.size()-1).getPrice();
+	public double getTotalPrice(){
+		total = price;
+		for (SmallItem item : smallItemList) {
+			total += item.getPrice();
+		}
+		return total;
 	}
 
 	/**
@@ -35,11 +40,6 @@ public class BigItem
 	public void addSmallItem(SmallItem smallItem)
 	{
 		smallItemList.add(smallItem);
-		updatePrice();
-
-		//debug purpose
-		//System.out.println("small item name is: "+smallItem.getName());
-		//System.out.println("small item price is: "+smallItem.getPrice());
 	}
 
 	/**
