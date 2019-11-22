@@ -116,6 +116,9 @@ public class StoreScreen extends Screen
                 total += item.getTotalPrice();
             }
         }
+
+        DecimalFormat df = new DecimalFormat("##.00");
+        total = Double.parseDouble(df.format(total));
         return total;
     }
 
