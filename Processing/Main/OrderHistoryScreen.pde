@@ -91,6 +91,15 @@ public class OrderHistoryScreen extends Screen implements IDisplayComponent {
 
 
 
+        float lastAngle = 0;
+        for (int i = 0; i < angles.length; i++) {
+            float gray = map(i, 0, angles.length, 0, 255);
+            fill(gray);
+            arc(width/2, 200, 250, 250, lastAngle, lastAngle+radians(angles[i]));
+            lastAngle += radians(angles[i]);
+        }
+
+
         for (IDisplayComponent c: components) {
             c.display();
         }
