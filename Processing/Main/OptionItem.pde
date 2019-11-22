@@ -74,7 +74,7 @@ public class OptionItem extends Screen implements IDisplayComponent, ITouchEvent
        else{
          optionScreen = new OptionScreen("Custom Starbuck Options", name);
        }
-       
+
 			optionScreen.setFrame(frame);
 			setNext(optionScreen);
 			next();

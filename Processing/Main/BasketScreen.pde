@@ -2,7 +2,7 @@ public class BasketScreen extends Screen implements IDisplayComponent {
 
     private ArrayList<IDisplayComponent> components = new ArrayList<IDisplayComponent>() ;
     private ITouchEventHandler chain ;
-    
+
     int lineCounter = 0;
 
     double totalPrice = 0;
@@ -13,39 +13,47 @@ public class BasketScreen extends Screen implements IDisplayComponent {
 
     double smallItemPrice = 0;
     String smallItemName = "";
-    
+
     double serviceFee = 0;
     double tax = 0;
-    
+
     private DecimalFormat df2 = new DecimalFormat("#.##");
-    
+
     ArrayList<Order>currentOrder;
     ArrayList<Order>orderList;
 
     Button payButton;
-    
+
+    private String prevScreen;
+
+    private Header header;
+
     /**
      * Display content
      */
-    public BasketScreen() {
+    public BasketScreen(String prev) {
+      header = new Header("Basket", prev);
       payButton = new Button("Pay");
       addSubComponent(payButton);
+      addSubComponent(header);
     }
+
+
     /**
      * Display content
      */
     @Override
     public void display() {
-        
+
         background(255,255,255);
-        textAlign(CENTER);
-        textSize(32); 
-        fill(0, 0, 0, 255);
-        text("Basket", width/2, 50);
-        
-        strokeWeight(3);
-        stroke(0, 0, 0);
-        line(0, 60, 380, 60); 
+        // textAlign(CENTER);
+        // textSize(32);
+        // fill(0, 0, 0, 255);
+        // text("Basket", width/2, 50);
+
+        // strokeWeight(3);
+        // stroke(0, 0, 0);
+        // line(0, 60, 380, 60);
 
         currentOrder = deserialization("optionScreenDetail.json");
         Order order = currentOrder.get(0);
@@ -74,7 +82,7 @@ public class BasketScreen extends Screen implements IDisplayComponent {
         }
     }
    /**
-    * Display the bigitem and 
+    * Display the bigitem and
     */
     public void displayBigItem()
     {
@@ -95,7 +103,7 @@ public class BasketScreen extends Screen implements IDisplayComponent {
     }
 
     public void displayLine()
-    {       
+    {
         strokeWeight(3);
         stroke(0, 0, 0);
         line(10, 100 + 20*lineCounter, 370, 100+20*lineCounter);
@@ -108,7 +116,7 @@ public class BasketScreen extends Screen implements IDisplayComponent {
     {
       fill(0, 0, 0, 255);
       textAlign(CENTER);
-      textSize(25); 
+      textSize(25);
       text(storeName, 190, 80);
       textAlign(RIGHT);
       text("$" + df2.format(totalPrice), 370, 600);
@@ -122,7 +130,7 @@ public class BasketScreen extends Screen implements IDisplayComponent {
       text("Service Fee: ", 10, 100 + 20*lineCounter);
       text("$" + df2.format(serviceFee), 300, 100 + 20*lineCounter);
       lineCounter ++;
-      
+
     }
 
     /**
@@ -132,7 +140,7 @@ public class BasketScreen extends Screen implements IDisplayComponent {
     @Override
     public void addSubComponent( IDisplayComponent c )
     {
-        components.add( c ) ; 
+        components.add( c ) ;
         println(components.size());
         if (components.size() == 1 )
         {
@@ -145,7 +153,7 @@ public class BasketScreen extends Screen implements IDisplayComponent {
         }
     }
     /**
-     * Touch Event 
+     * Touch Event
      * @param x Touch X
      * @param y Touch Y
      */
@@ -153,4 +161,11 @@ public class BasketScreen extends Screen implements IDisplayComponent {
     public void touch(int x, int y) {
         chain.touch(x, y);
     }
+
+
+    public void setFrame(IFrame frame){
+        this.frame = frame;
+        header.setFrame(frame);
+    }
+
 }

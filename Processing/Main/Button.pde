@@ -8,10 +8,18 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
 	private ErrorScreen err;
 	private BasketScreen basketScreen;
 
+  private String prevScreen;
+
 
     public Button(String name) {
       	buttonName = name;
-		err = new ErrorScreen("Payment Method Is Not Set!");
+        err = new ErrorScreen("Payment Method Is Not Set!");
+    }
+
+    public Button(String name, String prev) {
+        buttonName = name;
+        err = new ErrorScreen("Payment Method Is Not Set!");
+        prevScreen = prev;
     }
 
     /**
@@ -23,7 +31,7 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
 		textAlign(CENTER);
 		textSize(32);
 		fill(255, 255, 255, 255);
-		text(buttonName, width/2, 660); 
+		text(buttonName, width/2, 660);
 		textAlign(LEFT);
 		err.display();
     }
@@ -61,7 +69,8 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
 			}
 			else if(buttonName.equals("View Basket")) // case for Payment, more cases can be added later
 			{
-				basketScreen = new BasketScreen();
+				basketScreen = new BasketScreen(prevScreen);
+        basketScreen.setFrame(frame);
 				setNext(basketScreen);
 				next();
 			}
@@ -84,4 +93,14 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
 	public void setErrorMessage(ErrorScreen e) {
 		err = e;
 	}
+
+  /**
+  * Setup the current Frame reference
+  * @param frame THe frame reference
+  */
+  public void setFrame(IFrame frame){
+      this.frame = frame;
+  }
+
+
 }
