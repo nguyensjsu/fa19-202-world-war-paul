@@ -11,6 +11,7 @@ public class AddCard extends Screen
     boolean cardExpirtyFlag;
     boolean cardCVVFlag;
     Map <String, String> cardInfo = new HashMap<String, String>();
+	private ErrorScreen err;
 
 	/**
 	 * Constructor
@@ -21,6 +22,8 @@ public class AddCard extends Screen
 		cardNumberFlag = true;
 		cardExpirtyFlag = false;
 		cardCVVFlag = false;
+		err = new ErrorScreen("Incorrect Card Information!");
+
 	}
 	
     /**
@@ -61,6 +64,8 @@ public class AddCard extends Screen
 		text("Save Payment Method", END_WIDTH/2, 660); // Add Card Title
 		
 		textAlign(LEFT);
+
+		err.display();
     }
     /**
      * Touch Event
@@ -94,11 +99,14 @@ public class AddCard extends Screen
 		{
 			if(cardNumber.length() == 16 && cardExpirty.length() == 4 && cvv.length() == 3)
 			{
-			cardInfo.put("cardNumber", cardNumber.toString());
-			cardInfo.put("cardExpirty", cardExpirty.toString());
-			cardInfo.put("cardCVV", cvv.toString());
-			serialization(cardInfo, "cardInfo.json");
-			frame.cmd("home");
+				cardInfo.put("cardNumber", cardNumber.toString());
+				cardInfo.put("cardExpirty", cardExpirty.toString());
+				cardInfo.put("cardCVV", cvv.toString());
+				serialization(cardInfo, "cardInfo.json");
+				frame.cmd("home");
+			}else{
+				err.setTimer(millis()+ 1000); // 1000 = 1 second
+				err.setFlag(true); // display error message
 			}
 		}
 			
