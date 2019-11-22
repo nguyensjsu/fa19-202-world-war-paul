@@ -38,11 +38,6 @@ public class Header extends Screen implements ITouchEventHandler, IDisplayCompon
         line(13, 22.5, 32, 35);
         line(13, 22.5, 32, 10);
       }
-      else if(header.equals("Starbucks")){
-        strokeWeight(1.5);
-        line(13, 22.5, 32, 35);
-        line(13, 22.5, 32, 10);
-      }
       else if(header.equals("Custom Burger Options")){
         strokeWeight(1.5);
         line(13, 22.5, 32, 35);
