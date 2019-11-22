@@ -5,8 +5,15 @@ public class Header extends Screen implements ITouchEventHandler, IDisplayCompon
     private ITouchEventHandler nextHandler ;
     private int endHieght = 45;
 
+    private String prevScreen;
+
     public Header(String str){
         this.header = str;
+    }
+
+    public Header(String str, String prev){
+        this.header = str;
+        this.prevScreen = prev;
     }
 
     public void display(){
@@ -49,6 +56,11 @@ public class Header extends Screen implements ITouchEventHandler, IDisplayCompon
         line(13, 22.5, 32, 10);
       }
       else if(header.equals("Add Card")){
+        strokeWeight(1.5);
+        line(13, 22.5, 32, 35);
+        line(13, 22.5, 32, 10);
+      }
+      else if(header.equals("Basket")){
         strokeWeight(1.5);
         line(13, 22.5, 32, 35);
         line(13, 22.5, 32, 10);
@@ -98,6 +110,15 @@ public class Header extends Screen implements ITouchEventHandler, IDisplayCompon
                 MyAccountScreen account = new MyAccountScreen(60) ;
                 setPrev(account);
                 prev();
+            }
+        }
+        else if(header.equals("Basket")){
+            if(y <= endHieght && x <= 40){
+                if(prevScreen != null){
+                    StoreScreen storeScreen = new StoreScreen(prevScreen);
+                    setPrev(storeScreen);
+                    prev();
+                }
             }
         }
         else if (nextHandler != null) {

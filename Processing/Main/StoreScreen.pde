@@ -14,6 +14,9 @@ public class StoreScreen extends Screen
     private Screen item1;
     private Screen item2;
     private Screen item3;
+    private OptionTitle title1;
+    private Button viewBasketButton;
+    private BasketScreen basketScreen;
 
     private Header header;
 
@@ -23,30 +26,25 @@ public class StoreScreen extends Screen
         header = new Header(storeName);
 
         if (storeName.equals("Attack Burger")) {
-            OptionTitle title1 = new OptionTitle("Choose a Burger", "Burger", base-15);
-            Screen basket = new Basket("View Basket",630);
+            title1 = new OptionTitle("Choose a Burger", "Burger", base-15);
             item1 = new OptionItem("Attack Burger", "1/3LB Burger", 9.5, base);
             item2 = new OptionItem("Attack Burger", "2/3LB Burger", 11.5, base + 25*1);
             item3 = new OptionItem("Attack Burger", " 1 LB Burger", 13.5, base + 25*2);
-
-            addSubComponent(title1);
-            addSubComponent(basket);
-            addSubComponent(item1);
-            addSubComponent(item2);
-            addSubComponent(item3);
-        } else if (storeName.equals("Starbucks")) {
-            OptionTitle title1 = new OptionTitle("Choose a Coffee", "Starbucks", base-15);
-            Screen basket = new Basket("View Basket",630);
+            viewBasketButton = new Button("View Basket", "Attack Burger");
+        }
+        else if (storeName.equals("Starbucks")) {
+            title1 = new OptionTitle("Choose a Coffee", "Starbucks", base-15);
             item1 = new OptionItem("Starbucks", "Cappuccion", 3.5, base);
             item2 = new OptionItem("Starbucks", "White Chocolate Mocha", 4.5, base + 25*1);
             item3 = new OptionItem("Starbucks", "Latte", 3.5, base + 25*2);
-
-            addSubComponent(title1);
-            addSubComponent(basket);
-            addSubComponent(item1);
-            addSubComponent(item2);
-            addSubComponent(item3);
+            viewBasketButton = new Button("View Basket", "Starbucks");
         }
+
+        addSubComponent(title1);
+        addSubComponent(item1);
+        addSubComponent(item2);
+        addSubComponent(item3);
+        addSubComponent(viewBasketButton);
         addSubComponent(header);
     }
 
@@ -121,7 +119,6 @@ public class StoreScreen extends Screen
 
         DecimalFormat df = new DecimalFormat("##.00");
         total = Double.parseDouble(df.format(total));
-
         return total;
     }
 
@@ -130,9 +127,11 @@ public class StoreScreen extends Screen
     * @param frame THe frame reference
     */
     public void setFrame(IFrame frame){
+        this.frame = frame;
         item1.setFrame(frame);
         item2.setFrame(frame);
         item3.setFrame(frame);
         header.setFrame(frame);
+        viewBasketButton.setFrame(frame);
     }
 }

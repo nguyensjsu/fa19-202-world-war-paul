@@ -2,13 +2,24 @@
 public class Button extends Screen implements ITouchEventHandler, IDisplayComponent
 {
     private ITouchEventHandler nextHandler ;
-    private String buttonName;
+	private String buttonName;
+	//private ArrayList<IDisplayComponent> components = new ArrayList<IDisplayComponent>() ;
+	// Error Screen reference
+	private ErrorScreen err;
+	private BasketScreen basketScreen;
 
-    // Error Screen reference
-    private ErrorScreen err;
+  private String prevScreen;
+
 
     public Button(String name) {
       	buttonName = name;
+        err = new ErrorScreen("Payment Method Is Not Set!");
+    }
+
+    public Button(String name, String prev) {
+        buttonName = name;
+        err = new ErrorScreen("Payment Method Is Not Set!");
+        prevScreen = prev;
     }
 
     /**
@@ -20,7 +31,9 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
 		textAlign(CENTER);
 		textSize(32);
 		fill(255, 255, 255, 255);
-		text("Pay", width/2, 660); // Pay Title
+		text(buttonName, width/2, 660);
+		textAlign(LEFT);
+		err.display();
     }
 
     /**
@@ -40,23 +53,29 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
      */
     public void touch(int x, int y)
     {
-		if(buttonName.equals("Pay")) // case for Payment, more cases can be added later
+		if(x > 0 && x < 380 && y > 620 && y < 680) // case for Payment, more cases can be added later
 		{
-			if(x > 0 && x < 380 && y > 620 && y < 680)
+			if(buttonName.equals("Pay"))
 			{
-				System.out.println("button");
-
-				File file = new File("." + "file.json"); //TODO: figure out a way to make it general or the file made from AddCard to store cardInfo should be named specificlly
+				File file = new File("." + File.separator + "cardInfo.json"); //TODO: figure out a way to make it general or the file made from AddCard to store cardInfo should be named specificlly
 				boolean exists = file.exists();
-				System.out.println(exists);
-				if (exists) {
+				if (exists == true) {
 					// TODO: jump to orderResultScreen
-				} else {
+				}
+				else {
 					err.setTimer(millis()+ 1000); // 1000 = 1 second
 					err.setFlag(true); // display error message
 				}
 			}
-		} else if (nextHandler != null) {
+			else if(buttonName.equals("View Basket")) // case for Payment, more cases can be added later
+			{
+				basketScreen = new BasketScreen(prevScreen);
+        basketScreen.setFrame(frame);
+				setNext(basketScreen);
+				next();
+			}
+		}
+		else if (nextHandler != null) {
 			nextHandler.touch(x,y);
 		}
     }
@@ -74,4 +93,14 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
 	public void setErrorMessage(ErrorScreen e) {
 		err = e;
 	}
+
+  /**
+  * Setup the current Frame reference
+  * @param frame THe frame reference
+  */
+  public void setFrame(IFrame frame){
+      this.frame = frame;
+  }
+
+
 }

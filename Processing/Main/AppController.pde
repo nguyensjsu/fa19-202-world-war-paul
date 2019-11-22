@@ -21,7 +21,7 @@ public class AppController implements IProxy {
 
         home = new HomePageScreen("San Jose State University");
         orderHistory = new OrderHistoryScreen() ;
-        account = new MyAccountScreen(20) ;
+        account = new MyAccountScreen(60) ;
         burgerStore = new StoreScreen("Attack Burger"); 
         starbucksStore = new StoreScreen("Starbucks");
         

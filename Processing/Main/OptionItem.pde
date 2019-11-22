@@ -65,10 +65,16 @@ public class OptionItem extends Screen implements IDisplayComponent, ITouchEvent
           	isSelected = (isSelected == true) ? false : true;
 			display();
 
-			// Reset 
+			// Reset
 			unselected();
 
-			optionScreen = new OptionScreen("Choose Custom Options", name);
+      if (name.indexOf("Burger") != -1){
+         optionScreen = new OptionScreen("Custom Burger Options", name);
+       }
+       else{
+         optionScreen = new OptionScreen("Custom Starbuck Options", name);
+       }
+
 			optionScreen.setFrame(frame);
 			setNext(optionScreen);
 			next();
@@ -123,7 +129,7 @@ public class OptionItem extends Screen implements IDisplayComponent, ITouchEvent
 		System.out.println("Running");
 		File orderFile = new File("." + File.separator + filename);
 		ArrayList<Order> orderList = deserialization(filename); //reread userinput from storeScreen
-		
+
 		if (orderList.size() > 0) {
 			Order currentOrder = orderList.get(orderList.size() - 1);
 			BigItem newItem = new BigItem(name, price);
