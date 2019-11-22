@@ -14,6 +14,7 @@ public class StoreScreen extends Screen
 
     //To store order information
     Order currentOrder;
+    ArrayList<Order> currentOrderList;
 
     //for Screen Title
     private String title;
@@ -21,13 +22,17 @@ public class StoreScreen extends Screen
     private Screen item2;
     private Screen item3;
 
+    //for checking file Exist
+    private boolean fileExists;
+    private boolean firstTime;
+
     public StoreScreen(String screenTitle)
     {
         title = screenTitle;
 
         if (title.equals("Attack Burger")) {
             OptionTitle title1 = new OptionTitle("Choose a Burger", "Burger", base-15);
-            Screen basket = new Basket("Add Basket",630);
+            Screen basket = new Basket("View Basket",630);
             item1 = new OptionItem("1/3LB Burger", 9.5, base);
             item2 = new OptionItem("2/3LB Burger", 11.5, base + 25*1);
             item3 = new OptionItem(" 1 LB Burger", 13.5, base + 25*2);
@@ -38,7 +43,7 @@ public class StoreScreen extends Screen
             addSubComp(item3);
         } else if (title.equals("Starbucks")) {
             OptionTitle title1 = new OptionTitle("Choose a Coffee", "Starbucks", base-15);
-            Screen basket = new Basket("Add Basket",630);
+            Screen basket = new Basket("View Basket",630);
             item1 = new OptionItem("Cappuccion", 3.5, base);
             item2 = new OptionItem("White Chocolate Mocha", 4.5, base + 25*1);
             item3 = new OptionItem("Latte", 3.5, base + 25*2);
@@ -48,7 +53,8 @@ public class StoreScreen extends Screen
             addSubComp(item2);
             addSubComp(item3);
         }
-
+        fileExists = false;
+        firstTime = true;
     }
 
     /**
@@ -56,6 +62,19 @@ public class StoreScreen extends Screen
       * @return: currently useless
       */
     public void display(){
+
+        //set up current OrderList and order in first run
+        if(firstTime){
+            File orderFile = new File("." + File.separator + "optionScreenDetail.json");
+            currentOrderList = deserialization("optionScreenDetail.json"); //reread userinput from storeScreen
+
+            //reget previous buttom
+            if( orderFile.exists() ){
+                fileExists = true;
+            }
+            firstTime = false;
+        }
+
         int currentHeight = 20;
         background(255);
         textSize(20);
@@ -87,7 +106,7 @@ public class StoreScreen extends Screen
 
         //if touch the Button
         if(base<=y && y<= base + 25*2){
-            storeUserInput("storeScreenDetail.json"); //store the userInput into a json file
+            storeUserInput("optionScreenDetail.json"); //store the userInput into a json file
             resetButton();  //reset the buttom to original
         }
     }
@@ -127,11 +146,22 @@ public class StoreScreen extends Screen
      * @return subtotal price
      */
     public double getSubTotal(){
-        double subtotal = 0.0;
-        for (Screen c: comp) {
-            subtotal += c.add();
+
+        //reget previous buttom
+        if( fileExists ){
+            System.out.println("json file exist");
+
+            return currentOrderList.get(0).getPrice();
         }
-        return subtotal;
+        else{
+            System.out.println("json file do not exist");
+
+            double subtotal = 0.0;
+            for (Screen c: comp) {
+                subtotal += c.add();
+            }
+            return subtotal;
+        }
     }
 
     /**
@@ -159,6 +189,7 @@ public class StoreScreen extends Screen
 
         //String timeLineString = Integer.toString(timeLine);
         currentOrder = new Order();
+        currentOrder.setStoreName(title);
 
         //add currentItem tag for the value of selected item
         for (Screen c: comp) {
@@ -170,7 +201,11 @@ public class StoreScreen extends Screen
                 }
             }
         }
-        ArrayList<Order> currentOrderList = new ArrayList<Order>();
+
+        //create new OrderList if no previous item in orderList
+        if(!fileExists){
+            currentOrderList = new ArrayList<Order>();
+        }
         currentOrderList.add(currentOrder);
 
         serialization(currentOrderList, filename);
@@ -190,6 +225,8 @@ public class StoreScreen extends Screen
      */
     public void resetStore(){
         currentOrder = new Order();
+        firstTime = true;
+        fileExists = false;
     }
 
 

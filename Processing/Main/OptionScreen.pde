@@ -38,6 +38,8 @@ public class OptionScreen extends Screen
         name = n;
         firstTimeRead = true;
 
+        System.out.println("store title"+title);
+
         if (name.indexOf("Burger") != -1) { //Found Burger inside the title
 
             OptionTitle title1 = new OptionTitle("Choose Cheese", "Cheese", base-15);
@@ -119,7 +121,7 @@ public class OptionScreen extends Screen
         if(firstTimeRead){
             firstTimeRead = false;
             ArrayList<Order> currentOrderList = new ArrayList<Order>();
-            currentOrderList = deserialization("storeScreenDetail.json"); //reread userinput from storeScreen
+            currentOrderList = deserialization("optionScreenDetail.json"); //reread userinput from storeScreen
             currentOrder = currentOrderList.get(0);
             previousPrice = currentOrder.getLatestPrice();
         }

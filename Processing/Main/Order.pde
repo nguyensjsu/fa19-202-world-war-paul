@@ -48,8 +48,8 @@ public class Order
 			subtotal += entry.getPrice();
 		}
 		price = subtotal;
-		
-		tax = getPrice();
+
+		tax = getTax();
 		serviceFee = getServiceFee();
 	}
 
