@@ -86,13 +86,30 @@ public class OrderHistoryScreen extends Screen implements IDisplayComponent {
 
 
 
-        float lastAngle = 0;
-        for (int i = 0; i < angles.length; i++) {
-            float gray = map(i, 0, angles.length, 0, 255);
-            fill(gray);
-            arc(width/2, 200, 250, 250, lastAngle, lastAngle+radians(angles[i]));
-            lastAngle += radians(angles[i]);
+        // Line chart
+
+        int startX = 40;
+        int endX = 360;
+        int startY = 100;
+        int endY = 230;
+
+        int step = (endX - startX)/data.length;
+        int currentX = startX;
+
+        strokeWeight(1.5);
+        stroke(0, 0, 0);
+
+        line(startX-10, startY, startX-10, endY);
+        line(startX-10, endY, endX, endY);
+
+
+        for (int i = 0; i < data.length-1; i ++){
+            float a = map(data[i], 0, 100, startY, endY);
+            float b = map(data[i+1], 0, 100, startY, endY);
+            line(currentX, a ,currentX + step, b);
+            currentX += step;
         }
+
 
 
         for (IDisplayComponent c: components) {
