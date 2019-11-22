@@ -69,10 +69,19 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
 			}
 			else if(buttonName.equals("View Basket")) // case for Payment, more cases can be added later
 			{
-				basketScreen = new BasketScreen(prevScreen);
-        basketScreen.setFrame(frame);
-				setNext(basketScreen);
-				next();
+
+        ArrayList<Order>currentOrder = deserialization("optionScreenDetail.json");
+        if (currentOrder.size() == 0){
+            err = new ErrorScreen("No Item in Basket Yet.");
+            err.setTimer(millis()+ 1000); // 1000 = 1 second
+            err.setFlag(true); // display error message
+        }
+        else{
+          basketScreen = new BasketScreen(prevScreen);
+          basketScreen.setFrame(frame);
+          setNext(basketScreen);
+          next();
+        }
 			}
 		}
 		else if (nextHandler != null) {
