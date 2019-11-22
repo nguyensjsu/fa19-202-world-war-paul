@@ -23,7 +23,10 @@ public class BasketScreen extends Screen implements IDisplayComponent {
     ArrayList<Order>orderList;
 
     Button payButton;
-
+    
+    /**
+     * Display content
+     */
     public BasketScreen() {
       payButton = new Button("Pay");
       addSubComponent(payButton);
@@ -45,20 +48,6 @@ public class BasketScreen extends Screen implements IDisplayComponent {
         line(0, 60, 380, 60); 
 
         currentOrder = deserialization("optionScreenDetail.json");
-        
-        // File file = new File("."+File.separator+"orderList.json");
-        // if(file.exists())
-        //     orderList = deserialization("orderList.json");
-        // else
-        // {
-        //     serialization(currentOrder, "orderList.json");
-        //     orderList = deserialization("orderList.json");
-        // }
-        
-        // orderList.add(currentOrder.get(0));
-        // serialization(orderList, "orderList.json");
-
-
         Order order = currentOrder.get(0);
         storeName = order.getStoreName();
         serviceFee = order.getPrice() * 0.15;
