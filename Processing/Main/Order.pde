@@ -130,4 +130,13 @@ public class Order
 	{
 		return bigItemList;
 	}
+
+	/**
+	 * Reset Big Item
+	 */
+	public void resetBigItem() {
+		if (bigItemList.size() > 0) {
+			bigItemList.remove(bigItemList.size() - 1);
+		}
+	}
 }
