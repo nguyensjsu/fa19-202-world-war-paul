@@ -170,7 +170,10 @@ public class StoreScreen extends Screen
                 }
             }
         }
-        serialization(currentOrder, filename);
+        ArrayList<Order> currentOrderList = new ArrayList<Order>();
+        currentOrderList.add(currentOrder);
+
+        serialization(currentOrderList, filename);
     }
 
     /**

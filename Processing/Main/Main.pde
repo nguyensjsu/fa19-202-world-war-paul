@@ -6,7 +6,7 @@ import com.google.gson.internal.bind.util.*;
 import com.google.gson.reflect.*;
 import com.google.gson.stream.*;
 
-import java.util.Map;
+import java.util.*;
 import java.util.HashMap;
 import java.lang.reflect.Type;
 import java.io.*;

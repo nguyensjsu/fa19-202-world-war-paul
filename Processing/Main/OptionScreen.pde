@@ -31,9 +31,6 @@ public class OptionScreen extends Screen
 
     private String name;
 
-    private StoreScreen storeScreen;
-
-
     public OptionScreen(String t, String n)
     {
         title = t;
@@ -121,7 +118,9 @@ public class OptionScreen extends Screen
     public void display(){
         if(firstTimeRead){
             firstTimeRead = false;
-            currentOrder = deserialization("storeScreenDetail.json"); //reread userinput from storeScreen
+            ArrayList<Order> currentOrderList = new ArrayList<Order>();
+            currentOrderList = deserialization("storeScreenDetail.json"); //reread userinput from storeScreen
+            currentOrder = currentOrderList.get(0);
             previousPrice = currentOrder.getLatestPrice();
         }
 
@@ -245,8 +244,10 @@ public class OptionScreen extends Screen
                 }
             }
         }
-        serialization(currentOrder, filename);
-        
+        ArrayList<Order> currentOrderList = new ArrayList<Order>();
+        currentOrderList.add(currentOrder);
+
+        serialization(currentOrderList, filename);
         //Debug purpose
         System.out.println("latest output price is+ "+currentOrder.getLatestPrice());
     }
