@@ -9,6 +9,7 @@ public class OrderHistoryScreen extends Screen implements IDisplayComponent {
     private Header header;
 
     private int startHeight;
+
     private int currentHeight;
     private int startLeft;
 
@@ -17,6 +18,9 @@ public class OrderHistoryScreen extends Screen implements IDisplayComponent {
 
 
     private ArrayList<Order> orderList;
+
+    int[] angles = {30, 10, 45, 35, 60, 38, 75, 67 };
+
 
     public OrderHistoryScreen() {
 
@@ -80,6 +84,15 @@ public class OrderHistoryScreen extends Screen implements IDisplayComponent {
         }
         currentHeight += 40;
 
+
+
+        float lastAngle = 0;
+        for (int i = 0; i < angles.length; i++) {
+            float gray = map(i, 0, angles.length, 0, 255);
+            fill(gray);
+            arc(width/2, 200, 250, 250, lastAngle, lastAngle+radians(angles[i]));
+            lastAngle += radians(angles[i]);
+        }
 
 
         for (IDisplayComponent c: components) {
