@@ -60,8 +60,8 @@ public class OrderResultScreen extends Screen implements IDisplayComponent {
             }
             displayFee(order.getTotalPrice(), order.getTax(), order.getServiceFee());
         }
-        
-        
+
+
         for (IDisplayComponent c: components) {
             c.display();
         }
