@@ -8,23 +8,32 @@ public class AppController implements IProxy {
     private IScreen home ;
     private IScreen orderHistory ;
     private IScreen account ;
+    private IScreen burgerStore ;
+    private IScreen starbucksStore;
     private IMenuCommand displayHome ;
     private IMenuCommand displayOrderHistory ;
     private IMenuCommand displayAccount ;
+    private IMenuCommand displayBurgerStore ;
+    private IMenuCommand displayStarbucksStore ;
     private IFrame frame ;
 
     public AppController() {
 
         home = new HomePageScreen("San Jose State University");
         orderHistory = new OrderHistoryScreen() ;
-        account = new MyAccountScreen(60) ;
+        account = new MyAccountScreen(20) ;
+        burgerStore = new StoreScreen("Attack Burger"); 
+        starbucksStore = new StoreScreen("Starbucks");
+        
         frame = new Frame( home ) ;
 
         // Set frame for MenuBar
         home.setFrame(frame);
         orderHistory.setFrame(frame);
         account.setFrame(frame);
-
+        starbucksStore.setFrame(frame);
+        burgerStore.setFrame(frame);
+        
         // Set the screen flow
 
         //addCard.setFrame();
@@ -34,7 +43,9 @@ public class AppController implements IProxy {
         displayOrderHistory  = new MenuCommand() ;
         displayHome = new MenuCommand() ;
         displayAccount  = new MenuCommand() ;
-
+        displayBurgerStore = new MenuCommand() ;
+        displayStarbucksStore = new MenuCommand() ;
+        
         displayOrderHistory.setReceiver(
           new IMenuReceiver() {
               /** Command Action */
@@ -59,10 +70,28 @@ public class AppController implements IProxy {
               }
         }
         ) ;
-
+        displayBurgerStore.setReceiver(
+          new IMenuReceiver() {
+              /** Command Action */
+              public void doAction() {
+                  frame.setCurrentScreen( burgerStore ) ;
+              }
+        }
+        ) ;
+        displayStarbucksStore.setReceiver(
+          new IMenuReceiver() {
+              /** Command Action */
+              public void doAction() {
+                  frame.setCurrentScreen( starbucksStore ) ;
+              }
+        }
+        ) ;
+      
         frame.setMenuItem ("home", displayHome ) ; // left
         frame.setMenuItem ("order", displayOrderHistory ) ; // middle
         frame.setMenuItem ("account", displayAccount ) ; // right
+        frame.setMenuItem ("burgerStore", displayBurgerStore ) ;
+        frame.setMenuItem ("starbucksStore", displayStarbucksStore ) ;
     }
 
     /**

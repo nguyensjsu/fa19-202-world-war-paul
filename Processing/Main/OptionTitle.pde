@@ -1,12 +1,11 @@
 /** Payments Screen */
 public class OptionTitle extends Screen implements IDisplayComponent, ITouchEventHandler
-{
-    ITouchEventHandler nextHandler ;
+{    
+    private ITouchEventHandler nextHandler ;
 
-
-    String name;
-    String type;
-    int curHeight;
+    private String name;
+    private String type;
+    private int curHeight;
 
     public OptionTitle(String n, String t, int height)
     {
@@ -52,5 +51,11 @@ public class OptionTitle extends Screen implements IDisplayComponent, ITouchEven
      */
     public String title(){
         return type;
+    }
+
+    // TODO: delele later
+    public double getPrice(){
+        System.out.println("in optionItem");
+        return 0.0;
     }
 }

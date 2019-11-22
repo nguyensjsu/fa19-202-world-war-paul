@@ -1,5 +1,5 @@
 /** Payments Screen */
-public class OptionItem extends Screen implements IDisplayComponent,  ITouchEventHandler
+public class OptionItem extends Screen implements IDisplayComponent, ITouchEventHandler
 {
     private ITouchEventHandler nextHandler ;
     PShape optionImg1;
@@ -7,13 +7,15 @@ public class OptionItem extends Screen implements IDisplayComponent,  ITouchEven
     private OptionScreen optionScreen;
 
     String name;
-    float price;
+    double price;
     int curHeight;
     boolean isSelected;
+    String storeName;
 
-    public OptionItem(String n, float p, int h)
+    public OptionItem(String sName, String itemName, double p, int h)
     {
-        name = n;
+		storeName = sName;
+        name = itemName;
         price  = p;
         curHeight = h;
         isSelected = false;
@@ -59,17 +61,17 @@ public class OptionItem extends Screen implements IDisplayComponent,  ITouchEven
     public void touch(int x, int y)
     {
         if (curHeight <= y && y <= curHeight+25) {
-            isSelected = (isSelected == true) ? false : true;
-			      display();
-            if (name.indexOf("Burger") != -1){
-              optionScreen = new OptionScreen("Custom Burger Options", name);
-            }
-            else{
-              optionScreen = new OptionScreen("Custom Starbuck Options", name);
-            }
-            optionScreen.setFrame(frame);
-            setNext(optionScreen);
-			      next();
+			addNewOrder(storeName, "optionScreenDetail.json");
+          	isSelected = (isSelected == true) ? false : true;
+			display();
+
+			// Reset 
+			unselected();
+
+			optionScreen = new OptionScreen("Choose Custom Options", name);
+			optionScreen.setFrame(frame);
+			setNext(optionScreen);
+			next();
         } else if (nextHandler != null) {
             nextHandler.touch(x,y);
         }
@@ -103,7 +105,40 @@ public class OptionItem extends Screen implements IDisplayComponent,  ITouchEven
     /**
       * reset the selected button to unselected
       */
-    public void unselected(){
-      isSelected = false;
+    public void unselected() {
+      	isSelected = false;
+    }
+
+    // TODO: delele later
+    public double getPrice(){
+      	return price;
+    }
+
+    /**
+     * Store user input as map and out put json file and timeline
+     * @param filename the store input into file name
+     */
+    public void addNewOrder(String storeName, String filename){
+
+		System.out.println("Running");
+		File orderFile = new File("." + File.separator + filename);
+		ArrayList<Order> orderList = deserialization(filename); //reread userinput from storeScreen
+		
+		if (orderList.size() > 0) {
+			Order currentOrder = orderList.get(orderList.size() - 1);
+			BigItem newItem = new BigItem(name, price);
+			currentOrder.addBigItem(newItem);
+			currentOrder.updatePrice();
+            orderList.set(orderList.size() - 1, currentOrder);
+		} else {
+			Order currentOrder = new Order();
+			BigItem newItem = new BigItem(name, price);
+			currentOrder.addBigItem(newItem);
+			currentOrder.setStoreName(storeName);
+			orderList.add(currentOrder);
+		}
+
+		// Put orderList back into local file.
+        serialization(orderList, filename);
     }
 }

@@ -1,12 +1,11 @@
 /** Payments Screen */
 public class Basket extends Screen implements IDisplayComponent, ITouchEventHandler
 {
-    ITouchEventHandler nextHandler ;
+    private ITouchEventHandler nextHandler ;
     private String name;
     private int currentHeight;
     private static final int MAX_WIDTH = 380;
     private static final int MAX_HEIGHT = 680;
-
 
     public Basket(String n, int h)
     {

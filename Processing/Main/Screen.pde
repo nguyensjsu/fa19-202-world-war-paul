@@ -12,6 +12,7 @@ public class Screen implements IScreen, IDisplayComponent
     public static final int END_HEIGHT = 680;
     public static final int START_WIDTH = 0;
     public static final int END_WIDTH = 380;
+    public int order_id = 0;
     public IFrame frame;
 
     protected IScreen prevScreen;
@@ -138,18 +139,22 @@ public class Screen implements IScreen, IDisplayComponent
         return "";
     }
 
+    // TODO: delele later 
+    public double getPrice(){
+        //Do nothing
+        return 0.0;
+    }
+
     /**
-     * Serialize a Map into JSON and write it into a local file
-     * @param map a map and convert to JSON file with the fileName
-     * @param fileName the file name
+     * @param map, fileName, Taking a map and convert to JSON file with the fileName
      */
-    public void serialization(Map<String, String> map, String fileName)
+    public void serialization(Object obj, String fileName)
     {
         Gson gson = new Gson();
-        String jsonString = gson.toJson(map);
+        String jsonString = gson.toJson(obj);
         try
         {
-            FileWriter file = new FileWriter("." + fileName); // might need to improve about the directory
+            FileWriter file = new FileWriter("." +File.separator+fileName); // might need to improve about the directory
             file.write(jsonString);
             file.close();
         }
@@ -161,32 +166,24 @@ public class Screen implements IScreen, IDisplayComponent
     }
 
     /**
-     * Deserialize a local file from JSON into Map
-     * @param fileName a fileName as a String
-     * @return map converted from a JSON file
+     * @param taking a fileName as a String
+     * @return Order converted from a JSON file
      */
-    public Map<String, String> deserialization(String fileName)
+    public ArrayList<Order> deserialization(String fileName)
     {
         Gson gson = new Gson();
-        HashMap<String, String> result = new HashMap<String, String>();
+        TypeToken<List<Order>> token = new TypeToken<List<Order>>(){};
+        ArrayList<Order> result = new ArrayList<Order>();
         try
         {
-            FileReader fr = new FileReader("." + fileName);
-            StringBuilder str = new StringBuilder();
-            int i;
-            while ((i=fr.read()) != -1)
-            {
-            str.append((char)i);
-            }
-            String jsonString = str.toString();
-            Type type = new TypeToken<HashMap<String, String>>(){}.getType();
-            result = gson.fromJson(jsonString, type);
+            FileReader fr = new FileReader("."+File.separator+fileName);
+            result = gson.fromJson(fr, token.getType()); // has to be a class type
+            
             fr.close();
         }
         catch(IOException e)
         {
             e.printStackTrace();
-            // TODO: error message
         }
         return result;
     }
