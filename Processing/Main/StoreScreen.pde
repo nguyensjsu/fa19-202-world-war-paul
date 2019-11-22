@@ -15,6 +15,8 @@ public class StoreScreen extends Screen
     private Screen item2;
     private Screen item3;
 
+    private Header header;
+    
     public StoreScreen(String name)
     {
         storeName = name;
@@ -52,10 +54,6 @@ public class StoreScreen extends Screen
 
         int currentHeight = 20;
         background(255);
-        textSize(20);
-        fill(0, 0, 0, 255);
-
-        text(storeName, (END_WIDTH - storeName.length() * 7) / 2, currentHeight);
         currentHeight += 20;
 
         for (IDisplayComponent c: components) {
@@ -131,5 +129,6 @@ public class StoreScreen extends Screen
         item1.setFrame(frame);
         item2.setFrame(frame);
         item3.setFrame(frame);
+        header.setFrame(frame);
     }
 }

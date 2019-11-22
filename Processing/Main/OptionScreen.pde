@@ -31,6 +31,8 @@ public class OptionScreen extends Screen
 
     private String name;
 
+    private Header header;
+
     public OptionScreen(String t, String n)
     {
         title = t;
@@ -38,8 +40,7 @@ public class OptionScreen extends Screen
         name = n;
         firstTimeRead = true;
 
-        System.out.println("store title"+title);
-
+        header = new Header(title);
         if (name.indexOf("Burger") != -1) { //Found Burger inside the title
 
             OptionTitle title1 = new OptionTitle("Choose Cheese", "Cheese", base-15);
@@ -121,11 +122,11 @@ public class OptionScreen extends Screen
 
         int currentHeight = 20;
         background(255);
-        textSize(20);
-        fill(0, 0, 0, 255);
-
-        text(title, (END_WIDTH - title.length() * 10) / 2, currentHeight);
-        currentHeight += 20;
+        // textSize(20);
+        // fill(0, 0, 0, 255);
+        //
+        // text(title, (END_WIDTH - title.length() * 10) / 2, currentHeight);
+        // currentHeight += 20;
 
         for (IDisplayComponent c: components) {
             c.display();
@@ -198,5 +199,13 @@ public class OptionScreen extends Screen
 
         DecimalFormat df = new DecimalFormat("##.00");
         return Double.parseDouble(df.format(total));
+    }
+
+    /**
+    * Setup the current Frame reference
+    * @param frame THe frame reference
+    */
+    public void setFrame(IFrame frame){
+      header.setFrame(frame);
     }
 }

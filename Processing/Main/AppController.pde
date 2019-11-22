@@ -4,7 +4,7 @@
 public class AppController implements IProxy {
 
     // TODO: Update Screens and Commands
-    
+
     private IScreen home ;
     private IScreen orderHistory ;
     private IScreen account ;
@@ -19,11 +19,12 @@ public class AppController implements IProxy {
 
     public AppController() {
 
-        home = new HomePageScreen("San Jose State University") ;
+        home = new HomePageScreen("San Jose State University");
         orderHistory = new OrderHistoryScreen() ;
         account = new MyAccountScreen(20) ;
         burgerStore = new StoreScreen("Attack Burger"); 
         starbucksStore = new StoreScreen("Starbucks");
+        
         frame = new Frame( home ) ;
 
         // Set frame for MenuBar
@@ -34,9 +35,9 @@ public class AppController implements IProxy {
         burgerStore.setFrame(frame);
         
         // Set the screen flow
-        
+
         //addCard.setFrame();
-        
+
 
         // setup command pattern
         displayOrderHistory  = new MenuCommand() ;

@@ -14,14 +14,14 @@ public class OptionTitle extends Screen implements IDisplayComponent, ITouchEven
         curHeight = height;
     }
 
-    /** 
+    /**
       * Display function
       * @return: currently useless
-      */ 
+      */
     public void display(){
         //All Txt
         textSize(14);
-        fill(0);  
+        fill(0);
         text(name, 20, curHeight);
     }
 
@@ -29,13 +29,13 @@ public class OptionTitle extends Screen implements IDisplayComponent, ITouchEven
      * Set Next Touch Handler
      * @param next Touch Event Handler
      */
-    public void setNext(ITouchEventHandler next) 
-    { 
+    public void setNext(ITouchEventHandler next)
+    {
         nextHandler = next ;
     }
 
     /**
-     * Touch Event 
+     * Touch Event
      * @param x Touch X
      * @param y Touch Y
      */
