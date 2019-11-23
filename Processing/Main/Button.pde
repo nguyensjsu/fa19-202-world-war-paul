@@ -58,7 +58,7 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
 		{
 			if(buttonName.equals("Pay"))
 			{
-				System.out.println("Running123123");
+				
 				boolean infoNotFound = true;
 
 				Gson gson = new Gson();
@@ -86,6 +86,7 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
 					err.setFlag(true); // display error message
 				} else {
 					// TODO jump to order result screen
+					System.out.println("Jump into order result screen");
 				}
 			}
 			else if(buttonName.equals("View Basket")) // case for Payment, more cases can be added later
