@@ -12,8 +12,9 @@ public class OrderHistoryScreen extends Screen implements IDisplayComponent {
     private int currentHeight;
     private int startLeft;
 
-    // used for count order
-    int lineCounter = 0;
+
+    private DecimalFormat df2 = new DecimalFormat("#.##");
+
 
     private ArrayList<Order> orderList;
 
@@ -42,9 +43,8 @@ public class OrderHistoryScreen extends Screen implements IDisplayComponent {
     @Override
     public void display() {
 
-        currentHeight = startHeight;
+        currentHeight = startHeight+20;
         orderList = deserialization("optionScreenDetail.json");
-
 
         background(255);
 
@@ -52,11 +52,10 @@ public class OrderHistoryScreen extends Screen implements IDisplayComponent {
         for(Order order : orderList){ // get each order
             if (order != null){
 
-            //   System.out.println(order.getStoreName() + " : " + order.getPrice());
               fill(0, 0, 0, 255);
-              textSize(20);
+              textSize(18);
               order.updatePrice();
-              text(order.getStoreName() + " : " + order.getTotalPrice(), startLeft, currentHeight);
+              text(order.getStoreName() + " Order: $" + df2.format(order.getTotalPrice()), startLeft, currentHeight);
               currentHeight += 20;
 
               ArrayList<BigItem> bigItemList = order.getBigItemList();
@@ -64,16 +63,21 @@ public class OrderHistoryScreen extends Screen implements IDisplayComponent {
                 for(BigItem bigItem: bigItemList){ // get each Item in Order
 
                   fill(0, 0, 0, 255);
-                  textSize(17);
-                  text(bigItem.getName() + " : " + bigItem.getTotalPrice(), startLeft + 10, currentHeight);
-                  //System.out.println("  " + bigItem.getName() + ":" + bigItem.getPrice());
+                  textSize(15);
+                  text("-" + bigItem.getName() + " : $" + df2.format(bigItem.getTotalPrice()), startLeft + 10, currentHeight);
                   currentHeight += 20;
-
                 }
               }
+
             }
         }
-        // currentHeight += 40;
+        if (currentHeight == 80){
+
+          fill(0, 0, 0, 255);
+          textSize(18);
+          text("No Order Available !", startLeft, currentHeight );
+        }
+        currentHeight += 40;
 
 
 
@@ -82,18 +86,6 @@ public class OrderHistoryScreen extends Screen implements IDisplayComponent {
         }
     }
 
-    /**
-    * Display the bigitem and
-    */
-    // public void displayBigItem()
-    // {
-    //    fill(0, 0, 0, 255);
-    //    textSize(20);
-    //    textAlign(LEFT);
-    //    text(bigItemName, 10, 100 + 20*lineCounter);
-    //    text("$" + df2.format(bigItemPrice), 300, 100 + 20*lineCounter);
-    //    lineCounter ++;
-    // }
 
     /**
      * Add Display Component to Screen
