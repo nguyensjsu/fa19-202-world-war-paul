@@ -7,7 +7,7 @@ public class StoreScreen extends Screen
     /** Front of Event Chain */
     private ITouchEventHandler chain ;
 
-    private int base = 90;
+    private int base = 120;
 
     //for Screen Title
     private String storeName;
@@ -17,6 +17,8 @@ public class StoreScreen extends Screen
     private OptionTitle title1;
     private Button viewBasketButton;
     private BasketScreen basketScreen;
+    private PImage image;
+
 
     private Header header;
 
@@ -26,18 +28,21 @@ public class StoreScreen extends Screen
         header = new Header(storeName);
 
         if (storeName.equals("Attack Burger")) {
-            title1 = new OptionTitle("Choose a Burger", "Burger", base-15);
+            title1 = new OptionTitle("Choose a Burger", "Burger", base-25);
             item1 = new OptionItem("Attack Burger", "1/3LB Burger", 9.5, base);
-            item2 = new OptionItem("Attack Burger", "2/3LB Burger", 11.5, base + 25*1);
-            item3 = new OptionItem("Attack Burger", " 1 LB Burger", 13.5, base + 25*2);
+            item2 = new OptionItem("Attack Burger", "2/3LB Burger", 11.5, base + 35*1);
+            item3 = new OptionItem("Attack Burger", " 1 LB Burger", 13.5, base + 35*2);
             viewBasketButton = new Button("View Basket", "Attack Burger");
+            image = loadImage("../../img/food/bacon.jpeg");
+
         }
         else if (storeName.equals("Starbucks")) {
-            title1 = new OptionTitle("Choose a Coffee", "Starbucks", base-15);
+            title1 = new OptionTitle("Choose a Coffee", "Starbucks", base-25);
             item1 = new OptionItem("Starbucks", "Cappuccion", 3.5, base);
-            item2 = new OptionItem("Starbucks", "White Chocolate Mocha", 4.5, base + 25*1);
-            item3 = new OptionItem("Starbucks", "Latte", 3.5, base + 25*2);
+            item2 = new OptionItem("Starbucks", "White Chocolate Mocha", 4.5, base + 35*1);
+            item3 = new OptionItem("Starbucks", "Latte", 3.5, base + 35*2);
             viewBasketButton = new Button("View Basket", "Starbucks");
+            image = loadImage("../../img/food/starbuck.png");
         }
 
         addSubComponent(title1);
@@ -54,10 +59,11 @@ public class StoreScreen extends Screen
       * @return: currently useless
       */
     public void display(){
-
         int currentHeight = 20;
         background(255);
         currentHeight += 20;
+
+        image(image, 20, 300, 300, 150);
 
         for (IDisplayComponent c: components) {
             c.display();
