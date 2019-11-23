@@ -45,7 +45,6 @@ public class OrderHistoryScreen extends Screen implements IDisplayComponent {
 
         currentHeight = startHeight+20;
         orderList = deserialization("optionScreenDetail.json");
-        textAlign(LEFT);
 
         background(255);
 
@@ -68,9 +67,16 @@ public class OrderHistoryScreen extends Screen implements IDisplayComponent {
                   currentHeight += 20;
                 }
               }
+
             }
         }
-         currentHeight += 40;
+        if (currentHeight == 80){
+
+          fill(0, 0, 0, 255);
+          textSize(18);
+          text("No Order Available !", startLeft, currentHeight );
+        }
+        currentHeight += 40;
 
 
 
