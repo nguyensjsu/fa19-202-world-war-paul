@@ -135,7 +135,7 @@ public class OptionItem extends Screen implements IDisplayComponent, ITouchEvent
 
 		if (orderList.size() > 0) {
 //<<<<<<< HEAD
-			currentOrder = orderList.get(orderList.size() - 1);
+		currentOrder = orderList.get(orderList.size() - 1);
 		} 
 		
 		if (checkPerviousCompletion) {
@@ -145,6 +145,7 @@ public class OptionItem extends Screen implements IDisplayComponent, ITouchEvent
 		BigItem newItem = new BigItem(name, price);
 		currentOrder.addBigItem(newItem);
 		currentOrder.updatePrice();
+    currentOrder.setStoreName(storeName);
 
 		if (orderList.size() == 0 || checkPerviousCompletion ) {
 // =======
@@ -158,7 +159,7 @@ public class OptionItem extends Screen implements IDisplayComponent, ITouchEvent
 // 			Order currentOrder = new Order();
 // 			BigItem newItem = new BigItem(name, price);
 // 			currentOrder.addBigItem(newItem);
-// 			currentOrder.setStoreName(storeName);
+ 			currentOrder.setStoreName(storeName);
 // >>>>>>> Fix storeName bug
 			orderList.add(currentOrder);
 		} 
