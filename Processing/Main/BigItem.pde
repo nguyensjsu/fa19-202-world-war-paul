@@ -57,4 +57,11 @@ public class BigItem
 	public ArrayList<SmallItem> getSmallItemList(){
 		return smallItemList;
 	}
+
+	/**
+	 * Reset Small Item
+	 */
+	public void resetSmallItem() {
+		smallItemList = new ArrayList<SmallItem>();
+	}
 }

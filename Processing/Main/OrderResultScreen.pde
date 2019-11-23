@@ -1,4 +1,4 @@
-public class BasketScreen extends Screen implements IDisplayComponent {
+public class OrderResultScreen extends Screen implements IDisplayComponent {
 
     private ArrayList<IDisplayComponent> components = new ArrayList<IDisplayComponent>() ;
     private ITouchEventHandler chain ;
@@ -12,9 +12,9 @@ public class BasketScreen extends Screen implements IDisplayComponent {
     /**
      * Display content
      */
-    public BasketScreen(String prev) {
+    public OrderResultScreen(String prev) {
         lineCounter = 0;
-        header = new Header("Basket", prev);
+        header = new Header("Order Result");
         payButton = new Button("Pay");
         addSubComponent(header);
         addSubComponent(payButton);
@@ -30,12 +30,12 @@ public class BasketScreen extends Screen implements IDisplayComponent {
 
         // Reset line counter
         lineCounter = 0;
-        ArrayList<Order> orderList = deserialization("optionScreenDetail.json");
-        Order order = new Order();
+        orderList = deserialization("optionScreenDetail.json");
         if(orderList.size() > 0)
         	order = orderList.get(orderList.size() - 1);
         else
         {
+        	order = new Order();
         	order.setStoreName("");
         }
 
