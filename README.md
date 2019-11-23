@@ -1,5 +1,8 @@
 # SJSU Fall 2019 CS 202 Hackathon Project
 
+## Repo Link
+https://github.com/nguyensjsu/fa19-202-world-war-paul
+
 ## Team Name
 World War Paul
 
@@ -77,10 +80,10 @@ https://docs.google.com/spreadsheets/d/1RTbq7yntsJt69ADQimevnhguH2hgphhL/edit#gi
 10. Write the slides for the presentation for the demo day.
 
 ### Zijian Guan
-1. Design and develop AddCard functionality using ```Composite```Pattern and ```Chain of Responsibility```Pattern, which allows user to add payment methods and save the card information to local file in json format in order to be evaluated by other functions later.
-2. Design and implement serialization and deserialization function to transfer java data structure into json file in order to transfer data from class to class, used in Order and card information.
+1. Design and develop AddCard functionality using ```Composite```Pattern and ```Chain of Responsibility```Pattern, which allows user to add payment methods and save the card information to local file in json format.
+2. Design and implement serialization and deserialization function to transfer java data structure into json file in order to transfer data between classes.
 3. Design and implement BasketScreen using ```Composite```Pattern and ```Chain of Responsibility```Pattern, which will deserialization order information into java ArrayList and display detailed order information on the screen.
-4. Design and implement Button using ```Composite```Pattern and ```Chain of Responsibility```Pattern, which will used as a subcomponent for different screens such as AddCardScreen, BasketScreen, StoreScreen and OptionScreen. Complete the screen flow in Button class, directing user into OrderResultScreen.
+4. Design and implement Button using ```Composite```Pattern and ```Chain of Responsibility```Pattern, which will used as a subcomponent for different screens .
 6. Design and implement OrderResultScreen using ```Composite```Pattern and ```Chain of Responsibility```Pattern, which will transfer local json file into java data structure in order to display.
 7. Help to design custom item in order to output the order result into a correct format.
 8. Design and draw the use case diagram.
@@ -124,6 +127,8 @@ https://docs.google.com/spreadsheets/d/1RTbq7yntsJt69ADQimevnhguH2hgphhL/edit#gi
 
 ## Documentation
 
+This is [Use Case](Use_Cases.pdf) doc.
+
 ## Use Case - Login
 
 <img src="UML Diagram\Login Squence Diagram.svg">
@@ -146,4 +151,4 @@ https://docs.google.com/spreadsheets/d/1RTbq7yntsJt69ADQimevnhguH2hgphhL/edit#gi
 
 ## Use Case - View Acconut Information
 
-<img src="UML Diagram\View Acconut Information Sequence Diagram.svg">
+<img src="UML Diagram\View Account Information Sequence Diagram.svg">
