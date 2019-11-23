@@ -9,6 +9,9 @@ public class OrderHistoryScreen extends Screen implements IDisplayComponent {
     private Header header;
 
     private int startHeight;
+
+    private ArrayList<Order> orderList;
+
     public OrderHistoryScreen() {
 
         startHeight = 20;
@@ -18,8 +21,11 @@ public class OrderHistoryScreen extends Screen implements IDisplayComponent {
         header = new Header("Order History");
         menuBar = new MenuBarScreen();
 
+        orderList = deserialization("optionScreenDetail.json");
+
         addSubComponent(menuBar);
         addSubComponent(header);
+
     }
 
     /**
@@ -29,6 +35,12 @@ public class OrderHistoryScreen extends Screen implements IDisplayComponent {
     public void display() {
 
         background(255);
+
+        for(Order order : orderList){
+            if (order != null){
+              System.out.println(order.getStoreName + " : " + order.price());
+            }
+        }
 
 
         for (IDisplayComponent c: components) {
