@@ -64,4 +64,14 @@ public class BigItem
 	public void resetSmallItem() {
 		smallItemList = new ArrayList<SmallItem>();
 	}
+
+	/**
+	 * remove small item
+	 * @param index 
+	 */
+	public void removeSmallItem(int index) {
+		if (index < smallItemList.size()) {
+			smallItemList.remove(index);
+		}
+	}
 }
