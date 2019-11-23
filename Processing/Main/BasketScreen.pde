@@ -29,12 +29,12 @@ public class BasketScreen extends Screen implements IDisplayComponent {
 
         // Reset line counter
         lineCounter = 0;
-        orderList = deserialization("optionScreenDetail.json");
+        ArrayList<Order> orderList = deserialization("optionScreenDetail.json");
+        Order order = new Order();
         if(orderList.size() > 0)
         	order = orderList.get(orderList.size() - 1);
         else
         {
-        	order = new Order();
         	order.setStoreName("");
         }
 
