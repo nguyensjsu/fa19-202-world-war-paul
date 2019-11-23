@@ -88,7 +88,7 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
 				} else {
 // <<<<<<< HEAD
 
-					// setOrderCompleted("optionScreenDetail.json");
+					setOrderCompleted("optionScreenDetail.json");
 					
 					// OrderResultScreen orderResultScreen = new OrderResultScreen(buttonName);
 //=======
