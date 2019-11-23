@@ -64,7 +64,7 @@ public class BasketScreen extends Screen implements IDisplayComponent {
             displayLine();
         }
         displayFee(order.getTotalPrice(), order.getTax(), order.getServiceFee());
-        
+
         for (IDisplayComponent c: components) {
             c.display();
         }

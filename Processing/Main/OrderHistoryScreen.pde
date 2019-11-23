@@ -9,12 +9,21 @@ public class OrderHistoryScreen extends Screen implements IDisplayComponent {
     private Header header;
 
     private int startHeight;
+    private int currentHeight;
+    private int startLeft;
+
+    // used for count order
+    int lineCounter = 0;
 
     private ArrayList<Order> orderList;
 
     public OrderHistoryScreen() {
 
         startHeight = 60;
+        currentHeight = startHeight;
+
+        startLeft = 40;
+
 
         // TODO: should actually get the items from the orderItem
 
@@ -38,20 +47,47 @@ public class OrderHistoryScreen extends Screen implements IDisplayComponent {
 
         for(Order order : orderList){ // get each order
             if (order != null){
+
               System.out.println(order.getStoreName() + " : " + order.getPrice());
+              // fill(0, 0, 0, 255);
+              // textSize(20);
+              // text(order.getStoreName() + " : " + order.getPrice(), startLeft, currentHeight)
+              // currentHeight += 20;
+
               ArrayList<BigItem> bigItemList = order.getBigItemList();
               if(bigItemList != null){
                 for(BigItem bigItem: bigItemList){ // get each Item in Order
+
+                  // fill(0, 0, 0, 255);
+                  // textSize(20);
+                  // text(order.getStoreName() + " : " + order.getPrice(), startLeft + 10, currentHeight)
                   System.out.println("  " + bigItem.getName() + ":" + bigItem.getPrice());
+                  // currentHeight += 20;
+
                 }
               }
             }
         }
+        // currentHeight += 40;
+
 
 
         for (IDisplayComponent c: components) {
             c.display();
         }
+    }
+
+    /**
+    * Display the bigitem and
+    */
+    public void displayBigItem()
+    {
+       fill(0, 0, 0, 255);
+       textSize(20);
+       textAlign(LEFT);
+       text(bigItemName, 10, 100 + 20*lineCounter);
+       text("$" + df2.format(bigItemPrice), 300, 100 + 20*lineCounter);
+       lineCounter ++;
     }
 
     /**
