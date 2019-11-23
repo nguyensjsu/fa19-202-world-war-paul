@@ -57,6 +57,15 @@ https://docs.google.com/spreadsheets/d/1RTbq7yntsJt69ADQimevnhguH2hgphhL/edit#gi
 10. Write the slides for the presentation for the demo day.
 
 ### Zijian Guan
+1. Design and develop AddCard functionality using ```Composite```Pattern and ```Chain of Responsibility```Pattern, which allows user to add payment methods and save the card information to local file in json format in order to be evaluated by other functions later.
+2. Design and implement serialization and deserialization function to transfer java data structure into json file in order to transfer data from class to class, used in Order and card information.
+3. Design and implement BasketScreen using ```Composite```Pattern and ```Chain of Responsibility```Pattern, which will deserialization order information into java ArrayList and display detailed order information on the screen.
+4. Design and implement Button using ```Composite```Pattern and ```Chain of Responsibility```Pattern, which will used as a subcomponent for different screens such as AddCardScreen, BasketScreen, StoreScreen and OptionScreen. Complete the screen flow in Button class, directing user into OrderResultScreen.
+6. Design and implement OrderResultScreen using ```Composite```Pattern and ```Chain of Responsibility```Pattern, which will transfer local json file into java data structure in order to display.
+7. Help to design custom item in order to output the order result into a correct format.
+8. Design and draw the use case diagram.
+9. Design and implement ResetBasket and Pay function, which will check the local file and ensure there is needed information.
+
 ### Ru Zhang
 
 ## Overall Activity Diagram
