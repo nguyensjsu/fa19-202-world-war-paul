@@ -126,6 +126,8 @@ https://docs.google.com/spreadsheets/d/1RTbq7yntsJt69ADQimevnhguH2hgphhL/edit#gi
 
 ## Documentation
 
+This is [Use Case](Use_Cases.pdf) doc.
+
 ## Use Case - Login
 
 <img src="UML Diagram\Login Squence Diagram.svg">
