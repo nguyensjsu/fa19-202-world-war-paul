@@ -74,19 +74,19 @@ public class AddCard extends Screen implements IDisplayComponent
 	public void touch(int x, int y)
 	{
 
-		if(x > 10 && x < 130 && y > 70 && y < 110)
+		if(x > 10 && x < 130 && y > 60 && y < 110)
 		{
 			cardNumberFlag = true;
 			cardExpirtyFlag = false;
 			cardCVVFlag = false;
 		}
-		else if( x > 10 && x < 80 && y > 120 && y < 150)
+		else if( x > 10 && x < 80 && y > 120 && y < 170)
 		{
 			cardNumberFlag = false;
 			cardExpirtyFlag = true;
 			cardCVVFlag = false;
 		}
-		else if( x > 120 && x < 300 && y > 120 && y < 150)
+		else if( x > 120 && x < 300 && y > 120 && y < 170)
 		{
 			cardNumberFlag = false;
 			cardExpirtyFlag = false;
