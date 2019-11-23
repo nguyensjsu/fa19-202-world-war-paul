@@ -31,9 +31,17 @@ public class BasketScreen extends Screen implements IDisplayComponent {
         // Reset line counter
         lineCounter = 0;
         ArrayList<Order> orderList = deserialization("optionScreenDetail.json");
-        Order order = new Order(" ");
-        if (orderList.size() > 0)
-        	order = orderList.get(orderList.size() - 1);
+        int currentIndex = orderList.size();
+		Order order = new Order(" ");
+		boolean checkPerviousCompletion = currentIndex >= 1 && orderList.get(currentIndex - 1).getOrdercompletion();
+
+		if (orderList.size() > 0) {
+			order = orderList.get(orderList.size() - 1);
+		} 
+		
+		if (checkPerviousCompletion) {
+			order = new Order(" ");
+		}
 
         fill(0, 0, 0, 255);
         textAlign(CENTER);

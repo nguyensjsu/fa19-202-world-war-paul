@@ -113,8 +113,10 @@ public class StoreScreen extends Screen
 		// currentOrder.setStoreName(storeName);
 		if (orderList.size() > 0) {
             Order currentOrder = orderList.get(orderList.size() - 1);
-            for (BigItem item : currentOrder.getBigItemList()) {
-                total += item.getTotalPrice();
+            if (!currentOrder.getOrdercompletion()) {
+                for (BigItem item : currentOrder.getBigItemList()) {
+                    total += item.getTotalPrice();
+                }
             }
         }
 

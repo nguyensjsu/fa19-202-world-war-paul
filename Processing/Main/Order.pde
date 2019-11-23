@@ -21,7 +21,9 @@ public class Order
 	* set StoreName
 	*/
 	public void setStoreName(String name){
-		storeName = name;
+		if (!completed) {
+			storeName = name;
+		}
 	}
 
 	/**
@@ -77,8 +79,10 @@ public class Order
 	 */
 	public void addBigItem(BigItem bigItem)
 	{
-		bigItemList.add(bigItem);
-		updatePrice(); //update price is required
+		if (!completed) {
+			bigItemList.add(bigItem);
+			updatePrice(); //update price is required
+		}
 	}
 
 	/**
@@ -88,11 +92,13 @@ public class Order
 	 */
 	public void addSmallItem(SmallItem smallItem)
 	{
-		//add the small item to the latest BigItem
-		if (bigItemList.size() > 0) {
-			BigItem latestBigItem = bigItemList.get(bigItemList.size()-1);
-			latestBigItem.addSmallItem(smallItem);
-			updatePrice();
+		if (!completed) {
+			//add the small item to the latest BigItem
+			if (bigItemList.size() > 0) {
+				BigItem latestBigItem = bigItemList.get(bigItemList.size()-1);
+				latestBigItem.addSmallItem(smallItem);
+				updatePrice();
+			}
 		}
 	}
 
@@ -138,8 +144,10 @@ public class Order
 	 * Reset Big Item
 	 */
 	public void resetCurrentBigItem() {
-		if (bigItemList.size() > 0) {
-			bigItemList.remove(bigItemList.size() - 1);
+		if (!completed) {
+			if (bigItemList.size() > 0) {
+				bigItemList.remove(bigItemList.size() - 1);
+			}
 		}
 	}
 
@@ -147,7 +155,9 @@ public class Order
 	 * Reset Big Item
 	 */
 	public void resetBigItem() {
-		bigItemList = new ArrayList<BigItem>();
+		if (!completed) {
+			bigItemList = new ArrayList<BigItem>();
+		}
 	}
 
 	/**
