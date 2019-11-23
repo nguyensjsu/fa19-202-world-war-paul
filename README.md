@@ -150,4 +150,4 @@ This is [Use Case](Use_Cases.pdf) doc.
 
 ## Use Case - View Acconut Information
 
-<img src="UML Diagram\View Acconut Information Sequence Diagram.svg">
+<img src="UML Diagram\View Account Information Sequence Diagram.svg">
