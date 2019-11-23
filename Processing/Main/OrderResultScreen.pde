@@ -41,24 +41,6 @@ public class OrderResultScreen extends Screen implements IDisplayComponent {
         textSize(20);
         text("Thank You From " + order.getStoreName(), 190, 80);
         lineCounter++;
-
-// //<<<<<<< HEAD
-//         // System.out.println("orderList: " + orderList.size());
-//         for (Order order : orderList) {
-//             ArrayList<BigItem> bigItemList = order.getBigItemList();
-//             for(int i = 0; i < bigItemList.size(); i++)
-//             {
-//                 BigItem bigItem = bigItemList.get(i);
-//                 displayBigItem(bigItem.getName(), bigItem.getPrice());
-
-//                 ArrayList<SmallItem> smallItemList = bigItem.getSmallItemList();
-//                 for(int j = 0; j < smallItemList.size(); j++)
-//                 {
-//                     SmallItem smallItem = smallItemList.get(j);
-//                     displaySmallItem(smallItem.getName(), smallItem.getPrice());
-//                 }
-//                 displayLine();
-// // =======
         ArrayList<BigItem> bigItemList = order.getBigItemList();
         for(int i = 0; i < bigItemList.size(); i++)
         {
@@ -70,17 +52,11 @@ public class OrderResultScreen extends Screen implements IDisplayComponent {
             {
                 SmallItem smallItem = bigItem.getSmallItemList().get(j);
                 displaySmallItem(smallItem.getName(), smallItem.getPrice());
-//>>>>>>> Adding image
             }
-            //displayFee(order.getTotalPrice(), order.getTax(), order.getServiceFee());
         }
-//<<<<<<< HEAD
-        
-        
-// =======
+
         displayFee(order.getTotalPrice(), order.getTax(), order.getServiceFee());
         displayStoreImage();
-// >>>>>>> Adding image
         for (IDisplayComponent c: components) {
             c.display();
         }
