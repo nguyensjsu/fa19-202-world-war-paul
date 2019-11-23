@@ -3,24 +3,16 @@ public class BasketScreen extends Screen implements IDisplayComponent {
     private ArrayList<IDisplayComponent> components = new ArrayList<IDisplayComponent>() ;
     private ITouchEventHandler chain ;
 
-    int lineCounter = 0;
-
-    private DecimalFormat df2 = new DecimalFormat("#.##");
-
-    ArrayList<Order>orderList;
-    Order order;
-
-    Button payButton;
-
-    private String prevScreen;
-
+    private Button payButton;
     private Header header;
+    private int lineCounter;
+    private DecimalFormat df2 = new DecimalFormat("#.##");
 
     /**
      * Display content
      */
     public BasketScreen(String prev) {
-
+        lineCounter = 0;
         header = new Header("Basket", prev);
         payButton = new Button("Pay");
         addSubComponent(header);
