@@ -7,10 +7,10 @@ World War Paul
 World War Food: Mobile Food Ordering
 
 ## Team Members & Journals
-Kun Su
-Sung-Yin Yang
-Taylor Yang
-Zijian Guan
+Kun Su,
+Sung-Yin Yang,
+Taylor Yang,
+Zijian Guan,
 Ru Zhang
 
 ## Dependency
@@ -57,7 +57,22 @@ https://docs.google.com/spreadsheets/d/1RTbq7yntsJt69ADQimevnhguH2hgphhL/edit#gi
 10. Write the slides for the presentation for the demo day.
 
 ### Zijian Guan
+1. Design and develop AddCard functionality using ```Composite```Pattern and ```Chain of Responsibility```Pattern, which allows user to add payment methods and save the card information to local file in json format in order to be evaluated by other functions later.
+2. Design and implement serialization and deserialization function to transfer java data structure into json file in order to transfer data from class to class, used in Order and card information.
+3. Design and implement BasketScreen using ```Composite```Pattern and ```Chain of Responsibility```Pattern, which will deserialization order information into java ArrayList and display detailed order information on the screen.
+4. Design and implement Button using ```Composite```Pattern and ```Chain of Responsibility```Pattern, which will used as a subcomponent for different screens such as AddCardScreen, BasketScreen, StoreScreen and OptionScreen. Complete the screen flow in Button class, directing user into OrderResultScreen.
+6. Design and implement OrderResultScreen using ```Composite```Pattern and ```Chain of Responsibility```Pattern, which will transfer local json file into java data structure in order to display.
+7. Help to design custom item in order to output the order result into a correct format.
+8. Design and draw the use case diagram.
+9. Design and implement ResetBasket and Pay function, which will check the local file and ensure there is needed information.
+
 ### Ru Zhang
+1. Adapt Starbuck Starter code into Processing .pde file. Remove redendent/irrelevent Starbuck Starter code and success run it in Processing.
+2. Polish Login Screen with ```Observer``` Design Pattern at device login in Keypad and Authenticator. Create view of keypad and touch response. 
+3. Use ```Composite``` Design Pattern to add ErrorScreen component. This is used by any screen which need prompt a error message on screen for seconds. 
+4. Use ```Composite``` Design Pattenr to add Header component. This is used all screens to show header and also handle "go back" and "go next" request on such screen. 
+5. Finish view on OrderHistory Screen. Grab history order from local file and render all the important order infomation on GUI. 
+6. Set up frame in different screen for ```Command``` Design Pattern to garantee screenflow works. 
 
 ## Overall Activity Diagram
 

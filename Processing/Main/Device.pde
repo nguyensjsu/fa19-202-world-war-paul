@@ -14,7 +14,7 @@ public class Device implements IProxy, IPinAuthObserver {
     private Passcode pc ;
     private PinScreen ps ;
     private Spacer sp ;
-    private boolean authenticated = true ;
+    private boolean authenticated = false;
     private PinEntryMachine pm ;
 
 
