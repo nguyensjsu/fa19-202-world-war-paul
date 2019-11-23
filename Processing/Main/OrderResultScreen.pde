@@ -3,16 +3,16 @@ public class OrderResultScreen extends Screen implements IDisplayComponent {
     private ArrayList<IDisplayComponent> components = new ArrayList<IDisplayComponent>() ;
     private ITouchEventHandler chain ;
 
-    private Button payButton;
     private Header header;
     private int lineCounter;
     private DecimalFormat df2 = new DecimalFormat("#.##");
     private ArrayList<Order> orderList;
     private Order order;
+    private PImage image;
     /**
      * Display content
      */
-    public OrderResultScreen(String prev) {
+    public OrderResultScreen() {
         lineCounter = 0;
         header = new Header("Order Result");
         addSubComponent(header);
@@ -39,9 +39,10 @@ public class OrderResultScreen extends Screen implements IDisplayComponent {
         fill(0, 0, 0, 255);
         textAlign(CENTER);
         textSize(20);
-        text(order.getStoreName(), 190, 80);
+        text("Thank You From " + order.getStoreName(), 190, 80);
         lineCounter++;
 
+//<<<<<<< HEAD
         // System.out.println("orderList: " + orderList.size());
         for (Order order : orderList) {
             ArrayList<BigItem> bigItemList = order.getBigItemList();
@@ -57,11 +58,29 @@ public class OrderResultScreen extends Screen implements IDisplayComponent {
                     displaySmallItem(smallItem.getName(), smallItem.getPrice());
                 }
                 displayLine();
+// =======
+//         ArrayList<BigItem> bigItemList = order.getBigItemList();
+//         for(int i = 0; i < bigItemList.size(); i++)
+//         {
+//             BigItem bigItem = order.getBigItemList().get(i);
+//             displayBigItem(bigItem.getName(), bigItem.getPrice());
+
+//             ArrayList<SmallItem> smallItemList = bigItem.getSmallItemList();
+//             for(int j = 0; j < smallItemList.size(); j++)
+//             {
+//                 SmallItem smallItem = bigItem.getSmallItemList().get(j);
+//                 displaySmallItem(smallItem.getName(), smallItem.getPrice());
+// >>>>>>> Adding image
             }
             displayFee(order.getTotalPrice(), order.getTax(), order.getServiceFee());
         }
+//<<<<<<< HEAD
         
         
+// =======
+//         displayFee(order.getTotalPrice(), order.getTax(), order.getServiceFee());
+//         displayStoreImage();
+// >>>>>>> Adding image
         for (IDisplayComponent c: components) {
             c.display();
         }
@@ -77,8 +96,8 @@ public class OrderResultScreen extends Screen implements IDisplayComponent {
         fill(0, 0, 0, 255);
         textSize(14);
         textAlign(LEFT);
-        text(bigItemName, 10, 100 + 20*lineCounter);
-        text("$" + df2.format(bigItemPrice), 300, 100 + 20*lineCounter);
+        text(bigItemName, 10, 260 + 20*lineCounter);
+        text("$" + df2.format(bigItemPrice), 300, 260 + 20*lineCounter);
         lineCounter++;
     }
 
@@ -90,8 +109,8 @@ public class OrderResultScreen extends Screen implements IDisplayComponent {
     public void displaySmallItem(String smallItemName, double smallItemPrice)
     {
         fill(0, 0, 0, 150);
-        text(smallItemName, 10, 100 + 20*lineCounter); // need to determine if the text length is above 380
-        text("$" + df2.format(smallItemPrice), 300, 100 + 20*lineCounter);
+        text(smallItemName, 10, 260 + 20*lineCounter); // need to determine if the text length is above 380
+        text("$" + df2.format(smallItemPrice), 300, 260 + 20*lineCounter);
         lineCounter++;
     }
 
@@ -102,7 +121,7 @@ public class OrderResultScreen extends Screen implements IDisplayComponent {
     {
         strokeWeight(1);
         stroke(0, 0, 0);
-        line(10, 100 + 20*lineCounter, 370, 100+20*lineCounter);
+        line(10, 260 + 20*lineCounter, 370, 260+20*lineCounter);
         lineCounter++;
     }
 
@@ -112,18 +131,18 @@ public class OrderResultScreen extends Screen implements IDisplayComponent {
     public void displayFee(double totalPrice, double tax, double serviceFee)
     {
         textAlign(RIGHT);
-        text("$" + df2.format(totalPrice), 370, 600);
+        text("$" + df2.format(totalPrice), 370, 660);
 
         textAlign(LEFT);
-        text("Total: ", 10, 600);
+        text("Total: ", 10, 660);
         textSize(14);
 
-        text("Tax: ", 10, 100 + 20*lineCounter);
-        text("$" +  df2.format(tax), 300, 100 + 20*lineCounter);
+        text("Tax: ", 10, 260 + 20*lineCounter);
+        text("$" +  df2.format(tax), 300, 260 + 20*lineCounter);
         lineCounter++;
 
-        text("Service Fee: ", 10, 100 + 20*lineCounter);
-        text("$" + df2.format(serviceFee), 300, 100 + 20*lineCounter);
+        text("Service Fee: ", 10, 260 + 20*lineCounter);
+        text("$" + df2.format(serviceFee), 300, 260 + 20*lineCounter);
         lineCounter++;
     }
 
@@ -160,5 +179,14 @@ public class OrderResultScreen extends Screen implements IDisplayComponent {
     public void setFrame(IFrame frame){
         this.frame = frame;
         header.setFrame(frame);
+    }
+
+    public void displayStoreImage()
+    {
+        if(order.getStoreName().equals("Attack Burger"))
+            image = loadImage("../../img/store/burger_300x150.png");
+        else if(order.getStoreName().equals("Starbucks"))
+            image = loadImage("../../img/store/starbucks_300x150.png");
+        image(image, 0, 90, 380, 150);
     }
 }
