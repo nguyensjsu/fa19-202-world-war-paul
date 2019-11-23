@@ -29,7 +29,7 @@ public class OrderHistoryScreen extends Screen implements IDisplayComponent {
         header = new Header("Order History");
         menuBar = new MenuBarScreen();
 
-        orderList = deserialization("optionScreenDetail.json");
+        // orderList = deserialization("optionScreenDetail.json");
 
         addSubComponent(menuBar);
         addSubComponent(header);
@@ -48,10 +48,11 @@ public class OrderHistoryScreen extends Screen implements IDisplayComponent {
 
         background(255);
 
+        // System.out.println("orderList: " + orderList.size());
         for(Order order : orderList){ // get each order
             if (order != null){
 
-              System.out.println(order.getStoreName() + " : " + order.getPrice());
+            //   System.out.println(order.getStoreName() + " : " + order.getPrice());
               fill(0, 0, 0, 255);
               textSize(20);
               order.updatePrice();

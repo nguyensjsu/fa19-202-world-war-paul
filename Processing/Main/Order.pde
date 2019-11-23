@@ -6,12 +6,15 @@ public class Order
 	private double serviceFee;
 	private String storeName;
 	private ArrayList<BigItem> bigItemList;
+	private boolean completed;
 
-	public Order()
+	public Order(String storeName)
 	{
+		this.storeName = storeName;
 		price = 0;
 		orderNumber = 0;
 		bigItemList = new ArrayList<BigItem>();
+		completed = false;
 	}
 
 	/**
@@ -146,4 +149,15 @@ public class Order
 	public void resetBigItem() {
 		bigItemList = new ArrayList<BigItem>();
 	}
+
+	/**
+	 * completed order 
+	 */
+	public void completedOrder() { completed = true; }
+
+	/**
+	 * get the order completion
+	 * @return completed or not.
+	 */
+	public boolean getOrdercompletion() { return completed; } 
 }

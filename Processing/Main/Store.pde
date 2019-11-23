@@ -91,11 +91,10 @@ public class Store extends Screen implements ITouchEventHandler, IDisplayCompone
      */
     public void resetOrder(String storeName, String filename) {
 
-      System.out.println("reset");
         File orderFile = new File("." + File.separator + filename);
-    		ArrayList<Order> orderList = deserialization(filename); //reread userinput from storeScreen
+        ArrayList<Order> orderList = deserialization(filename); //reread userinput from storeScreen
 
-    		if (orderList.size() > 0) {
+        if (orderList.size() > 0) {
             Order currentOrder = orderList.get(orderList.size() - 1);
             if (map.get(currentOrder.getStoreName()).equals(storeName)) {
                 currentOrder.resetBigItem();
@@ -103,7 +102,7 @@ public class Store extends Screen implements ITouchEventHandler, IDisplayCompone
             currentOrder.updatePrice();
             orderList.set(orderList.size() - 1, currentOrder);
         }
-		    // Put orderList back into local file.
+        // Put orderList back into local file.
         serialization(orderList, filename);
     }
 }

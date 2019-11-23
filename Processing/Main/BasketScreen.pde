@@ -31,13 +31,9 @@ public class BasketScreen extends Screen implements IDisplayComponent {
         // Reset line counter
         lineCounter = 0;
         ArrayList<Order> orderList = deserialization("optionScreenDetail.json");
-        Order order = new Order();
-        if(orderList.size() > 0)
+        Order order = new Order(" ");
+        if (orderList.size() > 0)
         	order = orderList.get(orderList.size() - 1);
-        else
-        {
-        	order.setStoreName("");
-        }
 
         fill(0, 0, 0, 255);
         textAlign(CENTER);
@@ -49,16 +45,12 @@ public class BasketScreen extends Screen implements IDisplayComponent {
         for(int i = 0; i < bigItemList.size(); i++)
         {
             BigItem bigItem = order.getBigItemList().get(i);
-            // bigItemName = bigItem.getName();
-            // bigItemPrice = bigItem.getPrice();
             displayBigItem(bigItem.getName(), bigItem.getPrice());
 
             ArrayList<SmallItem> smallItemList = bigItem.getSmallItemList();
             for(int j = 0; j < smallItemList.size(); j++)
             {
                 SmallItem smallItem = bigItem.getSmallItemList().get(j);
-                // smallItemName = smallItem.getName();
-                // smallItemPrice = smallItem.getPrice();
                 displaySmallItem(smallItem.getName(), smallItem.getPrice());
             }
             displayLine();
@@ -163,5 +155,6 @@ public class BasketScreen extends Screen implements IDisplayComponent {
     public void setFrame(IFrame frame){
         this.frame = frame;
         header.setFrame(frame);
+        payButton.setFrame(frame);
     }
 }
