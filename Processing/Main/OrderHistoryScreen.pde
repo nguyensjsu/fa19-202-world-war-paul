@@ -20,7 +20,6 @@ public class OrderHistoryScreen extends Screen implements IDisplayComponent {
     public OrderHistoryScreen() {
 
         startHeight = 60;
-        currentHeight = startHeight;
 
         startLeft = 40;
 
@@ -43,26 +42,31 @@ public class OrderHistoryScreen extends Screen implements IDisplayComponent {
     @Override
     public void display() {
 
+        currentHeight = startHeight;
+        orderList = deserialization("optionScreenDetail.json");
+
+
         background(255);
 
         for(Order order : orderList){ // get each order
             if (order != null){
 
               System.out.println(order.getStoreName() + " : " + order.getPrice());
-              // fill(0, 0, 0, 255);
-              // textSize(20);
-              // text(order.getStoreName() + " : " + order.getPrice(), startLeft, currentHeight)
-              // currentHeight += 20;
+              fill(0, 0, 0, 255);
+              textSize(20);
+              order.updatePrice();
+              text(order.getStoreName() + " : " + order.getTotalPrice(), startLeft, currentHeight);
+              currentHeight += 20;
 
               ArrayList<BigItem> bigItemList = order.getBigItemList();
               if(bigItemList != null){
                 for(BigItem bigItem: bigItemList){ // get each Item in Order
 
-                  // fill(0, 0, 0, 255);
-                  // textSize(20);
-                  // text(order.getStoreName() + " : " + order.getPrice(), startLeft + 10, currentHeight)
-                  System.out.println("  " + bigItem.getName() + ":" + bigItem.getPrice());
-                  // currentHeight += 20;
+                  fill(0, 0, 0, 255);
+                  textSize(17);
+                  text(bigItem.getName() + " : " + bigItem.getTotalPrice(), startLeft + 10, currentHeight);
+                  //System.out.println("  " + bigItem.getName() + ":" + bigItem.getPrice());
+                  currentHeight += 20;
 
                 }
               }
@@ -80,15 +84,15 @@ public class OrderHistoryScreen extends Screen implements IDisplayComponent {
     /**
     * Display the bigitem and
     */
-    public void displayBigItem()
-    {
-       fill(0, 0, 0, 255);
-       textSize(20);
-       textAlign(LEFT);
-       text(bigItemName, 10, 100 + 20*lineCounter);
-       text("$" + df2.format(bigItemPrice), 300, 100 + 20*lineCounter);
-       lineCounter ++;
-    }
+    // public void displayBigItem()
+    // {
+    //    fill(0, 0, 0, 255);
+    //    textSize(20);
+    //    textAlign(LEFT);
+    //    text(bigItemName, 10, 100 + 20*lineCounter);
+    //    text("$" + df2.format(bigItemPrice), 300, 100 + 20*lineCounter);
+    //    lineCounter ++;
+    // }
 
     /**
      * Add Display Component to Screen
