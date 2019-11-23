@@ -44,6 +44,16 @@ https://docs.google.com/spreadsheets/d/1RTbq7yntsJt69ADQimevnhguH2hgphhL/edit#gi
 
 ### Kun Su
 ### Sung-Yin Yang
+1. Find Suitable picture for UI displayment.
+2. Design and implement ```Composite```Pattern and ```Chain of Responsibility```Pattern for Store Screen and Option Screen.
+3. Design and implement ```OptionItem```, ```LeafItem``` and ```OptionTitle```, which use ```Composite```Pattern to display every custom option.
+4. Design the backbone data Structure Classes such as ```Order, BigItem``` and ```SmallItem``` to efficiently store user Input Data into local JSON file and read as well.
+5. Design and draw the Sequnce Diagram.
+6. Polish and Finalize text's and picture's position in MyAccount Screen.
+7. Finalize texts and Color for Button Class.
+8. Finalize StoreScreen Display Issue.
+9. Final Tests for every Pull Request before every merge into Master.
+
 ### Taylor Yang
 1. Design and develop the overall screen flows between each screens. For example, how do one screen connected to the other screen and how to switch between screens.
 2. Polish homepage, button, Store Screen, Order Screen and all connected screens in order the flows between all screens are correct and smooth. 
