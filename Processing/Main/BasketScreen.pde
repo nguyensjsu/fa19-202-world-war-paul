@@ -163,5 +163,6 @@ public class BasketScreen extends Screen implements IDisplayComponent {
     public void setFrame(IFrame frame){
         this.frame = frame;
         header.setFrame(frame);
+        payButton.setFrame(frame);
     }
 }

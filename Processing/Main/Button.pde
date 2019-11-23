@@ -8,6 +8,7 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
     private ErrorScreen err;
     private BasketScreen basketScreen;
     private HomePageScreen homePageScreen;
+    private OrderResultScreen orderResultScreen;
     private String prevScreen;
     private Map<String, String> cardInfo;
 
@@ -86,7 +87,10 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
 					err.setFlag(true); // display error message
 				} else {
 					// TODO jump to order result screen
-					System.out.println("Jump into order result screen");
+					orderResultScreen = new OrderResultScreen();
+					orderResultScreen.setFrame(frame);
+					setNext(orderResultScreen);
+					next();
 				}
 			}
 			else if(buttonName.equals("View Basket")) // case for Payment, more cases can be added later

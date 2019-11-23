@@ -40,7 +40,7 @@ public class Device implements IProxy, IPinAuthObserver {
         app = new AppController() ;
         
         resetJSONFile(new ArrayList<Order>(), "optionScreenDetail.json");
-        resetJSONFile(new HashMap<String, String>(), "cardInfo.json");
+        //resetJSONFile(new HashMap<String, String>(), "cardInfo.json");
     }
 
 
