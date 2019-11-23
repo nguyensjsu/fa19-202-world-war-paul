@@ -94,6 +94,7 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
 //=======
 					orderResultScreen = new OrderResultScreen();
 //>>>>>>> Adding image
+
 					orderResultScreen.setFrame(frame);
 					setNext(orderResultScreen);
 					next();
