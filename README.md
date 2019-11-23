@@ -54,14 +54,15 @@ https://docs.google.com/spreadsheets/d/1RTbq7yntsJt69ADQimevnhguH2hgphhL/edit#gi
 
 ### Sung-Yin Yang
 1. Find Suitable picture for UI displayment.
-2. Design and implement ```Composite```Pattern and ```Chain of Responsibility```Pattern for Store Screen and Option Screen.
-3. Design and implement ```OptionItem```, ```LeafItem``` and ```OptionTitle```, which use ```Composite```Pattern to display every custom option.
-4. Design the backbone data Structure Classes such as ```Order, BigItem``` and ```SmallItem``` to efficiently store user Input Data into local JSON file and read as well.
-5. Design and draw the Sequnce Diagram.
-6. Polish and Finalize text's and picture's position in MyAccount Screen.
-7. Finalize texts and Color for Button Class.
-8. Finalize StoreScreen Display Issue.
-9. Final Tests for every Pull Request before every merge into Master.
+2. Write and Upload Processing Reference, which include basic display function for text, lines, loading images and draw rectangualar.
+3. Design and implement ```Composite```Pattern and ```Chain of Responsibility```Pattern for Store Screen and Option Screen.
+4. Design and implement ```OptionItem```, ```LeafItem``` and ```OptionTitle```, which use ```Composite```Pattern to display every custom option.
+5. Design the backbone data Structure Classes such as ```Order, BigItem``` and ```SmallItem``` to efficiently store user Input Data into local JSON file and read as well.
+6. Design and draw the Sequnce Diagram.
+7. Polish and Finalize text's and picture's position in MyAccount Screen.
+8. Finalize texts and Color for Button Class.
+9. Finalize StoreScreen Display Issue.
+10. Final Tests for every Pull Request before every merge into Master.
 
 ### Taylor Yang
 1. Design and develop the overall screen flows between each screens. For example, how do one screen connected to the other screen and how to switch between screens.
