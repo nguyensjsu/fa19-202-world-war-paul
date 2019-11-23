@@ -53,7 +53,7 @@ public class OrderHistoryScreen extends Screen implements IDisplayComponent {
             if (order != null){
 
               fill(0, 0, 0, 255);
-              textSize(18);
+              textSize(16);
               order.updatePrice();
               text(order.getStoreName() + " Order: $" + df2.format(order.getTotalPrice()), startLeft, currentHeight);
               currentHeight += 20;
@@ -63,13 +63,14 @@ public class OrderHistoryScreen extends Screen implements IDisplayComponent {
                 for(BigItem bigItem: bigItemList){ // get each Item in Order
 
                   fill(0, 0, 0, 255);
-                  textSize(15);
-                  text("-" + bigItem.getName() + " : $" + df2.format(bigItem.getTotalPrice()), startLeft + 10, currentHeight);
+                  textSize(13);
+                  text("-" + bigItem.getName(), startLeft + 10, currentHeight);
                   currentHeight += 20;
                 }
               }
 
             }
+            currentHeight += 15;
         }
         if (currentHeight == 80){
 
