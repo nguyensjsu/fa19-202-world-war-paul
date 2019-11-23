@@ -7,10 +7,10 @@ World War Paul
 World War Food: Mobile Food Ordering
 
 ## Team Members & Journals
-Kun Su
-Sung-Yin Yang
-Taylor Yang
-Zijian Guan
+Kun Su,
+Sung-Yin Yang,
+Taylor Yang,
+Zijian Guan,
 Ru Zhang
 
 ## Dependency
@@ -58,6 +58,12 @@ https://docs.google.com/spreadsheets/d/1RTbq7yntsJt69ADQimevnhguH2hgphhL/edit#gi
 
 ### Zijian Guan
 ### Ru Zhang
+1. Adapt Starbuck Starter code into Processing .pde file. Remove redendent/irrelevent Starbuck Starter code and success run it in Processing.
+2. Polish Login Screen with ```Observer``` Design Pattern at device login in Keypad and Authenticator. Create view of keypad and touch response. 
+3. Use ```Composite``` Design Pattern to add ErrorScreen component. This is used by any screen which need prompt a error message on screen for seconds. 
+4. Use ```Composite``` Design Pattenr to add Header component. This is used all screens to show header and also handle "go back" and "go next" request on such screen. 
+5. Finish view on OrderHistory Screen. Grab history order from local file and render all the important order infomation on GUI. 
+6. Set up frame in different screen for ```Command``` Design Pattern to garantee screenflow works. 
 
 ## Overall Activity Diagram
 
