@@ -36,6 +36,10 @@ Use World War Food mobile ordering to preorder meals from your favorite spots on
 [World War Paul Presentation]
 
 [World War Paul Presentation AD Video]
+(https://youtu.be/rGmPPHUbUoM)
+
+[World War Paul Presentation Demo Video]
+(https://youtu.be/_hjHeh9JlQg)
 
 ## Project Progress (Agile)
 
