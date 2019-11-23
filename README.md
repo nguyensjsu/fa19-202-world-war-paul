@@ -51,15 +51,15 @@ https://docs.google.com/spreadsheets/d/1RTbq7yntsJt69ADQimevnhguH2hgphhL/edit#gi
 ## Individual Contributions
 
 ### Kun Su
-1. Provide application prototype, setup all the issues (tasks) in Github and assign tasks for each teammates according their interest. 
-2. Draw ```Activity Diagram```, ```Class Diagram``` and ```Sequence Diagram``` for all classes and design pattern. 
+1. Provide application prototype, set up all the issues (tasks) in Github and assign tasks for each teammate according to their interest. 
+2. Draw ```Activity Diagram```, ```Class Diagram``` and ```Sequence Diagram``` for all classes and design patterns. 
 3. Design and develop ```HomePageScreen```, ```MyAccountScreen``` using ```Composite``` and ```Chain of Resoponsebility``` design pattern. 
-4. Design and implement the data modification part for ```OptionItem``` and ```LeafItem``` then use serialization and deserialization function to transfer data from local JSON file.
-5. Design and develop Key data stcutore classes ```Order```, ```BigItem```, ```SmallItem``` that will be used during the data modification for purchasing items. 
-6. Design and develop reset mechanism for ```Order```, ```BigItem```, ```SmallItem```, and local JSON files when user switching different screens. 
-6. Help team members to fix bug or solve their Github issue whenever they needed. 
-7. Document everthing for Sprint mangagement. 
-8. As a role of Scurm Master, when some thing went wrong, I would pointed it out and provided my idea with better approch or even a solution. I encouraged our team member to do the right things instead of hardcoding everything. 
+4. Design and implement the data modification part for ```OptionItem``` and ```LeafItem``` then use serialization and deserialization function to transfer data from the local JSON file.
+5. Design and develop Key data structure classes ```Order```, ```BigItem```, ```SmallItem``` that will be used during the data modification for purchasing items. 
+6. Design and develop a reset mechanism for ```Order```, ```BigItem```, ```SmallItem```, and local JSON files when user switching different screens. 
+7. Help team members to fix bugs or solve their Github issue whenever they needed. 
+8. Document everything for Sprint management. 
+9. As a role of Scrum Master, when something went wrong, I would point it out and provided my idea with a better approach or even a solution. I encouraged our team members to do the right things instead of hardcoding everything. 
 
 ### Sung-Yin Yang
 1. Find Suitable picture for UI displayment.
