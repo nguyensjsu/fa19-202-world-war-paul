@@ -42,38 +42,23 @@ public class AddCard extends Screen implements IDisplayComponent
 	public void display()
 	{
 		background(255,255,255);
-
-		textAlign(LEFT);
-		textSize(25);
-		text("Card Number", 10, 90); // Card Number text
-		text(cardNumber.toString(), 30, 115); // Card Number
-		line(30, 120, 350, 120); // Line under Card Number
-
-		text("Expirty", 10, 150); // Card Expirty title
-		text(cardExpirty.toString(), 30, 175); // Card Expirty
-		line(30, 180, 150, 180); // Line under Card Expirty
-
-		text("CVV", 200, 150); // Card CVV title
-		text(cvv.toString(), 200, 175); // Card Expirty
-		line(200, 180, 350, 180); // Line under Card Expirty
-
 		keypad.display();
 
 		textAlign(LEFT);
 		for (IDisplayComponent c: components) {
-					textAlign(LEFT);
-		textSize(25);
-		text("Card Number", 10, 90); // Card Number text
-		text(cardNumber.toString(), 30, 115); // Card Number
-		line(30, 120, 350, 120); // Line under Card Number
+			textAlign(LEFT);
+			textSize(25);
+			text("Card Number", 10, 90); // Card Number text
+			text(cardNumber.toString(), 30, 115); // Card Number
+			line(30, 120, 350, 120); // Line under Card Number
 
-		text("Expirty", 10, 150); // Card Expirty title
-		text(cardExpirty.toString(), 30, 175); // Card Expirty
-		line(30, 180, 150, 180); // Line under Card Expirty
+			text("Expirty", 10, 150); // Card Expirty title
+			text(cardExpirty.toString(), 30, 175); // Card Expirty
+			line(30, 180, 150, 180); // Line under Card Expirty
 
-		text("CVV", 200, 150); // Card CVV title
-		text(cvv.toString(), 200, 175); // Card Expirty
-		line(200, 180, 350, 180); // Line under Card Expirty
+			text("CVV", 200, 150); // Card CVV title
+			text(cvv.toString(), 200, 175); // Card Expirty
+			line(200, 180, 350, 180); // Line under Card Expirty
 			c.display();
 		}
 	}
@@ -125,14 +110,9 @@ public class AddCard extends Screen implements IDisplayComponent
 
 				if(cardNumber.length() == 16 && cardExpirty.length() == 4 && cvv.length() == 3)
 				{
-					println("In the right spot");
 					cardInfo.put("cardNumber", cardNumber.toString());
 					cardInfo.put("cardExpirty", cardExpirty.toString());
 					cardInfo.put("cardCVV", cvv.toString());
-					if(cardInfo.containsKey("cardCVV"))
-					{
-						println("Correct");
-					}
 					addPaymentButton.setCardInfo(cardInfo);
 				}
 			}
