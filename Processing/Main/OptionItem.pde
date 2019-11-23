@@ -134,6 +134,7 @@ public class OptionItem extends Screen implements IDisplayComponent, ITouchEvent
 		boolean checkPerviousCompletion = currentIndex >= 1 && orderList.get(currentIndex - 1).getOrdercompletion();
 
 		if (orderList.size() > 0) {
+//<<<<<<< HEAD
 			currentOrder = orderList.get(orderList.size() - 1);
 		} 
 		
@@ -146,6 +147,19 @@ public class OptionItem extends Screen implements IDisplayComponent, ITouchEvent
 		currentOrder.updatePrice();
 
 		if (orderList.size() == 0 || checkPerviousCompletion ) {
+// =======
+// 			Order currentOrder = orderList.get(orderList.size() - 1);
+// 			BigItem newItem = new BigItem(name, price);
+// 			currentOrder.addBigItem(newItem);
+//             currentOrder.setStoreName(storeName);
+// 			currentOrder.updatePrice();
+//             orderList.set(orderList.size() - 1, currentOrder);
+// 		} else {
+// 			Order currentOrder = new Order();
+// 			BigItem newItem = new BigItem(name, price);
+// 			currentOrder.addBigItem(newItem);
+// 			currentOrder.setStoreName(storeName);
+// >>>>>>> Fix storeName bug
 			orderList.add(currentOrder);
 		} 
 		else {
