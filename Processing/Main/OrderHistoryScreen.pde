@@ -47,7 +47,7 @@ public class OrderHistoryScreen extends Screen implements IDisplayComponent {
         orderList = deserialization("optionScreenDetail.json");
 
         background(255);
-
+        textAlign(LEFT);
         // System.out.println("orderList: " + orderList.size());
         for(Order order : orderList){ // get each order
             if (order != null){
@@ -76,7 +76,8 @@ public class OrderHistoryScreen extends Screen implements IDisplayComponent {
 
           fill(0, 0, 0, 255);
           textSize(18);
-          text("No Order Available !", startLeft, currentHeight );
+          textAlign(CENTER);
+          text("No Order Available !", width/2, currentHeight );
         }
         currentHeight += 40;
 
