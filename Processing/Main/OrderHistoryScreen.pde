@@ -38,7 +38,7 @@ public class OrderHistoryScreen extends Screen implements IDisplayComponent {
 
         for(Order order : orderList){
             if (order != null){
-              System.out.println(order.getStoreName + " : " + order.price());
+              System.out.println(order.getStoreName() + " : " + order.getPrice());
             }
         }
 
@@ -84,6 +84,7 @@ public class OrderHistoryScreen extends Screen implements IDisplayComponent {
      * @param frame The frame reference
      */
     public void setFrame(IFrame frame) {
+        this.frame = frame;
         menuBar.setFrame(frame);
     };
 }

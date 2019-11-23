@@ -84,7 +84,7 @@ public class Order
 	 * @param price = Item price
 	 */
 	public void addSmallItem(SmallItem smallItem)
-	{		
+	{
 		//add the small item to the latest BigItem
 		if (bigItemList.size() > 0) {
 			BigItem latestBigItem = bigItemList.get(bigItemList.size()-1);
