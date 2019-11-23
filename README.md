@@ -53,12 +53,13 @@ https://docs.google.com/spreadsheets/d/1RTbq7yntsJt69ADQimevnhguH2hgphhL/edit#gi
 ### Kun Su
 1. Provide application prototype, setup all the issues (tasks) in Github and assign tasks for each teammates according their interest. 
 2. Draw ```Activity Diagram```, ```Class Diagram``` and ```Sequence Diagram``` for all classes and design pattern. 
-3. Use ```Composite``` and ```Chain of Resoponsebility``` design pattern for all Screen related classes. 
-4. Design and develop the Main Screen of Flows, which generally stores and reads data from local JSON file.
-5. Design and develop Key data stcutore classes Order, BigItem, SmallItem that can be store and read from JSON files. 
-6. As a role of Scurm Master, when some thing went wrong, I would pointed it out and provided my idea with better approch or even a solution. I encouraged our team member to do the right things instead of hardcoding everything. 
-7. Help team members to fix bug or solve their Github issue whenever they needed. 
-8. Document everthing for Sprint mangagement. 
+3. Design and develop ```HomePageScreen```, ```MyAccountScreen``` using ```Composite``` and ```Chain of Resoponsebility``` design pattern. 
+4. Design and implement the data modification part for ```OptionItem``` and ```LeafItem``` then use serialization and deserialization function to transfer data from local JSON file.
+5. Design and develop Key data stcutore classes ```Order```, ```BigItem```, ```SmallItem``` that will be used during the data modification for purchasing items. 
+6. Design and develop reset mechanism for ```Order```, ```BigItem```, ```SmallItem```, and local JSON files when user switching different screens. 
+6. Help team members to fix bug or solve their Github issue whenever they needed. 
+7. Document everthing for Sprint mangagement. 
+8. As a role of Scurm Master, when some thing went wrong, I would pointed it out and provided my idea with better approch or even a solution. I encouraged our team member to do the right things instead of hardcoding everything. 
 
 ### Sung-Yin Yang
 1. Find Suitable picture for UI displayment.
