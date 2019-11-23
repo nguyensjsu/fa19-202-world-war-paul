@@ -68,12 +68,12 @@ public class OptionItem extends Screen implements IDisplayComponent, ITouchEvent
 			// Reset
 			unselected();
 
-      if (name.indexOf("Burger") != -1){
-         optionScreen = new OptionScreen("Custom Burger Options", name);
-       }
-       else{
-         optionScreen = new OptionScreen("Custom Starbuck Options", name);
-       }
+		if (name.indexOf("Burger") != -1){
+			optionScreen = new OptionScreen("Custom Burger Options", name);
+		}
+		else{
+			optionScreen = new OptionScreen("Custom Starbuck Options", name);
+		}
 
 			optionScreen.setFrame(frame);
 			setNext(optionScreen);
@@ -126,22 +126,30 @@ public class OptionItem extends Screen implements IDisplayComponent, ITouchEvent
      */
     public void addNewOrder(String storeName, String filename){
 
-		System.out.println("Running");
 		File orderFile = new File("." + File.separator + filename);
 		ArrayList<Order> orderList = deserialization(filename); //reread userinput from storeScreen
 
+		int currentIndex = orderList.size();
+		Order currentOrder = new Order(storeName);
+		boolean checkPerviousCompletion = currentIndex >= 1 && orderList.get(currentIndex - 1).getOrdercompletion();
+
 		if (orderList.size() > 0) {
-			Order currentOrder = orderList.get(orderList.size() - 1);
-			BigItem newItem = new BigItem(name, price);
-			currentOrder.addBigItem(newItem);
-			currentOrder.updatePrice();
-            orderList.set(orderList.size() - 1, currentOrder);
-		} else {
-			Order currentOrder = new Order();
-			BigItem newItem = new BigItem(name, price);
-			currentOrder.addBigItem(newItem);
-			currentOrder.setStoreName(storeName);
+			currentOrder = orderList.get(orderList.size() - 1);
+		} 
+		
+		if (checkPerviousCompletion) {
+			currentOrder = new Order(storeName);
+		}
+
+		BigItem newItem = new BigItem(name, price);
+		currentOrder.addBigItem(newItem);
+		currentOrder.updatePrice();
+
+		if (orderList.size() == 0 || checkPerviousCompletion ) {
 			orderList.add(currentOrder);
+		} 
+		else {
+			orderList.set(orderList.size() - 1, currentOrder);
 		}
 
 		// Put orderList back into local file.

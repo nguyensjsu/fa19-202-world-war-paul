@@ -59,8 +59,13 @@ public class LeftItem extends Screen implements IDisplayComponent,  ITouchEventH
     public void touch(int x, int y)
     {
         if (curHeight <= y && y <= curHeight+25) {
-            addNewOrder("optionScreenDetail.json");
             isSelected = (isSelected == true) ? false : true;
+            if (isSelected) {
+                addNewOrder("optionScreenDetail.json");
+            } else {
+                removeSmallItem("optionScreenDetail.json");
+            }
+            
 			display();
         } else if (nextHandler != null) {
             nextHandler.touch(x,y);
@@ -113,7 +118,39 @@ public class LeftItem extends Screen implements IDisplayComponent,  ITouchEventH
                 BigItem currentItem = itemList.get(itemList.size() - 1);
                 SmallItem newItem = new SmallItem(name, price);
 		        currentItem.addSmallItem(newItem);
-                itemList.set(orderList.size() - 1, currentItem);
+                itemList.set(itemList.size() - 1, currentItem);
+            }
+            currentOrder.updatePrice();
+            orderList.set(orderList.size() - 1, currentOrder);
+        } 
+		// Put orderList back into local file.
+        serialization(orderList, filename);
+    }
+
+    /**
+     * Store user input as map and out put json file and timeline
+     * @param filename the store input into file name
+     */
+    public void removeSmallItem(String filename){
+
+		File orderFile = new File("." + File.separator + filename);
+		ArrayList<Order> orderList = deserialization(filename); //reread userinput from storeScreen
+		
+		if (orderList.size() > 0) {
+            Order currentOrder = orderList.get(orderList.size() - 1);
+            ArrayList<BigItem> itemList = currentOrder.getBigItemList();
+            if (itemList.size() > 0) {
+                BigItem currentItem = itemList.get(itemList.size() - 1);
+                ArrayList<SmallItem> smallItemList = currentItem.getSmallItemList();
+                // System.out.println
+                SmallItem newItem = new SmallItem(name, price);
+
+		        for (int i = 0; i < smallItemList.size(); i++) {
+                    if (smallItemList.get(i).getName().equals(name)) {
+                        currentItem.removeSmallItem(i);
+                    }
+                }
+                itemList.set(itemList.size() - 1, currentItem);
             }
             currentOrder.updatePrice();
             orderList.set(orderList.size() - 1, currentOrder);

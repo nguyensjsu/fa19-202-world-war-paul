@@ -10,6 +10,7 @@ public class Store extends Screen implements ITouchEventHandler, IDisplayCompone
     private int startHeight;
     private int endHieght;
     private StoreScreen storeScreen;
+    private Map<String, String> map;
 
     public Store(String imagePath, String name, String address, String hours, int height) {
         image = loadImage(imagePath);
@@ -17,6 +18,10 @@ public class Store extends Screen implements ITouchEventHandler, IDisplayCompone
         this.address = address;
         this.hours= hours;
         startHeight = height;
+
+        map = new HashMap<String, String>();
+        map.put("Attack Burger", "Starbucks");
+        map.put("Starbucks", "Attack Burger");
     }
 
     /**
@@ -85,18 +90,19 @@ public class Store extends Screen implements ITouchEventHandler, IDisplayCompone
      * @param filename the file name
      */
     public void resetOrder(String storeName, String filename) {
+
         File orderFile = new File("." + File.separator + filename);
-		ArrayList<Order> orderList = deserialization(filename); //reread userinput from storeScreen
-		
-		if (orderList.size() > 0) {
+        ArrayList<Order> orderList = deserialization(filename); //reread userinput from storeScreen
+
+        if (orderList.size() > 0) {
             Order currentOrder = orderList.get(orderList.size() - 1);
-            if (!currentOrder.getStoreName().equals(storeName)) {
+            if (map.get(currentOrder.getStoreName()).equals(storeName)) {
                 currentOrder.resetBigItem();
             }
             currentOrder.updatePrice();
             orderList.set(orderList.size() - 1, currentOrder);
-        } 
-		// Put orderList back into local file.
+        }
+        // Put orderList back into local file.
         serialization(orderList, filename);
     }
 }

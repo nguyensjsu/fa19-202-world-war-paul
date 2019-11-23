@@ -116,11 +116,11 @@ public class AddCard extends Screen implements IDisplayComponent
 					addPaymentButton.setCardInfo(cardInfo);
 				}
 			}
-			
+
 		}
 		chain.touch(x, y);
 
-		
+
 	}
 
 	/**

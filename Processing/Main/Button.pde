@@ -85,8 +85,13 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
 					err.setTimer(millis()+ 1000); // 1000 = 1 second
 					err.setFlag(true); // display error message
 				} else {
-					// TODO jump to order result screen
-					System.out.println("Jump into order result screen");
+
+					setOrderCompleted("optionScreenDetail.json");
+					
+					OrderResultScreen orderResultScreen = new OrderResultScreen(buttonName);
+					orderResultScreen.setFrame(frame);
+					setNext(orderResultScreen);
+					next();
 				}
 			}
 			else if(buttonName.equals("View Basket")) // case for Payment, more cases can be added later
@@ -140,5 +145,18 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
 	public void setCardInfo(Map<String, String> map)
 	{
 		cardInfo = map;
+	}
+
+	public void setOrderCompleted(String filename) {
+		File orderFile = new File("." + File.separator + filename);
+		ArrayList<Order> orderList = deserialization(filename); //reread userinput from storeScreen
+		
+		if (orderList.size() > 0) {
+			Order currentOrder = orderList.get(orderList.size() - 1);
+			currentOrder.completedOrder();
+			orderList.set(orderList.size() - 1, currentOrder);
+		} 
+		// Put orderList back into local file.
+		serialization(orderList, filename);
 	}
 }

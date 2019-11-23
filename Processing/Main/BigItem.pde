@@ -1,8 +1,8 @@
 public class BigItem
 {
 	private double price;
-	private ArrayList<SmallItem> smallItemList;  
-	private String name;  
+	private ArrayList<SmallItem> smallItemList;
+	private String name;
 	private double total;
 
 	public BigItem(String itemName, double itemPrice)
@@ -14,7 +14,7 @@ public class BigItem
 	}
 
 	/**
-	 * return total price 
+	 * return total price
 	 * @return sum of the small item price
 	 */
 	public double getPrice()
@@ -24,7 +24,7 @@ public class BigItem
 
 	/**
 	 * update Price after adding new item
-	 */ 
+	 */
 	public double getTotalPrice(){
 		total = price;
 		for (SmallItem item : smallItemList) {
@@ -63,5 +63,15 @@ public class BigItem
 	 */
 	public void resetSmallItem() {
 		smallItemList = new ArrayList<SmallItem>();
+	}
+
+	/**
+	 * remove small item
+	 * @param index 
+	 */
+	public void removeSmallItem(int index) {
+		if (index < smallItemList.size()) {
+			smallItemList.remove(index);
+		}
 	}
 }

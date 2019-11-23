@@ -15,9 +15,7 @@ public class OrderResultScreen extends Screen implements IDisplayComponent {
     public OrderResultScreen(String prev) {
         lineCounter = 0;
         header = new Header("Order Result");
-        payButton = new Button("Pay");
         addSubComponent(header);
-        addSubComponent(payButton);
     }
 
     /**
@@ -35,8 +33,7 @@ public class OrderResultScreen extends Screen implements IDisplayComponent {
         	order = orderList.get(orderList.size() - 1);
         else
         {
-        	order = new Order();
-        	order.setStoreName("");
+        	order = new Order(" ");
         }
 
         fill(0, 0, 0, 255);
@@ -45,25 +42,25 @@ public class OrderResultScreen extends Screen implements IDisplayComponent {
         text(order.getStoreName(), 190, 80);
         lineCounter++;
 
-        ArrayList<BigItem> bigItemList = order.getBigItemList();
-        for(int i = 0; i < bigItemList.size(); i++)
-        {
-            BigItem bigItem = order.getBigItemList().get(i);
-            // bigItemName = bigItem.getName();
-            // bigItemPrice = bigItem.getPrice();
-            displayBigItem(bigItem.getName(), bigItem.getPrice());
-
-            ArrayList<SmallItem> smallItemList = bigItem.getSmallItemList();
-            for(int j = 0; j < smallItemList.size(); j++)
+        // System.out.println("orderList: " + orderList.size());
+        for (Order order : orderList) {
+            ArrayList<BigItem> bigItemList = order.getBigItemList();
+            for(int i = 0; i < bigItemList.size(); i++)
             {
-                SmallItem smallItem = bigItem.getSmallItemList().get(j);
-                // smallItemName = smallItem.getName();
-                // smallItemPrice = smallItem.getPrice();
-                displaySmallItem(smallItem.getName(), smallItem.getPrice());
+                BigItem bigItem = bigItemList.get(i);
+                displayBigItem(bigItem.getName(), bigItem.getPrice());
+
+                ArrayList<SmallItem> smallItemList = bigItem.getSmallItemList();
+                for(int j = 0; j < smallItemList.size(); j++)
+                {
+                    SmallItem smallItem = smallItemList.get(j);
+                    displaySmallItem(smallItem.getName(), smallItem.getPrice());
+                }
+                displayLine();
             }
-            displayLine();
+            displayFee(order.getTotalPrice(), order.getTax(), order.getServiceFee());
         }
-        displayFee(order.getTotalPrice(), order.getTax(), order.getServiceFee());
+        
         
         for (IDisplayComponent c: components) {
             c.display();

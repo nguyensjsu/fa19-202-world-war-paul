@@ -32,6 +32,7 @@ public class OptionScreen extends Screen
     private String name;
 
     private Header header;
+    Button addBasketButton;
 
     public OptionScreen(String t, String n)
     {
@@ -59,7 +60,7 @@ public class OptionScreen extends Screen
             Screen item10 = new LeftItem("Appricot Sauce", 0.75, base + 25*13);
             Screen item11 = new LeftItem("Ranch", 0.75, base + 25*14);
             Screen item12 = new LeftItem("Besil Pesto", 0.75, base + 25*15);
-            Button addBasketButton = new Button("Add Basket");
+            addBasketButton = new Button("Add Basket");
 
             addSubComponent(title1);
             addSubComponent(item1);
@@ -94,7 +95,7 @@ public class OptionScreen extends Screen
             Screen item10 = new LeftItem("Coconut Milk", 0.70, base + 25*13);
             Screen item11 = new LeftItem("Soy Milk", 0.70, base + 25*14);
             Screen item12 = new LeftItem("2% Milk", 0, base + 25*15);
-            Button addBasketButton = new Button("Add Basket");
+            addBasketButton = new Button("Add Basket");
 
             addSubComponent(title1);
             addSubComponent(item1);
@@ -142,7 +143,6 @@ public class OptionScreen extends Screen
      */
     @Override
     public void touch(int x, int y) {
-        System.out.println("Running");
         chain.touch(x, y);
         display();  //require to redisplay otherwise price will not be accurate due to mouse press delay
 
@@ -205,5 +205,6 @@ public class OptionScreen extends Screen
     public void setFrame(IFrame frame){
         this.frame = frame;
         header.setFrame(frame);
+        addBasketButton.setFrame(frame);
     }
 }
