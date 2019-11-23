@@ -7,7 +7,8 @@ public class BasketScreen extends Screen implements IDisplayComponent {
     private Header header;
     private int lineCounter;
     private DecimalFormat df2 = new DecimalFormat("#.##");
-
+    private ArrayList<Order> orderList;
+    private Order order;
     /**
      * Display content
      */
