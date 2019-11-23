@@ -63,6 +63,10 @@ public class Header extends Screen implements ITouchEventHandler, IDisplayCompon
             strokeWeight(1.5);
             line(13, 22.5, 32, 35);
             line(13, 22.5, 32, 10);
+        }else if(header.equals("Order Result")){
+            strokeWeight(1.5);
+            line(13, 22.5, 32, 35);
+            line(13, 22.5, 32, 10);
         }
     }
 
@@ -83,7 +87,7 @@ public class Header extends Screen implements ITouchEventHandler, IDisplayCompon
     public void touch(int x, int y){
         // handle prev button, navigate to screen base on current screen
         if (y <= endHieght && x <= 40) {
-            if(header.equals("Attack Burger") || header.equals("Starbucks")){
+            if(header.equals("Attack Burger") || header.equals("Starbucks")|| header.equals("Order Result")){
                 HomePageScreen home = new HomePageScreen("San Jose State University") ;
                 setPrev(home);
                 prev();
