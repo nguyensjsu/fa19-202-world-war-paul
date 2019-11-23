@@ -134,9 +134,16 @@ public class Order
 	/**
 	 * Reset Big Item
 	 */
-	public void resetBigItem() {
+	public void resetCurrentBigItem() {
 		if (bigItemList.size() > 0) {
 			bigItemList.remove(bigItemList.size() - 1);
 		}
+	}
+
+	/**
+	 * Reset Big Item
+	 */
+	public void resetBigItem() {
+		bigItemList = new ArrayList<BigItem>();
 	}
 }

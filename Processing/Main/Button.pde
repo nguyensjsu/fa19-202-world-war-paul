@@ -63,6 +63,7 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
 					// TODO: jump to orderResultScreen
 				}
 				else {
+          err = new ErrorScreen("Payment Method Is Not Set!");
 					err.setTimer(millis()+ 1000); // 1000 = 1 second
 					err.setFlag(true); // display error message
 				}

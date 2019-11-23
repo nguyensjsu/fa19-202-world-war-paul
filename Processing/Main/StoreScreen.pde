@@ -44,8 +44,9 @@ public class StoreScreen extends Screen
         addSubComponent(item1);
         addSubComponent(item2);
         addSubComponent(item3);
-        addSubComponent(viewBasketButton);
         addSubComponent(header);
+        addSubComponent(viewBasketButton);
+
     }
 
     /**

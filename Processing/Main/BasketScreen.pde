@@ -5,18 +5,6 @@ public class BasketScreen extends Screen implements IDisplayComponent {
 
     int lineCounter = 0;
 
-    double totalPrice = 0;
-    String storeName = "";
-
-    double bigItemPrice = 0;
-    String bigItemName = "";
-
-    double smallItemPrice = 0;
-    String smallItemName = "";
-
-    double serviceFee = 0;
-    double tax = 0;
-
     private DecimalFormat df2 = new DecimalFormat("#.##");
 
     ArrayList<Order>orderList;
@@ -32,12 +20,12 @@ public class BasketScreen extends Screen implements IDisplayComponent {
      * Display content
      */
     public BasketScreen(String prev) {
-      header = new Header("Basket", prev);
-      payButton = new Button("Pay");
-      addSubComponent(header);
-      addSubComponent(payButton);
-    }
 
+        header = new Header("Basket", prev);
+        payButton = new Button("Pay");
+        addSubComponent(header);
+        addSubComponent(payButton);
+    }
 
     /**
      * Display content
@@ -47,6 +35,8 @@ public class BasketScreen extends Screen implements IDisplayComponent {
 
         background(255,255,255);
 
+        // Reset line counter
+        lineCounter = 0;
         orderList = deserialization("optionScreenDetail.json");
         if(orderList.size() > 0)
         	order = orderList.get(orderList.size() - 1);
@@ -55,80 +45,96 @@ public class BasketScreen extends Screen implements IDisplayComponent {
         	order = new Order();
         	order.setStoreName("");
         }
-        storeName = order.getStoreName();
-        serviceFee = order.getPrice() * 0.15;
-        tax = order.getTax();
-        totalPrice = order.getTotalPrice();
 
-        for(int i = 0; i < order.getBigItemList().size(); i++)
+        fill(0, 0, 0, 255);
+        textAlign(CENTER);
+        textSize(20);
+        text(order.getStoreName(), 190, 80);
+        lineCounter++;
+
+        ArrayList<BigItem> bigItemList = order.getBigItemList();
+        for(int i = 0; i < bigItemList.size(); i++)
         {
-            bigItemName = order.getBigItemList().get(i).getName();
-            bigItemPrice = order.getBigItemList().get(i).getPrice();
-            displayBigItem();
-            for(int j = 0; j < order.getBigItemList().get(i).getSmallItemList().size(); j++)
+            BigItem bigItem = order.getBigItemList().get(i);
+            // bigItemName = bigItem.getName();
+            // bigItemPrice = bigItem.getPrice();
+            displayBigItem(bigItem.getName(), bigItem.getPrice());
+
+            ArrayList<SmallItem> smallItemList = bigItem.getSmallItemList();
+            for(int j = 0; j < smallItemList.size(); j++)
             {
-                smallItemName = order.getBigItemList().get(i).getSmallItemList().get(j).getName();
-                smallItemPrice = order.getBigItemList().get(i).getSmallItemList().get(j).getPrice();
-                displaySmallItem();
+                SmallItem smallItem = bigItem.getSmallItemList().get(j);
+                // smallItemName = smallItem.getName();
+                // smallItemPrice = smallItem.getPrice();
+                displaySmallItem(smallItem.getName(), smallItem.getPrice());
             }
             displayLine();
         }
-        displayFee();
-        lineCounter = 0;
+        displayFee(order.getTotalPrice(), order.getTax(), order.getServiceFee());
+        
         for (IDisplayComponent c: components) {
             c.display();
         }
     }
-   /**
+
+    /**
     * Display the bigitem and
+    * @param bigItemName big item name
+    * @param bigItemPrice big item price
     */
-    public void displayBigItem()
+    public void displayBigItem(String bigItemName, double bigItemPrice)
     {
         fill(0, 0, 0, 255);
-        textSize(20);
+        textSize(14);
         textAlign(LEFT);
         text(bigItemName, 10, 100 + 20*lineCounter);
         text("$" + df2.format(bigItemPrice), 300, 100 + 20*lineCounter);
-        lineCounter ++;
+        lineCounter++;
     }
 
-    public void displaySmallItem()
+    /**
+    * Display the bigitem and
+    * @param smallItemName small item name
+    * @param smallItemPrice small item price
+    */
+    public void displaySmallItem(String smallItemName, double smallItemPrice)
     {
         fill(0, 0, 0, 150);
         text(smallItemName, 10, 100 + 20*lineCounter); // need to determine if the text length is above 380
         text("$" + df2.format(smallItemPrice), 300, 100 + 20*lineCounter);
-        lineCounter ++;
+        lineCounter++;
     }
 
+    /**
+     * Display Line
+     */
     public void displayLine()
     {
-        strokeWeight(3);
+        strokeWeight(1);
         stroke(0, 0, 0);
         line(10, 100 + 20*lineCounter, 370, 100+20*lineCounter);
-        lineCounter ++;
+        lineCounter++;
     }
+
     /**
      * Display the service fee and tax
      */
-    public void displayFee()
+    public void displayFee(double totalPrice, double tax, double serviceFee)
     {
-      fill(0, 0, 0, 255);
-      textAlign(CENTER);
-      textSize(25);
-      text(storeName, 190, 80);
-      textAlign(RIGHT);
-      text("$" + df2.format(totalPrice), 370, 600);
-      textAlign(LEFT);
-      text("Total: ", 10, 600);
-      textSize(20);
-      textAlign(LEFT);
-      text("Tax: ", 10, 100 + 20*lineCounter);
-      text("$" +  df2.format(tax), 300, 100 + 20*lineCounter);
-      lineCounter ++;
-      text("Service Fee: ", 10, 100 + 20*lineCounter);
-      text("$" + df2.format(serviceFee), 300, 100 + 20*lineCounter);
-      lineCounter ++;
+        textAlign(RIGHT);
+        text("$" + df2.format(totalPrice), 370, 600);
 
+        textAlign(LEFT);
+        text("Total: ", 10, 600);
+        textSize(14);
+
+        text("Tax: ", 10, 100 + 20*lineCounter);
+        text("$" +  df2.format(tax), 300, 100 + 20*lineCounter);
+        lineCounter++;
+
+        text("Service Fee: ", 10, 100 + 20*lineCounter);
+        text("$" + df2.format(serviceFee), 300, 100 + 20*lineCounter);
+        lineCounter++;
     }
 
     /**
@@ -150,6 +156,7 @@ public class BasketScreen extends Screen implements IDisplayComponent {
             prev.setNext( (ITouchEventHandler) c ) ;
         }
     }
+
     /**
      * Touch Event
      * @param x Touch X
@@ -157,14 +164,11 @@ public class BasketScreen extends Screen implements IDisplayComponent {
      */
     @Override
     public void touch(int x, int y) {
-    	payButton.display();
         chain.touch(x, y);
     }
-
 
     public void setFrame(IFrame frame){
         this.frame = frame;
         header.setFrame(frame);
     }
-
 }
