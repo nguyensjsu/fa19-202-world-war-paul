@@ -32,7 +32,7 @@ public class Order
 	*/
 	public double getTotalPrice()
 	{
-		return price *(1 + 0.1 + 0.15);
+		return price + tax + serviceFee;
 	}
 
 	/**
