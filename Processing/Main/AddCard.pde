@@ -129,7 +129,10 @@ public class AddCard extends Screen implements IDisplayComponent
 					cardInfo.put("cardNumber", cardNumber.toString());
 					cardInfo.put("cardExpirty", cardExpirty.toString());
 					cardInfo.put("cardCVV", cvv.toString());
-					if(cardInfo.containsKey("cardCVV"));
+					if(cardInfo.containsKey("cardCVV"))
+					{
+						println("Correct");
+					}
 					addPaymentButton.setCardInfo(cardInfo);
 				}
 			}

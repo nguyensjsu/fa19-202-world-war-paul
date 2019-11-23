@@ -85,11 +85,11 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
             else if(buttonName.equals("Save Payment Method")) 
             {
                 println("In the right spot");
+                if(cardInfo.containsKey("cardCVV"));
+                {
+                    println("Correct");
+                }
                 serialization(cardInfo, "cardInfo.json");
-                // HomePageScreen homePageScreen;
-                // homePageScreen = new HomePageScreen();
-                // setNext(homePageScreen);
-                // next();
                 frame.cmd("home");
             }
 		}
@@ -122,13 +122,6 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
 
   public void setCardInfo(Map<String, String> map)
   {
-        map = cardInfo;
+        cardInfo = map;
   }
-
-  // public void setFrame(IFrame frame) {
-  //       this.frame = frame;
-  //       header.setFrame(frame);
-  //   }
-
-
 }
