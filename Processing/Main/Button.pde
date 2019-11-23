@@ -7,9 +7,9 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
 	// Error Screen reference
 	private ErrorScreen err;
 	private BasketScreen basketScreen;
-
-  private String prevScreen;
-
+    private HomePageScreen homePageScreen;
+    private String prevScreen;
+    private Map<String, String> cardInfo;
 
     public Button(String name) {
       	buttonName = name;
@@ -69,20 +69,29 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
 			}
 			else if(buttonName.equals("View Basket")) // case for Payment, more cases can be added later
 			{
-
-        ArrayList<Order>currentOrder = deserialization("optionScreenDetail.json");
-        if (currentOrder.size() == 0){
-            err = new ErrorScreen("No Item in Basket Yet.");
-            err.setTimer(millis()+ 1000); // 1000 = 1 second
-            err.setFlag(true); // display error message
-        }
-        else{
-          basketScreen = new BasketScreen(prevScreen);
-          basketScreen.setFrame(frame);
-          setNext(basketScreen);
-          next();
-        }
+                ArrayList<Order>currentOrder = deserialization("optionScreenDetail.json");
+                if (currentOrder.size() == 0){
+                    err = new ErrorScreen("No Item in Basket Yet.");
+                    err.setTimer(millis()+ 1000); // 1000 = 1 second
+                    err.setFlag(true); // display error message
+                }
+                else{
+                  basketScreen = new BasketScreen(prevScreen);
+                  basketScreen.setFrame(frame);
+                  setNext(basketScreen);
+                  next();
+                }
 			}
+            else if(buttonName.equals("Save Payment Method")) 
+            {
+                println("In the right spot");
+                serialization(cardInfo, "cardInfo.json");
+                // HomePageScreen homePageScreen;
+                // homePageScreen = new HomePageScreen();
+                // setNext(homePageScreen);
+                // next();
+                frame.cmd("home");
+            }
 		}
 		else if (nextHandler != null) {
 			nextHandler.touch(x,y);
@@ -108,8 +117,18 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
   * @param frame THe frame reference
   */
   public void setFrame(IFrame frame){
-      this.frame = frame;
+        this.frame = frame;
   }
+
+  public void setCardInfo(Map<String, String> map)
+  {
+        map = cardInfo;
+  }
+
+  // public void setFrame(IFrame frame) {
+  //       this.frame = frame;
+  //       header.setFrame(frame);
+  //   }
 
 
 }

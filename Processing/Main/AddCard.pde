@@ -17,6 +17,7 @@ public class AddCard extends Screen implements IDisplayComponent
 	private Map<String, String> cardInfo = new HashMap<String, String>();
 	private ErrorScreen err;
   	private Header header;
+  	private Button addPaymentButton;
 
 	/**
 	 * Constructor
@@ -29,8 +30,9 @@ public class AddCard extends Screen implements IDisplayComponent
 		cardCVVFlag = false;
 		err = new ErrorScreen("Incorrect Card Information!");
 		header = new Header("Add Card");
+		addPaymentButton = new Button("Save Payment Method");
 		addSubComponent(header);
-
+		addSubComponent(addPaymentButton);
 	}
 
 	/**
@@ -57,14 +59,21 @@ public class AddCard extends Screen implements IDisplayComponent
 
 		keypad.display();
 
-		rect(0, 620, 380, 60);
-		textAlign(CENTER);
-		textSize(32);
-		text("Save Payment Method", END_WIDTH/2, 660); // Add Card Title
-
 		textAlign(LEFT);
-		err.display();
 		for (IDisplayComponent c: components) {
+					textAlign(LEFT);
+		textSize(25);
+		text("Card Number", 10, 90); // Card Number text
+		text(cardNumber.toString(), 30, 115); // Card Number
+		line(30, 120, 350, 120); // Line under Card Number
+
+		text("Expirty", 10, 150); // Card Expirty title
+		text(cardExpirty.toString(), 30, 175); // Card Expirty
+		line(30, 180, 150, 180); // Line under Card Expirty
+
+		text("CVV", 200, 150); // Card CVV title
+		text(cvv.toString(), 200, 175); // Card Expirty
+		line(200, 180, 350, 180); // Line under Card Expirty
 			c.display();
 		}
 	}
@@ -98,19 +107,7 @@ public class AddCard extends Screen implements IDisplayComponent
 			cardExpirtyFlag = false;
 			cardCVVFlag = true;
 		}
-		else if(x > 0 && x < 380 && y > 620 && y < 680)
-		{
-			if(cardNumber.length() == 16 && cardExpirty.length() == 4 && cvv.length() == 3)
-			{
-				cardInfo.put("cardNumber", cardNumber.toString());
-				cardInfo.put("cardExpirty", cardExpirty.toString());
-				cardInfo.put("cardCVV", cvv.toString());
-				serialization(cardInfo, "cardInfo.json");
-				frame.cmd("home");
-			}
-		}
-
-		if(cardNumberFlag && (cardNumber.length() < 16 || (y >= 530 && y <= 590 && x >= 265 && x <= 325)))
+		else if(cardNumberFlag && (cardNumber.length() < 16 || (y >= 530 && y <= 590 && x >= 265 && x <= 325)))
 		{
 			inputTouch(cardNumber, x, y, "cardNumber");
 		}
@@ -122,10 +119,25 @@ public class AddCard extends Screen implements IDisplayComponent
 		{
 			inputTouch(cvv, x, y, "cvv");
 		}
+		else if (chain != null) {
+			if(x > 0 && x < 380 && y > 620 && y < 680)
+			{
 
-		if (chain != null) {
-			chain.touch(x, y);
+				if(cardNumber.length() == 16 && cardExpirty.length() == 4 && cvv.length() == 3)
+				{
+					println("In the right spot");
+					cardInfo.put("cardNumber", cardNumber.toString());
+					cardInfo.put("cardExpirty", cardExpirty.toString());
+					cardInfo.put("cardCVV", cvv.toString());
+					if(cardInfo.containsKey("cardCVV"));
+					addPaymentButton.setCardInfo(cardInfo);
+				}
+			}
+			
 		}
+		chain.touch(x, y);
+
+		
 	}
 
 	/**
@@ -149,6 +161,7 @@ public class AddCard extends Screen implements IDisplayComponent
 		{
 			if(y >= 230 && y <= 290)
 			{
+				println("1 pressed");
 				input.append("1");
 			}
 			else if(y >= 330 && y <= 390)
@@ -239,5 +252,6 @@ public class AddCard extends Screen implements IDisplayComponent
 	public void setFrame(IFrame frame) {
 		this.frame = frame;
 		header.setFrame(frame);
+		addPaymentButton.setFrame(frame);
 	}
 }
