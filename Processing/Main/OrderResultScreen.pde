@@ -109,8 +109,9 @@ public class OrderResultScreen extends Screen implements IDisplayComponent {
     public void displayFee(double totalPrice, double tax, double serviceFee)
     {
         textAlign(RIGHT);
+        textSize(20);
         text("$" + df2.format(totalPrice), 370, 660);
-
+        fill(0, 0, 0, 255);
         textAlign(LEFT);
         text("Total: ", 10, 660);
         textSize(14);
