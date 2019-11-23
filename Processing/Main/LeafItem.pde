@@ -113,7 +113,7 @@ public class LeftItem extends Screen implements IDisplayComponent,  ITouchEventH
                 BigItem currentItem = itemList.get(itemList.size() - 1);
                 SmallItem newItem = new SmallItem(name, price);
 		        currentItem.addSmallItem(newItem);
-                itemList.set(orderList.size() - 1, currentItem);
+                itemList.set(itemList.size() - 1, currentItem);
             }
             currentOrder.updatePrice();
             orderList.set(orderList.size() - 1, currentOrder);
