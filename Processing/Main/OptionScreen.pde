@@ -133,7 +133,7 @@ public class OptionScreen extends Screen
         //price text
         textSize(16);
         fill(255);
-        text("$"+getCurrentTotal(), 320, 660);
+        text("$"+getCurrentTotal(), 320, 655);
     }
 
     /**

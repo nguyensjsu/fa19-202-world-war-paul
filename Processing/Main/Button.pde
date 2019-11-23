@@ -26,13 +26,18 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
      * Display Pay button
      */
     public void display() {
-		fill(0, 255, 0, 100);
+	    
+		//Add Basket green Rectangular
+        fill(0,204,0);  //specail green RGB
+        stroke(0,204,0);  //special green RGB
+        rectMode(CORNER);	
+		
 		rect(0, 620, 380, 60);
 		textAlign(CENTER);
 
-		textSize(32);
+		textSize(20);
 		fill(255, 255, 255, 255);
-		text(buttonName, width/2, 660);
+		text(buttonName, width/2, 655);
 		textAlign(LEFT);
 		err.display();
     }
