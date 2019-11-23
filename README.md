@@ -43,6 +43,15 @@ https://docs.google.com/spreadsheets/d/1RTbq7yntsJt69ADQimevnhguH2hgphhL/edit#gi
 ## Individual Contributions
 
 ### Kun Su
+1. Provide application prototype, setup all the issues (tasks) in Github and assign tasks for each teammates according their interest. 
+2. Draw ```Activity Diagram```, ```Class Diagram``` and ```Sequence Diagram``` for all classes and design pattern. 
+3. Use ```Composite``` and ```Chain of Resoponsebility``` design pattern for all Screen related classes. 
+4. Design and develop the Main Screen of Flows, which generally stores and reads data from local JSON file.
+5. Design and develop Key data stcutore classes Order, BigItem, SmallItem that can be store and read from JSON files. 
+6. As a role of Scurm Master, when some thing went wrong, I would pointed it out and provided my idea with better approch or even a solution. I encouraged our team member to do the right things instead of hardcoding everything. 
+7. Help team members to fix bug or solve their Github issue whenever they needed. 
+8. Document everthing for Sprint mangagement. 
+
 ### Sung-Yin Yang
 ### Taylor Yang
 1. Design and develop the overall screen flows between each screens. For example, how do one screen connected to the other screen and how to switch between screens.
@@ -76,29 +85,29 @@ https://docs.google.com/spreadsheets/d/1RTbq7yntsJt69ADQimevnhguH2hgphhL/edit#gi
 
 ## Overall Activity Diagram
 
-<img src="Activity Diagram.svg">
+<img src="UML Diagram\Activity Diagram.svg">
 
 # Class Diagram
 
 ## Class Diagram Chain of Responsibility Pattern
 
-<img src="Chain of Responsibility Class Diagram.svg">
+<img src="UML Diagram\Chain of Responsibility Class Diagram.svg">
 
 ## Class Diagram Composite Pattern
 
-<img src="Composite Class Diagram.svg">
+<img src="UML Diagram\Composite Class Diagram.svg">
 
 ## Class Diagram State Pattern
 
-<img src="State Class Diagram.svg">
+<img src="UML Diagram\State Class Diagram.svg">
 
 ## Class Diagram Commmand Pattern
 
-<img src="Commmand Class Diagram.svg">
+<img src="UML Diagram\Commmand Class Diagram.svg">
 
 ## Class Diagram Observer Pattern
 
-<img src="Observer Class Diagram.svg">
+<img src="UML Diagram\Observer Class Diagram.svg">
 
 # Use Case Specification
 
@@ -106,24 +115,24 @@ https://docs.google.com/spreadsheets/d/1RTbq7yntsJt69ADQimevnhguH2hgphhL/edit#gi
 
 ## Use Case - Login
 
-<img src="Login Squence Diagram.svg">
+<img src="UML Diagram\Login Squence Diagram.svg">
 
 ## Use Case - Add Credit Card
 
-<img src="Add Card Sequence Diagram.svg">
+<img src="UML Diagram\Add Card Sequence Diagram.svg">
 
 ## Use Case - View Store Page
 
-<img src="View Store Sequence Diagram.svg">
+<img src="UML Diagram\View Store Sequence Diagram.svg">
 
 ## Use Case - Place An Order
 
-<img src="Place An Order Sequence Diagram.svg">
+<img src="UML Diagram\Place An Order Sequence Diagram.svg">
 
 ## Use Case - View Order History
 
-<img src="View Order History Sequence Diagram.svg">
+<img src="UML Diagram\View Order History Sequence Diagram.svg">
 
 ## Use Case - View Acconut Information
 
-<img src="View Acconut Information Sequence Diagram.svg">
+<img src="UML Diagram\View Acconut Information Sequence Diagram.svg">
