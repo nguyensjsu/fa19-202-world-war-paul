@@ -148,4 +148,4 @@ https://docs.google.com/spreadsheets/d/1RTbq7yntsJt69ADQimevnhguH2hgphhL/edit#gi
 
 ## Use Case - View Acconut Information
 
-<img src="UML Diagram\View Acconut Information Sequence Diagram.svg">
+<img src="UML Diagram\View Account Information Sequence Diagram.svg">
