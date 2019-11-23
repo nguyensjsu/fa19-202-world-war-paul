@@ -106,11 +106,6 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
 			}
             else if(buttonName.equals("Save Payment Method")) 
             {
-                println("In the right spot");
-                if(cardInfo.containsKey("cardCVV"));
-                {
-                    println("Correct");
-                }
                 serialization(cardInfo, "cardInfo.json");
                 frame.cmd("home");
             }
