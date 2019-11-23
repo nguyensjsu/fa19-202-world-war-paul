@@ -78,9 +78,9 @@ public class OptionItem extends Screen implements IDisplayComponent, ITouchEvent
 			optionScreen.setFrame(frame);
 			setNext(optionScreen);
 			next();
-        } else if (nextHandler != null) {
-            nextHandler.touch(x,y);
-        }
+      } else if (nextHandler != null) {
+          nextHandler.touch(x,y);
+      }
     }
 
     /**
@@ -134,7 +134,8 @@ public class OptionItem extends Screen implements IDisplayComponent, ITouchEvent
 		boolean checkPerviousCompletion = currentIndex >= 1 && orderList.get(currentIndex - 1).getOrdercompletion();
 
 		if (orderList.size() > 0) {
-			currentOrder = orderList.get(orderList.size() - 1);
+//<<<<<<< HEAD
+		currentOrder = orderList.get(orderList.size() - 1);
 		} 
 		
 		if (checkPerviousCompletion) {
@@ -144,8 +145,10 @@ public class OptionItem extends Screen implements IDisplayComponent, ITouchEvent
 		BigItem newItem = new BigItem(name, price);
 		currentOrder.addBigItem(newItem);
 		currentOrder.updatePrice();
+    currentOrder.setStoreName(storeName);
 
 		if (orderList.size() == 0 || checkPerviousCompletion ) {
+ 			currentOrder.setStoreName(storeName);
 			orderList.add(currentOrder);
 		} 
 		else {
