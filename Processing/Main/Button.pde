@@ -2,11 +2,12 @@
 public class Button extends Screen implements ITouchEventHandler, IDisplayComponent
 {
     private ITouchEventHandler nextHandler ;
-	private String buttonName;
-	//private ArrayList<IDisplayComponent> components = new ArrayList<IDisplayComponent>() ;
-	// Error Screen reference
-	private ErrorScreen err;
-	private BasketScreen basketScreen;
+    private String buttonName;
+
+    // Error Screen reference
+    private ErrorScreen err;
+    private BasketScreen basketScreen;
+    private HomePageScreen homePageScreen;
     private String prevScreen;
     private Map<String, String> cardInfo;
 
@@ -28,6 +29,7 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
 		fill(0, 255, 0, 100);
 		rect(0, 620, 380, 60);
 		textAlign(CENTER);
+
 		textSize(32);
 		fill(255, 255, 255, 255);
 		text(buttonName, width/2, 660);
@@ -56,15 +58,34 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
 		{
 			if(buttonName.equals("Pay"))
 			{
-				File file = new File("." + File.separator + "cardInfo.json"); //TODO: figure out a way to make it general or the file made from AddCard to store cardInfo should be named specificlly
-				boolean exists = file.exists();
-				if (exists == true) {
-					// TODO: jump to orderResultScreen
+				System.out.println("Running123123");
+				boolean infoNotFound = true;
+
+				Gson gson = new Gson();
+				TypeToken<Map<String, String>> token = new TypeToken<Map<String, String>>(){};
+				Map<String, String> cardInfo = new HashMap<String, String>();
+				try
+				{
+					FileReader fr = new FileReader("."+File.separator+"cardInfo.json");
+					cardInfo = gson.fromJson(fr, token.getType()); // has to be a class type
+					
+					fr.close();
 				}
-				else {
-          err = new ErrorScreen("Payment Method Is Not Set!");
+				catch(IOException e)
+				{
+					e.printStackTrace();
+				}
+
+				if (cardInfo.containsKey("cardNumber") && cardInfo.containsKey("cardExpirty") && cardInfo.containsKey("cardCVV")) {
+					infoNotFound = false;
+				}
+
+				if (infoNotFound) {
+					err = new ErrorScreen("Payment Method Is Not Set!");
 					err.setTimer(millis()+ 1000); // 1000 = 1 second
 					err.setFlag(true); // display error message
+				} else {
+					// TODO jump to order result screen
 				}
 			}
 			else if(buttonName.equals("View Basket")) // case for Payment, more cases can be added later
@@ -76,10 +97,10 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
                     err.setFlag(true); // display error message
                 }
                 else{
-                  basketScreen = new BasketScreen(prevScreen);
-                  basketScreen.setFrame(frame);
-                  setNext(basketScreen);
-                  next();
+					basketScreen = new BasketScreen(prevScreen);
+					basketScreen.setFrame(frame);
+					setNext(basketScreen);
+					next();
                 }
 			}
             else if(buttonName.equals("Save Payment Method")) 
@@ -107,16 +128,16 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
 		err = e;
 	}
 
-  /**
-  * Setup the current Frame reference
-  * @param frame THe frame reference
-  */
-  public void setFrame(IFrame frame){
-        this.frame = frame;
-  }
+	/**
+	 * Setup the current Frame reference
+	* @param frame THe frame reference
+	*/
+	public void setFrame(IFrame frame){
+		this.frame = frame;
+	}
 
-  public void setCardInfo(Map<String, String> map)
-  {
-        cardInfo = map;
-  }
+	public void setCardInfo(Map<String, String> map)
+	{
+		cardInfo = map;
+	}
 }
