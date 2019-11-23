@@ -36,9 +36,15 @@ public class OrderHistoryScreen extends Screen implements IDisplayComponent {
 
         background(255);
 
-        for(Order order : orderList){
+        for(Order order : orderList){ // get each order
             if (order != null){
               System.out.println(order.getStoreName() + " : " + order.getPrice());
+              ArrayList<BigItem> bigItemList = order.getBigItemList();
+              if(bigItemList != null){
+                for(BigItem bigItem: bigItemList){ // get each Item in Order
+                  System.out.println("  " + bigItem.getName() + ":" + bigItem.getPrice());
+                }
+              }
             }
         }
 
