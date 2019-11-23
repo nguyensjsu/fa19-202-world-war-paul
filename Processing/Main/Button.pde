@@ -7,7 +7,6 @@ public class Button extends Screen implements ITouchEventHandler, IDisplayCompon
 	// Error Screen reference
 	private ErrorScreen err;
 	private BasketScreen basketScreen;
-    private HomePageScreen homePageScreen;
     private String prevScreen;
     private Map<String, String> cardInfo;
 
