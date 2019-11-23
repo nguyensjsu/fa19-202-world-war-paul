@@ -14,7 +14,7 @@ public class OrderHistoryScreen extends Screen implements IDisplayComponent {
 
     public OrderHistoryScreen() {
 
-        startHeight = 20;
+        startHeight = 60;
 
         // TODO: should actually get the items from the orderItem
 
