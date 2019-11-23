@@ -12,6 +12,11 @@ public class MyAccountScreen extends Screen implements IDisplayComponent
     private MenuBarScreen menuBar;
     private AddCard addCard;
     private Header header;
+    private PImage image1;
+    private PImage image2;
+    private PImage image3;
+    private PImage image4;
+
 
     public MyAccountScreen(int height) {
         startHeight = height;
@@ -22,6 +27,10 @@ public class MyAccountScreen extends Screen implements IDisplayComponent
 
         addSubComponent(menuBar);
         addSubComponent(header);
+        image1 = loadImage("../../img/addCard/addCard.png");
+        image2 = loadImage("../../img/addCard/contact.png");
+        image3 = loadImage("../../img/addCard/give.png");
+        image4 = loadImage("../../img/addCard/account.png");
     }
 
     /**
@@ -29,18 +38,32 @@ public class MyAccountScreen extends Screen implements IDisplayComponent
      */
     public void display() {
 
-        int startingWidth = 10;
+        int startingWidth = 75;
         int currentHeight = startHeight;
 
         background(255);
 
         currentHeight += 15;
+        textSize(16);
 
         text("Hi Admin!", startingWidth, currentHeight);
-        currentHeight += 40;
-
+        
+        image(image1, startingWidth-55, currentHeight+25, 50, 50);
+        currentHeight += 60;
         text("Add Card", startingWidth, currentHeight);
-        currentHeight += 20;
+        
+        image(image2, startingWidth-55, currentHeight+25, 50, 50);
+        currentHeight += 60;
+        text("Contact Support", startingWidth, currentHeight);
+        
+        image(image3, startingWidth-55, currentHeight+25, 50, 50);
+        currentHeight += 60;
+        text("Give Us your feedback", startingWidth, currentHeight);
+        
+        image(image4, startingWidth-55, currentHeight+25, 50, 50);
+        currentHeight += 60;
+        text("Account Setting", startingWidth, currentHeight);
+
 
         for (IDisplayComponent c: components) {
             c.display();
@@ -72,7 +95,7 @@ public class MyAccountScreen extends Screen implements IDisplayComponent
      */
     public void touch(int x, int y)
     {
-        if (startHeight <= y && y <= endHieght) {
+        if (110 <= y && y <= 145) {
             // TODO: next() should jump to next screen
             next();
             System.out.println("Jump into " + "Add Card");

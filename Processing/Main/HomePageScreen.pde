@@ -14,8 +14,8 @@ public class HomePageScreen extends Screen implements IDisplayComponent {
 
     public HomePageScreen(String address) {
         this.address = address;
-        burger = new Store("../../img/store/burger_300x150.png", "Attack Burger", "Student Union", "Pickup: 7:00am - 10:00pm", 60);
-        starbucks = new Store("../../img/store/starbucks_300x150.png", "Starbucks", "Student Union", "Pickup: 7:00am - 10:00pm", 290);
+        burger = new Store("../../img/store/burger_300x150.png", "Attack Burger", "Student Union", "Pickup: 7:00am - 10:00pm", 75);
+        starbucks = new Store("../../img/store/starbucks_300x150.png", "Starbucks", "Student Union", "Pickup: 7:00am - 10:00pm", 305);
 
         header = new Header(address);
         menuBar = new MenuBarScreen();
