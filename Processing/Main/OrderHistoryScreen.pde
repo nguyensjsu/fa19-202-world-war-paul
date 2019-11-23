@@ -13,18 +13,14 @@ public class OrderHistoryScreen extends Screen implements IDisplayComponent {
     private int currentHeight;
     private int startLeft;
 
-
     private DecimalFormat df2 = new DecimalFormat("#.##");
 
-
     private ArrayList<Order> orderList;
-
-    int[] data = {30, 10, 45, 35, 60, 38, 75, 67 };
 
 
     public OrderHistoryScreen() {
 
-        startHeight = 60;
+        startHeight = 260;
 
         startLeft = 40;
 
@@ -40,8 +36,6 @@ public class OrderHistoryScreen extends Screen implements IDisplayComponent {
         addSubComponent(header);
         addSubComponent(LineChart);
 
-
-
     }
 
     /**
@@ -50,17 +44,18 @@ public class OrderHistoryScreen extends Screen implements IDisplayComponent {
     @Override
     public void display() {
 
-        currentHeight = startHeight+20;
+        currentHeight = startHeight;
         orderList = deserialization("optionScreenDetail.json");
 
         background(255);
 
-        // System.out.println("orderList: " + orderList.size());
+        //System.out.println("orderList: " + orderList.size());
         for(Order order : orderList){ // get each order
             if (order != null){
 
               fill(0, 0, 0, 255);
               textSize(16);
+              textAlign(LEFT);
               order.updatePrice();
               text(order.getStoreName() + " Order: $" + df2.format(order.getTotalPrice()), startLeft, currentHeight);
               currentHeight += 20;
@@ -68,30 +63,24 @@ public class OrderHistoryScreen extends Screen implements IDisplayComponent {
               ArrayList<BigItem> bigItemList = order.getBigItemList();
               if(bigItemList != null){
                 for(BigItem bigItem: bigItemList){ // get each Item in Order
-
                   fill(0, 0, 0, 255);
                   textSize(13);
                   text("-" + bigItem.getName(), startLeft + 10, currentHeight);
-                  currentHeight += 20;
+                  currentHeight += 16;
                 }
               }
 
             }
-            currentHeight += 15;
+            currentHeight += 13;
         }
-        if (currentHeight == 80){
+        if (currentHeight == startHeight){
 
           fill(0, 0, 0, 255);
           textSize(18);
-          text("No Order Available !", startLeft, currentHeight );
+          textAlign(CENTER);
+          text("No Order Available !", width/2, currentHeight );
         }
-        currentHeight += 40;
-
-
-
-
-
-
+        currentHeight += 10;
 
         for (IDisplayComponent c: components) {
             c.display();

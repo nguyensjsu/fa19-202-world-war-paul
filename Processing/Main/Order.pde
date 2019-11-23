@@ -161,7 +161,7 @@ public class Order
 	}
 
 	/**
-	 * completed order 
+	 * completed order
 	 */
 	public void completedOrder() { completed = true; }
 
@@ -169,5 +169,5 @@ public class Order
 	 * get the order completion
 	 * @return completed or not.
 	 */
-	public boolean getOrdercompletion() { return completed; } 
+	public boolean getOrdercompletion() { return completed; }
 }

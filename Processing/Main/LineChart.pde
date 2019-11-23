@@ -5,18 +5,14 @@ public class LineChart extends Screen  implements ITouchEventHandler, IDisplayCo
   // Line chart location
   int startX = 40;
   int endX = 340;
-  int startY = 100;
-  int endY = 230;
+  int startY = 80;
+  int endY = 210;
 
   // Line chart values;
-  int[] data  = {30, 12, 43, 22, 18, 26};
+  int[] data;
+  private ArrayList<Order> orderList;
 
   public LineChart(){
-
-    for(int i = 0; i < data.length; i++){
-      data[i] = 0-data[i];
-    }
-
   }
 
   /**
@@ -25,11 +21,13 @@ public class LineChart extends Screen  implements ITouchEventHandler, IDisplayCo
   @Override
   public void display() {
 
+    getData();
+
     if(data.length < 2){
       textSize(18);
       fill(0);
       textAlign(CENTER);
-      text("No enough order", 190, 160);
+      text("No enough info for chart", 190, 160);
       textAlign(LEFT);
       return;
     }
@@ -43,7 +41,7 @@ public class LineChart extends Screen  implements ITouchEventHandler, IDisplayCo
     textSize(12);
     fill(0);
     text("Order", (startX + endX) / 2, endY + 23);
-    text("Price", startX - 5, startY - 16);
+    text("Price", startX - 8, startY - 13);
 
     int step = (endX - startX - 30) / (data.length-1);
     int currentX = startX + 20;
@@ -89,6 +87,20 @@ public class LineChart extends Screen  implements ITouchEventHandler, IDisplayCo
     line(currentX, endY, currentX, endY - 5);
     text(data.length, currentX-2, endY + 12);
 
+  }
+
+  public void getData(){
+    orderList = deserialization("optionScreenDetail.json");
+    data = new int[orderList.size()];
+    int i = 0;
+    for(Order order: orderList){
+      if (order != null){
+        order.updatePrice();
+        int tmp = (int)order.getTotalPrice();
+        data[i] = 0 - tmp;
+        i++;
+      }
+    }
   }
 
 
