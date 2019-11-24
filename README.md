@@ -34,7 +34,7 @@ Use World War Food mobile ordering to preorder meals from your favorite spots on
 ## Presentation
 
 [World War Paul Presentation]
-This is [Presentation](Documentation/World-War-Paul.pdf) doc.
+This is [Presentation](Documentation/WWP-presnet.pdf) doc.
 
 [World War Paul Presentation AD Video]
 https://youtu.be/rGmPPHUbUoM
@@ -57,6 +57,15 @@ https://youtu.be/Ew_oVWvS4AY
 
 [Sprint 2 meeting 2]
 https://youtu.be/uxSb6CGa5ug
+
+[Retrospective meeting ]
+https://youtu.be/GD6hRetmrC4
+
+### Sprint Task Sheet
+<img src="Documentation\Sprint-Task-Sheet.svg">
+
+### Restrospective Notes
+<img src="Documentation\restrospective.svg">
 
 
 ## Individual Contributions
