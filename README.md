@@ -48,6 +48,17 @@ https://youtu.be/_hjHeh9JlQg
 
 https://docs.google.com/spreadsheets/d/1RTbq7yntsJt69ADQimevnhguH2hgphhL/edit#gid=2134553984
 
+### Stand Up meetings
+[Sprint 1 meeting 2]
+https://youtu.be/KC4534rnjNo
+ 
+[Sprint 2 meeting 1]
+https://youtu.be/Ew_oVWvS4AY
+
+[Sprint 2 meeting 2]
+https://youtu.be/uxSb6CGa5ug
+
+
 ## Individual Contributions
 
 ### Kun Su
